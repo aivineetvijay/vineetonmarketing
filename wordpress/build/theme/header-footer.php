@@ -177,6 +177,12 @@ $details = '<!-- wp:group {"style":{"spacing":{"blockGap":"32px"}},"layout":{"ty
 
 $blocks = get_option( 'widget_block', array() );
 if ( ! is_array( $blocks ) ) { $blocks = array(); }
+$sw = get_option( 'sidebars_widgets', array() );
+foreach ( array( 'footer-widget-1', 'footer-widget-2' ) as $area ) {
+	foreach ( (array) ( $sw[ $area ] ?? array() ) as $w ) {
+		if ( 0 === strpos( $w, 'block-' ) ) { unset( $blocks[ (int) substr( $w, 6 ) ] ); }
+	}
+}
 $next = max( array_merge( array( 1 ), array_filter( array_keys( $blocks ), 'is_int' ) ) ) + 1;
 $blocks[ $next ] = array( 'content' => $mega );
 $blocks[ $next + 1 ] = array( 'content' => $details );
