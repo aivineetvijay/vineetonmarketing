@@ -140,7 +140,7 @@ $out = array();
 $out['blog'] = array( 'id' => $blog_id, 'result' => vv_build( $blog_id, array(
 	vv_hero( 'Blog',
 		array( vv_meta_block( 'Blog', 'Field notes', 'Working theory, written down' ), vv_meta_block( 'Blog', 'Cadence', '~ one essay a fortnight' ), vv_meta_block( 'Blog', 'Topics', 'AI, SEO, paid, measurement, strategy' ) ),
-		'Working<br>theory', ', written down.', true,
+		'Working<br>theory,', 'written down.', false,
 		'Short essays on AI in marketing, search, paid media, and the operating systems behind growing teams.'
 	),
 	vv_f( 'Essays', array( 'section-sm', 'pt-24', 'bg-canvas' ), array(
