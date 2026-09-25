@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Vineet Vijay</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/colors_and_type.css">
+<link rel="stylesheet" href="css/site.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="js/image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="js/Shared.jsx"></script>
+
+<script type="text/babel">
+const { useState } = React;
+
+function ContactForm() {
+  const [done, setDone] = useState(false);
+  if (done) {
+    return (
+      <div data-reveal>
+        <div className="t-mono muted">Note received</div>
+        <h3 className="t-large mt-16">Thank you.</h3>
+        <p className="t-body mt-16">I&rsquo;ll reply within one working day. In the meantime, if you haven&rsquo;t already, the writing lives at <a href="blog.html" style={{ textDecoration: 'underline' }}>the blog</a>.</p>
+      </div>
+    );
+  }
+  return (
+    <form className="form-grid" onSubmit={(e) => { e.preventDefault(); setDone(true); }}>
+      <div className="form-row">
+        <div className="field">
+          <label>Name</label>
+          <input required placeholder="Your full name" />
+        </div>
+        <div className="field">
+          <label>Company</label>
+          <input placeholder="Brand or company" />
+        </div>
+      </div>
+      <div className="form-row">
+        <div className="field">
+          <label>Email</label>
+          <input type="email" required placeholder="you@company.com" />
+        </div>
+        <div className="field">
+          <label>Phone</label>
+          <input placeholder="+971 ..." />
+        </div>
+      </div>
+      <div className="field">
+        <label>What&rsquo;s the note about</label>
+        <select defaultValue="">
+          <option value="" disabled>Pick the closest fit</option>
+          <option>A reaction to something I wrote</option>
+          <option>Speaking or panel invitation</option>
+          <option>Podcast or interview</option>
+          <option>Press or quote request</option>
+          <option>Trading notes on a problem</option>
+          <option>Just saying hello</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div className="field">
+        <label>Your note</label>
+        <textarea required placeholder="A line or two is plenty." />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: 8 }}>
+        <Btn filled>Send</Btn>
+      </div>
+    </form>
+  );
+}
+
+function FaqItem({ i, q, a, open, onToggle }) {
+  return (
+    <div className={"faq__item " + (open ? "is-open" : "")}>
+      <button className="faq__q" onClick={onToggle} aria-expanded={open}>
+        <span className="faq__num">{String(i + 1).padStart(2, '0')}</span>
+        <span className="faq__title">{q}</span>
+        <span className="faq__sign" aria-hidden="true"></span>
+      </button>
+      <div className="faq__a" style={{ gridTemplateRows: open ? '1fr' : '0fr' }}>
+        <div><p>{a}</p></div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [faqOpen, setFaqOpen] = React.useState(0);
+  return (
+    <Page active="Contact">
+
+      <section className="hero">
+        <div className="wrap" style={{ width: '100%' }}>
+          <div className="hero__meta">
+            <div className="hero__meta-block"><div className="t-mono k">Status</div><div className="v"><span className="status"><span className="led"></span>Open to new conversations</span></div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Reply</div><div className="v">Within one working day · GST +4</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Office hours</div><div className="v">Sunday — Thursday · 9:00 — 18:00</div></div>
+          </div>
+
+          <h1 className="t-huge">
+            <Line>Say</Line>
+            <Line delay={120}>hello<em className="t-italic muted">.</em></Line>
+          </h1>
+
+          <div className="hero__footer">
+            <Reveal delay={420} className="t-lead" style={{ maxWidth: 620 }}>
+              For a conversation, a question, or a thought worth sharing. If something on this site struck a chord — or you want to swap notes — send me a note.
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT GRID */}
+      <section className="section">
+        <div className="wrap">
+          <div className="egrid">
+            <Reveal className="col-5" style={{ minWidth: 0 }}>
+              <div className="t-mono muted">Direct</div>
+              <div className="mt-32">
+                <a href="mailto:vineetvijay88@gmail.com" className="t-large" style={{ display: 'block', fontSize: 'clamp(22px, 2.1vw, 32px)', overflowWrap: 'anywhere', minWidth: 0 }} data-cursor-label="Email">
+                  vineetvijay88@gmail.com
+                </a>
+                <a href="tel:+971586823646" className="t-large mt-16" style={{ display: 'block', fontSize: 'clamp(22px, 2.1vw, 32px)', overflowWrap: 'anywhere', minWidth: 0 }} data-cursor-label="Call">
+                  +971 58 682 3646
+                </a>
+                <a href="https://linkedin.com/in/vineetvijay" target="_blank" rel="noopener" className="t-large mt-16" style={{ display: 'block', fontSize: 'clamp(22px, 2.1vw, 32px)', overflowWrap: 'anywhere', minWidth: 0 }} data-cursor-label="LinkedIn">
+                  linkedin.com/in/vineetvijay
+                </a>
+              </div>
+
+              <div className="mt-64">
+                <div className="t-mono muted">Based</div>
+                <div className="t-medium mt-16">Abu Dhabi &amp; Dubai<br/>United Arab Emirates</div>
+              </div>
+
+              <div className="mt-48">
+                <div className="t-mono muted">Active markets</div>
+                <div className="t-meta mt-16">UAE · KSA · India · Wider GCC</div>
+              </div>
+            </Reveal>
+
+            <Reveal className="col-6 start-7" delay={120} style={{ minWidth: 0 }}>
+              <div className="t-mono muted">Or send a note</div>
+              <div className="mt-32">
+                <ContactForm />
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT TO EXPECT */}
+      <section className="section bg-parchment">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">01</span><span className="label">What to expect</span></div>
+            <div className="sec-head__r">A quiet inbox, taken seriously</div>
+          </div>
+
+          <Reveal as="h2" className="t-display">
+            From note<br/><span className="t-italic muted">to reply.</span>
+          </Reveal>
+
+          <div className="egrid mt-96">
+            {[
+              { n: '01', t: 'I read it.',           d: 'Every note arrives in the same inbox. No assistants, no triage. I read what you wrote, in full.' },
+              { n: '02', t: 'I reply.',             d: 'A short, personal response. Sometimes a question back, sometimes a link to something already written, sometimes a thank-you.' },
+              { n: '03', t: 'We take it from there.', d: 'A continued exchange, a call, an introduction — or just two people glad to have crossed paths.' },
+            ].map((s, i) => (
+              <Reveal key={s.n} className="col-4 col-md-6" delay={i * 80}>
+                <div className="t-mono muted">Step {s.n}</div>
+                <h3 className="t-large mt-16" style={{ fontSize: 'clamp(28px, 2.6vw, 40px)' }}>{s.t}</h3>
+                <p className="t-body mt-16">{s.d}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">02</span><span className="label">Common questions</span></div>
+            <div className="sec-head__r">Frequently asked</div>
+          </div>
+
+          <div className="mt-64 faq">
+            {[
+              { q: 'Are you a consultant for hire?', a: 'This site is primarily a publishing platform for my writing. I do take on a small number of advisory and speaking engagements each year — say hello and we can talk.' },
+              { q: 'Can I quote or republish your essays?', a: 'Yes, with attribution and a link back. Drop a note before publishing so I can share any updated context.' },
+              { q: 'Do you do podcast or panel appearances?', a: 'Often. The topics I most enjoy: AI in marketing, search, measurement, and the operating systems behind growing teams.' },
+              { q: 'Will you respond to a cold outreach?', a: 'Almost always, if it is a real note from a real person about a real idea. Generic pitches do not get a reply.' },
+              { q: 'How do you handle data shared in a conversation?', a: 'In confidence. Nothing shared with me is fed to a model that retains it, or shared further without permission.' },
+            ].map((item, i) => (
+              <FaqItem key={item.q} i={i} q={item.q} a={item.a} open={faqOpen === i} onToggle={() => setFaqOpen(faqOpen === i ? -1 : i)} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+    </Page>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

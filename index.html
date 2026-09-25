@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vineet Vijay — AI &amp; Data Driven Digital Marketing</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/colors_and_type.css">
+<link rel="stylesheet" href="css/site.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="js/image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="js/Shared.jsx"></script>
+
+<script type="text/babel">
+
+/* Drives a CSS custom property --about-y on the .about section based on
+   how far it has scrolled past the viewport. Gives a calm parallax. */
+function AboutParallax() {
+  React.useEffect(() => {
+    const sec = document.querySelector('.about');
+    if (!sec) return;
+    let raf;
+    const update = () => {
+      const rect = sec.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      // progress: -1 (section below viewport) → 0 (centered) → +1 (above)
+      const p = Math.max(-1, Math.min(1, (vh / 2 - (rect.top + rect.height / 2)) / (rect.height / 2 + vh / 2)));
+      sec.style.setProperty('--about-y', (p * 60) + 'px');
+    };
+    const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(raf); };
+  }, []);
+  return null;
+}
+
+const WORK_REMOVED = [];
+
+const TOPICS = [
+  { n: '01', t: 'AI in Marketing',         d: 'Re-architecting the stack — research, creative, decisioning, measurement.' },
+  { n: '02', t: 'SEO & Organic Growth',    d: 'Technical foundations and editorial systems built for AI-era search.' },
+  { n: '03', t: 'Paid Media',              d: 'Performance on Meta, Google, and LinkedIn, structured for incrementality.' },
+  { n: '04', t: 'Programmatic & Display',  d: 'Demand-side strategy that respects the brand. DCO, supply, frequency.' },
+  { n: '05', t: 'Strategy & Operating',    d: 'Quarterly operating systems for marketing leaders. Roadmaps that ship.' },
+  { n: '06', t: 'Measurement',             d: 'MMM, incrementality testing, and the discipline of knowing what moved.' },
+];
+
+const RECENT = [
+  { y: 'May \u201926',  cat: 'AI in Marketing', t: 'Schema is the new resume — how to brief your brand to an AI.' },
+  { y: 'May \u201926',  cat: 'Measurement',     t: 'The MMM you can actually run on Monday.' },
+  { y: 'Apr \u201926',  cat: 'SEO',             t: 'AI search readiness, in plain language.' },
+  { y: 'Apr \u201926',  cat: 'Paid Media',      t: 'Stop optimising the wrong thing.' },
+];
+
+const BRAND_TOKENS = [
+  'Reem Hospital', 'Apollo Hospitals', 'Titan Watches', 'Myntra',
+  'ITC Foods', 'MTR Foods', 'Wipro', 'Kreditbee', 'Duroflex', 'Wavemaker WPP', 'IPG'
+];
+
+function App() {
+  return (
+    <Page active="Index">
+
+      {/* HERO */}
+      <section className="hero hero--portrait">
+        {/* Right-aligned background portrait with vertical fade */}
+        <div className="hero__portrait" aria-hidden="true">
+          <img src="assets/headshot.jpeg" alt="" />
+        </div>
+
+        <div className="wrap" style={{ width: '100%', position: 'relative', zIndex: 2 }}>
+          <div className="hero__meta">
+            <div className="hero__meta-block">
+              <div className="t-mono k">Currently</div>
+              <div className="v">Digital Marketing Strategist<br/>UAE</div>
+            </div>
+            <div className="hero__meta-block">
+              <div className="t-mono k">Discipline</div>
+              <div className="v">AI &amp; data driven<br/>digital marketing</div>
+            </div>
+            <div className="hero__meta-block hide-on-mobile">
+              <div className="t-mono k">Status</div>
+              <div className="v"><span className="status"><span className="led"></span>Open to new conversations</span></div>
+            </div>
+          </div>
+
+          <h1 className="t-huge">
+            <Line>Vineet</Line>
+            <Line delay={120}>Vijay <em className="t-italic muted">— marketing,</em></Line>
+            <Line delay={240}>engineered <em className="t-italic muted">to compound.</em></Line>
+          </h1>
+
+          <div className="hero__footer">
+            <Reveal delay={420} className="t-lead" style={{ maxWidth: 520 }}>
+              A decade across healthcare, e-commerce, FMCG, and luxury. Currently building the digital front door for a flagship UAE hospital.<br/><br/>
+              Previously at Wavemaker (WPP), Interactive Avenues (IPG), and GenY Medium.
+            </Reveal>
+            <Reveal delay={520} style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Btn href="experience.html">Experience</Btn>
+              <Btn href="blog.html" filled>Read the writing</Btn>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* MARQUEE — brands & disciplines */}
+      <section className="section--sm" style={{ paddingTop: 24, paddingBottom: 24 }}>
+        <Marquee items={BRAND_TOKENS} />
+      </section>
+
+      {/* TOPICS — what I write about */}
+      <section className="section bg-parchment">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l">
+              <span className="idx">01</span>
+              <span className="label">What I write about</span>
+            </div>
+            <div className="sec-head__r">Six lenses on one craft</div>
+          </div>
+
+          <Reveal as="h2" className="t-display" delay={80}>
+            Six topics.<br/>
+            <span className="t-italic muted">One operating system.</span>
+          </Reveal>
+
+          <div className="egrid mt-96">
+            {TOPICS.map((t, i) => (
+              <Reveal key={t.t} className="col-4 col-md-3" delay={i * 80}>
+                <div className="t-mono muted">{t.n}</div>
+                <h3 className="t-large mt-16" style={{ fontSize: 'clamp(28px, 3vw, 40px)' }}>{t.t}.</h3>
+                <p className="t-body mt-16">{t.d}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* RECENT WRITING — dark editorial list */}
+      <section className="section bg-ink">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l">
+              <span className="idx">02</span>
+              <span className="label">Recent writing</span>
+            </div>
+            <div className="sec-head__r">A new essay roughly every fortnight</div>
+          </div>
+
+          <Reveal as="h2" className="t-display" delay={80}>
+            What I&rsquo;m<br/>
+            <span className="t-italic muted">thinking about.</span>
+          </Reveal>
+
+          <Reveal className="mt-64">
+            <ul className="post-list">
+              {RECENT.map(p => <li key={p.t}><PostRow year={p.y} title={p.t} category={p.cat} href="blog.html" /></li>)}
+            </ul>
+          </Reveal>
+
+          <Reveal className="mt-48" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Btn href="blog.html">All writing</Btn>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PORTRAIT + ABOUT */}
+      {/* PORTRAIT + ABOUT — background portrait, soft fade, parallax */}
+      <section className="section about" data-reveal>
+        <div className="about__bg" aria-hidden="true">
+          <img src="assets/headshot.jpeg" alt="" />
+        </div>
+
+        <div className="wrap">
+          <div className="about__content">
+            <div className="t-mono muted">03 — About</div>
+
+            <h2 className="t-display mt-24" style={{ fontSize: 'clamp(48px, 6vw, 96px)', lineHeight: 0.95 }}>
+              Ten years.<br/>
+              <span className="t-italic muted">Multiple industries.</span>
+            </h2>
+
+            {/* Industries — small, quiet chips arranged 5 + 5. */}
+            <div className="itags">
+              <div className="itags__row">
+                {['Healthcare', 'Insurance', 'Finance', 'E-commerce'].map(t => (
+                  <span className="itag" key={t}>
+                    <span className="dot" aria-hidden="true"></span>
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <div className="itags__row">
+                {['Retail', 'Luxury', 'FMCG', 'Foods'].map(t => (
+                  <span className="itag" key={t}>
+                    <span className="dot" aria-hidden="true"></span>
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <div className="itags__row">
+                {['Education', 'Technology'].map(t => (
+                  <span className="itag" key={t}>
+                    <span className="dot" aria-hidden="true"></span>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <p className="t-medium mt-32" style={{ maxWidth: 540, color: 'var(--color-ink)' }}>
+              I write about what actually moves the line.
+            </p>
+
+            {/* Now / Previously / Education — three columns of key data. */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32, marginTop: 48 }}>
+              <div>
+                <div className="t-mono muted">Now</div>
+                <div className="t-medium mt-16" style={{ fontSize: 17, lineHeight: 1.5 }}>
+                  House of Comms<br/>
+                  <span className="muted" style={{ fontSize: 14 }}>UAE</span>
+                </div>
+              </div>
+              <div>
+                <div className="t-mono muted">Previously</div>
+                <div className="t-medium mt-16" style={{ fontSize: 17, lineHeight: 1.5 }}>
+                  Reem Hospital<br/>
+                  Wavemaker (WPP)<br/>
+                  Interactive Avenues (IPG)<br/>
+                  GenY Medium
+                </div>
+              </div>
+              <div>
+                <div className="t-mono muted">Education</div>
+                <div className="t-medium mt-16" style={{ fontSize: 17, lineHeight: 1.5 }}>
+                  IIM Calcutta &rsquo;21<br/>
+                  ICFAI Hyderabad &rsquo;15<br/>
+                  DSCE Bangalore &rsquo;11
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-48" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Btn href="experience.html">Full experience</Btn>
+              <Btn href="ai.html" filled>Read the POV</Btn>
+            </div>
+          </div>
+        </div>
+
+        {/* Parallax driver — translates the bg image as the section scrolls. */}
+        <AboutParallax />
+      </section>
+
+      {/* STATS — dark soft */}
+      <section className="section bg-ink-soft">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l">
+              <span className="idx">04</span>
+              <span className="label">In numbers</span>
+            </div>
+            <div className="sec-head__r">A decade, measured</div>
+          </div>
+
+          <Reveal>
+            <StatGrid stats={[
+              { v: '180', sup: '%',  l: 'Organic traffic growth at Reem Hospital, 18 months.' },
+              { v: '6',   sup: '×',  l: 'E-commerce ROAS for Titan, sustained.' },
+              { v: '250', sup: 'Mn₹', l: 'Annual budget directed at Wavemaker.' },
+              { v: '10',  sup: '+',  l: 'Years in performance, SEO, and paid.' },
+            ]} />
+          </Reveal>
+        </div>
+      </section>
+
+    </Page>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

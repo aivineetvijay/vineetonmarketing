@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI in Marketing — Vineet Vijay</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/colors_and_type.css">
+<link rel="stylesheet" href="css/site.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="js/image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="js/Shared.jsx"></script>
+
+<script type="text/babel">
+
+const { useState } = React;
+
+/* Interactive accordion: one truth open at a time, with a huge ghost
+   numeral filling the negative space. Hover opens, click locks. */
+function TruthsAccordion({ items }) {
+  const [open, setOpen] = useState(0);
+  return (
+    <div className="truths">
+      {items.map((t, i) => (
+        <div key={t.n}
+             className={"truth " + (i === open ? "is-open" : "")}
+             onMouseEnter={() => setOpen(i)}
+             onClick={() => setOpen(i)}>
+          <div className="truth__ghost" aria-hidden="true">{t.n}</div>
+          <div className="truth__row">
+            <span className="truth__num">{t.n} — Truth</span>
+            <h3 className="truth__title">{t.t}</h3>
+            <span className="truth__sign" aria-hidden="true"></span>
+          </div>
+          <div className="truth__body" aria-hidden={i !== open}>
+            <span className="spacer"></span>
+            <p>{t.d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const PILLARS = [
+  { n: '01', t: 'Research',     d: 'From customer interview transcripts to category audits, the research pile is now a queryable asset, not a deck nobody opens.' },
+  { n: '02', t: 'Search',       d: 'When the answer comes before the click, content needs to be quotable. Schema, source authority, and editorial discipline matter more than ever.' },
+  { n: '03', t: 'Creative',     d: 'Generative tools are not a designer replacement. They are a velocity multiplier for the brands with the clearest visual language.' },
+  { n: '04', t: 'Decisioning',  d: 'The platforms are already AI. The advantage now lives upstream: clean signal, clear incrementality, and a structure that lets the model learn.' },
+  { n: '05', t: 'Measurement',  d: 'MMM and causal inference are no longer enterprise-only. The smallest D2C team can now know what actually drove the lift.' },
+  { n: '06', t: 'Workflow',     d: 'Briefs, QA, asset routing, reporting — the meta-work around campaigns is the next thing to compress.' },
+];
+
+const TRUTHS = [
+  { n: '01', t: 'The platforms are AI now.',           d: 'Bidding, audience expansion, creative selection — already a black box. The job is shifting from operating the platforms to feeding them the right signal.' },
+  { n: '02', t: 'Search is splitting in two.',          d: 'Classic SERP for navigational queries. Generated answers for everything else. Both need a content strategy. Most brands have neither.' },
+  { n: '03', t: 'Content velocity is a strategic lever.', d: 'For the first time, the bottleneck on category coverage is editorial discipline, not headcount. Used carelessly, it becomes noise.' },
+  { n: '04', t: 'Attribution is finally honest.',       d: 'Modern incrementality + MMM frameworks can be stood up in weeks, not quarters. Hiding behind last-click is now a choice.' },
+  { n: '05', t: 'Brand still wins long term.',          d: 'Distinctiveness, memory structures, sonic and visual codes — none of this is automatable. Performance compounds on brand, or it doesn\u2019t compound at all.' },
+];
+
+const PROOF = [
+  { v: '38',  sup: '%', l: 'Average production cost reduction on always-on creative.' },
+  { v: '4.2', sup: '×', l: 'Faster brief-to-asset turnaround on tested workflows.' },
+  { v: '180', sup: '%', l: 'Organic traffic growth using AI-assisted content systems.' },
+  { v: '0',   sup: '',  l: 'Client data trained into a third-party model without consent.' },
+];
+
+function App() {
+  return (
+    <Page active="AI in Marketing">
+
+      {/* HERO */}
+      <section className="hero">
+        <div className="wrap" style={{ width: '100%' }}>
+          <div className="hero__meta">
+            <div className="hero__meta-block">
+              <div className="t-mono k">Section</div>
+              <div className="v">A point of view</div>
+            </div>
+            <div className="hero__meta-block">
+              <div className="t-mono k">Length</div>
+              <div className="v">~ 12 minutes</div>
+            </div>
+            <div className="hero__meta-block">
+              <div className="t-mono k">Updated</div>
+              <div className="v">May 2026</div>
+            </div>
+          </div>
+
+          <h1 className="t-huge">
+            <Line>AI in</Line>
+            <Line delay={120}>Marketing<em className="t-italic muted">.</em></Line>
+          </h1>
+
+          <div className="hero__footer">
+            <Reveal delay={420} className="t-lead" style={{ maxWidth: 620 }}>
+              Every layer of the marketing stack — research, creative, distribution, measurement — is being rewritten. The opportunity is not to add an AI tool. It is to redesign the workflow.
+            </Reveal>
+            <Reveal delay={520} style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Btn href="#pillars">Read the pillars</Btn>
+              <Btn href="blog.html" filled>Explore the writing</Btn>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* THESIS / FEATURE IMAGE */}
+      <section className="section--sm">
+        <div className="wrap">
+          <Reveal className="tile-img" style={{ height: 'clamp(280px, 50vh, 520px)', borderRadius: 12 }}>
+            <image-slot
+              id="ai-hero-visual"
+              shape="rounded"
+              radius={12}
+              placeholder="Feature image for AI in Marketing"
+              class="tone-warm"
+              style={{ display: 'block', width: '100%', height: '100%', borderRadius: '12px' }}
+            ></image-slot>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PILLARS — editorial grid */}
+      <section className="section" id="pillars">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">01</span><span className="label">Six pillars</span></div>
+            <div className="sec-head__r">Where AI changes marketing — and where it doesn&rsquo;t</div>
+          </div>
+
+          <Reveal as="h2" className="t-display">
+            Where AI<br/><span className="t-italic muted">changes marketing.</span>
+          </Reveal>
+
+          <div className="egrid mt-96">
+            {PILLARS.map((p, i) => (
+              <Reveal key={p.t} className="col-4 col-md-3" delay={i * 60}>
+                <div className="t-mono muted">{p.n}</div>
+                <h3 className="t-large mt-16" style={{ fontSize: 'clamp(28px, 2.6vw, 36px)' }}>{p.t}.</h3>
+                <p className="t-body mt-16">{p.d}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PULL QUOTE */}
+      <section className="section bg-parchment">
+        <div className="wrap-text">
+          <Reveal className="pull-quote">
+            &ldquo;The platforms are already AI. The advantage now lives upstream — in the signal, the structure, and the discipline of the team feeding them.&rdquo;
+            <span className="cite">— from <em className="t-italic">Schema is the new resume</em>, May 2026</span>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* TRUTHS — interactive editorial accordion */}
+      <section className="section bg-ink" id="truths">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">02</span><span className="label">Five truths</span></div>
+            <div className="sec-head__r">The patterns that keep showing up</div>
+          </div>
+
+          <Reveal as="h2" className="t-display">
+            The honest<br/><span className="t-italic muted">read.</span>
+          </Reveal>
+
+          <Reveal className="mt-96">
+            <TruthsAccordion items={TRUTHS} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PROOF — stats */}
+      <section className="section">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">03</span><span className="label">In practice</span></div>
+            <div className="sec-head__r">Measured, not theoretical</div>
+          </div>
+          <Reveal>
+            <StatGrid stats={PROOF} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* HOW — three steps */}
+      <section className="section bg-parchment" id="how">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">04</span><span className="label">How the framework runs</span></div>
+            <div className="sec-head__r">Three weeks · three artefacts</div>
+          </div>
+
+          <Reveal as="h2" className="t-display">
+            Three weeks.<br/><span className="t-italic muted">Three artefacts.</span>
+          </Reveal>
+
+          <div className="egrid mt-96">
+            {[
+              { n: '01', t: 'Map what you have.', d: 'Audit current stack, signal quality, data hygiene, and the people. Identify the three workflows worth re-architecting first.' },
+              { n: '02', t: 'Design the operating system.', d: 'Tool selection, workflow maps, role redesigns, KPI structure. A working architecture, not a recommendation slide.' },
+              { n: '03', t: 'Ship one workflow.', d: 'A single end-to-end pilot the team can run on Monday. Measurable, governance-clean, reversible.' },
+            ].map((s, i) => (
+              <Reveal key={s.n} className="col-4 col-md-6" delay={i * 80}>
+                <div className="t-mono muted">Week {s.n}</div>
+                <h3 className="t-large mt-16" style={{ fontSize: 'clamp(28px, 2.6vw, 40px)' }}>{s.t}</h3>
+                <p className="t-body mt-16">{s.d}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section bg-ink">
+        <div className="wrap">
+          <Reveal as="h2" className="t-huge">
+            More<br/><span className="t-italic muted">on this thread.</span>
+          </Reveal>
+          <Reveal className="mt-48" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <Btn href="experience.html">Experience</Btn>
+            <Btn href="blog.html" filled>Read the writing</Btn>
+          </Reveal>
+        </div>
+      </section>
+
+    </Page>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

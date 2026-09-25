@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Studies — Vineet Vijay</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/colors_and_type.css">
+<link rel="stylesheet" href="css/site.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="js/image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="js/Shared.jsx"></script>
+
+<script type="text/babel">
+
+const CASES = [
+  {
+    slug: 'reem-hospital',
+    name: 'Reem Hospital',
+    industry: 'Healthcare',
+    location: 'Abu Dhabi, UAE',
+    period: '2024 — Present',
+    role: 'Digital Marketing Strategist',
+    services: ['SEO', 'Paid Media', 'AI Workflows'],
+    tagline: 'A patient acquisition engine for Abu Dhabi.',
+    summary: 'Built the digital front door for a new flagship UAE hospital — from a one-page website to an editorial and acquisition system that now delivers a third of all patient enquiries.',
+    tone: 'tone-mint',
+    metrics: [
+      { v: '180', sup: '%', l: 'Organic traffic growth, 18 months.' },
+      { v: '200', sup: '%', l: 'Growth in organic enquiries.' },
+      { v: '35',  sup: '%', l: 'Of new enquiries now digital-attributed.' },
+      { v: '5',   sup: '',  l: 'Team built and led across SEO, paid, content, analytics.' },
+    ],
+    body: [
+      { h: 'The brief', p: 'A new flagship hospital opening in a UAE market dominated by long-established networks. The team had a beautiful product and a budget — but no clear picture of which channels actually moved a patient from intent to appointment.' },
+      { h: 'The work', p: 'A growth framework rebuilt from the ground up: technical SEO, schema, an editorial system and a measurement plane that finally tied first-touch to first-appointment. Paid restructured around incrementality. Email and SMS programmes built off real patient personas. The digital health hub launched as the editorial engine. An AI-driven health podcast launched on top of it.' },
+      { h: 'The outcome', p: 'Within 18 months, organic search became the largest single source of new-patient enquiries. The dashboard the team uses today is the same one we built in week three.' },
+    ],
+  },
+  {
+    slug: 'apollo-hospitals',
+    name: 'Apollo Hospitals',
+    industry: 'Healthcare',
+    location: 'India',
+    period: '2019 — 2021',
+    role: 'Associate Group Head, Interactive Avenues (IPG)',
+    services: ['Performance Media', 'GTM', 'Analytics'],
+    tagline: 'A Go-To-Market for Apollo 24x7\u2019s Traq launch.',
+    summary: 'Engineered the launch strategy for Traq, the wearables product from Apollo 24x7, and the analytics cadence that has informed enterprise media planning ever since.',
+    tone: 'tone-blue',
+    metrics: [
+      { v: 'GTM',   sup: '',  l: 'Launch strategy delivered for Traq, Apollo 24x7.' },
+      { v: '#1',    sup: '',  l: 'Analytics proposal cadence adopted agency-wide.' },
+      { v: '4',     sup: '',  l: 'Verticals integrated under one media plan.' },
+      { v: '0',     sup: '',  l: 'Patient PII shared with third-party models.' },
+    ],
+    body: [
+      { h: 'The brief', p: 'An enterprise healthcare brand entering the wearables and consumer-health category, with a media stack built for hospital lead-gen. The Go-To-Market needed a different shape.' },
+      { h: 'The work', p: 'A consumer-first GTM for Traq, layered on top of the existing enterprise media plan. New growth channels identified and tested. An analytics proposal and action-plan rhythm that informed the broader brand\u2019s decisioning.' },
+      { h: 'The outcome', p: 'Traq launched into market with a measurement plane that let the team see what was working from day one. The analytics cadence built for Apollo became a template for the wider agency practice.' },
+    ],
+  },
+  {
+    slug: 'myntra',
+    name: 'Myntra',
+    industry: 'E-commerce',
+    location: 'India',
+    period: '2021 — 2024',
+    role: 'Associate Business Director, Wavemaker (WPP)',
+    services: ['Programmatic', 'Media Strategy', 'Measurement'],
+    tagline: 'A multimillion-dollar digital media strategy, re-architected.',
+    summary: 'Directed digital media planning for one of India\u2019s largest fashion e-commerce brands, against annual budgets that reach the hundreds of millions of rupees.',
+    tone: 'tone-warm',
+    metrics: [
+      { v: '250', sup: 'Mn₹', l: 'Annual budget directed across the WPP portfolio.' },
+      { v: '6',   sup: '+',   l: 'Brands led concurrently at Wavemaker.' },
+      { v: 'TV+', sup: '',    l: 'Integrated TV and digital plans for total reach.' },
+      { v: '−',   sup: '',    l: 'Wasted spend on duplicate audiences eliminated.' },
+    ],
+    body: [
+      { h: 'The brief', p: 'A market-leading fashion platform with a programmatic spend large enough to matter, but a measurement plane still trusting last-click. The exec team wanted to know what was actually working.' },
+      { h: 'The work', p: 'A staged incrementality program — geo-holdouts on top-spend campaigns, audience hygiene, dynamic creative, and a creative testing system. The deliverable was a new decision-rights document for the demand-side team and a tighter media plan across TV and digital.' },
+      { h: 'The outcome', p: 'Wasted spend down, incremental revenue up. The category leads now ship paid media decisions in a fraction of the prior cycle time.' },
+    ],
+  },
+  {
+    slug: 'titan',
+    name: 'Titan Watches',
+    industry: 'Luxury & Lifestyle',
+    location: 'India',
+    period: '2019 — 2021',
+    role: 'Associate Group Head, Interactive Avenues (IPG)',
+    services: ['Performance Media', 'E-commerce', 'Strategy'],
+    tagline: 'A ROAS of 6 on a heritage luxury brand.',
+    summary: 'Re-engineered the e-commerce performance system for Titan — a remarketing-led framework that converted at six times spend, without compromising the brand.',
+    tone: 'tone-deep',
+    metrics: [
+      { v: '6',    sup: '×', l: 'Return on ad spend across e-commerce campaigns.' },
+      { v: '+',    sup: '',  l: 'Novel growth channels integrated into the mix.' },
+      { v: '0',    sup: '',  l: 'Compromises on the heritage brand voice.' },
+      { v: '24',   sup: 'mo', l: 'Of compounding performance gains.' },
+    ],
+    body: [
+      { h: 'The brief', p: 'A heritage brand with a beautiful product, a luxury voice, and a flat e-commerce curve. The previous performance model leaked spend on top-funnel audiences that never converted.' },
+      { h: 'The work', p: 'A remarketing-led growth framework that efficiently converted return audiences. Novel growth channels — new programmatic supply, influencer-led performance — tested and integrated where the math worked.' },
+      { h: 'The outcome', p: 'A ROAS of 6, sustained over the engagement. The brand stayed itself; the performance got better.' },
+    ],
+  },
+];
+
+function CaseIndex({ onOpen }) {
+  return (
+    <React.Fragment>
+      <section className="hero">
+        <div className="wrap" style={{ width: '100%' }}>
+          <div className="hero__meta">
+            <div className="hero__meta-block"><div className="t-mono k">Section</div><div className="v">Selected work</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Count</div><div className="v">04 projects</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Window</div><div className="v">2019 — Present</div></div>
+          </div>
+
+          <h1 className="t-huge">
+            <Line>Selected</Line>
+            <Line delay={120}>work<em className="t-italic muted">.</em></Line>
+          </h1>
+
+          <div className="hero__footer">
+            <Reveal delay={420} className="t-lead" style={{ maxWidth: 620 }}>
+              Four engagements from a decade across healthcare, e-commerce, FMCG, and luxury. Numbers are taken from public material and engagement debriefs; client confidentialities are respected.
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* WORK LIST */}
+      <section className="section">
+        <div className="wrap">
+          <Reveal>
+            <WorkList items={CASES.map(c => ({
+              title: c.name, tag: c.industry + ' · ' + c.tagline.replace(/\.$/, ''), year: c.period.replace(' — ', '–').replace('Present', '\u2192'),
+              slug: c.slug, tone: c.tone, href: '#' + c.slug
+            }))} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section bg-ink">
+        <div className="wrap">
+          <Reveal as="h2" className="t-huge">
+            More<br/><span className="t-italic muted">where this came from.</span>
+          </Reveal>
+          <Reveal className="mt-48" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <Btn href="ai.html">Read the POV</Btn>
+            <Btn href="blog.html" filled>Read the writing</Btn>
+          </Reveal>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+function CaseDetail({ cs, onBack, onOpen }) {
+  const idx = CASES.findIndex(c => c.slug === cs.slug);
+  const next = CASES[(idx + 1) % CASES.length];
+  const after = CASES[(idx + 2) % CASES.length];
+
+  return (
+    <React.Fragment>
+      {/* HERO */}
+      <section className="case-hero">
+        <div className="wrap">
+          <div className="hero__meta" style={{ marginBottom: 80 }}>
+            <div className="hero__meta-block"><div className="t-mono k">Industry</div><div className="v">{cs.industry}</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Location</div><div className="v">{cs.location}</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Window</div><div className="v">{cs.period}</div></div>
+          </div>
+
+          <h1 className="t-huge">
+            <Line>{cs.name}<em className="t-italic muted">.</em></Line>
+          </h1>
+
+          <Reveal delay={300} className="t-lead mt-48" style={{ maxWidth: 720 }}>
+            {cs.tagline}
+          </Reveal>
+
+          <Reveal delay={400} className="mt-32" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a className="btn" href="#" onClick={(e) => { e.preventDefault(); onBack(); }}>
+              <span style={{ display: 'inline-flex', transform: 'rotate(180deg)' }}>
+                <svg width="11" height="11" viewBox="0 0 12 12"><path d="M2 10 L10 2 M4 2 L10 2 L10 8" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </span>
+              <span>All projects</span>
+            </a>
+            <Btn href="blog.html" filled>Read more essays</Btn>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* COVER IMAGE */}
+      <section className="section--sm" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <Reveal className="tile-img" style={{ height: 'clamp(320px, 60vh, 640px)', borderRadius: 12 }}>
+            <image-slot
+              id={"case-cover-" + cs.slug}
+              shape="rounded"
+              radius={12}
+              placeholder={"Cover image for " + cs.name}
+              class={cs.tone}
+              style={{ display: 'block', width: '100%', height: '100%', borderRadius: '12px' }}
+            ></image-slot>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* META STRIP */}
+      <section className="section--sm" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <div className="wrap">
+          <div className="case-meta">
+            <div><div className="k">Role</div><div className="v">{cs.role}</div></div>
+            <div><div className="k">Disciplines</div><div className="v" style={{ fontSize: 15, fontWeight: 400 }}>{cs.services.join(' · ')}</div></div>
+            <div><div className="k">Engagement</div><div className="v">{cs.period}</div></div>
+            <div><div className="k">Industry</div><div className="v">{cs.industry}</div></div>
+          </div>
+        </div>
+      </section>
+
+      {/* SUMMARY + METRICS */}
+      <section className="section bg-parchment">
+        <div className="wrap">
+          <div className="egrid">
+            <Reveal className="col-6">
+              <div className="t-mono muted">Summary</div>
+              <p className="t-medium mt-24">{cs.summary}</p>
+            </Reveal>
+            <Reveal className="col-5 start-8" delay={120}>
+              <div className="t-mono muted">Results</div>
+              <div className="mt-24">
+                {cs.metrics.map((m, i) => (
+                  <div key={i} style={{ padding: '20px 0', borderTop: '1px solid var(--color-hairline)' }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 600, lineHeight: 1, letterSpacing: '-0.02em' }}>
+                      {m.v}{m.sup && <span style={{ fontSize: '0.45em', verticalAlign: 'super', color: 'var(--color-ink-muted-48)' }}>{m.sup}</span>}
+                    </div>
+                    <div className="t-body mt-8" style={{ fontSize: 14 }}>{m.l}</div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* BODY */}
+      <section className="section">
+        <div className="cs-body">
+          {cs.body.map(sec => (
+            <Reveal as="div" key={sec.h}>
+              <div className="t-mono muted">{sec.h}</div>
+              <p className="t-medium mt-24" style={{ marginBottom: 0 }}>{sec.p}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* SUPPORTING IMAGE */}
+      <section className="section--sm">
+        <div className="wrap">
+          <Reveal className="tile-img" style={{ height: 'clamp(280px, 50vh, 520px)', borderRadius: 12 }}>
+            <image-slot
+              id={"case-detail-" + cs.slug}
+              shape="rounded"
+              radius={12}
+              placeholder={"Supporting screenshot for " + cs.name}
+              class={cs.tone}
+              style={{ display: 'block', width: '100%', height: '100%', borderRadius: '12px' }}
+            ></image-slot>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PULL QUOTE */}
+      <section className="section bg-parchment">
+        <Reveal>
+          <p className="pull-quote">
+            &ldquo;The dashboard we built in week three is the one the team still runs the business on.&rdquo;
+            <span className="cite">— Engagement debrief, {cs.name}</span>
+          </p>
+        </Reveal>
+      </section>
+
+      {/* NEXT */}
+      <section className="section">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">→</span><span className="label">Keep reading</span></div>
+            <div className="sec-head__r">More work</div>
+          </div>
+          <Reveal>
+            <WorkList items={[next, after].map(c => ({
+              title: c.name, tag: c.industry + ' · ' + c.tagline.replace(/\.$/, ''), year: c.period.replace(' — ', '–').replace('Present', '\u2192'),
+              slug: c.slug, tone: c.tone, href: '#' + c.slug
+            }))} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section bg-ink">
+        <div className="wrap">
+          <Reveal as="h2" className="t-huge">
+            Keep<br/><span className="t-italic muted">reading.</span>
+          </Reveal>
+          <Reveal className="mt-48" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a className="btn" href="#" onClick={(e) => { e.preventDefault(); onBack(); }}>
+              <span style={{ display: 'inline-flex', transform: 'rotate(180deg)' }}>
+                <svg width="11" height="11" viewBox="0 0 12 12"><path d="M2 10 L10 2 M4 2 L10 2 L10 8" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </span>
+              <span>All projects</span>
+            </a>
+            <Btn href="blog.html" filled>Read the writing</Btn>
+          </Reveal>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+function App() {
+  const initial = () => {
+    const slug = (window.location.hash || '').replace('#', '');
+    return CASES.find(c => c.slug === slug)?.slug || null;
+  };
+  const [openSlug, setOpenSlug] = React.useState(initial);
+
+  React.useEffect(() => {
+    const onHash = () => {
+      const slug = (window.location.hash || '').replace('#', '');
+      const found = CASES.find(c => c.slug === slug);
+      setOpenSlug(found ? found.slug : null);
+    };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  const open = (slug) => {
+    setOpenSlug(slug);
+    window.history.pushState(null, '', '#' + slug);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+  const back = () => {
+    setOpenSlug(null);
+    window.history.pushState(null, '', window.location.pathname);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const cs = openSlug ? CASES.find(c => c.slug === openSlug) : null;
+
+  return (
+    <Page active="Work">
+      {cs
+        ? <CaseDetail cs={cs} onBack={back} onOpen={open} />
+        : <CaseIndex onOpen={open} />}
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

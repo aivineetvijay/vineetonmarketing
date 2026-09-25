@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing — Vineet Vijay</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/colors_and_type.css">
+<link rel="stylesheet" href="css/site.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="js/image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="js/Shared.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+/* ===================================================================
+   ARTICLE DATA — same posts as the index, but each carries a body
+   array (lead paragraph + paragraphs / h3 / quote / inline image blocks)
+   so the template can render them as a long-read.
+   =================================================================== */
+
+const POSTS = [
+  {
+    slug: 'schema-is-the-new-resume',
+    y: 'May \u201926', date: 'May 14, 2026',
+    cat: 'AI in Marketing',
+    t: 'Schema is the new resume — how to brief your brand to an AI.',
+    dek: 'When the answer comes before the click, the question is no longer how to rank. It is how to be cited. A working framework, written from twelve recent audits.',
+    minutes: 9, lead: true, tone: 'tone-deep',
+    body: [
+      { type: 'p', text: 'For two decades, SEO has been a contest about clicks. Show up on the page, win the visit. The model is so familiar that most marketing teams still build their content programmes around it. The problem is that the contest is quietly being replaced.' },
+      { type: 'p', text: 'When a patient asks an LLM about a knee replacement in the GCC, the model answers without ever sending the patient to a website. The brand that gets named in the answer wins. The brand whose schema, source authority and editorial discipline taught the model who they are wins. Everyone else, no matter how many backlinks they have, becomes invisible.' },
+      { type: 'p', text: 'I have spent the last eighteen months auditing this shift across twelve brands in healthcare, finance, and luxury. The patterns are unmistakable, and they are uncomfortable for most CMOs.' },
+      { type: 'h3', text: 'The three layers AI looks at' },
+      { type: 'p', text: 'Every audit I run now starts from the same three-layer model: <strong>structured data</strong>, <strong>source authority</strong>, and <strong>editorial fingerprint</strong>. The first is mostly engineering. The second is mostly PR. The third is mostly editorial. None of them are optional anymore.' },
+      { type: 'quote', text: 'The job is no longer to get the user to your site. The job is to get the model to your sentence.', cite: 'From an internal audit, March 2026' },
+      { type: 'p', text: 'Most teams over-invest in the first layer because it feels concrete. They schema-mark everything that moves. But schema without editorial fingerprint is a beautiful resume for someone with no story. The model knows the structure; it has no reason to cite you.' },
+      { type: 'img', slot: 'art-inline-schema-1', placeholder: 'Inline figure — schema layer diagram', tone: 'tone-mono', caption: 'Figure 01 — The three-layer model of AI-era discoverability.' },
+      { type: 'h3', text: 'Editorial fingerprint, defined' },
+      { type: 'p', text: 'Editorial fingerprint is the set of distinctive linguistic patterns, source citations, and consistent points-of-view that make a brand identifiable to a language model independent of its formatting. It is the thing that makes a 200-word answer about lipid management <em>sound</em> like the Cleveland Clinic and not like a content farm.' },
+      { type: 'p', text: 'Three tests I now run on every editorial system:' },
+      { type: 'ul', items: [
+        'Could a stranger identify the brand from an unbranded paragraph?',
+        'Are sources cited inline, with link rot accounted for, in every long-form piece?',
+        'Does the brand have a documented point of view on the top twenty category questions — or does it hedge?',
+      ]},
+      { type: 'h3', text: 'What to do on Monday' },
+      { type: 'p', text: 'Three weeks of work — fixed scope, modest budget, and the bones of an AI-era content programme are in place. Audit the schema. Codify the editorial system. Pick ten priority topics, write the brand\u2019s point of view on each, publish them with clean structured data and inline citations, and watch what the models do for sixty days.' },
+      { type: 'p', text: 'The patient already asked. The answer was already written. The only remaining question is whether your brand was in it.' },
+    ],
+  },
+  {
+    slug: 'mmm-you-can-run-on-monday',
+    y: 'May \u201926', date: 'May 6, 2026',
+    cat: 'Measurement',
+    t: 'The MMM you can actually run on Monday.',
+    dek: 'A practical recipe for a marketing mix model that does not require a data team.',
+    minutes: 7, tone: 'tone-blue',
+    body: [
+      { type: 'p', text: 'Marketing mix models used to be an enterprise project. Eighteen-month engagement, six-figure budget, three consultants in a room. The output was usually a slide nobody trusted.' },
+      { type: 'p', text: 'That world is over. With modern tooling, a small in-house team can stand up a working MMM in three to four weeks. Here is the exact sequence I have used twice in the last year.' },
+      { type: 'h3', text: 'Week one — clean the inputs' },
+      { type: 'p', text: 'Every model is downstream of its data. Most MMMs fail not at the modelling step but at the data step. Spend the first week getting paid media, organic, email, and offline spend into a single weekly cadence with a consistent currency and a stable definition of revenue.' },
+      { type: 'quote', text: 'A good MMM is mostly bookkeeping with a regression on top.', cite: '— Engagement notes, 2025' },
+      { type: 'h3', text: 'Week two — the model' },
+      { type: 'p', text: 'I use Robyn or Meridian, depending on the team\u2019s appetite for Python versus a hosted UI. Both will give you a working model with reasonable adstocks and saturation curves out of the box. The point of week two is not to optimise the model; it is to <strong>see</strong> the model.' },
+      { type: 'h3', text: 'Week three — calibrate' },
+      { type: 'p', text: 'Every model has prior beliefs about what is roughly true. Use a small geo-holdout test to calibrate the most contested channel — usually display or programmatic — and feed the result back as a prior. This is the step that separates an MMM from a horoscope.' },
+      { type: 'p', text: 'Week four is presentation: a one-page executive view, a two-page channel view, a reproducible notebook. Then keep running it monthly. The model will get smarter the longer you live with it.' },
+    ],
+  },
+  {
+    slug: 'ai-search-readiness',
+    y: 'Apr \u201926', date: 'April 22, 2026',
+    cat: 'SEO',
+    t: 'AI search readiness, in plain language.',
+    dek: 'What "AI overviews" mean for content strategy — and the three changes most brands are still avoiding.',
+    minutes: 8, tone: 'tone-warm',
+    body: [
+      { type: 'p', text: 'Every CMO I speak to has heard about AI search. Most can\u2019t tell me what their team is actually doing about it. In the gap between understanding and action lives the next two years of organic performance.' },
+      { type: 'p', text: 'Here is the plainest version I can give of what is happening, what to do, and what to ignore.' },
+      { type: 'h3', text: 'What is actually changing' },
+      { type: 'p', text: 'Classic SERPs are not going away. They will continue to serve navigational queries (brand searches, specific product pages) for a long time. What is being eaten is the <em>informational</em> long tail — the questions people ask the engine and then click a result to read. That is now answered in-place.' },
+      { type: 'h3', text: 'The three changes' },
+      { type: 'ul', items: [
+        '<strong>Schema as a first-class citizen.</strong> Not an afterthought added by the SEO team. Engineered, audited, kept current.',
+        '<strong>Author and source authority.</strong> Real bylines, real credentials, real citation discipline. The thin-content era is over for serious categories.',
+        '<strong>Editorial point of view.</strong> Models reward brands that take a position. They penalise hedging the way readers always have.',
+      ]},
+      { type: 'p', text: 'None of these are technically difficult. All of them require an editorial culture most marketing teams have never built.' },
+    ],
+  },
+  {
+    slug: 'stop-optimising-the-wrong-thing',
+    y: 'Apr \u201926', date: 'April 9, 2026',
+    cat: 'Paid Media',
+    t: 'Stop optimising the wrong thing.',
+    dek: 'A short essay on the difference between click-through rate and incremental revenue, and why most teams still chase the first.',
+    minutes: 5, tone: 'tone-mono',
+    body: [
+      { type: 'p', text: 'There is a quiet little secret in paid media: click-through rate is mostly a proxy for whether your creative is misleading.' },
+      { type: 'p', text: 'High CTR can mean the ad is great. It can also mean the ad is making a promise the landing page cannot keep. The way to tell which is which is to measure <strong>incremental</strong> revenue against a holdout — and most teams do not.' },
+      { type: 'h3', text: 'Why this persists' },
+      { type: 'p', text: 'CTR is daily. Incrementality is quarterly. Daily metrics get optimised because daily metrics are what humans see. The only fix is to put incrementality on the same dashboard, even if the number lags. It changes what the team chases.' },
+    ],
+  },
+  {
+    slug: 'quarterly-cadence',
+    y: 'Mar \u201926', date: 'March 28, 2026',
+    cat: 'Strategy',
+    t: 'The quarterly cadence that fixed our forecast.',
+    dek: 'An operating system for marketing leaders who keep getting blindsided by the board pack.',
+    minutes: 6, tone: 'tone-mint',
+    body: [
+      { type: 'p', text: 'Most marketing forecasts miss not because the model is wrong, but because the cadence is wrong. The team replans monthly, the board reads quarterly, and the gap between them is where the surprises live.' },
+      { type: 'p', text: 'A six-week rolling plan with a quarterly anchor has solved this for me twice. Here is the structure.' },
+    ],
+  },
+  {
+    slug: 'holdouts-not-optional',
+    y: 'Mar \u201926', date: 'March 14, 2026',
+    cat: 'Measurement',
+    t: 'Holdouts are not optional.',
+    dek: 'A defence of the geo-holdout test, written for the marketing leader being told it is too expensive to run.',
+    minutes: 7, tone: 'tone-sand',
+    body: [
+      { type: 'p', text: 'Every quarter, a CMO somewhere is told that holdout testing is too expensive. The argument is always the same: switching off a channel for a few weeks in a few markets costs revenue. The argument is correct.' },
+      { type: 'p', text: 'It is also irrelevant. Without holdouts, every penny you spend is justified by attribution models that nobody fully believes.' },
+    ],
+  },
+  {
+    slug: 'three-creative-workflows',
+    y: 'Feb \u201926', date: 'February 26, 2026',
+    cat: 'AI in Marketing',
+    t: 'Three creative workflows that actually shipped.',
+    dek: 'A look inside how three brands integrated generative tools without losing the brand voice.',
+    minutes: 10, tone: 'tone-rose',
+    body: [
+      { type: 'p', text: 'Generative tools are everywhere in marketing slide decks and almost nowhere in marketing production. The brands that have actually shipped have one thing in common: a clear visual language before the tools arrived.' },
+    ],
+  },
+  {
+    slug: 'technical-debt-nobody-audits',
+    y: 'Feb \u201926', date: 'February 11, 2026',
+    cat: 'SEO',
+    t: 'The technical debt nobody is auditing.',
+    dek: 'Rendering, indexation, and the parts of SEO that quietly compound against you.',
+    minutes: 8, tone: 'tone-pearl',
+    body: [
+      { type: 'p', text: 'Brands love a content audit. They will spend a quarter on it. Almost nobody runs a rendering audit, which is where most of the actual SEO debt lives.' },
+    ],
+  },
+];
+
+const CATEGORIES = ['All', 'AI in Marketing', 'SEO', 'Paid Media', 'Strategy', 'Measurement'];
+
+/* ===================================================================
+   ARTICLE BODY RENDERER
+   =================================================================== */
+function ArticleBody({ body }) {
+  return (
+    <div className="art__body">
+      {body.map((b, i) => {
+        if (b.type === 'p') {
+          return <p key={i} className={b.class || ''} dangerouslySetInnerHTML={{ __html: b.text }} />;
+        }
+        if (b.type === 'h3') {
+          return <h3 key={i}>{b.text}</h3>;
+        }
+        if (b.type === 'ul') {
+          return <ul key={i}>{b.items.map((it, j) => <li key={j} dangerouslySetInnerHTML={{ __html: it }} />)}</ul>;
+        }
+        if (b.type === 'quote') {
+          return (
+            <blockquote key={i}>
+              {b.text}
+              {b.cite && <cite>{b.cite}</cite>}
+            </blockquote>
+          );
+        }
+        if (b.type === 'img') {
+          return (
+            <figure key={i} className="art__inline-img">
+              <div className="tile-img">
+                <image-slot
+                  id={b.slot}
+                  shape="rounded"
+                  radius={8}
+                  placeholder={b.placeholder}
+                  class={b.tone || 'tone-mono'}
+                  style={{ display: 'block', width: '100%', height: '100%', borderRadius: '8px' }}
+                ></image-slot>
+              </div>
+              {b.caption && <figcaption>{b.caption}</figcaption>}
+            </figure>
+          );
+        }
+        return null;
+      })}
+    </div>
+  );
+}
+
+/* ===================================================================
+   READING PROGRESS BAR
+   =================================================================== */
+function ReadingProgress() {
+  const [pct, setPct] = useState(0);
+  useEffect(() => {
+    const el = document.querySelector('.art__body');
+    if (!el) return;
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect();
+      const total = rect.height;
+      const start = rect.top;
+      const vh = window.innerHeight || 800;
+      const scrolled = -start + vh * 0.3;
+      const p = Math.max(0, Math.min(1, scrolled / total));
+      setPct(p * 100);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return <div className="art-progress" style={{ width: pct + '%' }} />;
+}
+
+/* ===================================================================
+   ARTICLE DETAIL
+   =================================================================== */
+function ArticleDetail({ post, onBack, onOpen }) {
+  const idx = POSTS.findIndex(p => p.slug === post.slug);
+  const next = POSTS[(idx + 1) % POSTS.length];
+  const after = POSTS[(idx + 2) % POSTS.length];
+
+  return (
+    <React.Fragment>
+      <ReadingProgress />
+
+      <section className="art">
+        <div className="wrap">
+          <a className="art__back" href="#" onClick={(e) => { e.preventDefault(); onBack(); }} data-cursor-label="Back">
+            <span className="arrow"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2 10 L10 2 M4 2 L10 2 L10 8" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+            <span>All writing</span>
+          </a>
+
+          <div className="art__eyebrow">
+            <span className="cat">{post.cat}</span>
+            <span className="sep"></span>
+            <span>{post.date}</span>
+            <span className="sep"></span>
+            <span>{post.minutes} min read</span>
+          </div>
+
+          <h1 className="art__title">{post.t}</h1>
+
+          <div className="art__meta">
+            <div>
+              <div className="k">Author</div>
+              <div className="v author">
+                <div className="author-img" style={{ backgroundImage: 'url(assets/headshot.jpeg)' }} aria-hidden="true"></div>
+                <span>Vineet Vijay</span>
+              </div>
+            </div>
+            <div>
+              <div className="k">Published</div>
+              <div className="v">{post.date}</div>
+            </div>
+            <div>
+              <div className="k">Reading time</div>
+              <div className="v">{post.minutes} min</div>
+            </div>
+            <div>
+              <div className="k">Topic</div>
+              <div className="v">{post.cat}</div>
+            </div>
+          </div>
+
+          <div className="art__cover">
+            <div className="tile-img">
+              <image-slot
+                id={"art-cover-" + post.slug}
+                shape="rounded"
+                radius={12}
+                placeholder={"Cover image for: " + post.t}
+                class={post.tone || 'tone-mono'}
+                style={{ display: 'block', width: '100%', height: '100%', borderRadius: '12px' }}
+              ></image-slot>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ArticleBody body={post.body || []} />
+
+      <div className="art__footer">
+        <div className="art__tags">
+          <span className="itag"><span className="dot" aria-hidden="true"></span>{post.cat}</span>
+          <span className="itag"><span className="dot" aria-hidden="true"></span>Field note</span>
+          <span className="itag"><span className="dot" aria-hidden="true"></span>{post.minutes} min</span>
+        </div>
+
+        <div className="art__author">
+          <div className="pic" style={{ backgroundImage: 'url(assets/headshot.jpeg)' }} aria-hidden="true"></div>
+          <div>
+            <div className="name">Vineet Vijay</div>
+            <div className="role">Digital Marketing Strategist · UAE</div>
+            <p className="bio">Ten years across healthcare, e-commerce, FMCG, luxury and fintech. Currently at House of Comms. Previously at Reem Hospital, Wavemaker (WPP), and Interactive Avenues (IPG).</p>
+          </div>
+        </div>
+      </div>
+
+      {/* NEXT ARTICLES */}
+      <section className="section">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">→</span><span className="label">Keep reading</span></div>
+            <div className="sec-head__r">More essays</div>
+          </div>
+          <Reveal>
+            <ul className="post-list">
+              {[next, after].map(p => (
+                <li key={p.slug} style={{ listStyle: 'none' }}>
+                  <a className="post-row" href={"#" + p.slug} onClick={(e) => { e.preventDefault(); onOpen(p.slug); window.scrollTo({ top: 0, behavior: 'auto' }); }} data-cursor-label="Read">
+                    <span className="yr">{p.y}</span>
+                    <span className="ttl">{p.t}</span>
+                    <span className="cat">{p.cat} · {p.minutes} min</span>
+                    <span className="arr">
+                      <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 11 L11 3 M5 3 L11 3 L11 9" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* SUBSCRIBE */}
+      <section className="section bg-ink" id="subscribe">
+        <div className="wrap">
+          <div className="egrid">
+            <Reveal className="col-6">
+              <div className="t-mono muted">Subscribe</div>
+              <h2 className="t-display mt-24">
+                New essays,<br/><span className="t-italic muted">in your inbox.</span>
+              </h2>
+              <p className="t-body mt-32" style={{ maxWidth: 460 }}>
+                Once every fortnight. The essay only — no newsletter, no promotion.
+              </p>
+            </Reveal>
+            <Reveal className="col-5 start-8" delay={120}>
+              <form onSubmit={(e) => e.preventDefault()} className="form-grid">
+                <div className="field">
+                  <label>Email address</label>
+                  <input type="email" required placeholder="you@company.com" />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <Btn filled>Subscribe</Btn>
+                </div>
+              </form>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+/* ===================================================================
+   BLOG INDEX
+   =================================================================== */
+function BlogIndex({ onOpen }) {
+  const [cat, setCat] = useState('All');
+  const filtered = cat === 'All' ? POSTS : POSTS.filter(p => p.cat === cat);
+  const lead = filtered.find(p => p.lead) || filtered[0];
+  const rest = filtered.filter(p => p !== lead);
+
+  return (
+    <React.Fragment>
+      <section className="hero">
+        <div className="wrap" style={{ width: '100%' }}>
+          <div className="hero__meta">
+            <div className="hero__meta-block"><div className="t-mono k">Field notes</div><div className="v">Working theory, written down</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Cadence</div><div className="v">~ one essay a fortnight</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Topics</div><div className="v">AI, SEO, paid, measurement, strategy</div></div>
+          </div>
+
+          <h1 className="t-huge">
+            <Line>Working</Line>
+            <Line delay={120}>theory<em className="t-italic muted">, written down.</em></Line>
+          </h1>
+
+          <div className="hero__footer">
+            <Reveal delay={420} className="t-lead" style={{ maxWidth: 620 }}>
+              Short essays on AI in marketing, search, paid media, and the operating systems behind growing teams.
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* CHIPS — sticky bar so the filter stays in reach while scrolling */}
+      <div className="chips-sticky">
+        <div className="wrap">
+          <div className="chips" data-reveal>
+            {CATEGORIES.map(c => (
+              <button key={c} className={"chip " + (cat === c ? "is-active" : "")} onClick={() => setCat(c)}>{c}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* LEAD + INDEX — unified Instagram-style feed of all posts. */}
+      <section className="section--sm" style={{ paddingTop: 24 }}>
+        <div className="sec-head" data-reveal style={{ maxWidth: 720, margin: '0 auto 32px', padding: '0 20px' }}>
+          <div className="sec-head__l"><span className="idx">All essays</span><span className="label">{filtered.length} published</span></div>
+          <div className="sec-head__r">Most recent first</div>
+        </div>
+
+        <div className="feed">
+          {filtered.map(p => (
+            <a key={p.slug} className="feed__card" href={"#" + p.slug}
+               onClick={(e) => { e.preventDefault(); onOpen(p.slug); }}
+               data-cursor-label="Read">
+              <div className="feed__media">
+                <image-slot
+                  id={"feed-" + p.slug}
+                  shape="rounded"
+                  radius={12}
+                  placeholder={"Banner — " + p.t.slice(0, 36) + '…'}
+                  class={p.tone}
+                  style={{ display: 'block', width: '100%', height: '100%', borderRadius: '12px' }}
+                ></image-slot>
+              </div>
+              <div className="feed__body">
+                <div className="feed__meta">
+                  <span className="cat">{p.cat}</span>
+                  <span className="dot" aria-hidden="true"></span>
+                  <span>{p.y}</span>
+                  <span className="dot" aria-hidden="true"></span>
+                  <span>{p.minutes} min</span>
+                </div>
+                <h3 className="feed__title">{p.t}</h3>
+                {p.dek && <p className="feed__dek">{p.dek}</p>}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* SUBSCRIBE */}
+      <section className="section bg-ink" id="subscribe">
+        <div className="wrap">
+          <div className="egrid">
+            <Reveal className="col-6">
+              <div className="t-mono muted">Subscribe</div>
+              <h2 className="t-display mt-24">
+                New essays,<br/><span className="t-italic muted">in your inbox.</span>
+              </h2>
+              <p className="t-body mt-32" style={{ maxWidth: 460 }}>
+                Once every fortnight. The essay only — no newsletter, no promotion.
+              </p>
+            </Reveal>
+            <Reveal className="col-5 start-8" delay={120}>
+              <form onSubmit={(e) => e.preventDefault()} className="form-grid">
+                <div className="field">
+                  <label>Email address</label>
+                  <input type="email" required placeholder="you@company.com" />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <Btn filled>Subscribe</Btn>
+                </div>
+              </form>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+/* ===================================================================
+   ROUTER
+   =================================================================== */
+function App() {
+  const initial = () => {
+    const slug = (window.location.hash || '').replace('#', '');
+    return POSTS.find(p => p.slug === slug)?.slug || null;
+  };
+  const [openSlug, setOpenSlug] = useState(initial);
+
+  useEffect(() => {
+    const onHash = () => {
+      const slug = (window.location.hash || '').replace('#', '');
+      const found = POSTS.find(p => p.slug === slug);
+      setOpenSlug(found ? found.slug : null);
+    };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  const open = (slug) => {
+    setOpenSlug(slug);
+    window.history.pushState(null, '', '#' + slug);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+  const back = () => {
+    setOpenSlug(null);
+    window.history.pushState(null, '', window.location.pathname);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const post = openSlug ? POSTS.find(p => p.slug === openSlug) : null;
+
+  return (
+    <Page active="Writing">
+      {post ? <ArticleDetail post={post} onBack={back} onOpen={open} /> : <BlogIndex onOpen={open} />}
+    </Page>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

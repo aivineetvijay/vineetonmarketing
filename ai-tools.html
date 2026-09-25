@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Tools — Vineet Vijay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/colors_and_type.css">
+<link rel="stylesheet" href="css/site.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="js/image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="js/Shared.jsx"></script>
+<script type="text/babel">
+const { useState } = React;
+const CATS = ['All', 'SEO', 'Paid Media', 'Content', 'Analytics', 'Strategy'];
+const STATUS = { live: 'Live', beta: 'Beta', soon: 'Coming soon' };
+
+/* Sample tools — replace with the real ones. `href` = where the tool lives. */
+const TOOLS = [
+  { slug: 'seo-brief',     n: 'SEO Brief Builder',     c: 'SEO',        s: 'live', tone: 'tone-mono', u: 'Paste a keyword, get a structured content brief — intent, outline, FAQs and schema suggestions.', href: '#' },
+  { slug: 'ai-visibility', n: 'AI Visibility Checker', c: 'SEO',        s: 'beta', tone: 'tone-blue', u: 'See whether your brand is being cited in AI answers for your priority category questions.', href: '#' },
+  { slug: 'ad-copy',       n: 'Ad Copy Variator',      c: 'Paid Media', s: 'live', tone: 'tone-warm', u: 'Generate on-brand headline and description variants for Google and Meta, within character limits.', href: '#' },
+  { slug: 'roas',          n: 'ROAS Planner',          c: 'Paid Media', s: 'live', tone: 'tone-deep', u: 'Work backwards from a revenue target to the budget, CPA and ROAS you actually need.', href: '#' },
+  { slug: 'persona',       n: 'Persona Generator',     c: 'Strategy',   s: 'beta', tone: 'tone-sand', u: 'Turn survey or CRM exports into clear, usable customer personas and messaging angles.', href: '#' },
+  { slug: 'content-cal',   n: 'Content Calendar AI',   c: 'Content',    s: 'soon', tone: 'tone-pearl', u: 'A month of topics mapped to search intent and funnel stage, ready to brief.', href: '#' },
+  { slug: 'utm',           n: 'UTM & Naming Kit',      c: 'Analytics',  s: 'live', tone: 'tone-mint', u: 'Consistent UTMs and campaign naming so GA4 reporting stays clean across teams.', href: '#' },
+  { slug: 'report',        n: 'Report Summariser',     c: 'Analytics',  s: 'soon', tone: 'tone-rose', u: 'Drop in a GA4 or ads export, get a plain-language summary your leadership will read.', href: '#' },
+];
+
+function App() {
+  const [cat, setCat] = useState('All');
+  const list = cat === 'All' ? TOOLS : TOOLS.filter(t => t.c === cat);
+  const live = TOOLS.filter(t => t.s === 'live').length;
+  return (
+    <Page active="AI Tools">
+      <section className="hero">
+        <div className="wrap" style={{ width: '100%' }}>
+          <div className="hero__meta">
+            <div className="hero__meta-block"><div className="t-mono k">Built for</div><div className="v">Fellow marketers</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Tools</div><div className="v">{TOOLS.length} built · {live} live</div></div>
+            <div className="hero__meta-block hide-on-mobile"><div className="t-mono k">Price</div><div className="v">Free to use</div></div>
+          </div>
+          <h1 className="t-huge">
+            <Line>AI Tools</Line>
+            <Line delay={120}><em className="t-italic muted">for marketers.</em></Line>
+          </h1>
+          <div className="hero__footer">
+            <Reveal delay={420} className="t-lead" style={{ maxWidth: 620 }}>
+              Small, focused tools I&rsquo;ve built with AI to take the repetitive work out of marketing — briefs, copy, planning and reporting. Free to use.
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <div className="chips-sticky">
+        <div className="wrap">
+          <div className="chips">
+            {CATS.map(c => <button key={c} className={"chip " + (cat === c ? "is-active" : "")} onClick={() => setCat(c)}>{c}</button>)}
+          </div>
+        </div>
+      </div>
+
+      <section className="section" style={{ paddingTop: 24 }}>
+        <div className="wrap">
+          <div className="tgrid">
+            {list.map(t => (
+              <a className={"tcard " + (t.s === 'soon' ? 'is-soon' : '')} key={t.slug} href={t.href}
+                 onClick={e => { if (t.href === '#') e.preventDefault(); }}
+                 data-cursor-label={t.s === 'soon' ? 'Soon' : 'Open'}>
+                <div className="tcard__media">
+                  <span className={"tcard__status " + t.s}><i></i>{STATUS[t.s]}</span>
+                  <image-slot id={"tool-" + t.slug} shape="rounded" radius="12" placeholder={"Screenshot — " + t.n} class={t.tone}
+                    style={{ display: 'block', width: '100%', height: '100%', borderRadius: '12px' }}></image-slot>
+                </div>
+                <span className="tcard__cat">{t.c}</span>
+                <h3 className="tcard__name">{t.n}</h3>
+                <p className="tcard__use">{t.u}</p>
+                <span className="tcard__cta">{t.s === 'soon' ? 'In development' : 'Try the tool'} <span aria-hidden="true">→</span></span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-ink">
+        <div className="wrap">
+          <div className="egrid">
+            <Reveal className="col-6">
+              <div className="t-mono muted">Have an idea?</div>
+              <h2 className="t-display mt-24">Tell me what<br/><span className="t-italic muted">to build next.</span></h2>
+            </Reveal>
+            <Reveal className="col-5 start-8" delay={120}>
+              <p className="t-body" style={{ maxWidth: 440 }}>If there&rsquo;s a task you repeat every week, there&rsquo;s probably a tool in it. Send it over — the most requested ideas get built first.</p>
+              <div className="mt-32" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Btn href="contact.html" filled>Suggest a tool</Btn>
+                <Btn href="blog.html#subscribe">Get new tools</Btn>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    </Page>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

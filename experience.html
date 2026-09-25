@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experience — Vineet Vijay</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/colors_and_type.css">
+<link rel="stylesheet" href="css/site.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="js/image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="js/Shared.jsx"></script>
+
+<script type="text/babel">
+
+const ROLES = [
+  {
+    year: '2024 — Now',
+    role: 'Digital Marketing Strategist',
+    org: 'Reem Hospital · Abu Dhabi',
+    bullets: [
+      'Leading end-to-end digital strategy for a UAE-based healthcare provider; a team of five across SEO, paid, content and analytics.',
+      'Built the growth framework that now delivers 35% of enquiries from digital, with 200% growth in organic enquiries in 18 months.',
+      'Achieved 180% growth in organic traffic through content and SEO optimisation; defined patient personas and persona-led email and SMS programs.',
+      'Launched the digital health hub and an AI-driven health podcast built on top of its editorial content.',
+    ],
+  },
+  {
+    year: '2021 — 2024',
+    role: 'Associate Business Director',
+    org: 'Wavemaker (WPP) · Bangalore',
+    bullets: [
+      'Directed multimillion-dollar digital media strategy for ITC Foods, MTR Foods, Myntra, Kreditbee, Wipro and Dixcy.',
+      'Formulated tactical plans against annual budgets exceeding ₹250 million, aligning media solutions with each brand\u2019s business goals.',
+      'Led pitch and conversion for new business — successfully onboarded Duroflex, Modenik, and Wipro Consumer Electronics.',
+      'Mentored a high-performing team; collaborated across creative, analytics and TV planning to deliver integrated media plans.',
+    ],
+  },
+  {
+    year: '2019 — 2021',
+    role: 'Associate Group Head',
+    org: 'Interactive Avenues (IPG) · Bangalore',
+    bullets: [
+      'Managed enterprise media planning for Titan Watches and Apollo Hospitals across e-commerce and brand portfolios.',
+      'Delivered a ROAS of 6 on e-commerce campaigns by engineering a remarketing-led conversion framework.',
+      'Built the Go-To-Market strategy for the launch of Traq by Apollo 24x7.',
+      'Initiated the analytics proposals and action-plan cadence that informed data-driven decisions across the practice.',
+    ],
+  },
+  {
+    year: '2016 — 2019',
+    role: 'Sr. Digital Business Manager',
+    org: 'GenY Medium · Bangalore',
+    bullets: [
+      'Led digital strategy for clients across FMCG, real estate, healthcare and early-stage startups.',
+      'Delivered a ROAS of 4.5 across paid media, identifying new business opportunities that drove 2× growth in leads and conversions.',
+      'Owned paid media (search, display, social), CRO and analytics — campaign tracking, insights, recommendations, and resource allocation.',
+    ],
+  },
+];
+
+const PRINCIPLES = [
+  { n: '01', t: 'Measurement first.',       d: 'If we can\u2019t see it, we can\u2019t move it. The first artefact on every engagement is the dashboard.' },
+  { n: '02', t: 'Brand earns performance.',  d: 'Distinctiveness and memory structures are the multiplier on every paid dollar. Brand is a math problem.' },
+  { n: '03', t: 'Ship the workflow.',        d: 'A recommendation deck is half the work. The workflow, running in production, is what compounds.' },
+  { n: '04', t: 'Fewer channels, deeper.',   d: 'Most teams are spread across too many platforms. Compounding lives on the channels you actually master.' },
+];
+
+const EDUCATION = [
+  { y: '2021', t: 'Executive Program in AI in Digital Marketing Strategy', o: 'IIM Calcutta' },
+  { y: '2015', t: 'MBA, Marketing', o: 'ICFAI Hyderabad' },
+  { y: '2011', t: 'Bachelor of Engineering', o: 'DSCE, Bangalore' },
+];
+
+const CERTS = [
+  { y: '2025', t: 'Google Ads — Search, Display, Video' },
+  { y: '2025', t: 'HubSpot Digital Marketing' },
+  { y: '2025', t: 'SEMrush AI Visibility' },
+  { y: '2023', t: 'Meta Media Planning' },
+];
+
+const TOOLS = {
+  Performance: ['Google Ads (Search, Display, Video, Shopping)', 'Meta Business Manager', 'Programmatic DSPs'],
+  Analytics:   ['Google Analytics 4', 'Google Search Console', 'SEMrush', 'SimilarWeb'],
+  Insight:     ['GWI', 'ComScore'],
+  'Web & CRO': ['Google Tag Manager', 'A/B Testing', 'CRO frameworks'],
+  CRM:         ['HubSpot', 'Zoho CRM'],
+};
+
+function App() {
+  return (
+    <Page active="Experience">
+
+      {/* HERO */}
+      <section className="hero">
+        <div className="wrap" style={{ width: '100%' }}>
+          <div className="hero__meta">
+            <div className="hero__meta-block"><div className="t-mono k">Path</div><div className="v">Bangalore → Abu Dhabi → Dubai</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Years</div><div className="v">10+ in digital marketing</div></div>
+            <div className="hero__meta-block"><div className="t-mono k">Current</div><div className="v">Reem Hospital · Abu Dhabi</div></div>
+          </div>
+
+          <h1 className="t-huge">
+            <Line>A decade</Line>
+            <Line delay={120}>in the work<em className="t-italic muted">.</em></Line>
+          </h1>
+
+          <div className="hero__footer">
+            <Reveal delay={420} className="t-lead" style={{ maxWidth: 620 }}>
+              Ten years split between three of the largest media networks in the region — Wavemaker (WPP), Interactive Avenues (IPG), GenY Medium — and an in-house healthcare lead role in the UAE.
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS */}
+      <section className="section--sm">
+        <div className="wrap">
+          <Reveal>
+            <StatGrid stats={[
+              { v: '10',  sup: '+',  l: 'Years in performance, SEO, and paid media strategy.' },
+              { v: '180', sup: '%',  l: 'Organic traffic growth at Reem Hospital, 18 months.' },
+              { v: '6',   sup: '×',  l: 'E-commerce ROAS for enterprise clients at IPG.' },
+              { v: '250', sup: 'Mn₹', l: 'Annual budget directed at Wavemaker.' },
+            ]} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* TIMELINE */}
+      <section className="section">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">01</span><span className="label">Timeline</span></div>
+            <div className="sec-head__r">Four roles, one practice</div>
+          </div>
+
+          <Reveal as="h2" className="t-display">
+            The<br/><span className="t-italic muted">path here.</span>
+          </Reveal>
+
+          <div className="mt-96">
+            {ROLES.map((r, i) => (
+              <Reveal key={r.year} className="egrid" delay={i * 60} style={{ padding: '40px 0', borderTop: '1px solid var(--color-hairline)' }}>
+                <div className="col-2"><span className="t-mono muted">{r.year}</span></div>
+                <div className="col-4">
+                  <h3 className="t-large" style={{ fontSize: 'clamp(24px, 2.4vw, 36px)' }}>{r.role}</h3>
+                  <p className="t-meta mt-8">{r.org}</p>
+                </div>
+                <div className="col-6">
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 12 }}>
+                    {r.bullets.map(b => (
+                      <li key={b} className="t-body" style={{ paddingLeft: 24, position: 'relative' }}>
+                        <span style={{ position: 'absolute', left: 0, top: 12, width: 8, height: 1, background: 'var(--color-ink-muted-48)' }}></span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRINCIPLES — dark */}
+      <section className="section bg-ink">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">02</span><span className="label">Principles</span></div>
+            <div className="sec-head__r">Earned, not adopted</div>
+          </div>
+
+          <Reveal as="h2" className="t-display">
+            Four<br/><span className="t-italic muted">principles.</span>
+          </Reveal>
+
+          <div className="egrid mt-96">
+            {PRINCIPLES.map((p, i) => (
+              <Reveal key={p.n} className="col-6 col-md-3" delay={i * 80}>
+                <div className="t-mono muted">{p.n}</div>
+                <h3 className="t-large mt-16" style={{ fontSize: 'clamp(28px, 2.6vw, 40px)' }}>{p.t}</h3>
+                <p className="t-body mt-16">{p.d}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BRANDS — marquee */}
+      <section>
+        <Marquee items={['Reem Hospital', 'Apollo Hospitals', 'Titan Watches', 'Myntra', 'ITC Foods', 'MTR Foods', 'Wipro', 'Kreditbee', 'Duroflex', 'Modenik']} />
+      </section>
+
+      {/* EDUCATION + CERTS — parchment */}
+      <section className="section bg-parchment">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">03</span><span className="label">Education &amp; certification</span></div>
+            <div className="sec-head__r">The foundation</div>
+          </div>
+
+          <div className="egrid mt-64">
+            <Reveal className="col-6">
+              <div className="t-mono muted">Education</div>
+              <div className="mt-24">
+                {EDUCATION.map(e => (
+                  <div key={e.t} style={{ padding: '24px 0', borderTop: '1px solid var(--color-hairline)' }}>
+                    <span className="t-mono muted" style={{ display: 'inline-block', minWidth: 60 }}>{e.y}</span>
+                    <div className="t-large mt-8" style={{ fontSize: 'clamp(20px, 1.8vw, 26px)' }}>{e.t}</div>
+                    <div className="t-meta mt-8">{e.o}</div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal className="col-6" delay={120}>
+              <div className="t-mono muted">Recent certifications</div>
+              <div className="mt-24">
+                {CERTS.map(c => (
+                  <div key={c.t} style={{ padding: '20px 0', borderTop: '1px solid var(--color-hairline)', display: 'flex', gap: 24, alignItems: 'baseline' }}>
+                    <span className="t-mono muted" style={{ minWidth: 60 }}>{c.y}</span>
+                    <span className="t-medium">{c.t}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* TOOLS */}
+      <section className="section">
+        <div className="wrap">
+          <div className="sec-head" data-reveal>
+            <div className="sec-head__l"><span className="idx">04</span><span className="label">Tools in the daily stack</span></div>
+            <div className="sec-head__r">What I work in</div>
+          </div>
+
+          <div className="egrid mt-64">
+            {Object.entries(TOOLS).map(([group, items], i) => (
+              <Reveal key={group} className="col-3 col-md-3" delay={i * 60}>
+                <div className="t-mono muted">{group}</div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: '16px 0 0', display: 'grid', gap: 8 }}>
+                  {items.map(it => <li key={it} className="t-body" style={{ fontSize: 15 }}>{it}</li>)}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section bg-ink">
+        <div className="wrap">
+          <Reveal as="h2" className="t-huge">
+            Read what<br/><span className="t-italic muted">I am writing now.</span>
+          </Reveal>
+          <Reveal className="mt-48" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <Btn href="ai.html">AI in Marketing</Btn>
+            <Btn href="blog.html" filled>Read the writing</Btn>
+          </Reveal>
+        </div>
+      </section>
+
+    </Page>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
