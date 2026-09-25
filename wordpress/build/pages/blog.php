@@ -196,10 +196,20 @@ foreach ( $posts as $k => $p ) {
 		$j++;
 		$tags[] = vv_f( "Tag $j", array( 'itag' ), array( vv_p( "Tag $j Dot", '●', array( 'itag-dot' ), 'span' ), vv_p( "Tag $j Label", $t, array( 'itag-label' ), 'span' ) ) );
 	}
-	$next = array( $posts[ ( $k + 1 ) % $n ], $posts[ ( $k + 2 ) % $n ] );
+	/* Sidebar suggestions: the four most recent other essays. */
+	$others = array_slice( array_values( array_filter( $posts, function ( $o ) use ( $p ) { return $o['slug'] !== $p['slug']; } ) ), 0, 4 );
+	$suggest = array(); $j = 0;
+	foreach ( $others as $o ) {
+		$j++;
+		$suggest[] = vv_link( "Suggestion $j", array( 'aside-item' ), $o['url'], array(
+			vv_p( "Suggestion $j Category", $e( $o['cat'] ), array( 'feed-meta-text', 'text-accent' ), 'span' ),
+			vv_h( "Suggestion $j Title", $e( $o['t'] ), array( 'aside-title' ), 'h3' ),
+			vv_p( "Suggestion $j Meta", $o['y'] . ' · ' . $o['min'] . ' min', array( 'feed-meta-text' ), 'span' ),
+		) );
+	}
 	$meta_cell = function ( $l, $label, $value_nodes ) { return vv_f( $l, array( 'meta-cell' ), array_merge( array( vv_p( "$l Label", $label, array( 'meta-k' ) ) ), $value_nodes ) ); };
 	$nodes = array(
-		vv_f( 'Article Hero', array( 'art-hero', 'bg-canvas' ), array( vv_f( 'Article Hero Inner', array( 'wrap' ), array(
+		vv_f( 'Article Hero', array( 'art-hero', 'art-end', 'bg-canvas' ), array( vv_f( 'Article Hero Inner', array( 'wrap' ), array(
 			vv_p( 'Back To Writing', '← All writing', array( 'back-link' ), 'p', vv_url( '/blog/' ) ),
 			vv_f( 'Article Eyebrow', array( 'art-eyebrow' ), array(
 				vv_p( 'Eyebrow Category', $e( $p['cat'] ), array( 'feed-meta-text', 'text-accent' ), 'span' ),
@@ -215,26 +225,35 @@ foreach ( $posts as $k => $p ) {
 				$meta_cell( 'Meta Reading', 'Reading time', array( vv_p( 'Meta Reading Value', $p['min'] . ' min', array( 'art-meta-v' ) ) ) ),
 				$meta_cell( 'Meta Topic', 'Topic', array( vv_p( 'Meta Topic Value', $e( $p['cat'] ), array( 'art-meta-v' ) ) ) ),
 			) ),
-			vv_img( 'Article Cover', $tone[ $p['tone'] ], '', array( 'tile-img', 'tile-img-lg', 'art-cover' ) ),
-		) ) ), array( 'tag' => 'section' ) ),
-		vv_f( 'Article Body', array( 'stack', 'bg-canvas' ), array( vv_f( 'Article Text', array( 'art-body' ), $body ) ), array( 'tag' => 'article' ) ),
-		vv_f( 'Article Footer', array( 'stack', 'bg-canvas' ), array( vv_f( 'Article Footer Inner', array( 'art-footer' ), array(
-			vv_f( 'Article Tags', array( 'art-tags' ), $tags ),
-			vv_g( 'Author Card', array( 'author-card' ), array(
-				vv_img( 'Author Card Photo', 8, 'Vineet Vijay', array( 'avatar-lg' ) ),
-				vv_f( 'Author Card Text', array( 'stack' ), array(
-					vv_p( 'Author Card Name', 'Vineet Vijay', array( 'author-name' ) ),
-					vv_p( 'Author Card Role', 'Digital Marketing Strategist · UAE', array( 'author-role' ) ),
-					vv_p( 'Author Card Bio', 'Ten years across healthcare, e-commerce, FMCG, luxury and fintech. Currently at House of Comms. Previously at Reem Hospital, Wavemaker (WPP), and Interactive Avenues (IPG).', array( 'author-bio' ) ),
+			/* Two-part layout from the banner down: article (~82%) + sidebar (~15%); stacks on tablet/mobile. */
+			vv_f( 'Article Layout', array( 'art-layout' ), array(
+				vv_f( 'Article Main', array( 'art-main' ), array(
+					vv_img( 'Article Banner', $tone[ $p['tone'] ], '', array( 'tile-img', 'art-banner' ) ),
+					vv_f( 'Article Text', array( 'art-body', 'art-body-flush' ), $body, array( 'tag' => 'article' ) ),
+					vv_f( 'Article Footer', array( 'art-footer', 'art-footer-flush' ), array(
+						vv_f( 'Article Tags', array( 'art-tags' ), $tags ),
+						vv_g( 'Author Card', array( 'author-card' ), array(
+							vv_img( 'Author Card Photo', 8, 'Vineet Vijay', array( 'avatar-lg' ) ),
+							vv_f( 'Author Card Text', array( 'stack' ), array(
+								vv_p( 'Author Card Name', 'Vineet Vijay', array( 'author-name' ) ),
+								vv_p( 'Author Card Role', 'Digital Marketing Strategist · UAE', array( 'author-role' ) ),
+								vv_p( 'Author Card Bio', 'Ten years across healthcare, e-commerce, FMCG, luxury and fintech. Currently at House of Comms. Previously at Reem Hospital, Wavemaker (WPP), and Interactive Avenues (IPG).', array( 'author-bio' ) ),
+							) ),
+						) ),
+					) ),
 				) ),
+				vv_f( 'Article Sidebar', array( 'art-aside' ), array(
+					vv_f( 'Sidebar Essays', array( 'stack' ), array(
+						vv_p( 'Sidebar Essays Heading', 'More essays', array( 't-mono' ) ),
+						vv_f( 'Sidebar Essays List', array( 'aside-list' ), $suggest ),
+					) ),
+					/* Ad space: an empty, named slot for the ad code (160×600 on desktop, 300×250 on tablet/mobile). */
+					vv_f( 'Sidebar Ad', array( 'stack' ), array(
+						vv_p( 'Sidebar Ad Label', 'Advertisement', array( 'meta-k' ) ),
+						vv_f( 'Ad Slot', array( 'ad-slot' ) ),
+					) ),
+				), array( 'tag' => 'aside' ) ),
 			) ),
-		) ) ) ),
-		vv_f( 'More Essays', array( 'section', 'bg-canvas' ), array( vv_f( 'More Essays Inner', array( 'wrap' ), array(
-			vv_sec_head( 'More Essays', '→', 'Keep reading', 'More essays' ),
-			vv_f( 'More Essays List', array( 'post-list' ), array(
-				vv_post_row( 'Next 1', $next[0]['y'], $e( $next[0]['t'] ), $e( $next[0]['cat'] ) . ' · ' . $next[0]['min'] . ' min', $next[0]['url'] ),
-				vv_post_row( 'Next 2', $next[1]['y'], $e( $next[1]['t'] ), $e( $next[1]['cat'] ) . ' · ' . $next[1]['min'] . ' min', $next[1]['url'] ),
-			), array(), vv_ix() ),
 		) ) ), array( 'tag' => 'section' ) ),
 		vv_subscribe( 'Article' ),
 	);
