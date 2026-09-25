@@ -113,6 +113,23 @@ function vv_post_row( $p, $y, $title, $cat, $href, $dark = false ) {
 		vv_p( "$p Arrow", '↗', $dark ? array( 'post-arr', 'on-dark' ) : array( 'post-arr' ), 'span' ),
 	) );
 }
+/**
+ * Native v4 tabs used as a category filter: $panels is label => array of nodes.
+ * The chip look (and its selected state) comes from the `chip` global class.
+ */
+function vv_tabs( $p, $panels, $panel_wrap ) {
+	$tabs = array(); $contents = array(); $i = 0;
+	foreach ( $panels as $label => $children ) {
+		$i++;
+		$tabs[] = vv_n( 'e-tab', "$p Tab $i", array( 'chip' ), array(), array( vv_p( "$p Tab $i Label", $label, array(), 'span' ) ) );
+		$contents[] = vv_n( 'e-tab-content', "$p Panel $i", array( 'tab-panel' ), array(), array( $panel_wrap( $i, $children ) ) );
+	}
+	return vv_n( 'e-tabs', "$p Tabs", array( 'tabs' ), array( 'default-active-tab' => 0 ), array(
+		vv_n( 'e-tabs-menu', "$p Tab Bar", array( 'chips-bar' ), array(), $tabs ),
+		vv_n( 'e-tabs-content-area', "$p Panels", array( 'tab-panels' ), array(), $contents ),
+	) );
+}
+
 /** Native accordion item (details/summary) with the design's chevron in the icon slot. */
 function vv_acc_item( $l, $item_c, $head_c, $num, $num_c, $title, $title_c, $icon_c, $body_c, $body ) {
 	return vv_n( 'e-accordion-item', $l, $item_c, array(), array(
