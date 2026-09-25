@@ -26,20 +26,10 @@ $steps = array(
 $items = array();
 foreach ( $truths as $i => $t ) {
 	$n = $i + 1;
-	$items[] = vv_n( 'e-accordion-item', "Truth $n", array( 'acc-item', 'on-dark-lines' ), array(), array(
-		vv_n( 'e-accordion-item-header', "Truth $n Header", array( 'acc-head', 'truth-head' ), array(), array(
-			vv_n( 'e-accordion-item-title', "Truth $n Title Slot", array( 'acc-title-slot' ), array(), array(
-				vv_f( "Truth $n Title Row", array( 'acc-title-row' ), array(
-					vv_p( "Truth $n Number", $t[0] . ' — Truth', array( 'acc-num', 'truth-num' ), 'span' ),
-					vv_h( "Truth $n Title", $t[1], array( 'acc-title', 'truth-title' ), 'h3' ),
-				) ),
-			) ),
-			vv_n( 'e-accordion-item-icon', "Truth $n Icon", array( 'acc-icon', 'on-dark' ) ),
-		) ),
-		vv_n( 'e-accordion-item-content', "Truth $n Content", array( 'acc-body', 'truth-body' ), array(), array(
-			vv_p( "Truth $n Text", $t[2], array( 'truth-answer' ) ),
-		) ),
-	) );
+	$items[] = vv_acc_item( "Truth $n", array( 'acc-item', 'on-dark-lines' ), array( 'acc-head', 'truth-head' ),
+		$t[0] . ' — Truth', array( 'acc-num', 'truth-num' ), $t[1], array( 'acc-title', 'truth-title' ),
+		array( 'acc-icon', 'on-dark' ), array( 'acc-body', 'truth-body' ),
+		array( vv_p( "Truth $n Text", $t[2], array( 'truth-answer' ) ) ) );
 }
 
 $nodes = array(

@@ -113,6 +113,19 @@ function vv_post_row( $p, $y, $title, $cat, $href, $dark = false ) {
 		vv_p( "$p Arrow", '↗', $dark ? array( 'post-arr', 'on-dark' ) : array( 'post-arr' ), 'span' ),
 	) );
 }
+/** Native accordion item (details/summary) with the design's chevron in the icon slot. */
+function vv_acc_item( $l, $item_c, $head_c, $num, $num_c, $title, $title_c, $icon_c, $body_c, $body ) {
+	return vv_n( 'e-accordion-item', $l, $item_c, array(), array(
+		vv_n( 'e-accordion-item-header', "$l Header", $head_c, array(), array(
+			vv_n( 'e-accordion-item-title', "$l Title Slot", array( 'acc-title-slot' ), array(), array(
+				vv_f( "$l Title Row", array( 'acc-title-row' ), array( vv_p( "$l Number", $num, $num_c, 'span' ), vv_h( "$l Title", $title, $title_c, 'h3' ) ) ),
+			) ),
+			vv_n( 'e-accordion-item-icon', "$l Icon", $icon_c, array(), array( vv_n( 'e-svg', "$l Chevron", array( 'acc-chevron' ), array( 'svg' => array( 'id' => 259 ) ) ) ) ),
+		) ),
+		vv_n( 'e-accordion-item-content', "$l Content", $body_c, array(), $body ),
+	) );
+}
+
 /** Subscribe band: the form area is left as an empty, named slot for a real form. */
 function vv_subscribe( $p ) {
 	return vv_f( "$p Subscribe", array( 'section', 'bg-ink' ), array( vv_f( "$p Subscribe Inner", array( 'wrap' ), array(
