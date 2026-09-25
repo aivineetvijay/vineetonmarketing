@@ -16,4 +16,4 @@ AI tools built for marketers. Each tool lives in its own folder here.
 
 | Tool | Category | Status |
 |---|---|---|
-| _None yet_ | | |
+| [SEO Keyword Research brief builder](SEO%20Keyword%20Research%20brief%20builder/) | SEO | Coming soon |
