@@ -87,8 +87,8 @@ $set = array(
 	'header-button1-back-h-color' => $resp( $blue ),
 	'header-button1-border-size' => $box( 0, 0, 0, 0 ),
 	'header-button1-border-radius-fields' => $spacing( $box( 999, 999, 999, 999 ), $box( 999, 999, 999, 999 ), $box( 999, 999, 999, 999 ) ),
-	'header-button1-padding' => $spacing( $box( '10', '18', '10', '18' ), $box( '10', '18', '10', '18' ), $box( '10', '18', '10', '18' ) ),
-	'section-hb-button-1-padding' => $spacing( $box( '0', '0', '0', '8' ), $box( '', '', '', '' ), $box( '', '', '', '' ) ),
+	'section-hb-button-1-padding' => $spacing( $box( '10', '18', '10', '18' ), $box( '10', '18', '10', '18' ), $box( '10', '18', '10', '18' ) ),
+	'section-hb-button-1-margin' => $spacing( $box( '0', '0', '0', '8' ), $box( '', '', '', '' ), $box( '', '', '', '' ) ),
 
 	/* Mobile: minimal trigger, full-screen black menu with large white links. */
 	'mobile-header-type' => 'full-width',
@@ -108,7 +108,7 @@ $set = array(
 	'header-mobile-menu-submenu-item-border' => true,
 	'header-mobile-menu-submenu-item-b-size' => '1',
 	'header-mobile-menu-submenu-item-b-color' => 'rgba(255,255,255,0.12)',
-	'header-mobile-menu-menu-spacing' => $spacing( $box( '', '', '', '' ), $box( '12', '0', '12', '0' ), $box( '12', '0', '12', '0' ) ),
+	'header-mobile-menu-menu-spacing' => $spacing( $box( '', '', '', '' ), $box( '12', '24', '12', '24' ), $box( '12', '24', '12', '24' ) ),
 
 	/* Footer layout: big email (above), details row (primary), legal (below). */
 	'footer-desktop-items' => array(
@@ -150,6 +150,9 @@ $set = array(
 );
 update_option( 'astra-settings', array_merge( $s, $set ) );
 
+$locs = get_theme_mod( 'nav_menu_locations', array() );
+if ( ! empty( $locs['primary'] ) ) { $locs['mobile_menu'] = $locs['primary']; set_theme_mod( 'nav_menu_locations', $locs ); }
+
 /* ---------- Footer widget areas: core blocks ---------- */
 $label = function ( $t ) {
 	return '<!-- wp:paragraph {"style":{"typography":{"fontSize":"11px","letterSpacing":"0.12em","textTransform":"uppercase"},"color":{"text":"rgba(255,255,255,0.5)"},"spacing":{"margin":{"bottom":"8px"}}}} -->'
@@ -158,19 +161,19 @@ $label = function ( $t ) {
 $text = function ( $html ) {
 	return '<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} --><p style="margin-top:0;margin-bottom:0">' . $html . '</p><!-- /wp:paragraph -->';
 };
-$column = function ( $inner ) { return '<!-- wp:column --><div class="wp-block-column">' . $inner . '</div><!-- /wp:column -->'; };
+$column = function ( $inner ) { return '<!-- wp:group {"layout":{"type":"default"}} --><div class="wp-block-group">' . $inner . '</div><!-- /wp:group -->'; };
 
 $mega = '<!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","letterSpacing":"0.12em","textTransform":"uppercase"},"color":{"text":"rgba(255,255,255,0.55)"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->'
 	. '<p class="has-text-color" style="color:rgba(255,255,255,0.55);margin-top:0;margin-bottom:0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase">Get in touch · Dubai, GST</p><!-- /wp:paragraph -->'
 	. '<!-- wp:heading {"style":{"typography":{"fontSize":"clamp(28px, 4.4vw, 72px)","fontStyle":"normal","fontWeight":"600","letterSpacing":"-0.03em","lineHeight":"1.05"},"spacing":{"margin":{"top":"24px","bottom":"0"}}}} -->'
 	. '<h2 class="wp-block-heading" style="margin-top:24px;margin-bottom:0;font-size:clamp(28px, 4.4vw, 72px);font-style:normal;font-weight:600;letter-spacing:-0.03em;line-height:1.05"><a href="mailto:vineetvijay88@gmail.com">vineetvijay88@gmail.com</a></h2><!-- /wp:heading -->';
 
-$details = '<!-- wp:columns --><div class="wp-block-columns">'
+$details = '<!-- wp:group {"style":{"spacing":{"blockGap":"32px"}},"layout":{"type":"grid","minimumColumnWidth":"14rem"}} --><div class="wp-block-group">'
 	. $column( $label( 'Based' ) . $text( 'Abu Dhabi · Dubai<br>United Arab Emirates' ) )
 	. $column( $label( 'Phone' ) . $text( '<a href="tel:+971586823646">+971 58 682 3646</a>' ) )
 	. $column( $label( 'Elsewhere' ) . $text( '<a href="https://linkedin.com/in/vineetvijay" target="_blank" rel="noreferrer noopener">LinkedIn</a><br><a href="' . esc_url( home_url( '/blog/#subscribe' ) ) . '">Subscribe</a>' ) )
 	. $column( $label( 'Status' ) . $text( '<mark style="background-color:rgba(0,0,0,0);color:#1f8a5b" class="has-inline-color">●</mark> Open to new conversations' ) )
-	. '</div><!-- /wp:columns -->';
+	. '</div><!-- /wp:group -->';
 
 $blocks = get_option( 'widget_block', array() );
 if ( ! is_array( $blocks ) ) { $blocks = array(); }
