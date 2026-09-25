@@ -172,7 +172,14 @@ foreach ( $posts as $k => $p ) {
 		switch ( $b[0] ) {
 			case 'p':  $body[] = vv_p( "Body $i Paragraph", $b[1], array( 'art-p' ) ); break;
 			case 'h3': $body[] = vv_h( "Body $i Heading", $e( $b[1] ), array( 'art-h3' ), 'h3' ); break;
-			case 'ul': $body[] = vv_p( "Body $i List", '<ul><li>' . implode( '</li><li>', $b[1] ) . '</li></ul>', array( 'art-list' ) ); break;
+			case 'ul':
+				$li = array(); $j = 0;
+				foreach ( $b[1] as $item ) {
+					$j++;
+					$li[] = vv_f( "Body $i Point $j", array( 'bullet' ), array( vv_p( "Body $i Point $j Mark", '•', array( 'bullet-mark', 'art-mark' ), 'span' ), vv_p( "Body $i Point $j Text", $item, array( 'art-p' ) ) ) );
+				}
+				$body[] = vv_f( "Body $i List", array( 'bullet-list' ), $li );
+				break;
 			case 'quote':
 				$body[] = vv_f( "Body $i Quote", array( 'art-quote' ), array( vv_p( "Body $i Quote Text", $e( $b[1] ), array( 'art-quote-text' ) ), vv_p( "Body $i Quote Cite", $e( $b[2] ), array( 'art-cite' ) ) ) );
 				break;
