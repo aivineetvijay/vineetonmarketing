@@ -247,11 +247,8 @@ foreach ( $posts as $k => $p ) {
 						vv_p( 'Sidebar Essays Heading', 'More essays', array( 't-mono' ) ),
 						vv_f( 'Sidebar Essays List', array( 'aside-list' ), $suggest ),
 					) ),
-					/* Ad space: an empty, named slot for the ad code (160×600 on desktop, 300×250 on tablet/mobile). */
-					vv_f( 'Sidebar Ad', array( 'stack' ), array(
-						vv_p( 'Sidebar Ad Label', 'Advertisement', array( 'meta-k' ) ),
-						vv_f( 'Ad Slot', array( 'ad-slot' ) ),
-					) ),
+					/* Image slot for a future ad/promo image (4:5 on desktop, 6:5 up to 300px on tablet/mobile). */
+					vv_img( 'Sidebar Image Slot', 357, '', array( 'ad-slot' ) ),
 				), array( 'tag' => 'aside' ) ),
 			) ),
 		) ) ), array( 'tag' => 'section' ) ),
