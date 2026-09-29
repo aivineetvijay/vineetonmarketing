@@ -2,7 +2,7 @@
 /**
  * Plugin Name: VV Schema
  * Description: Enriches the Rank Math JSON-LD graph with Vineet Vijay's author (Person) profile, merges the post author into the site Person, and sets ProfilePage / CollectionPage types.
- * Version:     1.0.0
+ * Version:     1.1.0
  *
  * Install: copy to wp-content/mu-plugins/vv-schema.php (must-use plugins load automatically).
  * Requires Rank Math SEO with the Schema (rich-snippet) module active.
@@ -17,6 +17,15 @@ add_filter( 'astra_schema_enabled', '__return_false' );
 const VV_SCHEMA_PROFILE_PAGES    = array( 101, 253 ); // Home, Experience.
 const VV_SCHEMA_COLLECTION_PAGES = array( 296 );      // Blog.
 const VV_SCHEMA_HEADSHOT_ID      = 8;
+const VV_SCHEMA_BLOG_PAGE        = 296;
+
+/** Breadcrumbs (visible trail and BreadcrumbList): essays sit under the Blog page, not a category archive. */
+add_filter( 'rank_math/frontend/breadcrumb/items', function ( $crumbs ) {
+	if ( is_singular( 'post' ) && count( $crumbs ) >= 2 ) {
+		return array( reset( $crumbs ), array( get_the_title( VV_SCHEMA_BLOG_PAGE ), get_permalink( VV_SCHEMA_BLOG_PAGE ) ), end( $crumbs ) );
+	}
+	return $crumbs;
+} );
 
 function vv_schema_person_id() {
 	return home_url( '/#person' );
