@@ -62,9 +62,9 @@ $astra = array_merge( $astra, array(
 	'breadcrumb-hover-color-responsive'  => $resp( '#0066cc' ),
 	'breadcrumb-active-color-responsive' => $resp( '#1d1d1f' ), // current page
 	'breadcrumb-separator-color'         => $resp( '#86868b' ),
-	// Astra's container (used only by the breadcrumb bar and non-Elementor archives): 1400 - 2 x 20px padding
+	// Astra's container (used only by the breadcrumb bar and non-Elementor archives): 1360 (+ 2 x 20px padding)
 	// lines the trail up with the pages' 40px content gutter on a 1440px screen.
-	'site-content-width'                 => 1400,
+	'site-content-width'                 => 1360,
 	'breadcrumb-spacing'                 => array(
 		'desktop'      => array( 'top' => '14', 'right' => '', 'bottom' => '14', 'left' => '' ),
 		'tablet'       => array( 'top' => '12', 'right' => '', 'bottom' => '12', 'left' => '' ),
