@@ -224,6 +224,20 @@ function vv_publish( $post_id ) {
 	   vv-built document uses Elementor Full Width, so set it explicitly. */
 	update_post_meta( $post_id, '_wp_page_template', 'elementor_header_footer' );
 	delete_post_meta( $post_id, '_elementor_element_cache' );
+	vv_refresh_text_copy( $post_id );
+}
+/**
+ * Refreshes post_content, the plain HTML copy of an Elementor document that SEO plugins (Rank Math's
+ * content analysis: headings, links, image alts, word count) read. Written directly so no save hooks
+ * reset the template or the modified date.
+ */
+function vv_refresh_text_copy( $post_id ) {
+	global $wpdb;
+	$html = \Elementor\Plugin::$instance->frontend->get_builder_content( $post_id, false );
+	$html = preg_replace( '#<(script|style)[^>]*>.*?</\1>#s', '', $html );
+	$html = preg_replace( '#\s(data-[a-z0-9_-]+|class|id)="[^"]*"#', '', $html );
+	$html = preg_replace( '#>\s+<#', '><', $html );
+	if ( strlen( $html ) > 200 ) { $wpdb->update( $wpdb->posts, array( 'post_content' => $html ), array( 'ID' => $post_id ) ); clean_post_cache( $post_id ); }
 }
 /** Creates an Elementor page/post and applies the template + Astra layout settings. */
 function vv_new( $title, $slug, $parent = 0, $type = 'page', $extra = array() ) {
