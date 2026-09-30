@@ -2,7 +2,7 @@
 /**
  * Server-side runner for the Blog index + essays. Fetches the build files from GitHub at
  * $vv_base (e.g. https://raw.githubusercontent.com/<owner>/<repo>/<ref>/wordpress/), then:
- * creates/updates the essay-block global classes, rebuilds /blog/ and every essay, publishes
+ * creates/updates the essay-block global classes, rebuilds /writing/ and every essay, publishes
  * them, and keeps the other essays' "last modified" dates unchanged (their text did not change).
  */
 $get = function ( $path ) use ( $vv_base ) {

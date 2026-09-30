@@ -39,7 +39,7 @@ $nodes = array(
 		'Every layer of the marketing stack — research, creative, distribution, measurement — is being rewritten. The opportunity is not to add an AI tool. It is to redesign the workflow.',
 		array(
 			vv_btn( 'AI Pillars Button', 'Read the pillars', vv_url( '/ai/#pillars' ), array( 'btn' ) ),
-			vv_btn( 'AI Writing Button', 'Explore the writing', vv_url( '/blog/' ), array( 'btn', 'btn-filled' ) ),
+			vv_btn( 'AI Writing Button', 'Explore the writing', vv_url( '/writing/' ), array( 'btn', 'btn-filled' ) ),
 		)
 	),
 	vv_f( 'Feature', array( 'section-sm', 'bg-canvas' ), array(
@@ -91,7 +91,7 @@ $nodes = array(
 	), array( 'tag' => 'section' ) ),
 	vv_cta_dark( 'AI', 'More', 'on this thread.', array(
 		vv_btn_dark( 'AI CTA Experience Button', 'Experience', vv_url( '/experience/' ) ),
-		vv_btn_dark( 'AI CTA Writing Button', 'Read the writing', vv_url( '/blog/' ), true ),
+		vv_btn_dark( 'AI CTA Writing Button', 'Read the writing', vv_url( '/writing/' ), true ),
 	) ),
 );
 

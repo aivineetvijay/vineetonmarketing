@@ -87,7 +87,7 @@ $out['index'] = array( 'id' => $index_id, 'result' => vv_build( $index_id, array
 	vv_f( 'Projects', array( 'section', 'bg-canvas' ), array( vv_f( 'Projects Inner', array( 'wrap' ), array( $work_rows( 'Projects', $cases ) ) ) ), array( 'tag' => 'section' ) ),
 	vv_cta_dark( 'Work', 'More', 'where this came from.', array(
 		vv_btn_dark( 'Work CTA Pov Button', 'Read the POV', vv_url( '/ai/' ) ),
-		vv_btn_dark( 'Work CTA Writing Button', 'Read the writing', vv_url( '/blog/' ), true ),
+		vv_btn_dark( 'Work CTA Writing Button', 'Read the writing', vv_url( '/writing/' ), true ),
 	) ),
 ), 'document', 'replace_children' ) );
 
@@ -112,7 +112,7 @@ foreach ( $cases as $k => $c ) {
 			vv_g( 'Case Meta', array( 'hero-meta', 'mb-80' ), array( vv_meta_block( 'Case', 'Industry', htmlspecialchars( $c['industry'] ) ), vv_meta_block( 'Case', 'Location', $c['location'] ), vv_meta_block( 'Case', 'Window', $c['period'] ) ) ),
 			vv_f( 'Case Headline', array( 'hero-title' ), array( vv_f( 'Case Title Line', array( 'hero-line', 'gap-0' ), array( vv_h( 'Case Title', $name, array( 't-huge' ), 'h1' ), vv_p( 'Case Title Aside', '.', array( 't-huge', 't-italic', 'muted' ), 'span' ) ), array(), vv_ix( 'load', 'slide' ) ) ) ),
 			vv_n( 'e-paragraph', 'Case Tagline', array( 't-lead', 'measure-720', 'mt-48' ), array( 'paragraph' => $c['tagline'], 'tag' => 'p' ), array(), vv_ix( 'load', 'fade', 300 ) ),
-			vv_f( 'Case Buttons', array( 'btn-row', 'mt-32' ), array( $back_btn( 'Case Back Button', false ), vv_btn( 'Case Essays Button', 'Read more essays', vv_url( '/blog/' ), array( 'btn', 'btn-filled' ) ) ), array(), vv_ix( 'load', 'fade', 400 ) ),
+			vv_f( 'Case Buttons', array( 'btn-row', 'mt-32' ), array( $back_btn( 'Case Back Button', false ), vv_btn( 'Case Essays Button', 'Read more essays', vv_url( '/writing/' ), array( 'btn', 'btn-filled' ) ) ), array(), vv_ix( 'load', 'fade', 400 ) ),
 		) ) ), array( 'tag' => 'section' ) ),
 		vv_f( 'Cover', array( 'section-sm', 'pt-0', 'bg-canvas' ), array( vv_f( 'Cover Inner', array( 'wrap' ), array( vv_n( 'e-image', 'Cover Image', array( 'tile-img', 'tile-img-lg' ), array( 'image' => array( 'src' => array( 'id' => $tone[ $c['tone'] ], 'alt' => '' ), 'size' => 'full' ) ), array(), vv_ix( 'scrollIn', 'fade' ) ) ) ) ), array( 'tag' => 'section' ) ),
 		vv_f( 'Facts', array( 'section-sm', 'pt-0', 'pb-0', 'bg-canvas' ), array( vv_f( 'Facts Inner', array( 'wrap' ), array( vv_g( 'Facts Strip', array( 'case-meta' ), array(
@@ -132,7 +132,7 @@ foreach ( $cases as $k => $c ) {
 			vv_p( 'Debrief Cite', '— Engagement debrief, ' . $name, array( 'pull-cite' ) ),
 		), array(), vv_ix() ) ), array( 'tag' => 'section' ) ),
 		vv_f( 'More Work', array( 'section', 'bg-canvas' ), array( vv_f( 'More Work Inner', array( 'wrap' ), array( vv_sec_head( 'More Work', '→', 'Keep reading', 'More work' ), $work_rows( 'More', $next ) ) ) ), array( 'tag' => 'section' ) ),
-		vv_cta_dark( 'Case', 'Keep', 'reading.', array( $back_btn( 'Case CTA Back Button', true ), vv_btn_dark( 'Case CTA Writing Button', 'Read the writing', vv_url( '/blog/' ), true ) ) ),
+		vv_cta_dark( 'Case', 'Keep', 'reading.', array( $back_btn( 'Case CTA Back Button', true ), vv_btn_dark( 'Case CTA Writing Button', 'Read the writing', vv_url( '/writing/' ), true ) ) ),
 	);
 	$out[ $c['slug'] ] = array( 'id' => $pid, 'result' => vv_build( $pid, $nodes, 'document', 'replace_children' ) );
 }

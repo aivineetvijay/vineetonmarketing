@@ -1,6 +1,6 @@
 <?php
 /**
- * Blog (/blog/) and its eight essays — rebuilt from blog.html.
+ * Blog (/writing/) and its eight essays — rebuilt from blog.html.
  * Essays are real WordPress posts (with categories, dates, excerpts and a
  * featured image) built with Elementor; the index filter uses native v4 tabs.
  */
@@ -162,7 +162,7 @@ $feed_card = function ( $l, $p ) use ( $tone, $e ) {
 };
 
 /* ---------- Blog index ---------- */
-$blog_id = vv_new( 'Blog', 'blog' );
+$blog_id = vv_new( 'Blog', 'writing' ); // URL /writing/ (was /blog/, 301-redirected by mu-plugins/vv-redirects.php)
 $panels = array();
 $live_cats = array_values( array_filter( $categories, function ( $c ) use ( $posts ) { foreach ( $posts as $p ) { if ( $p['cat'] === $c ) { return true; } } return false; } ) );
 foreach ( array_merge( array( 'All' ), $live_cats ) as $cat ) {
@@ -373,7 +373,7 @@ foreach ( $posts as $k => $p ) {
 	$meta_cell = function ( $l, $label, $value_nodes ) { return vv_f( $l, array( 'meta-cell' ), array_merge( array( vv_p( "$l Label", $label, array( 'meta-k' ) ) ), $value_nodes ) ); };
 	$nodes = array(
 		vv_f( 'Article Hero', array( 'art-hero', 'art-end', 'bg-canvas' ), array( vv_f( 'Article Hero Inner', array( 'wrap' ), array(
-			vv_p( 'Back To Writing', '← All writing', array( 'back-link' ), 'p', vv_url( '/blog/' ) ),
+			vv_p( 'Back To Writing', '← All writing', array( 'back-link' ), 'p', vv_url( '/writing/' ) ),
 			vv_f( 'Article Eyebrow', array( 'art-eyebrow' ), array(
 				vv_p( 'Eyebrow Category', $e( $p['cat'] ), array( 'feed-meta-text', 'text-accent' ), 'span' ),
 				vv_p( 'Eyebrow Separator 1', '—', array( 'eyebrow-sep' ), 'span' ),

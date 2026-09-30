@@ -171,7 +171,7 @@ $mega = '<!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","letterSpac
 $details = '<!-- wp:group {"style":{"spacing":{"blockGap":"32px"}},"layout":{"type":"grid","minimumColumnWidth":"14rem"}} --><div class="wp-block-group">'
 	. $column( $label( 'Based' ) . $text( 'Abu Dhabi · Dubai<br>United Arab Emirates' ) )
 	. $column( $label( 'Phone' ) . $text( '<a href="tel:+971586823646">+971 58 682 3646</a>' ) )
-	. $column( $label( 'Elsewhere' ) . $text( '<a href="https://linkedin.com/in/vineetvijay" target="_blank" rel="noreferrer noopener">LinkedIn</a><br><a href="' . esc_url( home_url( '/blog/#subscribe' ) ) . '">Subscribe</a>' ) )
+	. $column( $label( 'Elsewhere' ) . $text( '<a href="https://linkedin.com/in/vineetvijay" target="_blank" rel="noreferrer noopener">LinkedIn</a><br><a href="' . esc_url( home_url( '/writing/#subscribe' ) ) . '">Subscribe</a>' ) )
 	. $column( $label( 'Status' ) . $text( '<mark style="background-color:rgba(0,0,0,0);color:#1f8a5b" class="has-inline-color">●</mark> Open to new conversations' ) )
 	. '</div><!-- /wp:group -->';
 
