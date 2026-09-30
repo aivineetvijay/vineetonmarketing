@@ -6,7 +6,7 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
-	array( 'slug' => 'schema-markup-for-real-estate', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 10:00:00', 'cat' => 'SEO',
+	array( 'slug' => 'schema-markup-for-real-estate', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 10:00:00', 'cat' => 'AI in Marketing', 'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'Seven schemas every property site needs.',
 		'dek' => 'Buyers increasingly meet your project in an AI answer first. Here are the seven schemas that make sure those facts come from your own website, and the brief to get them built.',
 		'min' => 10, 'tone' => 'warm', 'fmt' => 'Guide', 'body_src' => 'schema-markup-for-real-estate',
@@ -17,7 +17,7 @@ $posts = array(
 		'figures' => array(
 			'emaar-the-oasis-community-page-breadcrumb.jpg' => array( 477, 'The Oasis by Emaar community page. The breadcrumb is visible to buyers but not marked up for machines. Screenshot taken 30 September 2026.' ),
 		) ),
-	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing',
+	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing', 'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'Schema is your website’s resume.',
 		'dek' => 'Schema will not get you cited by ChatGPT or Google’s AI on its own. What it does is make sure the machines screening you read the right name, credentials and references.',
 		'min' => 12, 'tone' => 'deep', 'fmt' => 'Framework',
@@ -123,6 +123,9 @@ foreach ( $posts as $k => $p ) {
 	if ( $cur->post_title !== $want['post_title'] || $cur->post_excerpt !== $want['post_excerpt'] || $cur->post_date !== $want['post_date'] ) {
 		wp_update_post( array_merge( array( 'ID' => $pid, 'post_date_gmt' => get_gmt_from_date( $p['iso'] ), 'edit_date' => true ), $want ) );
 	}
+	/* Category and tags follow this file on every run (vv_new only sets them when the post is created). */
+	if ( wp_get_post_categories( $pid ) !== array( $cat_ids[ $p['cat'] ] ) ) { wp_set_post_categories( $pid, array( $cat_ids[ $p['cat'] ] ) ); }
+	if ( isset( $p['tags'] ) ) { wp_set_post_tags( $pid, $p['tags'], false ); }
 	set_post_thumbnail( $pid, $p['thumb'] ?? $tone[ $p['tone'] ] );
 	$posts[ $k ]['id'] = $pid;
 	$posts[ $k ]['url'] = vv_url( '/' . $p['slug'] . '/' );
