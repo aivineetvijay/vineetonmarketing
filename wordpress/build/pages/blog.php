@@ -6,26 +6,12 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
-	array( 'slug' => 'schema-is-the-new-resume', 'y' => 'May ’26', 'date' => 'May 14, 2026', 'iso' => '2026-05-14 09:00:00', 'cat' => 'AI in Marketing',
-		't' => 'Schema is the new resume — how to brief your brand to an AI.',
-		'dek' => 'When the answer comes before the click, the question is no longer how to rank. It is how to be cited. A working framework, written from twelve recent audits.',
-		'min' => 9, 'tone' => 'deep', 'body' => array(
-			array( 'p', 'For two decades, SEO has been a contest about clicks. Show up on the page, win the visit. The model is so familiar that most marketing teams still build their content programmes around it. The problem is that the contest is quietly being replaced.' ),
-			array( 'p', 'When a patient asks an LLM about a knee replacement in the GCC, the model answers without ever sending the patient to a website. The brand that gets named in the answer wins. The brand whose schema, source authority and editorial discipline taught the model who they are wins. Everyone else, no matter how many backlinks they have, becomes invisible.' ),
-			array( 'p', 'I have spent the last eighteen months auditing this shift across twelve brands in healthcare, finance, and luxury. The patterns are unmistakable, and they are uncomfortable for most CMOs.' ),
-			array( 'h3', 'The three layers AI looks at' ),
-			array( 'p', 'Every audit I run now starts from the same three-layer model: <strong>structured data</strong>, <strong>source authority</strong>, and <strong>editorial fingerprint</strong>. The first is mostly engineering. The second is mostly PR. The third is mostly editorial. None of them are optional anymore.' ),
-			array( 'quote', 'The job is no longer to get the user to your site. The job is to get the model to your sentence.', 'From an internal audit, March 2026' ),
-			array( 'p', 'Most teams over-invest in the first layer because it feels concrete. They schema-mark everything that moves. But schema without editorial fingerprint is a beautiful resume for someone with no story. The model knows the structure; it has no reason to cite you.' ),
-			array( 'img', 'mono', 'Figure 01 — The three-layer model of AI-era discoverability.' ),
-			array( 'h3', 'Editorial fingerprint, defined' ),
-			array( 'p', 'Editorial fingerprint is the set of distinctive linguistic patterns, source citations, and consistent points-of-view that make a brand identifiable to a language model independent of its formatting. It is the thing that makes a 200-word answer about lipid management <em>sound</em> like the Cleveland Clinic and not like a content farm.' ),
-			array( 'p', 'Three tests I now run on every editorial system:' ),
-			array( 'ul', array( 'Could a stranger identify the brand from an unbranded paragraph?', 'Are sources cited inline, with link rot accounted for, in every long-form piece?', 'Does the brand have a documented point of view on the top twenty category questions — or does it hedge?' ) ),
-			array( 'h3', 'What to do on Monday' ),
-			array( 'p', 'Three weeks of work — fixed scope, modest budget, and the bones of an AI-era content programme are in place. Audit the schema. Codify the editorial system. Pick ten priority topics, write the brand’s point of view on each, publish them with clean structured data and inline citations, and watch what the models do for sixty days.' ),
-			array( 'p', 'The patient already asked. The answer was already written. The only remaining question is whether your brand was in it.' ),
-		) ),
+	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing',
+		't' => 'Schema is your website’s resume.',
+		'dek' => 'Schema will not get you cited by ChatGPT or Google’s AI on its own. What it does is make sure the machines screening you read the right name, credentials and references.',
+		'min' => 13, 'tone' => 'deep', 'fmt' => 'Framework',
+		/* Long-form body lives in wordpress/content/essays/<slug>.json (made by html_to_blocks.py from the essay HTML). */
+		'body_src' => 'schema-markup-ai-visibility' ),
 	array( 'slug' => 'mmm-you-can-run-on-monday', 'y' => 'May ’26', 'date' => 'May 6, 2026', 'iso' => '2026-05-06 09:00:00', 'cat' => 'Measurement',
 		't' => 'The MMM you can actually run on Monday.',
 		'dek' => 'A practical recipe for a marketing mix model that does not require a data team.',
@@ -97,12 +83,31 @@ foreach ( $categories as $c ) {
 	$cat_ids[ $c ] = (int) ( is_array( $term ) ? $term['term_id'] : $term );
 }
 
+/* Essays whose body comes from a JSON block file: the runner passes them in $vv_essay_bodies. */
+foreach ( $posts as $k => $p ) {
+	if ( isset( $p['body_src'] ) ) {
+		if ( empty( $vv_essay_bodies[ $p['body_src'] ] ) ) { return array( 'error' => 'Missing essay body: ' . $p['body_src'] ); }
+		$posts[ $k ]['body'] = $vv_essay_bodies[ $p['body_src'] ];
+	}
+}
+
 /* Create (or reuse) the posts first so every card can link to them. */
 foreach ( $posts as $k => $p ) {
+	/* A renamed essay keeps its post (and WordPress redirects the old slug). */
+	if ( ! empty( $p['old_slug'] ) && ! get_page_by_path( $p['slug'], OBJECT, 'post' ) ) {
+		$old = get_page_by_path( $p['old_slug'], OBJECT, 'post' );
+		if ( $old ) { wp_update_post( array( 'ID' => $old->ID, 'post_name' => $p['slug'] ) ); }
+	}
 	$pid = vv_new( wp_strip_all_tags( $p['t'] ), $p['slug'], 0, 'post', array(
 		'post_date' => $p['iso'], 'post_date_gmt' => get_gmt_from_date( $p['iso'] ), 'edit_date' => true,
 		'post_excerpt' => $p['dek'], 'post_category' => array( $cat_ids[ $p['cat'] ] ),
 	) );
+	/* Keep title, excerpt and date in step with this file (only touched when they differ). */
+	$cur = get_post( $pid );
+	$want = array( 'post_title' => wp_strip_all_tags( $p['t'] ), 'post_excerpt' => $p['dek'], 'post_date' => $p['iso'] );
+	if ( $cur->post_title !== $want['post_title'] || $cur->post_excerpt !== $want['post_excerpt'] || $cur->post_date !== $want['post_date'] ) {
+		wp_update_post( array_merge( array( 'ID' => $pid, 'post_date_gmt' => get_gmt_from_date( $p['iso'] ), 'edit_date' => true ), $want ) );
+	}
 	set_post_thumbnail( $pid, $tone[ $p['tone'] ] );
 	$posts[ $k ]['id'] = $pid;
 	$posts[ $k ]['url'] = vv_url( '/' . $p['slug'] . '/' );
@@ -165,6 +170,15 @@ $out['blog'] = array( 'id' => $blog_id, 'result' => vv_build( $blog_id, array(
 
 /* ---------- Essays ---------- */
 $n = count( $posts );
+/* Bulleted (•) or numbered (1.) list built from flex rows, so theme list styles never apply. */
+$list = function ( $l, $type, $items, $text_c, $mark_c ) {
+	$rows = array(); $j = 0;
+	foreach ( $items as $item ) {
+		$j++;
+		$rows[] = vv_f( "$l Point $j", array( 'bullet' ), array( vv_p( "$l Point $j Mark", 'ol' === $type ? $j . '.' : '•', $mark_c, 'span' ), vv_p( "$l Point $j Text", $item, $text_c ) ) );
+	}
+	return vv_f( "$l List", array( 'bullet-list' ), $rows );
+};
 foreach ( $posts as $k => $p ) {
 	$body = array(); $i = 0;
 	foreach ( $p['body'] as $b ) {
@@ -172,16 +186,56 @@ foreach ( $posts as $k => $p ) {
 		switch ( $b[0] ) {
 			case 'p':  $body[] = vv_p( "Body $i Paragraph", $b[1], array( 'art-p' ) ); break;
 			case 'h3': $body[] = vv_h( "Body $i Heading", $e( $b[1] ), array( 'art-h3' ), 'h3' ); break;
-			case 'ul':
-				$li = array(); $j = 0;
-				foreach ( $b[1] as $item ) {
-					$j++;
-					$li[] = vv_f( "Body $i Point $j", array( 'bullet' ), array( vv_p( "Body $i Point $j Mark", '•', array( 'bullet-mark', 'art-mark' ), 'span' ), vv_p( "Body $i Point $j Text", $item, array( 'art-p' ) ) ) );
-				}
-				$body[] = vv_f( "Body $i List", array( 'bullet-list' ), $li );
-				break;
+			case 'ul': $body[] = $list( "Body $i", 'ul', $b[1], array( 'art-p' ), array( 'bullet-mark', 'art-mark' ) ); break;
 			case 'quote':
-				$body[] = vv_f( "Body $i Quote", array( 'art-quote' ), array( vv_p( "Body $i Quote Text", $e( $b[1] ), array( 'art-quote-text' ) ), vv_p( "Body $i Quote Cite", $e( $b[2] ), array( 'art-cite' ) ) ) );
+				$quote = array( vv_p( "Body $i Quote Text", $e( $b[1] ), array( 'art-quote-text' ) ) );
+				if ( '' !== $b[2] ) { $quote[] = vv_p( "Body $i Quote Cite", $e( $b[2] ), array( 'art-cite' ) ); }
+				$body[] = vv_f( "Body $i Quote", array( 'art-quote' ), $quote );
+				break;
+			/* Long-form blocks (see wordpress/content/essays/html_to_blocks.py). */
+			case 'h2': $body[] = vv_n( 'e-heading', "Body $i Section Heading", array( 'art-h3' ), array( 'tag' => 'h2', 'title' => $b[1] ), array(), null, $b[2] ); break;
+			case 'h3s': $body[] = vv_h( "Body $i Subheading", $b[1], array( 'art-sub' ), 'h3' ); break;
+			case 'cite': $body[] = vv_p( "Body $i Caption", $b[1], array( 'art-cite' ) ); break;
+			case 'ol': $body[] = $list( "Body $i", 'ol', $b[1], array( 'art-p' ), array( 'bullet-mark', 'art-mark' ) ); break;
+			case 'box':
+				$body[] = vv_f( "Body $i Summary", array( 'art-box' ), array( vv_p( "Body $i Summary Label", $b[1], array( 't-mono' ) ), $list( "Body $i Summary", $b[2], $b[3], array( 'art-p-sm' ), array( 'sm-mark' ) ) ) );
+				break;
+			case 'toc':
+				$rows = array(); $j = 0;
+				foreach ( $b[2] as $t ) {
+					$j++;
+					$rows[] = vv_f( "Body $i Contents $j", array( 'bullet' ), array( vv_p( "Body $i Contents $j Number", $j . '.', array( 'toc-mark' ), 'span' ), vv_p( "Body $i Contents $j Link", $t[0], array( 'art-toc-link' ), 'p', '#' . $t[1] ) ) );
+				}
+				$body[] = vv_f( "Body $i Contents", array( 'art-toc' ), array_merge( array( vv_p( "Body $i Contents Label", $b[1], array( 't-mono' ) ) ), $rows ), array( 'tag' => 'nav' ) );
+				break;
+			case 'code':
+				$lines = array_map( function ( $line ) { return preg_replace_callback( '/^ +/', function ( $m ) { return str_repeat( '&nbsp;', strlen( $m[0] ) ); }, htmlspecialchars( $line, ENT_NOQUOTES ) ); }, $b[1] );
+				$body[] = vv_p( "Body $i Code Sample", implode( '<br>', $lines ), array( 'art-code' ) );
+				break;
+			case 'table':
+				$wide = count( $b[1] ) > 2; $rows = array(); $cols = array();
+				foreach ( $b[1] as $c => $th ) { $cols[] = vv_p( "Body $i Table Head $c", $th, array( 'art-th' ) ); }
+				$rows[] = vv_f( "Body $i Table Head", array( $wide ? 'art-thr-4' : 'art-thr' ), $cols );
+				foreach ( $b[2] as $r => $tr ) {
+					$cols = array();
+					foreach ( $tr as $c => $td ) {
+						/* Wide tables stack into labelled cards on mobile, so each cell carries its column label. */
+						$cols[] = $wide
+							? vv_f( "Body $i Row $r Cell $c", array( 'art-cell' ), array( vv_p( "Body $i Row $r Cell $c Label", $b[1][ $c ], array( 'art-td-label' ) ), vv_p( "Body $i Row $r Cell $c Text", $td, array( 'art-td' ) ) ) )
+							: vv_p( "Body $i Row $r Cell $c", $td, array( 'art-td' ) );
+					}
+					$rows[] = vv_f( "Body $i Row $r", array( $wide ? 'art-tr-4' : 'art-tr' ), $cols );
+				}
+				$body[] = vv_f( "Body $i Table", array( 'art-table' ), $rows );
+				break;
+			case 'callout':
+				$body[] = vv_f( "Body $i Framework", array( 'art-callout' ), array( vv_p( "Body $i Framework Label", $b[1], array( 't-mono' ) ), vv_p( "Body $i Framework Title", $b[2], array( 'art-callout-title' ) ), $list( "Body $i Framework", $b[3], $b[4], array( 'art-p-sm' ), array( 'sm-mark' ) ) ) );
+				break;
+			case 'note':
+				$body[] = vv_f( "Body $i Actions", array( 'art-note' ), array( vv_p( "Body $i Actions Title", $b[1], array( 'art-callout-title' ) ), $list( "Body $i Actions", $b[2], $b[3], array( 'art-p-sm' ), array( 'sm-mark' ) ) ) );
+				break;
+			case 'cta':
+				$body[] = vv_f( "Body $i Closing", array( 'art-cta' ), array( vv_p( "Body $i Closing Question", $b[1], array( 'art-callout-title' ) ), vv_p( "Body $i Closing Text", $b[2], array( 'art-p-sm' ) ), vv_p( "Body $i Closing Link", $b[3], array( 'art-cta-link' ), 'p', $b[4] ) ) );
 				break;
 			case 'img':
 				$body[] = vv_f( "Body $i Figure", array( 'art-figure' ), array(
@@ -192,7 +246,7 @@ foreach ( $posts as $k => $p ) {
 		}
 	}
 	$tags = array(); $j = 0;
-	foreach ( array( $e( $p['cat'] ), 'Field note', $p['min'] . ' min' ) as $t ) {
+	foreach ( array( $e( $p['cat'] ), $p['fmt'] ?? 'Field note', $p['min'] . ' min' ) as $t ) {
 		$j++;
 		$tags[] = vv_f( "Tag $j", array( 'itag' ), array( vv_p( "Tag $j Dot", '●', array( 'itag-dot' ), 'span' ), vv_p( "Tag $j Label", $t, array( 'itag-label' ), 'span' ) ) );
 	}

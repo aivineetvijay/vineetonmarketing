@@ -2,7 +2,7 @@
 /**
  * Plugin Name: VV Schema
  * Description: Enriches the Rank Math JSON-LD graph with Vineet Vijay's author (Person) profile, merges the post author into the site Person, and sets ProfilePage / CollectionPage types.
- * Version:     1.1.0
+ * Version:     1.2.0
  *
  * Install: copy to wp-content/mu-plugins/vv-schema.php (must-use plugins load automatically).
  * Requires Rank Math SEO with the Schema (rich-snippet) module active.
@@ -169,6 +169,27 @@ add_filter( 'rank_math/json_ld', function ( $data, $jsonld ) {
 			$data[ $k ]['name']       = $title;
 			$data[ $k ]['author']     = array( '@id' => vv_schema_person_id(), 'name' => 'Vineet Vijay' );
 			$data[ $k ]['publisher']  = array( '@id' => vv_schema_person_id() );
+		}
+	}
+
+	// FAQPage from an essay's visible FAQ section (post meta vv_faq: [[question, answer], ...]).
+	if ( is_singular() ) {
+		$faq = get_post_meta( get_queried_object_id(), 'vv_faq', true );
+		if ( is_array( $faq ) && $faq ) {
+			$url             = get_permalink( get_queried_object_id() );
+			$data['FAQPage'] = array(
+				'@type'      => 'FAQPage',
+				'@id'        => $url . '#faq',
+				'isPartOf'   => array( '@id' => $url . '#webpage' ),
+				'inLanguage' => get_bloginfo( 'language' ),
+				'mainEntity' => array_map( function ( $qa ) {
+					return array(
+						'@type'          => 'Question',
+						'name'           => $qa[0],
+						'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $qa[1] ),
+					);
+				}, $faq ),
+			);
 		}
 	}
 
