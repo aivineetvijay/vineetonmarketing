@@ -162,7 +162,7 @@ $feed_card = function ( $l, $p ) use ( $tone, $e ) {
 };
 
 /* ---------- Blog index ---------- */
-$blog_id = vv_new( 'Blog', 'writing' ); // URL /writing/ (was /blog/, 301-redirected by mu-plugins/vv-redirects.php)
+$blog_id = vv_new( 'Writing', 'writing' ); // URL /writing/ (was /blog/, 301-redirected by mu-plugins/vv-redirects.php)
 $panels = array();
 $live_cats = array_values( array_filter( $categories, function ( $c ) use ( $posts ) { foreach ( $posts as $p ) { if ( $p['cat'] === $c ) { return true; } } return false; } ) );
 foreach ( array_merge( array( 'All' ), $live_cats ) as $cat ) {
