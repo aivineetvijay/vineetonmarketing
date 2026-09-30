@@ -181,6 +181,11 @@ $list = function ( $l, $type, $items, $text_c, $mark_c ) {
 };
 foreach ( $posts as $k => $p ) {
 	$body = array(); $i = 0;
+	/* Inline links: Elementor resets <a> inside text (all: unset) and strips classes/styles, so wrap
+	   the link text in <u> to keep links visibly underlined. */
+	array_walk_recursive( $p['body'], function ( &$v ) {
+		if ( is_string( $v ) ) { $v = preg_replace( '#<a ([^>]*)>(?!<u>)(.*?)</a>#s', '<a $1><u>$2</u></a>', $v ); }
+	} );
 	/* FAQ sections (question h3s + answer paragraphs after the "faq" h2) render as the site's accordion. */
 	$blocks = array(); $in_faq = false;
 	foreach ( $p['body'] as $b ) {
