@@ -1,0 +1,403 @@
+[
+ [
+  "p",
+  "<strong>More and more buyers meet your project in an AI answer before they ever reach your website. Whatever Google, ChatGPT or Gemini says about your community, its starting price, its handover and who built it, is assembled from the facts those systems can read most reliably. Schema markup is how a developer makes sure those facts come from its own website, not from a broker listing written two launches ago.</strong>"
+ ],
+ [
+  "p",
+  "Seven schemas do that job for a property developer's website. Below is what each one covers, where it goes, and how to get it built. No coding knowledge needed."
+ ],
+ [
+  "h2",
+  "What does schema markup tell Google about a property for sale?",
+  "what"
+ ],
+ [
+  "p",
+  "It tells Google exactly what you are selling, in facts rather than prose. A buyer looks at your project page and sees \"3 bed townhouses, from AED 2.4m, handover Q4 2028\". Google sees text, renders, brochures and buttons, and has to guess which number is the price and which is the plot size."
+ ],
+ [
+  "p",
+  "Schema removes the guessing. It is a hidden label in the page code that says: <em>this is a residential community in this location, built by this developer; this unit type has three bedrooms and 2,100 sq ft; it is for sale from 2,400,000 AED; it is still available.</em> Visitors never see it. I have called it <a href=\"https://vineetonmarketing.com/schema-markup-ai-visibility/\">your website's resume</a> before, and for a project page that is literal: a clean summary of the facts a buyer compares."
+ ],
+ [
+  "h2",
+  "Why is schema a must for property developer websites?",
+  "why"
+ ],
+ [
+  "p",
+  "Because your project is described in more places than you control, and schema is how your own website becomes the most reliable version. Five reasons it matters more for developers than for most brands:"
+ ],
+ [
+  "ul",
+  [
+   "<strong>Brokers outnumber you.</strong> A single launch can be listed by hundreds of brokers and portals, each with its own copy, prices and renders. Structured facts on your site help machines identify the developer and the official source.",
+   "<strong>AI assistants now shortlist communities.</strong> \"Family villa communities in Abu Dhabi under AED 5m\" is increasingly asked of an AI tool, not typed into a search bar. Answers are built from facts that are easy to read and cross-check.",
+   "<strong>Buyers compare on facts.</strong> Starting price, unit types, size, location and handover are how buyers filter projects. Pages that state those facts clearly are easier to match to those searches.",
+   "<strong>Inventory moves fast.</strong> Phases sell out, prices step up between releases. Schema generated from your inventory system keeps search engines current, instead of showing launch prices a year later.",
+   "<strong>International buyers research remotely.</strong> A buyer in London or Mumbai may never visit a sales centre before registering interest. What search and AI tools say about your project is often their first briefing."
+  ]
+ ],
+ [
+  "p",
+  "Set expectations honestly. Google has <a href=\"https://developers.google.com/search/docs/appearance/structured-data/search-gallery\">no special search display for property listings</a>, FAQ rich results were switched off in May 2026, and stars from your own testimonials are <a href=\"https://developers.google.com/search/docs/appearance/structured-data/review-snippet\">not eligible</a>. The payoff is accuracy and visibility in the places buyers now ask questions, not a prettier snippet."
+ ],
+ [
+  "p",
+  "<strong>Schema will not make a weak site rank. It stops a good site from being misunderstood.</strong>"
+ ],
+ [
+  "h2",
+  "The seven schemas every property developer site needs",
+  "list"
+ ],
+ [
+  "diagram",
+  "Diagram",
+  "How schema should map a developer's website",
+  [
+   [
+    "The sales hierarchy",
+    false,
+    [
+     [
+      "Developer",
+      "Organization · homepage"
+     ],
+     [
+      "Master community",
+      "Place / GatedResidenceCommunity · community page"
+     ],
+     [
+      "Project",
+      "ApartmentComplex or Residence · project page"
+     ],
+     [
+      "Unit type for sale",
+      "RealEstateListing + Offer (starting price, AED, availability)"
+     ]
+    ]
+   ],
+   [
+    "Supporting schemas",
+    true,
+    [
+     [
+      "BreadcrumbList",
+      "Every page"
+     ],
+     [
+      "LocalBusiness",
+      "Each sales centre"
+     ],
+     [
+      "VideoObject",
+      "Launch films, walkthroughs"
+     ],
+     [
+      "WebSite",
+      "Homepage site name"
+     ]
+    ]
+   ]
+  ],
+  "Each level links to the one above it, so machines see one portfolio, not scattered pages."
+ ],
+ [
+  "table",
+  [
+   "Schema",
+   "Where",
+   "What to include",
+   "Common mistake"
+  ],
+  [
+   [
+    "<strong>1. Organization</strong><br>Who the developer is",
+    "Homepage",
+    "Legal and brand name, logo, contact details, official social profiles, registration or licence number, parent company where relevant",
+    "Brand name differs across the site, Google Business Profiles and investor pages"
+   ],
+   [
+    "<strong>2. LocalBusiness</strong><br>Your sales centres",
+    "Each sales centre or gallery page",
+    "Address, map coordinates, phone, opening hours (including Ramadan hours)",
+    "Address not copied exactly from Google Maps; closed galleries still listed"
+   ],
+   [
+    "<strong>3. WebSite</strong><br>Your site name in Google",
+    "Homepage",
+    "Preferred <a href=\"https://developers.google.com/search/docs/appearance/site-names\">site name</a>",
+    "Plugin or CMS default left in place"
+   ],
+   [
+    "<strong>4. BreadcrumbList</strong><br>How your portfolio is organised",
+    "Every page except home",
+    "The buyer's path: Home &gt; Communities &gt; [Community] &gt; [Project] &gt; 3 bed townhouses",
+    "Campaign or CMS trails like \"Home &gt; LP &gt; Launch-Q3\""
+   ],
+   [
+    "<strong>5. Community and project</strong><br>(Place, GatedResidenceCommunity or ApartmentComplex)<br>What you are building, and where",
+    "Master community and project pages",
+    "Name, location and coordinates, developer, amenities, images, link from each project up to its master community",
+    "No schema on project pages at all; community and project described as the same thing"
+   ],
+   [
+    "<strong>6. Unit listing</strong><br>(<a href=\"https://schema.org/RealEstateListing\">RealEstateListing</a> + property type + Offer)<br>What is for sale",
+    "Each unit type or available unit page",
+    "Property type (Apartment, Townhouse as House, Villa as SingleFamilyResidence), beds, baths, size, images, starting price in AED, availability, linked to its project",
+    "Labelled as \"Product\"; launch prices never updated; sold-out phases still shown as available"
+   ],
+   [
+    "<strong>7. VideoObject</strong><br>What your films show",
+    "Any page with a launch film, walkthrough or construction update",
+    "Title, description, thumbnail, upload date, duration",
+    "Only the YouTube copy is marked up, not the video on your project page"
+   ]
+  ]
+ ],
+ [
+  "cite",
+  "Source: author's recommendation, based on Google Search Central documentation and Schema.org."
+ ],
+ [
+  "p",
+  "<strong>Unit schema must be generated from your inventory data, never typed by hand. Stale schema is a confident wrong answer.</strong>"
+ ],
+ [
+  "h2",
+  "What does this look like on a real community page?",
+  "example"
+ ],
+ [
+  "p",
+  "To make this concrete, I checked one page: <a href=\"https://www.emaar.com/en/our-communities/the-oasis\">The Oasis by Emaar</a>, on 30 September 2026. I picked Emaar deliberately. It is the best-known developer brand in the region with a well-built website, so if the gap shows up here, it is fair to assume it shows up almost everywhere."
+ ],
+ [
+  "p",
+  "The page is not schema-free. It carries a generic WebPage block and an FAQPage block with six questions, which is more than many developer sites have. The issue is which schemas are there, and what they say."
+ ],
+ [
+  "figure",
+  "emaar-the-oasis-community-page-breadcrumb.jpg"
+ ],
+ [
+  "ul",
+  [
+   "<strong>The most detailed schema is FAQPage</strong>, the type Google stopped showing as rich results in May 2026.",
+   "<strong>The FAQ schema is out of step with the page.</strong> It describes 4 and 5 bedroom homes. The page lists nine projects, including Lavita at 6 to 7 bedrooms.",
+   "<strong>No BreadcrumbList</strong>, even though the breadcrumb is right there on screen.",
+   "<strong>Nothing describes The Oasis as a place:</strong> no location, no coordinates, no link between the community and its nine projects. Emaar appears only as a publisher name.",
+   "<strong>No unit types or starting prices in schema.</strong> On the page itself, the sticky bar read \"Prices from 0\" when I checked."
+  ]
+ ],
+ [
+  "figure",
+  "emaar-the-oasis-prices-from-zero.jpg"
+ ],
+ [
+  "compare",
+  "Checked 30 September 2026",
+  "The Oasis by Emaar: what buyers see vs what machines are told",
+  [
+   [
+    "On the page (for buyers)",
+    [
+     [
+      "good",
+      "Breadcrumb: Home / All Communities / The Oasis"
+     ],
+     [
+      "good",
+      "9 villa and mansion projects listed"
+     ],
+     [
+      "good",
+      "Bedrooms from 4 up to 7 (Lavita: 6 to 7)"
+     ],
+     [
+      "good",
+      "Drive times to airport, Dubai Hills, Marina"
+     ],
+     [
+      "bad",
+      "Sticky bar reads \"Prices from 0\""
+     ]
+    ]
+   ],
+   [
+    "In the schema (for machines)",
+    [
+     [
+      "warn",
+      "WebPage: name, description, hero image"
+     ],
+     [
+      "warn",
+      "Organization: name only, as publisher"
+     ],
+     [
+      "warn",
+      "FAQPage: says \"4 &amp; 5 bedrooms\", out of step with the page"
+     ],
+     [
+      "bad",
+      "No BreadcrumbList, no community or location"
+     ],
+     [
+      "bad",
+      "No projects, unit types or starting prices"
+     ]
+    ]
+   ]
+  ],
+  "Source: author's check of emaar.com/en/our-communities/the-oasis."
+ ],
+ [
+  "p",
+  "What would I add? The community as a GatedResidenceCommunity with its location and Emaar as developer, each of the nine projects linked to it, unit types with starting prices, and a BreadcrumbList matching the one already on screen. Almost every fact needed is already on the page. It just is not labelled."
+ ],
+ [
+  "p",
+  "This is not a criticism of Emaar's team. It is the industry default: schema added once, usually through a CMS template, and not revisited as launches roll out. <strong>If the region's best-known community page leaves this much unsaid to machines, yours probably does too.</strong>"
+ ],
+ [
+  "h2",
+  "How do you get schema implemented?",
+  "implement"
+ ],
+ [
+  "ol",
+  [
+   "<strong>Find the gaps.</strong> Run your homepage, one community page, one project page and one unit page through Google's <a href=\"https://search.google.com/test/rich-results\">Rich Results Test</a> and the <a href=\"https://validator.schema.org/\">Schema Markup Validator</a>. Note which of the seven are missing.",
+   "<strong>Split the work.</strong> Your CMS or an SEO plugin can often handle 1 to 4 through settings. Community, project, unit and video schema usually need your development team or agency, because they pull live data.",
+   "<strong>Send the brief below.</strong>",
+   "<strong>Test on staging</strong> before launch. Errors must be fixed; warnings are optional.",
+   "<strong>Monitor monthly</strong> in Google Search Console, and re-check before every launch. Schema breaks quietly during redesigns and campaign microsites, the kind of <a href=\"https://vineetonmarketing.com/technical-debt-nobody-audits/\">technical debt nobody is auditing</a>."
+  ]
+ ],
+ [
+  "brief",
+  "Template",
+  "Schema markup brief: [Company name] website",
+  [
+   [
+    "p",
+    "<strong>Goal:</strong> add Schema.org structured data in JSON-LD format to the website templates so search engines and AI tools can read our company, sales centres, communities, projects, units and videos accurately."
+   ],
+   [
+    "p",
+    "<strong>Scope:</strong>"
+   ],
+   [
+    "ol",
+    [
+     "<strong>Homepage:</strong> Organization with legal and brand name, logo, URL, phone, email, official social profile links (sameAs), and our registration or licence number as an identifier. Plus WebSite with our preferred site name.",
+     "<strong>Sales centre pages:</strong> one LocalBusiness per sales centre or gallery, with address, geo coordinates, phone and opening hours matching our Google Business Profiles exactly.",
+     "<strong>All pages except home:</strong> BreadcrumbList matching the visible breadcrumb trail (communities, community, project, unit type).",
+     "<strong>Community and project pages:</strong> Place, GatedResidenceCommunity or ApartmentComplex as appropriate, with name, address, geo, images, amenities, our organisation as developer, and each project linked to its master community.",
+     "<strong>Unit pages:</strong> RealEstateListing containing the property (Apartment, House or SingleFamilyResidence as appropriate) with bedrooms, bathrooms, floor size, images and a link to its project, and an Offer with starting price, AED currency and availability. Generated automatically from the inventory system.",
+     "<strong>Pages with video:</strong> VideoObject with name, description, thumbnail, upload date and duration."
+    ]
+   ],
+   [
+    "p",
+    "<strong>Rules:</strong>"
+   ],
+   [
+    "ul",
+    [
+     "Build into templates, not individual pages. New projects and units must get schema with no manual work.",
+     "Schema must match what is visible on the page. When a price or availability changes, the schema updates at the same time.",
+     "Sold-out units or phases: update availability or remove the offer, in line with how the page itself is handled.",
+     "Do not use Product or review/rating markup on units."
+    ]
+   ],
+   [
+    "p",
+    "<strong>Acceptance:</strong> three sample pages of each type pass Google's Rich Results Test and the Schema Markup Validator with zero errors on staging before launch."
+   ],
+   [
+    "p",
+    "<strong>Please reply with:</strong> an estimate, which items our CMS or plugin can handle without custom code, and a date for the staging review."
+   ]
+  ]
+ ],
+ [
+  "h2",
+  "Frequently asked questions",
+  "faq"
+ ],
+ [
+  "h3s",
+  "Which schema should an off-plan project page have?"
+ ],
+ [
+  "p",
+  "Describe the project as a place (ApartmentComplex or GatedResidenceCommunity), with your company named as developer, its location and its master community. Then describe each unit type underneath, with its own Offer for starting price and availability. Keep payment plan and handover details in the visible page copy as well, so buyers and machines read the same facts."
+ ],
+ [
+  "h3s",
+  "How should master community and project pages differ?"
+ ],
+ [
+  "p",
+  "The master community page describes the destination: location, amenities, schools, access and the list of projects inside it. Each project page describes one development and links back up to its community. This parent and child structure helps search engines and AI tools understand that several launches belong to one address."
+ ],
+ [
+  "h3s",
+  "What if a unit shows \"price on request\"?"
+ ],
+ [
+  "p",
+  "Do not invent a price or add a placeholder figure. Leave the price out of the Offer and keep everything else: property type, size, bedrooms, project and availability. Schema must match what is visible on the page, so if the page withholds the price, the schema should too."
+ ],
+ [
+  "h3s",
+  "What happens to the schema when a phase sells out?"
+ ],
+ [
+  "p",
+  "It should change the moment the inventory changes. Mark the offer as sold out or remove it, in line with how the page itself is handled, and keep the project and community schema live. A sold-out phase still marked as available tells search engines and AI tools something false."
+ ],
+ [
+  "h3s",
+  "Brokers list our projects on the portals. Why do we need schema on our own site?"
+ ],
+ [
+  "p",
+  "Because broker listings describe your project in their words, with their prices and their photos, and often outlive the launch. Schema on your own site establishes you as the developer and the official source of project facts, which is what you want AI answers and search results to draw on."
+ ],
+ [
+  "h3s",
+  "Should launch events and roadshows have schema?"
+ ],
+ [
+  "p",
+  "Yes, if they are real events with a date and a venue. Event schema is <a href=\"https://developers.google.com/search/docs/appearance/structured-data/event\">supported by Google</a> and suits sales launches, overseas roadshows and sales centre open days. Remove or update it once the event has passed, so buyers are not sent to a launch that has already happened."
+ ],
+ [
+  "h3s",
+  "Do Arabic and English versions of a project page both need schema?"
+ ],
+ [
+  "p",
+  "Yes. Each language version should carry its own schema, written in that page's language and pointing to that page's URL. The facts (starting price, size, location, developer) must match across both versions. Mismatched details between language versions are a common source of errors on bilingual property sites."
+ ],
+ [
+  "h3s",
+  "Do campaign landing pages and microsites need schema?"
+ ],
+ [
+  "p",
+  "If they are indexed and describe a project, yes, and they should point to the main project page rather than compete with it. If they are paid-media landing pages kept out of search, schema matters less. What matters most is that the official project page on your main site carries the complete, current facts."
+ ],
+ [
+  "cta",
+  "Want a second pair of eyes on your gap list or brief?",
+  "",
+  "Get in touch &rarr;",
+  "https://vineetonmarketing.com/contact/"
+ ]
+]

@@ -36,6 +36,25 @@ $vv_essay_classes = array(
 	/* Essay banners with their own art direction: a wide 3:1 image on desktop/tablet, a 16:10 crop on mobile. */
 	'art-banner-desktop' => 'display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 3 / 1; object-fit: cover; border-radius: 12px; margin: 0px 0px 56px 0px; @media(--mobile){ display: none; }',
 	'art-banner-mobile'  => 'display: none; width: 100%; max-width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; margin: 0px 0px 40px 0px; @media(--mobile){ display: block; }',
+	/* Diagram box: two columns (stepped hierarchy + supporting boxes) that wrap to one column on narrow screens. */
+	'dg-cols'           => 'display: flex; flex-direction: row; flex-wrap: wrap; gap: 24px; padding: 0px;',
+	'dg-col'            => 'display: flex; flex-direction: column; flex: 1 1 260px; min-width: 0px; padding: 0px;',
+	'dg-label'          => 'font-family: var(--font-text); font-size: 12px; color: var(--color-ink-muted-48); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; margin: 0px 0px 10px 0px;',
+	'dg-box'            => 'width: auto; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px 10px 14px; border-width: 2px; border-style: solid; border-color: var(--color-ink); border-radius: 10px;',
+	'dg-box-dashed'     => 'width: auto; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px 10px 14px; margin: 0px 0px 10px 0px; border-width: 1px; border-style: dashed; border-color: var(--color-ink-muted-48); border-radius: 10px;',
+	'dg-box-title'      => 'font-family: var(--font-text); font-size: 16px; font-weight: 600; color: var(--color-ink); line-height: 1.35;',
+	'dg-box-sub'        => 'font-family: var(--font-text); font-size: 14px; color: var(--color-ink-muted-80); line-height: 1.4;',
+	'dg-arrow'          => 'font-family: var(--font-text); font-size: 14px; color: var(--color-ink-muted-48); line-height: 1; padding: 4px 0px 4px 12px;',
+	'dg-indent-1'       => 'margin: 0px 0px 0px 24px; @media(--mobile){ margin: 0px 0px 0px 12px; }',
+	'dg-indent-2'       => 'margin: 0px 0px 0px 48px; @media(--mobile){ margin: 0px 0px 0px 24px; }',
+	'dg-indent-3'       => 'margin: 0px 0px 0px 72px; @media(--mobile){ margin: 0px 0px 0px 36px; }',
+	/* Comparison box rows: coloured mark + text. */
+	'cmp-row'           => 'display: flex; flex-direction: row; gap: 10px; align-items: flex-start; padding: 0px 0px 8px 0px;',
+	'cmp-good'          => 'font-family: var(--font-text); font-size: 15px; font-weight: 700; color: var(--color-status-live); line-height: 1.5; min-width: 16px; flex: 0 0 auto;',
+	'cmp-warn'          => 'font-family: var(--font-text); font-size: 15px; font-weight: 700; color: var(--color-status-beta); line-height: 1.5; min-width: 16px; flex: 0 0 auto;',
+	'cmp-bad'           => 'font-family: var(--font-text); font-size: 15px; font-weight: 700; color: var(--color-status-bad); line-height: 1.5; min-width: 16px; flex: 0 0 auto;',
+	/* In-article screenshot: full width, natural height (never cropped). */
+	'art-shot'          => 'display: block; width: 100%; max-width: 100%; height: auto; border-radius: 10px; border-width: 1px; border-style: solid; border-color: var(--color-hairline);',
 	'art-cta'           => 'display: flex; flex-direction: column; gap: 10px; padding: 24px 0px 0px 0px; margin: 16px 0px 0px 0px; border-width: 1px 0px 0px 0px; border-style: solid; border-color: var(--color-hairline);',
 	'art-cta-link'      => 'font-family: var(--font-text); font-size: 17px; font-weight: 600; color: var(--color-primary); line-height: 1.4; &:hover { color: var(--color-primary-focus); }',
 );
