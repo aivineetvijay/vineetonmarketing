@@ -54,7 +54,9 @@ $vv_essay_classes = array(
 	'cmp-warn'          => 'font-family: var(--font-text); font-size: 15px; font-weight: 700; color: var(--color-status-beta); line-height: 1.5; min-width: 16px; flex: 0 0 auto;',
 	'cmp-bad'           => 'font-family: var(--font-text); font-size: 15px; font-weight: 700; color: var(--color-status-bad); line-height: 1.5; min-width: 16px; flex: 0 0 auto;',
 	/* In-article screenshot: full width, natural height (never cropped). */
-	'art-shot'          => 'display: block; width: 100%; max-width: 100%; height: auto; border-radius: 10px; border-width: 1px; border-style: solid; border-color: var(--color-hairline);',
+	'art-shot'          => 'display: block; width: 100%; height: auto; border-radius: 10px; border-width: 1px; border-style: solid; border-color: var(--color-hairline);',
+	/* Screenshots narrower than the article column are never stretched past their natural width (no blur). */
+	'art-shot-sm'       => 'max-width: 800px;',
 	'art-cta'           => 'display: flex; flex-direction: column; gap: 10px; padding: 24px 0px 0px 0px; margin: 16px 0px 0px 0px; border-width: 1px 0px 0px 0px; border-style: solid; border-color: var(--color-hairline);',
 	'art-cta-link'      => 'font-family: var(--font-text); font-size: 17px; font-weight: 600; color: var(--color-primary); line-height: 1.4; &:hover { color: var(--color-primary-focus); }',
 );
