@@ -255,8 +255,8 @@ foreach ( $posts as $k => $p ) {
 				$items = array(); $j = 0;
 				foreach ( $b[1] as $qa ) {
 					$j++; $answers = array(); $k = 0;
-					foreach ( $qa[1] as $para ) { $k++; $answers[] = vv_p( "Body $i Question $j Answer $k", $para, array( 'acc-answer' ) ); }
-					$items[] = vv_acc_item( "Body $i Question $j", array( 'acc-item' ), array( 'acc-head' ), sprintf( '%02d', $j ), array( 'acc-num' ), $qa[0], array( 'acc-title' ), array( 'acc-icon' ), array( 'acc-body' ), $answers );
+					foreach ( $qa[1] as $para ) { $k++; $answers[] = vv_p( "Body $i Question $j Answer $k", $para, array( 'art-p-sm' ) ); }
+					$items[] = vv_acc_item( "Body $i Question $j", array( 'acc-item' ), array( 'art-acc-head' ), sprintf( '%02d', $j ), array( 'acc-num' ), $qa[0], array( 'art-acc-title' ), array( 'acc-icon' ), array( 'acc-body' ), $answers );
 				}
 				/* FAQPage schema comes from the vv_faq post meta (vv-schema.php), so the widget's own FAQ schema stays off. */
 				$body[] = vv_n( 'e-accordion', "Body $i FAQ Accordion", array( 'acc' ), array( 'default_state' => 'first_expanded', 'max_expanded' => 'one', 'show_icon' => true, 'faq_schema' => false ), $items );

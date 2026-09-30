@@ -26,6 +26,9 @@ $vv_essay_classes = array(
 	'art-callout'       => 'display: flex; flex-direction: column; gap: 12px; padding: 22px 24px 22px 24px; border-width: 1px; border-style: solid; border-color: var(--color-hairline); border-radius: 12px; @media(--mobile){ padding: 18px 18px 18px 18px; }',
 	'art-note'          => 'display: flex; flex-direction: column; gap: 12px; padding: 20px 24px 20px 24px; background: var(--color-canvas-parchment); border-radius: 12px; @media(--mobile){ padding: 18px 18px 18px 18px; }',
 	'art-callout-title' => 'font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--color-ink); letter-spacing: -0.01em; line-height: 1.3; @media(--mobile){ font-size: 18px; }',
+	/* Essay FAQ accordion: sized to the article text (the Contact page keeps the larger acc-head/acc-title). */
+	'art-acc-head'      => 'display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0px 20px 0px; @media(--mobile){ gap: 12px; padding: 16px 0px 16px 0px; }',
+	'art-acc-title'     => 'font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--color-ink); letter-spacing: -0.01em; line-height: 1.35; margin: 0px; @media(--mobile){ font-size: 17px; }',
 	'art-cta'           => 'display: flex; flex-direction: column; gap: 10px; padding: 24px 0px 0px 0px; margin: 16px 0px 0px 0px; border-width: 1px 0px 0px 0px; border-style: solid; border-color: var(--color-hairline);',
 	'art-cta-link'      => 'font-family: var(--font-text); font-size: 17px; font-weight: 600; color: var(--color-primary); line-height: 1.4; &:hover { color: var(--color-primary-focus); }',
 );
