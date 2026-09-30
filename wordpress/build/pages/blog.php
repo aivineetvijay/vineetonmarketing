@@ -181,7 +181,16 @@ $list = function ( $l, $type, $items, $text_c, $mark_c ) {
 };
 foreach ( $posts as $k => $p ) {
 	$body = array(); $i = 0;
+	/* FAQ sections (question h3s + answer paragraphs after the "faq" h2) render as the site's accordion. */
+	$blocks = array(); $in_faq = false;
 	foreach ( $p['body'] as $b ) {
+		if ( 'h2' === $b[0] ) { $in_faq = ( 'faq' === $b[2] ); }
+		elseif ( $in_faq && 'h3s' === $b[0] ) { if ( 'faq' !== end( $blocks )[0] ) { $blocks[] = array( 'faq', array() ); } $blocks[ count( $blocks ) - 1 ][1][] = array( $b[1], array() ); continue; }
+		elseif ( $in_faq && 'p' === $b[0] && 'faq' === end( $blocks )[0] ) { $f = &$blocks[ count( $blocks ) - 1 ][1]; $f[ count( $f ) - 1 ][1][] = $b[1]; unset( $f ); continue; }
+		else { $in_faq = $in_faq && 'faq' !== end( $blocks )[0]; }
+		$blocks[] = $b;
+	}
+	foreach ( $blocks as $b ) {
 		$i++;
 		switch ( $b[0] ) {
 			case 'p':  $body[] = vv_p( "Body $i Paragraph", $b[1], array( 'art-p' ) ); break;
@@ -236,6 +245,16 @@ foreach ( $posts as $k => $p ) {
 				break;
 			case 'cta':
 				$body[] = vv_f( "Body $i Closing", array( 'art-cta' ), array( vv_p( "Body $i Closing Question", $b[1], array( 'art-callout-title' ) ), vv_p( "Body $i Closing Text", $b[2], array( 'art-p-sm' ) ), vv_p( "Body $i Closing Link", $b[3], array( 'art-cta-link' ), 'p', $b[4] ) ) );
+				break;
+			case 'faq':
+				$items = array(); $j = 0;
+				foreach ( $b[1] as $qa ) {
+					$j++; $answers = array(); $k = 0;
+					foreach ( $qa[1] as $para ) { $k++; $answers[] = vv_p( "Body $i Question $j Answer $k", $para, array( 'acc-answer' ) ); }
+					$items[] = vv_acc_item( "Body $i Question $j", array( 'acc-item' ), array( 'acc-head' ), sprintf( '%02d', $j ), array( 'acc-num' ), $qa[0], array( 'acc-title' ), array( 'acc-icon' ), array( 'acc-body' ), $answers );
+				}
+				/* FAQPage schema comes from the vv_faq post meta (vv-schema.php), so the widget's own FAQ schema stays off. */
+				$body[] = vv_n( 'e-accordion', "Body $i FAQ Accordion", array( 'acc' ), array( 'default_state' => 'first_expanded', 'max_expanded' => 'one', 'show_icon' => true, 'faq_schema' => false ), $items );
 				break;
 			case 'img':
 				$body[] = vv_f( "Body $i Figure", array( 'art-figure' ), array(

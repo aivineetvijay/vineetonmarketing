@@ -53,4 +53,8 @@ foreach ( $keep as $id => $m ) {
 \Elementor\Plugin::$instance->files_manager->clear_cache();
 do_action( 'litespeed_purge_all' );
 
-return array( 'classes' => $classes, 'built' => $built );
+/* Guard: every rebuilt document must still be on Elementor Full Width. */
+$templates = array();
+foreach ( $built as $slug => $b ) { $templates[ $slug ] = get_post_meta( $b['id'], '_wp_page_template', true ); }
+
+return array( 'classes' => $classes, 'built' => $built, 'templates' => $templates );
