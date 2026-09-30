@@ -277,7 +277,7 @@ foreach ( $posts as $k => $p ) {
 			case 'figure':
 				$fig = $p['figures'][ $b[1] ];
 				$body[] = vv_f( "Body $i Screenshot", array( 'art-figure' ), array(
-					vv_img( "Body $i Screenshot Image", $fig[0], '', array( 'art-shot' ) ),
+					vv_img( "Body $i Screenshot Image", $fig[0], '', ( wp_get_attachment_image_src( $fig[0], 'full' )[1] ?? 0 ) < 1100 ? array( 'art-shot', 'art-shot-sm' ) : array( 'art-shot' ) ),
 					vv_p( "Body $i Screenshot Caption", $e( $fig[1] ), array( 'art-cite' ) ),
 				) );
 				break;
