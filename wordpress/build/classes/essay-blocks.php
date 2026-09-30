@@ -34,7 +34,7 @@ $vv_essay_classes = array(
 	'acc-icon'          => 'width: 28px; height: 28px; color: var(--color-ink); flex: 0 0 28px; display: flex; flex-direction: row; align-items: center; justify-content: center; @media(--mobile){ width: 24px; height: 24px; flex: 0 0 24px; }',
 	'acc-chevron'       => 'width: 14px; height: 9px; max-width: 14px; max-height: 9px; display: flex;',
 	/* Essay banners with their own art direction: a wide 3:1 image on desktop/tablet, a 16:10 crop on mobile. */
-	'art-banner-desktop' => 'display: block; width: 100%; max-width: 100%; height: clamp(220px, 34vh, 380px); object-fit: cover; border-radius: 12px; margin: 0px 0px 56px 0px; @media(--mobile){ display: none; }',
+	'art-banner-desktop' => 'display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 3 / 1; object-fit: cover; border-radius: 12px; margin: 0px 0px 56px 0px; @media(--mobile){ display: none; }',
 	'art-banner-mobile'  => 'display: none; width: 100%; max-width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; margin: 0px 0px 40px 0px; @media(--mobile){ display: block; }',
 	'art-cta'           => 'display: flex; flex-direction: column; gap: 10px; padding: 24px 0px 0px 0px; margin: 16px 0px 0px 0px; border-width: 1px 0px 0px 0px; border-style: solid; border-color: var(--color-hairline);',
 	'art-cta-link'      => 'font-family: var(--font-text); font-size: 17px; font-weight: 600; color: var(--color-primary); line-height: 1.4; &:hover { color: var(--color-primary-focus); }',
