@@ -206,7 +206,6 @@ function vv_apply_cssids( $post_id, $resolved_xml, $map ) {
  * then re-applies element IDs by element title, since publishing replaces the live data with the autosave.
  */
 function vv_publish( $post_id ) {
-	$template = get_post_meta( $post_id, '_wp_page_template', true );
 	wp_get_ability( 'elementor/publish-document' )->execute( array( 'post_id' => $post_id ) );
 	$map = $GLOBALS['vv_cssids'][ $post_id ] ?? array();
 	if ( $map ) {
@@ -221,7 +220,9 @@ function vv_publish( $post_id ) {
 		$walk( $data );
 		update_post_meta( $post_id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
 	}
-	if ( $template ) { update_post_meta( $post_id, '_wp_page_template', $template ); }
+	/* Publishing (or the build before it) can reset the template to the theme default; every
+	   vv-built document uses Elementor Full Width, so set it explicitly. */
+	update_post_meta( $post_id, '_wp_page_template', 'elementor_header_footer' );
 	delete_post_meta( $post_id, '_elementor_element_cache' );
 }
 /** Creates an Elementor page/post and applies the template + Astra layout settings. */
