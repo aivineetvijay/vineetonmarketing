@@ -61,7 +61,7 @@ $nodes = array(
 					vv_p( 'Ideas Text', 'If there’s a task you repeat every week, there’s probably a tool in it. Send it over — the most requested ideas get built first.', array( 't-body', 'muted-on-dark', 'measure-440' ) ),
 					vv_f( 'Ideas Buttons', array( 'btn-row', 'mt-32' ), array(
 						vv_btn_dark( 'Ideas Suggest Button', 'Suggest a tool', vv_url( '/contact/' ), true ),
-						vv_btn_dark( 'Ideas Subscribe Button', 'Get new tools', vv_url( '/blog/#subscribe' ) ),
+						vv_btn_dark( 'Ideas Subscribe Button', 'Get new tools', vv_url( '/writing/#subscribe' ) ),
 					) ),
 				), array(), vv_ix( 'scrollIn', 'slide', 120 ) ),
 			) ),
