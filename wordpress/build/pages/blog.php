@@ -6,7 +6,7 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
-	array( 'slug' => 'schema-markup-for-real-estate', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 10:00:00', 'cat' => 'SEO',
+	array( 'slug' => 'schema-markup-for-real-estate', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 10:00:00', 'cat' => 'AI in Marketing', 'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'Seven schemas every property site needs.',
 		'dek' => 'Buyers increasingly meet your project in an AI answer first. Here are the seven schemas that make sure those facts come from your own website, and the brief to get them built.',
 		'min' => 10, 'tone' => 'warm', 'fmt' => 'Guide', 'body_src' => 'schema-markup-for-real-estate',
@@ -17,7 +17,7 @@ $posts = array(
 		'figures' => array(
 			'emaar-the-oasis-community-page-breadcrumb.jpg' => array( 477, 'The Oasis by Emaar community page. The breadcrumb is visible to buyers but not marked up for machines. Screenshot taken 30 September 2026.' ),
 		) ),
-	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing',
+	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing', 'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'Schema is your website’s resume.',
 		'dek' => 'Schema will not get you cited by ChatGPT or Google’s AI on its own. What it does is make sure the machines screening you read the right name, credentials and references.',
 		'min' => 12, 'tone' => 'deep', 'fmt' => 'Framework',
@@ -27,7 +27,7 @@ $posts = array(
 		'banner_alt' => 'Schema markup illustrated: a resume mapped line by line to Schema.org Person JSON-LD (sameAs, alumniOf, worksFor, jobTitle, knowsAbout) and linked into a knowledge graph of entities',
 		/* Long-form body lives in wordpress/content/essays/<slug>.json (made by html_to_blocks.py from the essay HTML). */
 		'body_src' => 'schema-markup-ai-visibility' ),
-	array( 'slug' => 'mmm-you-can-run-on-monday', 'y' => 'May ’26', 'date' => 'May 6, 2026', 'iso' => '2026-05-06 09:00:00', 'cat' => 'Measurement',
+	array( 'slug' => 'mmm-you-can-run-on-monday', 'draft' => true, 'y' => 'May ’26', 'date' => 'May 6, 2026', 'iso' => '2026-05-06 09:00:00', 'cat' => 'Measurement',
 		't' => 'The MMM you can actually run on Monday.',
 		'dek' => 'A practical recipe for a marketing mix model that does not require a data team.',
 		'min' => 7, 'tone' => 'blue', 'body' => array(
@@ -42,7 +42,7 @@ $posts = array(
 			array( 'p', 'Every model has prior beliefs about what is roughly true. Use a small geo-holdout test to calibrate the most contested channel — usually display or programmatic — and feed the result back as a prior. This is the step that separates an MMM from a horoscope.' ),
 			array( 'p', 'Week four is presentation: a one-page executive view, a two-page channel view, a reproducible notebook. Then keep running it monthly. The model will get smarter the longer you live with it.' ),
 		) ),
-	array( 'slug' => 'ai-search-readiness', 'y' => 'Apr ’26', 'date' => 'April 22, 2026', 'iso' => '2026-04-22 09:00:00', 'cat' => 'SEO',
+	array( 'slug' => 'ai-search-readiness', 'draft' => true, 'y' => 'Apr ’26', 'date' => 'April 22, 2026', 'iso' => '2026-04-22 09:00:00', 'cat' => 'SEO',
 		't' => 'AI search readiness, in plain language.',
 		'dek' => 'What "AI overviews" mean for content strategy — and the three changes most brands are still avoiding.',
 		'min' => 8, 'tone' => 'warm', 'body' => array(
@@ -54,7 +54,7 @@ $posts = array(
 			array( 'ul', array( '<strong>Schema as a first-class citizen.</strong> Not an afterthought added by the SEO team. Engineered, audited, kept current.', '<strong>Author and source authority.</strong> Real bylines, real credentials, real citation discipline. The thin-content era is over for serious categories.', '<strong>Editorial point of view.</strong> Models reward brands that take a position. They penalise hedging the way readers always have.' ) ),
 			array( 'p', 'None of these are technically difficult. All of them require an editorial culture most marketing teams have never built.' ),
 		) ),
-	array( 'slug' => 'stop-optimising-the-wrong-thing', 'y' => 'Apr ’26', 'date' => 'April 9, 2026', 'iso' => '2026-04-09 09:00:00', 'cat' => 'Paid Media',
+	array( 'slug' => 'stop-optimising-the-wrong-thing', 'draft' => true, 'y' => 'Apr ’26', 'date' => 'April 9, 2026', 'iso' => '2026-04-09 09:00:00', 'cat' => 'Paid Media',
 		't' => 'Stop optimising the wrong thing.',
 		'dek' => 'A short essay on the difference between click-through rate and incremental revenue, and why most teams still chase the first.',
 		'min' => 5, 'tone' => 'mono', 'body' => array(
@@ -63,27 +63,27 @@ $posts = array(
 			array( 'h3', 'Why this persists' ),
 			array( 'p', 'CTR is daily. Incrementality is quarterly. Daily metrics get optimised because daily metrics are what humans see. The only fix is to put incrementality on the same dashboard, even if the number lags. It changes what the team chases.' ),
 		) ),
-	array( 'slug' => 'quarterly-cadence', 'y' => 'Mar ’26', 'date' => 'March 28, 2026', 'iso' => '2026-03-28 09:00:00', 'cat' => 'Strategy',
+	array( 'slug' => 'quarterly-cadence', 'draft' => true, 'y' => 'Mar ’26', 'date' => 'March 28, 2026', 'iso' => '2026-03-28 09:00:00', 'cat' => 'Strategy',
 		't' => 'The quarterly cadence that fixed our forecast.',
 		'dek' => 'An operating system for marketing leaders who keep getting blindsided by the board pack.',
 		'min' => 6, 'tone' => 'mint', 'body' => array(
 			array( 'p', 'Most marketing forecasts miss not because the model is wrong, but because the cadence is wrong. The team replans monthly, the board reads quarterly, and the gap between them is where the surprises live.' ),
 			array( 'p', 'A six-week rolling plan with a quarterly anchor has solved this for me twice. Here is the structure.' ),
 		) ),
-	array( 'slug' => 'holdouts-not-optional', 'y' => 'Mar ’26', 'date' => 'March 14, 2026', 'iso' => '2026-03-14 09:00:00', 'cat' => 'Measurement',
+	array( 'slug' => 'holdouts-not-optional', 'draft' => true, 'y' => 'Mar ’26', 'date' => 'March 14, 2026', 'iso' => '2026-03-14 09:00:00', 'cat' => 'Measurement',
 		't' => 'Holdouts are not optional.',
 		'dek' => 'A defence of the geo-holdout test, written for the marketing leader being told it is too expensive to run.',
 		'min' => 7, 'tone' => 'sand', 'body' => array(
 			array( 'p', 'Every quarter, a CMO somewhere is told that holdout testing is too expensive. The argument is always the same: switching off a channel for a few weeks in a few markets costs revenue. The argument is correct.' ),
 			array( 'p', 'It is also irrelevant. Without holdouts, every penny you spend is justified by attribution models that nobody fully believes.' ),
 		) ),
-	array( 'slug' => 'three-creative-workflows', 'y' => 'Feb ’26', 'date' => 'February 26, 2026', 'iso' => '2026-02-26 09:00:00', 'cat' => 'AI in Marketing',
+	array( 'slug' => 'three-creative-workflows', 'draft' => true, 'y' => 'Feb ’26', 'date' => 'February 26, 2026', 'iso' => '2026-02-26 09:00:00', 'cat' => 'AI in Marketing',
 		't' => 'Three creative workflows that actually shipped.',
 		'dek' => 'A look inside how three brands integrated generative tools without losing the brand voice.',
 		'min' => 10, 'tone' => 'rose', 'body' => array(
 			array( 'p', 'Generative tools are everywhere in marketing slide decks and almost nowhere in marketing production. The brands that have actually shipped have one thing in common: a clear visual language before the tools arrived.' ),
 		) ),
-	array( 'slug' => 'technical-debt-nobody-audits', 'y' => 'Feb ’26', 'date' => 'February 11, 2026', 'iso' => '2026-02-11 09:00:00', 'cat' => 'SEO',
+	array( 'slug' => 'technical-debt-nobody-audits', 'draft' => true, 'y' => 'Feb ’26', 'date' => 'February 11, 2026', 'iso' => '2026-02-11 09:00:00', 'cat' => 'SEO',
 		't' => 'The technical debt nobody is auditing.',
 		'dek' => 'Rendering, indexation, and the parts of SEO that quietly compound against you.',
 		'min' => 8, 'tone' => 'pearl', 'body' => array(
@@ -106,6 +106,18 @@ foreach ( $posts as $k => $p ) {
 	}
 }
 
+/* Unpublished essays ('draft' => true) are switched to draft (their content is kept) and left out of the
+   blog index, the sidebars and the rebuild. Inline links to them are unwrapped to plain text below. */
+$unpublished = array();
+foreach ( $posts as $k => $p ) {
+	if ( empty( $p['draft'] ) ) { continue; }
+	$unpublished[] = $p['slug'];
+	$old = get_posts( array( 'post_type' => 'post', 'name' => $p['slug'], 'post_status' => 'any', 'numberposts' => 1 ) );
+	if ( $old && 'publish' === $old[0]->post_status ) { wp_update_post( array( 'ID' => $old[0]->ID, 'post_status' => 'draft' ) ); }
+	unset( $posts[ $k ] );
+}
+$posts = array_values( $posts );
+
 /* Create (or reuse) the posts first so every card can link to them. */
 foreach ( $posts as $k => $p ) {
 	/* A renamed essay keeps its post (and WordPress redirects the old slug). */
@@ -123,6 +135,9 @@ foreach ( $posts as $k => $p ) {
 	if ( $cur->post_title !== $want['post_title'] || $cur->post_excerpt !== $want['post_excerpt'] || $cur->post_date !== $want['post_date'] ) {
 		wp_update_post( array_merge( array( 'ID' => $pid, 'post_date_gmt' => get_gmt_from_date( $p['iso'] ), 'edit_date' => true ), $want ) );
 	}
+	/* Category and tags follow this file on every run (vv_new only sets them when the post is created). */
+	if ( wp_get_post_categories( $pid ) !== array( $cat_ids[ $p['cat'] ] ) ) { wp_set_post_categories( $pid, array( $cat_ids[ $p['cat'] ] ) ); }
+	if ( isset( $p['tags'] ) ) { wp_set_post_tags( $pid, $p['tags'], false ); }
 	set_post_thumbnail( $pid, $p['thumb'] ?? $tone[ $p['tone'] ] );
 	$posts[ $k ]['id'] = $pid;
 	$posts[ $k ]['url'] = vv_url( '/' . $p['slug'] . '/' );
@@ -149,7 +164,8 @@ $feed_card = function ( $l, $p ) use ( $tone, $e ) {
 /* ---------- Blog index ---------- */
 $blog_id = vv_new( 'Blog', 'blog' );
 $panels = array();
-foreach ( array_merge( array( 'All' ), $categories ) as $cat ) {
+$live_cats = array_values( array_filter( $categories, function ( $c ) use ( $posts ) { foreach ( $posts as $p ) { if ( $p['cat'] === $c ) { return true; } } return false; } ) );
+foreach ( array_merge( array( 'All' ), $live_cats ) as $cat ) {
 	$cards = array();
 	foreach ( $posts as $p ) {
 		if ( 'All' === $cat || $p['cat'] === $cat ) { $cards[] = $feed_card( "$cat · " . $p['slug'], $p ); }
@@ -198,6 +214,10 @@ foreach ( $posts as $k => $p ) {
 	$body = array(); $i = 0;
 	/* Inline links: Elementor resets <a> inside text (all: unset) and strips classes/styles, so wrap
 	   the link text in <u> to keep links visibly underlined. */
+	if ( $unpublished ) {
+		$dead = '#<a href="[^"]*/(?:' . implode( '|', array_map( 'preg_quote', $unpublished ) ) . ')/?"[^>]*>(.*?)</a>#s';
+		array_walk_recursive( $p['body'], function ( &$v ) use ( $dead ) { if ( is_string( $v ) ) { $v = preg_replace( $dead, '$1', $v ); } } );
+	}
 	array_walk_recursive( $p['body'], function ( &$v ) {
 		if ( is_string( $v ) ) { $v = preg_replace( '#<a ([^>]*)>(?!<u>)(.*?)</a>#s', '<a $1><u>$2</u></a>', $v ); }
 	} );
