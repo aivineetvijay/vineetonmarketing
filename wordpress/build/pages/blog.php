@@ -10,6 +10,9 @@ $posts = array(
 		't' => 'Schema is your website’s resume.',
 		'dek' => 'Schema will not get you cited by ChatGPT or Google’s AI on its own. What it does is make sure the machines screening you read the right name, credentials and references.',
 		'min' => 12, 'tone' => 'deep', 'fmt' => 'Framework',
+		/* Banner art direction (attachment IDs made by wordpress/assets/essays/make-schema-banner.php):
+		   452 = 1500x500 desktop, 453 = 1024x640 mobile, also the featured image (blog card + social). */
+		'banner' => array( 452, 453 ), 'thumb' => 453,
 		/* Long-form body lives in wordpress/content/essays/<slug>.json (made by html_to_blocks.py from the essay HTML). */
 		'body_src' => 'schema-markup-ai-visibility' ),
 	array( 'slug' => 'mmm-you-can-run-on-monday', 'y' => 'May ’26', 'date' => 'May 6, 2026', 'iso' => '2026-05-06 09:00:00', 'cat' => 'Measurement',
@@ -108,7 +111,7 @@ foreach ( $posts as $k => $p ) {
 	if ( $cur->post_title !== $want['post_title'] || $cur->post_excerpt !== $want['post_excerpt'] || $cur->post_date !== $want['post_date'] ) {
 		wp_update_post( array_merge( array( 'ID' => $pid, 'post_date_gmt' => get_gmt_from_date( $p['iso'] ), 'edit_date' => true ), $want ) );
 	}
-	set_post_thumbnail( $pid, $tone[ $p['tone'] ] );
+	set_post_thumbnail( $pid, $p['thumb'] ?? $tone[ $p['tone'] ] );
 	$posts[ $k ]['id'] = $pid;
 	$posts[ $k ]['url'] = vv_url( '/' . $p['slug'] . '/' );
 }
@@ -116,7 +119,7 @@ foreach ( $posts as $k => $p ) {
 $e = function ( $s ) { return htmlspecialchars( $s, ENT_NOQUOTES ); };
 $feed_card = function ( $l, $p ) use ( $tone, $e ) {
 	return vv_link( $l, array( 'feed-card' ), $p['url'], array(
-		vv_img( "$l Banner", $tone[ $p['tone'] ], '', array( 'feed-img' ) ),
+		vv_img( "$l Banner", $p['thumb'] ?? $tone[ $p['tone'] ], '', array( 'feed-img' ) ),
 		vv_f( "$l Body", array( 'feed-body' ), array(
 			vv_f( "$l Meta", array( 'feed-meta' ), array(
 				vv_p( "$l Category", $e( $p['cat'] ), array( 'feed-meta-text', 'text-accent' ), 'span' ),
@@ -306,7 +309,9 @@ foreach ( $posts as $k => $p ) {
 			/* Two-part layout from the banner down: article (~82%) + sidebar (~15%); stacks on tablet/mobile. */
 			vv_f( 'Article Layout', array( 'art-layout' ), array(
 				vv_f( 'Article Main', array( 'art-main' ), array(
-					vv_img( 'Article Banner', $tone[ $p['tone'] ], '', array( 'tile-img', 'art-banner' ) ),
+					...( isset( $p['banner'] )
+						? array( vv_img( 'Article Banner', $p['banner'][0], '', array( 'art-banner-desktop' ) ), vv_img( 'Article Banner Mobile', $p['banner'][1], '', array( 'art-banner-mobile' ) ) )
+						: array( vv_img( 'Article Banner', $tone[ $p['tone'] ], '', array( 'tile-img', 'art-banner' ) ) ) ),
 					vv_f( 'Article Text', array( 'art-body', 'art-body-flush' ), $body, array( 'tag' => 'article' ) ),
 					vv_f( 'Article Footer', array( 'art-footer', 'art-footer-flush' ), array(
 						vv_f( 'Article Tags', array( 'art-tags' ), $tags ),
