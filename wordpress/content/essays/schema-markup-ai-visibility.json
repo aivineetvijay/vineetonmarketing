@@ -284,46 +284,6 @@
   "Source: author's framework. Type names from <a href=\"https://schema.org/docs/full.html\">Schema.org</a>."
  ],
  [
-  "h3s",
-  "Line 1: Identity"
- ],
- [
-  "p",
-  "This is the header of the resume. One organisation, one name, one logo, one address, marked up the same way everywhere. It sounds trivial. It is where I find the most damage, because sites are built by several vendors over several years, and each one leaves its own version of the brand behind. If your own website cannot agree on your name, do not expect a knowledge graph to."
- ],
- [
-  "h3s",
-  "Line 2: References"
- ],
- [
-  "p",
-  "A recruiter does not take your word for it. They call your references. sameAs is the property that lists yours: the official profiles where the same entity is described. It is a small line of code and, in my view, the most underrated one in entity SEO, because it is how you tell a machine \"the brand on this site and the brand on that profile are the same thing\"."
- ],
- [
-  "h3s",
-  "Line 3: Credentials"
- ],
- [
-  "p",
-  "Expertise lives in people, and machines cannot see people who are only named in prose. Mark up the authors, reviewers and experts, and connect them to the organisation with worksFor. This does not manufacture expertise. It makes real expertise legible."
- ],
- [
-  "h3s",
-  "Line 4: Offer"
- ],
- [
-  "p",
-  "This is the skills section. Say what you do and where you do it, using the most specific type that honestly fits. The trap is ambition: marking up every service you might one day offer. A resume that lists twenty skills convinces nobody of any of them."
- ],
- [
-  "h3s",
-  "Line 5: Portfolio"
- ],
- [
-  "p",
-  "Your content, with a byline and dates. Freshness matters here: Microsoft's Canel said generative AI values fresh content partly as a reference check against training data. That makes an honest dateModified useful and a fake one a liability."
- ],
- [
   "p",
   "<strong>Get these five right and you have a resume. Add anything else before them and you have decoration.</strong>"
  ],
