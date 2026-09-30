@@ -9,7 +9,7 @@ $posts = array(
 	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing',
 		't' => 'Schema is your website’s resume.',
 		'dek' => 'Schema will not get you cited by ChatGPT or Google’s AI on its own. What it does is make sure the machines screening you read the right name, credentials and references.',
-		'min' => 13, 'tone' => 'deep', 'fmt' => 'Framework',
+		'min' => 12, 'tone' => 'deep', 'fmt' => 'Framework',
 		/* Long-form body lives in wordpress/content/essays/<slug>.json (made by html_to_blocks.py from the essay HTML). */
 		'body_src' => 'schema-markup-ai-visibility' ),
 	array( 'slug' => 'mmm-you-can-run-on-monday', 'y' => 'May ’26', 'date' => 'May 6, 2026', 'iso' => '2026-05-06 09:00:00', 'cat' => 'Measurement',
