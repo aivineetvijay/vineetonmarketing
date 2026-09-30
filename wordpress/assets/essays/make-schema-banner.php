@@ -42,7 +42,7 @@ $desktop = $out;
 $mobile = imagecreatetruecolor( 1024, 640 );
 imagecopy( $mobile, $src, 0, 0, 0, 64, 1024, 640 );
 
-$alt   = 'A resume mapped line by line to Schema.org Person markup in JSON-LD (sameAs, alumniOf, worksFor, jobTitle, knowsAbout) and linked into a knowledge graph of entities';
+$alt   = 'Schema markup illustrated: a resume mapped line by line to Schema.org Person JSON-LD (sameAs, alumniOf, worksFor, jobTitle, knowsAbout) and linked into a knowledge graph of entities';
 $title = 'Schema markup is your website’s resume';
 $desc  = 'Illustration for the essay "Schema is your website’s resume": resume sections become JSON-LD properties, which connect to entities in a knowledge graph.';
 $save = function ( $im, $name, $alt_text ) use ( $title, $desc ) {

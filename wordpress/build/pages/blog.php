@@ -13,6 +13,7 @@ $posts = array(
 		/* Banner art direction (attachment IDs made by wordpress/assets/essays/make-schema-banner.php):
 		   452 = 1500x500 desktop, 453 = 1024x640 mobile, also the featured image (blog card + social). */
 		'banner' => array( 452, 453 ), 'thumb' => 453,
+		'banner_alt' => 'Schema markup illustrated: a resume mapped line by line to Schema.org Person JSON-LD (sameAs, alumniOf, worksFor, jobTitle, knowsAbout) and linked into a knowledge graph of entities',
 		/* Long-form body lives in wordpress/content/essays/<slug>.json (made by html_to_blocks.py from the essay HTML). */
 		'body_src' => 'schema-markup-ai-visibility' ),
 	array( 'slug' => 'mmm-you-can-run-on-monday', 'y' => 'May ’26', 'date' => 'May 6, 2026', 'iso' => '2026-05-06 09:00:00', 'cat' => 'Measurement',
@@ -310,7 +311,7 @@ foreach ( $posts as $k => $p ) {
 			vv_f( 'Article Layout', array( 'art-layout' ), array(
 				vv_f( 'Article Main', array( 'art-main' ), array(
 					...( isset( $p['banner'] )
-						? array( vv_img( 'Article Banner', $p['banner'][0], '', array( 'art-banner-desktop' ) ), vv_img( 'Article Banner Mobile', $p['banner'][1], '', array( 'art-banner-mobile' ) ) )
+						? array( vv_img( 'Article Banner', $p['banner'][0], $p['banner_alt'] ?? '', array( 'art-banner-desktop' ) ), vv_img( 'Article Banner Mobile', $p['banner'][1], $p['banner_alt'] ?? '', array( 'art-banner-mobile' ) ) )
 						: array( vv_img( 'Article Banner', $tone[ $p['tone'] ], '', array( 'tile-img', 'art-banner' ) ) ) ),
 					vv_f( 'Article Text', array( 'art-body', 'art-body-flush' ), $body, array( 'tag' => 'article' ) ),
 					vv_f( 'Article Footer', array( 'art-footer', 'art-footer-flush' ), array(
