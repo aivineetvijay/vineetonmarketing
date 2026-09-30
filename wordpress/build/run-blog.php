@@ -32,7 +32,8 @@ $classes = wp_get_ability( 'elementor/manage-classes' )->execute( array( 'operat
 
 /* 2. Essay bodies from JSON. */
 $vv_essay_bodies = array();
-foreach ( $vv_essays as $slug ) { $vv_essay_bodies[ $slug ] = json_decode( $get( 'content/essays/' . $slug . '.json' ), true ); }
+/* $vv_essays = the essays changed in this run; $vv_json = every essay whose body lives in a JSON file. */
+foreach ( array_unique( array_merge( $vv_json ?? array(), $vv_essays ) ) as $slug ) { $vv_essay_bodies[ $slug ] = json_decode( $get( 'content/essays/' . $slug . '.json' ), true ); }
 
 /* 3. Rebuild. Remember the other essays' modified dates first. */
 $keep = array();
@@ -48,6 +49,18 @@ foreach ( $keep as $id => $m ) {
 	if ( in_array( get_post_field( 'post_name', $id ), $vv_essays, true ) ) { continue; } // renamed during this run
 	$wpdb->update( $wpdb->posts, array( 'post_modified' => $m[0], 'post_modified_gmt' => $m[1] ), array( 'ID' => $id ) );
 	clean_post_cache( $id );
+}
+
+/* FAQPage schema (vv-schema.php) from each JSON essay's visible FAQ: question h3s + answer paragraphs after the "faq" h2. */
+foreach ( $vv_essays as $slug ) {
+	$faq = array(); $in = false; $q = null;
+	foreach ( $vv_essay_bodies[ $slug ] as $blk ) {
+		if ( 'h2' === $blk[0] ) { $in = ( 'faq' === $blk[2] ); continue; }
+		if ( ! $in ) { continue; }
+		if ( 'h3s' === $blk[0] ) { $q = wp_strip_all_tags( $blk[1] ); }
+		elseif ( 'p' === $blk[0] && $q ) { $faq[] = array( $q, wp_strip_all_tags( html_entity_decode( $blk[1], ENT_QUOTES, 'UTF-8' ) ) ); $q = null; }
+	}
+	if ( $faq && isset( $built[ $slug ] ) ) { update_post_meta( $built[ $slug ]['id'], 'vv_faq', $faq ); }
 }
 
 \Elementor\Plugin::$instance->files_manager->clear_cache();

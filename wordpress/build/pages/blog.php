@@ -6,6 +6,15 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'schema-markup-for-real-estate', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 10:00:00', 'cat' => 'SEO',
+		't' => 'Seven schemas every property site needs.',
+		'dek' => 'Buyers increasingly meet your project in an AI answer first. Here are the seven schemas that make sure those facts come from your own website, and the brief to get them built.',
+		'min' => 10, 'tone' => 'warm', 'fmt' => 'Guide', 'body_src' => 'schema-markup-for-real-estate',
+		/* Screenshots (made by wordpress/assets/essays/upload-real-estate-shots.php): marker file => attachment id, caption. */
+		'figures' => array(
+			'emaar-the-oasis-community-page-breadcrumb.jpg' => array( 477, 'The Oasis by Emaar community page. The breadcrumb is visible to buyers but not marked up for machines. Screenshot taken 30 September 2026.' ),
+			'emaar-the-oasis-prices-from-zero.jpg'          => array( 478, 'The sticky bar on The Oasis page read “Prices from 0” at the time of checking. Screenshot taken 30 September 2026.' ),
+		) ),
 	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing',
 		't' => 'Schema is your website’s resume.',
 		'dek' => 'Schema will not get you cited by ChatGPT or Google’s AI on its own. What it does is make sure the machines screening you read the right name, credentials and references.',
@@ -253,7 +262,7 @@ foreach ( $posts as $k => $p ) {
 				$body[] = vv_f( "Body $i Actions", array( 'art-note' ), array( vv_p( "Body $i Actions Title", $b[1], array( 'art-callout-title' ) ), $list( "Body $i Actions", $b[2], $b[3], array( 'art-p-sm' ), array( 'sm-mark' ) ) ) );
 				break;
 			case 'cta':
-				$body[] = vv_f( "Body $i Closing", array( 'art-cta' ), array( vv_p( "Body $i Closing Question", $b[1], array( 'art-callout-title' ) ), vv_p( "Body $i Closing Text", $b[2], array( 'art-p-sm' ) ), vv_p( "Body $i Closing Link", $b[3], array( 'art-cta-link' ), 'p', $b[4] ) ) );
+				$body[] = vv_f( "Body $i Closing", array( 'art-cta' ), array_merge( array( vv_p( "Body $i Closing Question", $b[1], array( 'art-callout-title' ) ) ), '' !== $b[2] ? array( vv_p( "Body $i Closing Text", $b[2], array( 'art-p-sm' ) ) ) : array(), array( vv_p( "Body $i Closing Link", $b[3], array( 'art-cta-link' ), 'p', $b[4] ) ) ) );
 				break;
 			case 'faq':
 				$items = array(); $j = 0;
@@ -264,6 +273,56 @@ foreach ( $posts as $k => $p ) {
 				}
 				/* FAQPage schema comes from the vv_faq post meta (vv-schema.php), so the widget's own FAQ schema stays off. */
 				$body[] = vv_n( 'e-accordion', "Body $i FAQ Accordion", array( 'acc' ), array( 'default_state' => 'first_expanded', 'max_expanded' => 'one', 'show_icon' => true, 'faq_schema' => false ), $items );
+				break;
+			case 'figure':
+				$fig = $p['figures'][ $b[1] ];
+				$body[] = vv_f( "Body $i Screenshot", array( 'art-figure' ), array(
+					vv_img( "Body $i Screenshot Image", $fig[0], '', array( 'art-shot' ) ),
+					vv_p( "Body $i Screenshot Caption", $e( $fig[1] ), array( 'art-cite' ) ),
+				) );
+				break;
+			case 'diagram':
+				$cols = array(); $c = 0;
+				foreach ( $b[3] as $col ) {
+					$c++; $kids = array( vv_p( "Body $i Diagram Column $c Label", $col[0], array( 'dg-label' ) ) ); $k = 0;
+					foreach ( $col[2] as $box ) {
+						$k++;
+						$indent = $col[1] ? array() : ( $k > 1 ? array( 'dg-indent-' . min( 3, $k - 1 ) ) : array() );
+						if ( ! $col[1] && $k > 1 ) { $kids[] = vv_p( "Body $i Diagram Column $c Arrow $k", '↓', array_merge( array( 'dg-arrow' ), $indent ) ); }
+						$kids[] = vv_f( "Body $i Diagram Column $c Box $k", array_merge( array( $col[1] ? 'dg-box-dashed' : 'dg-box' ), $indent ), array(
+							vv_p( "Body $i Diagram Column $c Box $k Title", $box[0], array( 'dg-box-title' ) ),
+							vv_p( "Body $i Diagram Column $c Box $k Text", $box[1], array( 'dg-box-sub' ) ),
+						) );
+					}
+					$cols[] = vv_f( "Body $i Diagram Column $c", array( 'dg-col' ), $kids );
+				}
+				$body[] = vv_f( "Body $i Diagram", array( 'art-callout' ), array(
+					vv_p( "Body $i Diagram Label", $b[1], array( 't-mono' ) ), vv_p( "Body $i Diagram Title", $b[2], array( 'art-callout-title' ) ),
+					vv_f( "Body $i Diagram Columns", array( 'dg-cols' ), $cols ), vv_p( "Body $i Diagram Caption", $b[4], array( 'art-cite' ) ),
+				) );
+				break;
+			case 'compare':
+				$cols = array(); $c = 0; $marks = array( 'good' => '✓', 'bad' => '✗', 'warn' => '~' );
+				foreach ( $b[3] as $col ) {
+					$c++; $kids = array( vv_p( "Body $i Compare Column $c Label", $col[0], array( 'dg-label' ) ) ); $k = 0;
+					foreach ( $col[1] as $row ) {
+						$k++;
+						$kids[] = vv_f( "Body $i Compare Column $c Row $k", array( 'cmp-row' ), array( vv_p( "Body $i Compare Column $c Row $k Mark", $marks[ $row[0] ], array( 'cmp-' . $row[0] ), 'span' ), vv_p( "Body $i Compare Column $c Row $k Text", $row[1], array( 'art-td' ) ) ) );
+					}
+					$cols[] = vv_f( "Body $i Compare Column $c", array( 'dg-col' ), $kids );
+				}
+				$body[] = vv_f( "Body $i Compare", array( 'art-callout' ), array(
+					vv_p( "Body $i Compare Label", $b[1], array( 't-mono' ) ), vv_p( "Body $i Compare Title", $b[2], array( 'art-callout-title' ) ),
+					vv_f( "Body $i Compare Columns", array( 'dg-cols' ), $cols ), vv_p( "Body $i Compare Caption", $b[4], array( 'art-cite' ) ),
+				) );
+				break;
+			case 'brief':
+				$kids = array( vv_p( "Body $i Brief Label", $b[1], array( 't-mono' ) ), vv_p( "Body $i Brief Title", $b[2], array( 'art-callout-title' ) ) ); $k = 0;
+				foreach ( $b[3] as $part ) {
+					$k++;
+					$kids[] = 'p' === $part[0] ? vv_p( "Body $i Brief Part $k", $part[1], array( 'art-p-sm' ) ) : $list( "Body $i Brief Part $k", $part[0], $part[1], array( 'art-p-sm' ), array( 'sm-mark' ) );
+				}
+				$body[] = vv_f( "Body $i Brief", array( 'art-callout' ), $kids );
 				break;
 			case 'img':
 				$body[] = vv_f( "Body $i Figure", array( 'art-figure' ), array(
