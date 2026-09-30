@@ -10,6 +10,9 @@ $posts = array(
 		't' => 'Seven schemas every property site needs.',
 		'dek' => 'Buyers increasingly meet your project in an AI answer first. Here are the seven schemas that make sure those facts come from your own website, and the brief to get them built.',
 		'min' => 10, 'tone' => 'warm', 'fmt' => 'Guide', 'body_src' => 'schema-markup-for-real-estate',
+		/* Banners (made by wordpress/assets/essays/upload-image.php): 540 = 1600x534 desktop, 541 = 1586x992 mobile + featured. */
+		'banner' => array( 540, 541 ), 'thumb' => 541,
+		'banner_alt' => 'Schema markup for real estate illustrated: a modern villa listing mapped to Schema.org Residence JSON-LD (address, geo, numberOfRooms, amenityFeature) and shown as a rich property result in search',
 		/* Screenshots (made by wordpress/assets/essays/upload-real-estate-shots.php): marker file => attachment id, caption. */
 		'figures' => array(
 			'emaar-the-oasis-community-page-breadcrumb.jpg' => array( 477, 'The Oasis by Emaar community page. The breadcrumb is visible to buyers but not marked up for machines. Screenshot taken 30 September 2026.' ),
