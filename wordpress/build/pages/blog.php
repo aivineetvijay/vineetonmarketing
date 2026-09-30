@@ -13,7 +13,6 @@ $posts = array(
 		/* Screenshots (made by wordpress/assets/essays/upload-real-estate-shots.php): marker file => attachment id, caption. */
 		'figures' => array(
 			'emaar-the-oasis-community-page-breadcrumb.jpg' => array( 477, 'The Oasis by Emaar community page. The breadcrumb is visible to buyers but not marked up for machines. Screenshot taken 30 September 2026.' ),
-			'emaar-the-oasis-prices-from-zero.jpg'          => array( 478, 'The sticky bar on The Oasis page read “Prices from 0” at the time of checking. Screenshot taken 30 September 2026.' ),
 		) ),
 	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing',
 		't' => 'Schema is your website’s resume.',
