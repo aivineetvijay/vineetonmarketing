@@ -182,6 +182,7 @@ function vv_build( $post_id, $nodes, $parent = 'document', $mode = 'append' ) {
 	) );
 	if ( is_wp_error( $res ) ) { return array( 'error' => $res->get_error_message() ); }
 	if ( $acc['cssid'] && ! empty( $res['resolved_xml'] ) ) { vv_apply_cssids( $post_id, $res['resolved_xml'], $acc['cssid'] ); }
+	$GLOBALS['vv_cssids'][ $post_id ] = $acc['cssid'];
 	return array( 'roots' => $res['root_element_ids'] ?? null, 'warnings' => $res['warnings'] ?? array(), 'count' => count( $acc['seen'] ) );
 }
 /** Sets Elementor's native element ID setting (_cssid) for anchor targets. */
@@ -199,6 +200,29 @@ function vv_apply_cssids( $post_id, $resolved_xml, $map ) {
 	};
 	$walk( $data );
 	update_post_meta( $post_id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+}
+/**
+ * Publishes a rebuilt document (build-composition stages edits on published posts in an autosave),
+ * then re-applies element IDs by element title, since publishing replaces the live data with the autosave.
+ */
+function vv_publish( $post_id ) {
+	$template = get_post_meta( $post_id, '_wp_page_template', true );
+	wp_get_ability( 'elementor/publish-document' )->execute( array( 'post_id' => $post_id ) );
+	$map = $GLOBALS['vv_cssids'][ $post_id ] ?? array();
+	if ( $map ) {
+		$data = json_decode( get_post_meta( $post_id, '_elementor_data', true ), true );
+		$walk = function ( &$els ) use ( &$walk, $map ) {
+			foreach ( $els as &$e ) {
+				$title = $e['editor_settings']['title'] ?? '';
+				if ( isset( $map[ $title ] ) ) { $e['settings']['_cssid'] = array( '$$type' => 'string', 'value' => $map[ $title ] ); }
+				if ( ! empty( $e['elements'] ) ) { $walk( $e['elements'] ); }
+			}
+		};
+		$walk( $data );
+		update_post_meta( $post_id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	}
+	if ( $template ) { update_post_meta( $post_id, '_wp_page_template', $template ); }
+	delete_post_meta( $post_id, '_elementor_element_cache' );
 }
 /** Creates an Elementor page/post and applies the template + Astra layout settings. */
 function vv_new( $title, $slug, $parent = 0, $type = 'page', $extra = array() ) {

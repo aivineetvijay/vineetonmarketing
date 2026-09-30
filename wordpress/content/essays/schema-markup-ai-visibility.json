@@ -1,0 +1,484 @@
+[
+ [
+  "p",
+  "<strong>Schema markup is your website's resume, and for AI visibility that means both less and more than the hype suggests. It will not get you picked by ChatGPT or Google's AI on its own, and anyone selling it as an AI citation hack is overselling. What it does is make sure the machines screening you read the right name, the right credentials and the right references. A missing, vague or dishonest resume gets you screened out before the interview.</strong>"
+ ],
+ [
+  "p",
+  "That is the argument. The rest of this essay explains what schema actually is, what the evidence says it does and does not do for AI visibility, and a five-line framework I use to decide which markup is worth the developer's time."
+ ],
+ [
+  "box",
+  "Key takeaways",
+  "ul",
+  [
+   "Schema markup is a machine-readable summary of who you are and what a page is about. Think resume, not advert.",
+   "Google says there is no special schema needed for AI Overviews or AI Mode, and independent studies find no direct link between schema coverage and LLM citations.",
+   "Schema still earns its place upstream: it helps search indexes understand your entities, and those indexes feed the AI answers. Microsoft has said schema helps its LLMs understand content.",
+   "Prioritise five lines of your \"resume\": identity, references, credentials, offer and portfolio. Skip the rest until those are clean.",
+   "The one rule that never changes: never mark up anything you cannot back up on the visible page."
+  ]
+ ],
+ [
+  "toc",
+  "In this article",
+  [
+   [
+    "What is schema markup, in plain language?",
+    "what-is-schema"
+   ],
+   [
+    "Why \"resume\" is the right way to think about it",
+    "why-resume"
+   ],
+   [
+    "Does schema markup help AI visibility? What the evidence says",
+    "evidence"
+   ],
+   [
+    "Schema works upstream, not at the answer",
+    "upstream"
+   ],
+   [
+    "The Five-Line Schema Resume",
+    "framework"
+   ],
+   [
+    "Never put anything on the resume you cannot defend in the interview",
+    "honesty"
+   ],
+   [
+    "What changes in healthcare",
+    "healthcare"
+   ],
+   [
+    "How to audit your schema resume in an afternoon",
+    "audit"
+   ],
+   [
+    "Where the resume metaphor breaks",
+    "limits"
+   ],
+   [
+    "FAQ",
+    "faq"
+   ]
+  ]
+ ],
+ [
+  "h2",
+  "What is schema markup, in plain language?",
+  "what-is-schema"
+ ],
+ [
+  "p",
+  "Schema markup is a block of structured code on a web page that tells machines, in a fixed vocabulary, what the page is about. The vocabulary comes from <a href=\"https://schema.org/\">Schema.org</a>, a shared standard backed by the major search engines. The most common format is JSON-LD, a small script that sits in the page and is invisible to human visitors."
+ ],
+ [
+  "p",
+  "Your page says, in prose, \"Dr Sara Khan is a consultant cardiologist at our Dubai clinic.\" A human reads that easily. A machine has to guess: is Sara Khan a person, a clinic, a brand? Is \"cardiologist\" a job title or a department? Schema removes the guessing:"
+ ],
+ [
+  "code",
+  [
+   "{",
+   "  \"@context\": \"https://schema.org\",",
+   "  \"@type\": \"Physician\",",
+   "  \"name\": \"Dr Sara Khan\",",
+   "  \"medicalSpecialty\": \"Cardiovascular\",",
+   "  \"worksFor\": { \"@type\": \"MedicalClinic\", \"name\": \"Example Clinic Dubai\" },",
+   "  \"sameAs\": [\"https://www.linkedin.com/in/example-profile\"]",
+   "}"
+  ]
+ ],
+ [
+  "cite",
+  "An illustrative example with a fictional doctor and clinic."
+ ],
+ [
+  "p",
+  "Google's own documentation describes structured data as a way of <a href=\"https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data\">\"providing explicit clues about the meaning of a page\"</a>. That phrase is the whole idea. Schema does not make your content better. It makes your content unambiguous."
+ ],
+ [
+  "p",
+  "<strong>Schema is not content. It is a statement about your content, in a language machines do not have to interpret.</strong>"
+ ],
+ [
+  "h2",
+  "Why \"resume\" is the right way to think about it",
+  "why-resume"
+ ],
+ [
+  "p",
+  "A resume does not do the job for you. It does something narrower and still decisive: it gets you correctly understood by someone screening hundreds of candidates in seconds. Name, role, credentials, references, relevant work. Structured, scannable, verifiable."
+ ],
+ [
+  "p",
+  "That is exactly the job schema does for a website, and the parallel holds further than it first appears:"
+ ],
+ [
+  "table",
+  [
+   "A good resume...",
+   "Good schema..."
+  ],
+  [
+   [
+    "Is read by a screener before a human ever sees you",
+    "Is read by crawlers and indexes before any AI answer is written"
+   ],
+   [
+    "States facts in a predictable format",
+    "States facts in a shared vocabulary (Schema.org)"
+   ],
+   [
+    "Lists references who can vouch for you",
+    "Uses sameAs to point to profiles that confirm who you are"
+   ],
+   [
+    "Gets you binned if it is padded or false",
+    "Gets ignored, or penalised, if it describes content that is not on the page"
+   ],
+   [
+    "Does not get you hired on its own",
+    "Does not get you cited on its own"
+   ]
+  ]
+ ],
+ [
+  "p",
+  "Why \"new\"? Because the screener changed. For twenty years the main reader of your structured data was Google's results page, and the payoff was visible: star ratings, FAQ dropdowns, recipe cards. Now the reader is a stack of systems (search indexes, knowledge graphs, retrieval layers) that feed answers in AI Overviews, ChatGPT, Copilot, Perplexity and Gemini. The payoff is less visible. The screening is more important."
+ ],
+ [
+  "p",
+  "<strong>The old resume won you a prettier listing. The new one decides whether the machine knows who you are at all.</strong>"
+ ],
+ [
+  "h2",
+  "Does schema markup help AI visibility? What the evidence says",
+  "evidence"
+ ],
+ [
+  "p",
+  "Not directly, and I think marketers should hear that before they hear anything else. Here is the opposing view, stated fairly: AI engines prefer clean, structured facts; schema is the cleanest structured fact on the page; therefore more schema means more citations. It is a tidy argument. It is also the pitch behind a lot of \"AI schema\" tooling. The evidence does not support it."
+ ],
+ [
+  "ul",
+  [
+   "<strong>Google says no special markup is needed.</strong> Its documentation on AI features states: \"There's also no special schema.org structured data that you need to add\" to appear in AI Overviews or AI Mode. (<a href=\"https://developers.google.com/search/docs/appearance/ai-features\">Google Search Central</a>)",
+   "<strong>Search Atlas found no correlation.</strong> Its domain-level analysis concluded that \"schema markup does not influence how often LLMs cite web domains\", with visibility nearly identical across all levels of schema adoption. (<a href=\"https://searchatlas.com/blog/limits-of-schema-markup-for-ai-search/\">Search Atlas</a>, updated June 2026)",
+   "<strong>Most AI platforms could not even read the markup directly.</strong> In OtterlyAI's three-month experiment on its own site (December 2025 to March 2026), only Gemini correctly retrieved the JSON-LD when asked; six of seven platforms failed. Citation changes after adding schema were mixed, up on some platforms and down on others. (<a href=\"https://otterly.ai/blog/schema-markup-real-impact-ai-search/\">OtterlyAI</a>)"
+  ]
+ ],
+ [
+  "p",
+  "Two caveats on that evidence. Both studies come from vendors with their own products to sell, and OtterlyAI's is a single SaaS website. Neither proves schema is useless. They prove something narrower: <strong>schema is not a citation lever you can pull and watch move.</strong>"
+ ],
+ [
+  "p",
+  "My read: if someone promises you AI citations from a schema project, ask them which platform, which query and which measurement. You will usually get a pause."
+ ],
+ [
+  "h2",
+  "Schema works upstream, not at the answer",
+  "upstream"
+ ],
+ [
+  "p",
+  "So why do I still put schema near the top of every AI search readiness audit? Because the AI answer is the last step in a chain, and schema does its work earlier in that chain."
+ ],
+ [
+  "p",
+  "Most AI search answers are grounded in a search index: the model retrieves pages, then writes. Those indexes, and the knowledge graphs behind them, are built by crawlers that do read structured data. Schema helps those systems resolve who you are, which entity a page describes and how your pages relate to each other. The model then inherits that understanding, whether or not it ever sees your JSON-LD."
+ ],
+ [
+  "p",
+  "There is also one first-party confirmation. At SMX Munich in March 2025, Microsoft's Fabrice Canel confirmed that schema markup helps Microsoft's LLMs understand content for Bing and Copilot. (<a href=\"https://searchengineland.com/microsoft-bing-copilot-use-schema-for-its-llms-453455\">Search Engine Land</a>)"
+ ],
+ [
+  "p",
+  "Put the pieces together and the honest position is this:"
+ ],
+ [
+  "ul",
+  [
+   "Schema does not make an AI choose you.",
+   "Schema reduces the chance an AI misunderstands you: the wrong address, the wrong doctor, the wrong service, a competitor's name blended with yours.",
+   "In categories where being misunderstood is expensive (healthcare, finance, anything with a physical location), that second point matters more than the first."
+  ]
+ ],
+ [
+  "quote",
+  "A resume does not get you hired. But a bad one gets you screened out before anyone reads your work.",
+  ""
+ ],
+ [
+  "p",
+  "This is also why I treat schema as the first of several layers, not the whole strategy. I wrote about the wider picture in <a href=\"https://vineetonmarketing.com/ai-search-readiness/\">AI search readiness, in plain language</a>. Schema is the part that is mostly engineering. Authority and a distinctive editorial point of view do the rest."
+ ],
+ [
+  "h2",
+  "The Five-Line Schema Resume",
+  "framework"
+ ],
+ [
+  "p",
+  "Schema.org has hundreds of types. Most websites need five things done well before they need anything else. I organise them the way a recruiter reads a resume, top to bottom."
+ ],
+ [
+  "callout",
+  "Framework",
+  "The Five-Line Schema Resume",
+  "ol",
+  [
+   "<strong>Identity:</strong> who you are, stated once, consistently, on every page that matters.",
+   "<strong>References:</strong> the external profiles that confirm you are who you say you are.",
+   "<strong>Credentials:</strong> the people behind the work, and why they are qualified.",
+   "<strong>Offer:</strong> what you actually do, sell or treat, and where.",
+   "<strong>Portfolio:</strong> your content, with authorship and dates a machine can trust."
+  ]
+ ],
+ [
+  "table",
+  [
+   "Resume line",
+   "Core Schema.org types and properties",
+   "What the machine learns",
+   "Common mistake"
+  ],
+  [
+   [
+    "<strong>1. Identity</strong>",
+    "Organization, LocalBusiness or a specific subtype; name, logo, url, address",
+    "Which entity this website belongs to",
+    "Three versions of the brand name across three templates"
+   ],
+   [
+    "<strong>2. References</strong>",
+    "sameAs links to official profiles (LinkedIn, Wikidata, Wikipedia, social, directories)",
+    "That this entity is the same one described elsewhere",
+    "Missing entirely, or pointing to dead or unofficial profiles"
+   ],
+   [
+    "<strong>3. Credentials</strong>",
+    "Person or Physician; jobTitle, worksFor, alumniOf, hasCredential, medicalSpecialty",
+    "Who is behind the expertise, and how they connect to the brand",
+    "Authors and experts exist only as names in the body copy"
+   ],
+   [
+    "<strong>4. Offer</strong>",
+    "Service, Product, Offer, areaServed; in healthcare, MedicalProcedure where it genuinely fits",
+    "What you do, for whom, and where",
+    "Marking up services the page barely mentions"
+   ],
+   [
+    "<strong>5. Portfolio</strong>",
+    "Article or BlogPosting; author, datePublished, dateModified, publisher",
+    "Who wrote it, for whom, and how current it is",
+    "dateModified updated on every deploy, whether or not anything changed"
+   ]
+  ]
+ ],
+ [
+  "cite",
+  "Source: author's framework. Type names from <a href=\"https://schema.org/docs/full.html\">Schema.org</a>."
+ ],
+ [
+  "h3s",
+  "Line 1: Identity"
+ ],
+ [
+  "p",
+  "This is the header of the resume. One organisation, one name, one logo, one address, marked up the same way everywhere. It sounds trivial. It is where I find the most damage, because sites are built by several vendors over several years, and each one leaves its own version of the brand behind. If your own website cannot agree on your name, do not expect a knowledge graph to."
+ ],
+ [
+  "h3s",
+  "Line 2: References"
+ ],
+ [
+  "p",
+  "A recruiter does not take your word for it. They call your references. sameAs is the property that lists yours: the official profiles where the same entity is described. It is a small line of code and, in my view, the most underrated one in entity SEO, because it is how you tell a machine \"the brand on this site and the brand on that profile are the same thing\"."
+ ],
+ [
+  "h3s",
+  "Line 3: Credentials"
+ ],
+ [
+  "p",
+  "Expertise lives in people, and machines cannot see people who are only named in prose. Mark up the authors, reviewers and experts, and connect them to the organisation with worksFor. This does not manufacture expertise. It makes real expertise legible."
+ ],
+ [
+  "h3s",
+  "Line 4: Offer"
+ ],
+ [
+  "p",
+  "This is the skills section. Say what you do and where you do it, using the most specific type that honestly fits. The trap is ambition: marking up every service you might one day offer. A resume that lists twenty skills convinces nobody of any of them."
+ ],
+ [
+  "h3s",
+  "Line 5: Portfolio"
+ ],
+ [
+  "p",
+  "Your content, with a byline and dates. Freshness matters here: Microsoft's Canel said generative AI values fresh content partly as a reference check against training data. That makes an honest dateModified useful and a fake one a liability."
+ ],
+ [
+  "p",
+  "<strong>Get these five right and you have a resume. Add anything else before them and you have decoration.</strong>"
+ ],
+ [
+  "h2",
+  "Never put anything on the resume you cannot defend in the interview",
+  "honesty"
+ ],
+ [
+  "p",
+  "Every recruiter has met the candidate whose resume says \"fluent in Arabic\" and whose interview says otherwise. Search engines have met that website too."
+ ],
+ [
+  "p",
+  "Google's structured data guidelines are clear that markup must represent the content visible on the page, and that misleading or hidden markup can lead to a manual action. (<a href=\"https://developers.google.com/search/docs/appearance/structured-data/sd-policies\">Google Search Central</a>)"
+ ],
+ [
+  "p",
+  "The history of FAQ schema is the cautionary tale. It was used, then overused, to grab extra space on the results page. In 2023 Google restricted FAQ rich results to well-known government and health websites. In May 2026 it stopped showing them altogether. (<a href=\"https://www.searchenginejournal.com/google-drops-faq-rich-results-from-search/574429/\">Search Engine Journal</a>) Teams who added FAQ markup purely for the visual payoff lost the payoff. Teams who used it to structure real questions their customers ask still have useful, well-structured pages."
+ ],
+ [
+  "p",
+  "<strong>Markup written to game a feature dies with the feature. Markup written to describe the truth outlives it.</strong>"
+ ],
+ [
+  "h2",
+  "What changes in healthcare",
+  "healthcare"
+ ],
+ [
+  "p",
+  "Healthcare is where I would push hardest on schema, for a simple reason: the cost of being misunderstood is higher. A patient asking an AI assistant for a paediatric cardiologist in Abu Dhabi needs the right doctor, at the right facility, with the right specialty. A blended or outdated answer is not a lost click. It is a lost patient, or a wrong visit."
+ ],
+ [
+  "p",
+  "Three things I check first on any hospital or clinic website:"
+ ],
+ [
+  "ol",
+  [
+   "<strong>Do doctor profile pages exist as entities?</strong> A Physician type with medicalSpecialty and a worksFor link to the facility, not just a name and a photo.",
+   "<strong>Does every branch have its own identity?</strong> Multi-location groups often mark up only the head office, leaving each clinic's address, hours and services to be guessed.",
+   "<strong>Does the markup match the listing ecosystem?</strong> If the schema, the Google Business Profile and the health directory all disagree on a doctor's specialty or a clinic's address, the machine has three references giving three answers."
+  ]
+ ],
+ [
+  "p",
+  "Two guardrails. Schema should describe services and people, never make clinical claims the visible page does not make. And healthcare advertising rules in markets like the UAE apply to what the page says; markup does not get a separate, looser standard."
+ ],
+ [
+  "p",
+  "<strong>In healthcare, schema is less about being found and more about not being confused with someone else.</strong>"
+ ],
+ [
+  "h2",
+  "How to audit your schema resume in an afternoon",
+  "audit"
+ ],
+ [
+  "p",
+  "You do not need a platform to start. You need four tabs and some honesty."
+ ],
+ [
+  "ol",
+  [
+   "<strong>Read the resume.</strong> Run your homepage, one service page, one people page and one article through the <a href=\"https://validator.schema.org/\">Schema Markup Validator</a>. Note what types exist and what is missing against the five lines.",
+   "<strong>Check the Google view.</strong> Use Google's Rich Results Test and the enhancement reports in Search Console to catch errors on types Google still supports.",
+   "<strong>Call the references.</strong> Open every sameAs link. Is it live, official and consistent with the site on name, address and description?",
+   "<strong>Interview the machine.</strong> Ask ChatGPT, Gemini, Perplexity and Copilot the same plain questions: who is this brand, what does it do, where is it, who are its experts. Write down what is wrong or blended.",
+   "<strong>Trace the errors.</strong> For each wrong answer, ask whether your own site, markup or profiles are the source of the confusion. Fix those first; they are the ones you control."
+  ]
+ ],
+ [
+  "note",
+  "What to do on Monday",
+  "ul",
+  [
+   "Pick one canonical version of your organisation's name, logo and address, and make every template's Organization markup use it.",
+   "Add or fix sameAs on the organisation, pointing only to live, official profiles.",
+   "Mark up your top ten experts or authors as Person (or Physician) and connect them with worksFor.",
+   "Stop auto-updating dateModified on deploys. Change it when the content changes.",
+   "Delete any markup that describes something not visible on the page."
+  ]
+ ],
+ [
+  "h2",
+  "Where the resume metaphor breaks",
+  "limits"
+ ],
+ [
+  "p",
+  "Two places, and they are worth being honest about."
+ ],
+ [
+  "p",
+  "First, a human recruiter reads every resume. AI systems mostly do not read your JSON-LD directly; the evidence above suggests many cannot. Schema's influence is indirect, through the indexes and graphs those systems depend on. That makes it harder to measure, and it means you should not expect a before-and-after chart in six weeks."
+ ],
+ [
+  "p",
+  "Second, a resume is your main pitch. Schema is not. The things that make an AI cite you are the same things that make a person trust you: authority others grant you, and content with a point of view worth quoting. I have not seen a strong schema implementation rescue weak content, and I would be suspicious of anyone who claims they have."
+ ],
+ [
+  "p",
+  "<strong>Schema is necessary hygiene, not a growth strategy. Budget for it like hygiene: done properly, once, and maintained.</strong>"
+ ],
+ [
+  "h2",
+  "Frequently asked questions",
+  "faq"
+ ],
+ [
+  "h3s",
+  "What is schema markup in simple terms?"
+ ],
+ [
+  "p",
+  "Schema markup is structured code, usually JSON-LD, added to a web page to describe its content in a standard vocabulary from Schema.org. It tells search engines and other machines exactly what a page is about, such as an organisation, a doctor, a product or an article, so they do not have to infer it from the prose."
+ ],
+ [
+  "h3s",
+  "Does schema markup help with AI search visibility?"
+ ],
+ [
+  "p",
+  "Indirectly. Google says no special schema is needed for AI Overviews or AI Mode, and independent studies have found no direct link between schema coverage and LLM citations. Schema helps search indexes and knowledge graphs understand your entities correctly, and those systems ground many AI answers. Microsoft has said schema helps its LLMs understand content."
+ ],
+ [
+  "h3s",
+  "Which schema types matter most for AI visibility?"
+ ],
+ [
+  "p",
+  "Start with the basics that define identity and trust: Organization or a specific LocalBusiness subtype, sameAs links to official profiles, Person markup for authors and experts, Service or Product for what you offer, and Article with honest dates for content. Specialised types matter only once these five are accurate and consistent."
+ ],
+ [
+  "h3s",
+  "Should I remove FAQ schema now that Google no longer shows FAQ rich results?"
+ ],
+ [
+  "p",
+  "There is no need to rush. Google has said FAQ structured data can stay in place and will not cause problems, although it no longer produces a visible result in Google Search. Keep it where it describes real, visible questions and answers. Remove it where it was added only to win space on the results page."
+ ],
+ [
+  "h3s",
+  "Can schema markup hurt my website?"
+ ],
+ [
+  "p",
+  "Accurate schema does not hurt. Markup that describes content not visible on the page, or that misleads users, breaks Google's structured data guidelines and can lead to a manual action that removes rich result eligibility. The safe rule is simple: only mark up what a visitor can see and verify on that page."
+ ],
+ [
+  "cta",
+  "Has schema ever moved your AI visibility in a way you could measure?",
+  "If you are seeing something different on your accounts, I would like to hear it. Evidence beats vendor decks.",
+  "Get in touch &rarr;",
+  "https://vineetonmarketing.com/contact/"
+ ]
+]
