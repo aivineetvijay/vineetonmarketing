@@ -6,7 +6,7 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
-	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 09:00:00', 'cat' => 'AI in Marketing',
+	array( 'slug' => 'schema-markup-ai-visibility', 'old_slug' => 'schema-is-the-new-resume', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 07:00:00', 'cat' => 'AI in Marketing',
 		't' => 'Schema is your website’s resume.',
 		'dek' => 'Schema will not get you cited by ChatGPT or Google’s AI on its own. What it does is make sure the machines screening you read the right name, credentials and references.',
 		'min' => 13, 'tone' => 'deep', 'fmt' => 'Framework',

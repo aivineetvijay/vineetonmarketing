@@ -45,6 +45,7 @@ foreach ( $built as $slug => $b ) { vv_publish( $b['id'] ); }
 
 global $wpdb;
 foreach ( $keep as $id => $m ) {
+	if ( in_array( get_post_field( 'post_name', $id ), $vv_essays, true ) ) { continue; } // renamed during this run
 	$wpdb->update( $wpdb->posts, array( 'post_modified' => $m[0], 'post_modified_gmt' => $m[1] ), array( 'ID' => $id ) );
 	clean_post_cache( $id );
 }
