@@ -10,7 +10,10 @@ $posts = array(
 		'tags' => array( 'Thought Leadership', 'Paid Media', 'Custom Data' ),
 		't' => 'Customer Match just learned to read your server logs.',
 		'dek' => 'Google Ads can now match Customer Match lists on IP address and timestamp. It is a bigger change than the announcement suggests, and consent has to come first.',
-		'min' => 2, 'tone' => 'mono', 'fmt' => 'News reaction', 'body_src' => 'customer-match-ip-timestamp' ),
+		'min' => 2, 'tone' => 'mono', 'fmt' => 'News reaction', 'body_src' => 'customer-match-ip-timestamp',
+		/* Banners (made by wordpress/assets/essays/upload-image.php): 581 = 1600x534 desktop, 582 = 1586x992 mobile + featured. */
+		'banner' => array( 581, 582 ), 'thumb' => 582,
+		'banner_alt' => 'Customer Match IP address matching illustrated: IP address, timestamp, customer data and hashed email signals connected to one person and combined into a matched Google Ads audience' ),
 	array( 'slug' => 'schema-markup-for-real-estate', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 10:00:00', 'cat' => 'AI in Marketing', 'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'Seven schemas every property site needs.',
 		'dek' => 'Buyers increasingly meet your project in an AI answer first. Here are the seven schemas that make sure those facts come from your own website, and the brief to get them built.',
