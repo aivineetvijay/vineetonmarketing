@@ -1,0 +1,70 @@
+[
+ [
+  "p",
+  "Google Ads now lets you <a href=\"https://searchengineland.com/google-ads-adds-ip-address-and-timestamp-matching-to-customer-match-491517\">match Customer Match lists on IP address and interaction timestamp</a>. For most advertisers, this means visitors who never gave you a usable email can now be added to an audience. Google's announcement makes it sound smaller than it is."
+ ],
+ [
+  "h2",
+  "What changed",
+  "what-changed"
+ ],
+ [
+  "p",
+  "<a href=\"https://searchengineland.com/google-ads-adds-ip-address-and-timestamp-matching-to-customer-match-491517\">Search Engine Land reported</a> on 25 September that upload files now accept \"User IP address\" and a timestamp column. They sit alongside email, phone, mailing address and mobile device ID. <a href=\"https://support.google.com/google-ads/answer/10589050\">Google's support page</a> adds two details that matter. IPs and timestamps are uploaded unhashed, and you can't send a timestamp without an IP."
+ ],
+ [
+  "h2",
+  "Why marketers should care",
+  "why"
+ ],
+ [
+  "p",
+  "Customer Match has always been limited by match rate. Lists full of mistyped emails, or work addresses nobody uses to sign in to Google, match poorly. Small lists stay too small to serve."
+ ],
+ [
+  "p",
+  "IP plus timestamp gives Google a second way to find the same person at a specific moment. Bigger, more accurate lists mean better seed audiences for PMax and Demand Gen. They also give you cleaner exclusions and retention lists that reach the people on them."
+ ],
+ [
+  "p",
+  "The bigger shift is that any interaction you log with an IP and a time can now be a match key. That covers call-back requests, gated downloads and quote forms. Your server logs just got a job."
+ ],
+ [
+  "h2",
+  "What to do next?",
+  "next"
+ ],
+ [
+  "ol",
+  [
+   "Check whether your CRM or form backend captures IP and submission time. Many store it, but few export it.",
+   "Re-upload your top lists with the new columns and compare match rates before and after.",
+   "Get consent language signed off first. Google requires disclosure and consent, and the feature is unavailable for users in the EEA, UK and Switzerland. In the UAE, the PDPL still applies."
+  ]
+ ],
+ [
+  "h2",
+  "The catch",
+  "catch"
+ ],
+ [
+  "p",
+  "Shared IPs on office networks, public Wi-Fi and mobile carriers will produce false matches. Treat early jumps in match rate with suspicion until conversions back them up."
+ ],
+ [
+  "p",
+  "Better matching helps only if the data behind it was collected honestly. Done properly, this is free reach. Done carelessly, it becomes a compliance problem aimed at a bigger audience."
+ ],
+ [
+  "h2",
+  "Sources",
+  "sources"
+ ],
+ [
+  "ul",
+  [
+   "<a href=\"https://searchengineland.com/google-ads-adds-ip-address-and-timestamp-matching-to-customer-match-491517\">Google Ads adds IP address and timestamp matching to Customer Match (Search Engine Land)</a>",
+   "<a href=\"https://support.google.com/google-ads/answer/10589050\">Create a Customer Match list by uploading a data file (Google Ads Help)</a>"
+  ]
+ ]
+]
