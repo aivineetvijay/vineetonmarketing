@@ -47,7 +47,8 @@ $set = array(
 		'below' => array( 'below_left' => array(), 'below_left_center' => array(), 'below_center' => array(), 'below_right_center' => array(), 'below_right' => array() ),
 	),
 	'header-mobile-items' => array(
-		'popup' => array( 'popup_content' => array( 'mobile-menu' ) ),
+		/* Mobile/tablet menu panel: the menu, then the "Get in touch" button underneath. */
+		'popup' => array( 'popup_content' => array( 'mobile-menu', 'button-1' ) ),
 		'above' => array( 'above_left' => array(), 'above_center' => array(), 'above_right' => array() ),
 		'primary' => array( 'primary_left' => array( 'logo' ), 'primary_center' => array(), 'primary_right' => array( 'mobile-trigger' ) ),
 		'below' => array( 'below_left' => array(), 'below_center' => array(), 'below_right' => array() ),
@@ -76,19 +77,20 @@ $set = array(
 	'header-menu1-menu-hover-animation' => 'underline',
 	'header-menu1-menu-spacing' => $spacing( $box( '8', '14', '8', '14' ), $box( '', '', '', '' ), $box( '', '', '', '' ) ),
 
-	/* "Get in touch" pill: ink → Action Blue on hover. */
+	/* "Get in touch" pill: ink → Action Blue on hover (desktop). In the black mobile/tablet menu panel it is
+	   Action Blue → focus blue on hover, larger, and spaced to line up with the menu items. */
 	'header-button1-text' => 'Get in touch ↗',
 	'header-button1-link-option' => array( 'url' => home_url( '/contact/' ), 'new_tab' => false, 'link_rel' => '' ),
-	'header-button1-font-size' => $size( 14 ),
+	'header-button1-font-size' => $size( 14, 17, 17 ),
 	'header-button1-font-weight' => '400',
 	'header-button1-text-color' => $resp( '#ffffff' ),
-	'header-button1-back-color' => $resp( $ink ),
+	'header-button1-back-color' => $resp( $ink, $blue, $blue ),
 	'header-button1-text-h-color' => $resp( '#ffffff' ),
-	'header-button1-back-h-color' => $resp( $blue ),
+	'header-button1-back-h-color' => $resp( $blue, '#0071e3', '#0071e3' ),
 	'header-button1-border-size' => $box( 0, 0, 0, 0 ),
 	'header-button1-border-radius-fields' => $spacing( $box( 999, 999, 999, 999 ), $box( 999, 999, 999, 999 ), $box( 999, 999, 999, 999 ) ),
-	'section-hb-button-1-padding' => $spacing( $box( '10', '18', '10', '18' ), $box( '10', '18', '10', '18' ), $box( '10', '18', '10', '18' ) ),
-	'section-hb-button-1-margin' => $spacing( $box( '0', '0', '0', '8' ), $box( '', '', '', '' ), $box( '', '', '', '' ) ),
+	'section-hb-button-1-padding' => $spacing( $box( '10', '18', '10', '18' ), $box( '14', '26', '14', '26' ), $box( '14', '26', '14', '26' ) ),
+	'section-hb-button-1-margin' => $spacing( $box( '0', '0', '0', '8' ), $box( '28', '24', '32', '4' ), $box( '28', '24', '32', '4' ) ),
 
 	/* Mobile: minimal trigger, full-screen black menu with large white links. */
 	'mobile-header-type' => 'full-width',
