@@ -2,7 +2,7 @@
 /**
  * Plugin Name: VV Schema
  * Description: Enriches the Rank Math JSON-LD graph with Vineet Vijay's author (Person) profile, merges the post author into the site Person, and sets ProfilePage / CollectionPage types.
- * Version:     1.2.0
+ * Version:     1.3.0
  *
  * Install: copy to wp-content/mu-plugins/vv-schema.php (must-use plugins load automatically).
  * Requires Rank Math SEO with the Schema (rich-snippet) module active.
@@ -167,8 +167,18 @@ add_filter( 'rank_math/json_ld', function ( $data, $jsonld ) {
 			$title                    = wp_strip_all_tags( html_entity_decode( get_the_title(), ENT_QUOTES, 'UTF-8' ) );
 			$data[ $k ]['headline']   = $title;
 			$data[ $k ]['name']       = $title;
-			$data[ $k ]['author']     = array( '@id' => vv_schema_person_id(), 'name' => 'Vineet Vijay' );
-			$data[ $k ]['publisher']  = array( '@id' => vv_schema_person_id() );
+			/* Author and publisher as typed Person objects (not bare @id references) so every schema
+			   validator shows them in full; the @id still links them to the site Person node. */
+			$author                   = array(
+				'@type'    => 'Person',
+				'@id'      => vv_schema_person_id(),
+				'name'     => 'Vineet Vijay',
+				'url'      => home_url( '/' ),
+				'jobTitle' => 'Digital Marketing Strategist',
+				'sameAs'   => array( 'https://www.linkedin.com/in/vineetvijay' ),
+			);
+			$data[ $k ]['author']     = $author;
+			$data[ $k ]['publisher']  = array( '@type' => 'Person', '@id' => vv_schema_person_id(), 'name' => 'Vineet Vijay', 'url' => home_url( '/' ) );
 		}
 	}
 
