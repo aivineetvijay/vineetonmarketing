@@ -23,17 +23,31 @@ $generators = array(
 );
 $live = count( array_filter( $generators, function ( $g ) { return $g[2]; } ) );
 
-$rows = array(); $i = 0;
+/* Generator cards: industry icon (SVG attachment llms-icon-<slug>, see assets/icons/llms/), status, audience. */
+$icon = function ( $slug ) {
+	$p = get_posts( array( 'post_type' => 'attachment', 'name' => 'llms-icon-' . $slug, 'post_status' => 'inherit', 'numberposts' => 1 ) );
+	return $p ? $p[0]->ID : 0;
+};
+$cards = array(); $i = 0;
 foreach ( $generators as $g ) {
 	$i++;
+	$live_card = (bool) $g[2];
+	$key = $g[2] ?: sanitize_title( $g[0] );
 	$kids = array(
-		vv_p( "Generators Row $i Index", sprintf( '%02d', $i ), array( 'work-idx' ), 'span' ),
-		vv_h( "Generators Row $i Title", $g[0], array( 'work-title' ), 'h3' ),
-		vv_p( "Generators Row $i For", $g[1], array( 'work-tag' ), 'span' ),
-		vv_p( "Generators Row $i Status", $g[2] ? 'Live' : 'Coming soon', array( 'work-yr' ), 'span' ),
-		vv_p( "Generators Row $i Arrow", $g[2] ? '↗' : '·', array( 'work-arr' ), 'span' ),
+		vv_f( "Generators Card $i Top", array( 'gen-top' ), array(
+			vv_f( "Generators Card $i Icon Tile", array( 'gen-icon-tile' ), array( vv_n( 'e-svg', "Generators Card $i Icon", array( 'gen-icon' ), array( 'svg' => array( 'id' => $icon( $key ) ) ) ) ) ),
+			vv_f( "Generators Card $i Status", array( 'gen-pill' ), array(
+				vv_p( "Generators Card $i Status Dot", '●', $live_card ? array( 'status-dot' ) : array( 'status-dot-soon' ), 'span' ),
+				vv_p( "Generators Card $i Status Label", $live_card ? 'Live' : 'Coming soon', array( 'status-label' ), 'span' ),
+			) ),
+		) ),
+		vv_f( "Generators Card $i Body", array( 'gen-body' ), array(
+			vv_h( "Generators Card $i Title", $g[0], array( 'tcard-name' ), 'h3' ),
+			vv_p( "Generators Card $i For", $g[1], array( 'tcard-use' ) ),
+		) ),
+		vv_p( "Generators Card $i Action", $live_card ? 'Open generator →' : 'In development', array( $live_card ? 'gen-cta' : 'gen-cta-soon' ), 'span' ),
 	);
-	$rows[] = $g[2] ? vv_link( "Generators Row $i", array( 'work-row' ), $tool( $g[2] ), $kids ) : vv_f( "Generators Row $i", array( 'work-row' ), $kids );
+	$cards[] = $live_card ? vv_link( "Generators Card $i", array( 'gen-card' ), $tool( $g[2] ), $kids ) : vv_f( "Generators Card $i", array( 'gen-card-soon' ), $kids );
 }
 
 $sample = array(
@@ -101,7 +115,7 @@ $nodes = array(
 		vv_f( 'Generators Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Generators', '01', 'Generators', 'One format · industry-specific rules' ),
 			vv_title_block( 'Generators', 'Pick your', 'industry.' ),
-			vv_f( 'Generators List', array( 'work-list', 'mt-64' ), $rows, array(), vv_ix() ),
+			vv_g( 'Generators Cards', array( 'gen-grid', 'mt-64' ), $cards ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'generators' ),
 	vv_f( 'Basics', array( 'section', 'bg-canvas' ), array(
