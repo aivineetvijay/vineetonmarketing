@@ -8,7 +8,7 @@ $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint
 $posts = array(
 	array( 'slug' => 'rank-in-ai-overviews', 'y' => 'Oct ’26', 'date' => 'October 8, 2026', 'iso' => '2026-10-08 06:00:00', 'cat' => 'AI in Marketing',
 		'tags' => array( 'AI in Marketing', 'SEO' ),
-		't' => 'How to rank in AI Overviews: be the sentence Google quotes.',
+		't' => 'How to rank in AI Overviews: what I learned getting cited.',
 		'dek' => 'AI Overviews quote passages, not pages. Six citations from a DA 17 hospital site show what gets lifted, and the LIFT test turns it into a checklist.',
 		'min' => 9, 'tone' => 'blue', 'fmt' => 'Framework', 'body_src' => 'rank-in-ai-overviews',
 		/* Screenshot 587 = 1600x859 (made by wordpress/assets/essays/upload-image.php from reem-hospital-ai-overview-citations-source.webp). */
