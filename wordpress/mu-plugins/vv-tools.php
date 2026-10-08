@@ -5,7 +5,7 @@
  *              /ai-tools/llms-txt-generator/ with post meta vv_tool = <slug>; this plugin draws the page inside the
  *              theme (Astra header, Rank Math breadcrumbs, footer) with the tool's hero, the generator app and a
  *              share card. The app is wp-content/uploads/vv-tools/llms-txt-generator/assets/generator.js with the
- *              industry's <slug>/config.js. SEO meta (title, description, noindex) is Rank Math's, set per page.
+ *              industry's <slug>/config.js. SEO meta (title, description, robots) is Rank Math's, set per page.
  * Version:     2.0.0
  *
  * Install: copy to wp-content/mu-plugins/vv-tools.php (see wordpress/tools/install-llms-generators.php).
