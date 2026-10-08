@@ -1,0 +1,351 @@
+[
+[
+"p",
+"<strong>If you want to rank in AI Overviews, stop asking where your page ranks. Ask whether a machine can lift one clean sentence out of it. Google's AI answers quote passages, not pages, and the passage that gets quoted often isn't on the page ranked first.</strong>"
+],
+[
+"p",
+"The data agrees. Ahrefs' March 2026 analysis of 863,000 keywords found that only 38% of pages cited in AI Overviews ranked in Google's top 10. Roughly 31% came from beyond position 100. Ahrefs says its parsing improved since the 2025 version of the study, so be careful with the drop from 76%. The direction is still hard to argue with."
+],
+[
+"p",
+"I saw the same thing first-hand as a digital marketer at Reem Hospital in Abu Dhabi. Between 2024 and 2025, our pages were cited in AI Overviews for head terms like \"pulmonologist\" and \"orthopedic\", on a domain with a Moz DA of 17, next to Cleveland Clinic and government health agencies. We didn't outrank them. We wrote sentences that were easier to quote."
+],
+[
+"box",
+"Key takeaways",
+"ul",
+[
+"AI Overviews choose sentences, not positions. Ranking gets you into the room. Extractability gets you quoted.",
+"Every citation below came from a short, self-contained answer sitting directly under a heading that matched the query.",
+"Service pages can win head terms too, if they open with a definition before they start selling.",
+"Use the LIFT test (Lead, Isolate, Format, Trust) to make an existing page citation-ready."
+]
+],
+[
+"toc",
+"In this article",
+[
+[
+"What does it mean to rank in AI Overviews?",
+"s1"
+],
+[
+"The evidence: six citations",
+"s2"
+],
+[
+"Three things the cited pages had in common",
+"s3"
+],
+[
+"The LIFT test",
+"s4"
+],
+[
+"Doesn't ranking still matter?",
+"s5"
+],
+[
+"How to make an existing page citation-ready",
+"s6"
+],
+[
+"What about ChatGPT?",
+"s7"
+],
+[
+"FAQ",
+"faq"
+]
+]
+],
+[
+"h2",
+"What does it actually mean to \"rank\" in AI Overviews?",
+"s1"
+],
+[
+"p",
+"There's no position one in an AI Overview. There's an answer, and a handful of sources Google pulled sentences from to write it."
+],
+[
+"p",
+"Google also doesn't just search your query. It uses what it calls query fan-out: it splits the question into related sub-queries and draws on pages that keep showing up across them. Ahrefs suggests that's a big reason citations now come from so far down the rankings."
+],
+[
+"p",
+"So you aren't competing for a slot. <strong>You're competing for a sentence.</strong> Write like it."
+],
+[
+"h2",
+"The evidence: six citations from one mid-authority hospital site",
+"s2"
+],
+[
+"figure",
+"reem-hospital-ai-overview-citations"
+],
+[
+"table",
+[
+"Query",
+"Result",
+"Cited alongside",
+"Page type"
+],
+[
+[
+"pulmonologist",
+"AI Overview citation",
+"Cleveland Clinic, a Dubai hospital group",
+"Service page"
+],
+[
+"orthopedic",
+"AI Overview citation",
+"The only source shown",
+"Service page"
+],
+[
+"mpox symptoms",
+"AI Overview, first citation",
+"A national disease agency, Mass General Brigham",
+"Blog"
+],
+[
+"tummy and back tuck",
+"AI Overview citation",
+"Two private clinics",
+"Service page"
+],
+[
+"common neurological problems in children",
+"AI Overview citation",
+"A larger UAE hospital group",
+"Blog"
+],
+[
+"mounjaro for weight loss",
+"Featured snippet",
+"Global health publishers in the organic results",
+"Blog"
+]
+]
+],
+[
+"cite",
+"Source: author's screenshots of Google results, 2024 to 2025. The Mounjaro result is a featured snippet rather than an AI Overview, included because it uses the same passage-lifting mechanism."
+],
+[
+"p",
+"The site's Moz domain authority was 17. On paper, it shouldn't be quoted next to Cleveland Clinic for a one-word head term like \"pulmonologist\". It was, because of how the pages were written."
+],
+[
+"h2",
+"Three things the cited pages had in common",
+"s3"
+],
+[
+"h3s",
+"1. The sentence Google needed sat right under the heading"
+],
+[
+"p",
+"The Mounjaro snippet is the cleanest example. Google lifted this line, word for word:"
+],
+[
+"p",
+"<em>\"Appetite Suppression: Mounjaro injection reduces appetite by helping individuals feel fuller for longer, thereby decreasing overall food intake.\"</em>"
+],
+[
+"p",
+"It's a label, a colon, then a 16-word answer. It names its subject (\"Mounjaro injection\", not \"it\"). And it sits under the H2 \"How Does Mounjaro Help with Weight Loss?\", so the question is the heading and the answer comes straight after it."
+],
+[
+"p",
+"The paediatric neurology page did the same at list level. Its H1 is the query word for word, \"Common Neurological Problems in Children\". The first list item reads \"Autism Spectrum Disorder (ASD): The most common neurodevelopmental disorder affecting children...\", and the AI Overview opens with the same condition."
+],
+[
+"h3s",
+"2. Service pages opened with a definition, not a sales pitch"
+],
+[
+"p",
+"This is the finding I'd underline for any healthcare marketer. The pulmonologist, orthopedic and tummy tuck citations all came from <strong>commercial service pages</strong>, the \"Best Orthopedic Doctor in Abu Dhabi\" kind."
+],
+[
+"p",
+"Look at the snippets Google showed. \"What is Orthopedics? Orthopedics is the medical field focused on musculoskeletal...\" \"Pulmonologists are lung specialists who are dedicated to treating...\" \"What is Abdominoplasty or Tummy Tuck Surgery? Abdominoplasty, commonly known as...\""
+],
+[
+"p",
+"Each page answered the informational question in its first lines, then moved on to doctors and booking. Most hospital service pages do it the other way round: a paragraph about world-class care and a booking button, with the definition buried somewhere below. Google can't quote a value proposition."
+],
+[
+"p",
+"<strong>Define first, sell second.</strong> The page still converts, and now it gets quoted too."
+],
+[
+"h3s",
+"3. Clear expertise, and timing on fast-moving topics"
+],
+[
+"p",
+"Each page showed a named writer and a named consultant reviewer from the relevant specialty. In healthcare that's what Google expects from a source it's about to quote on a medical topic."
+],
+[
+"p",
+"The mpox page added timing. It was published in September 2024, within weeks of the WHO declaring mpox a public health emergency of international concern. It opened with the symptoms, in a list, while most sources were still catching up. It was cited first, ahead of a national disease agency. Being early with a clean answer beat being the official source."
+],
+[
+"h2",
+"The LIFT test: four checks before you hit publish",
+"s4"
+],
+[
+"p",
+"This is what those pages had in common, turned into a checklist I'd run on any informational or service page."
+],
+[
+"callout",
+"Framework",
+"The LIFT test for AI citations",
+"ol",
+[
+"<strong>Lead with the answer:</strong> the first sentence under every heading answers that heading. On service pages, the definition comes before the pitch.",
+"<strong>Isolate every section:</strong> each section, and ideally each sentence, still makes sense if it's quoted alone. Name the subject. Never write \"as mentioned above\".",
+"<strong>Format for lifting:</strong> \"Label: one-sentence answer\" bullets, numbered lists, and headings that use the words people actually search.",
+"<strong>Trust the source:</strong> a named author, a named qualified reviewer and visible dates. On fast-moving topics, publish early."
+]
+],
+[
+"p",
+"Notice what's missing from that list. The two blog pages I checked had no FAQ section and no tables. None of the pages were quoted because of a huge backlink profile. I like schema (<a href=\"https://vineetonmarketing.com/schema-markup-ai-visibility/\">I've written about it at length</a>), but no amount of markup will rescue a page where the answer is buried in paragraph four."
+],
+[
+"quote",
+"Ranking gets you into the room. Extractability gets you quoted.",
+""
+],
+[
+"h2",
+"Doesn't ranking still matter?",
+"s5"
+],
+[
+"p",
+"Yes, and the opposing view deserves a fair hearing. Google's own guidance on <a href=\"https://developers.google.com/search/docs/appearance/ai-features\" rel=\"noopener\">AI features and your website</a> says there's nothing special to do. Pages just need to be indexed and eligible to show a snippet, and the usual SEO fundamentals apply."
+],
+[
+"p",
+"That's true, and it's the floor. If Google can't crawl the page, or you've set nosnippet, you're out before you start. Authority still decides who gets considered."
+],
+[
+"p",
+"But eligibility isn't selection. Once you're in the pool, Google still has to pick which sentence to quote, and that choice comes down to how the page is written. A DA 17 hospital site cited next to Cleveland Clinic is a small, very visible example of that."
+],
+[
+"p",
+"SEO gets you shortlisted. Writing gets you chosen."
+],
+[
+"h2",
+"How to make an existing page citation-ready",
+"s6"
+],
+[
+"p",
+"You don't need new content to test this. Start with pages that already rank but don't get quoted."
+],
+[
+"ol",
+[
+"<strong>Pull the candidates.</strong> In Search Console, filter for question-style and definitional queries where you rank between positions 4 and 20. Include service pages, not just blogs.",
+"<strong>Search each one.</strong> Note what the AI Overview says and who it cites. This shows you the answer Google is trying to give.",
+"<strong>Find your sentence.</strong> Find the one sentence on your page that should have been quoted. If it doesn't exist, that's your problem. Write it.",
+"<strong>Move it up.</strong> Put it directly under a heading that uses the query's own words. On service pages, put the definition above the sales copy.",
+"<strong>Kill the pronouns.</strong> Replace \"it\" and \"this treatment\" with the actual name. Every extractable sentence should stand alone.",
+"<strong>Show who stands behind it.</strong> Add the named author, the named reviewer and the last-updated date.",
+"<strong>Request indexing and recheck.</strong> Use URL Inspection in Search Console, then search the query again after Google recrawls."
+]
+],
+[
+"p",
+"One healthcare warning. When Google quotes you in an AI Overview, it repeats your sentence without the paragraph around it. Your caveats don't travel with it. <strong>Every sentence you've made extractable needs clinical sign-off as a standalone claim.</strong> In medical content, being quotable means being accountable."
+],
+[
+"note",
+"What to do on Monday",
+"ul",
+[
+"Open your three highest-traffic service pages. If the first two lines don't define the service, rewrite them so they do.",
+"Pick five informational pages ranking in positions 4 to 20 and search their main query.",
+"On each page, find or write the sentence Google should quote, in under 30 words, directly under a matching heading.",
+"Add named authors and reviewers anywhere they're missing."
+]
+],
+[
+"h2",
+"What about ChatGPT?",
+"s7"
+],
+[
+"p",
+"An honest caveat: my proof is from Google. ChatGPT's search works on its own retrieval system, and I don't have screenshots I'd stake a post on."
+],
+[
+"p",
+"The logic should carry over, though. Any system that answers from the web splits pages into passages and picks the ones that answer the question cleanly. A sentence that survives being cut out of your page works for any of them."
+],
+[
+"p",
+"Treat that as a working hypothesis, not a finding. I'm testing it now, and I'll write it up when I have evidence rather than a theory."
+],
+[
+"h2",
+"Frequently asked questions",
+"faq"
+],
+[
+"h3s",
+"How do I rank in Google AI Overviews?"
+],
+[
+"p",
+"Make sure the page is indexed and eligible for snippets, then write for extraction. Put a direct, self-contained answer under a heading that uses the query's own words, and use label-plus-answer bullets and numbered lists. Show a named author and reviewer. AI Overviews quote passages, so the best passage beats the highest-ranking page."
+],
+[
+"h3s",
+"Do you need to rank in the top 10 to appear in AI Overviews?"
+],
+[
+"p",
+"No. Ahrefs' March 2026 study of 863,000 keywords found only 38% of AI Overview citations came from top 10 pages, and around 31% came from beyond position 100. Ranking helps Google consider your page, but the sentence Google can lift cleanly decides whether it's quoted."
+],
+[
+"h3s",
+"Can service pages appear in AI Overviews?"
+],
+[
+"p",
+"Yes. Hospital service pages I worked on were cited for head terms like \"pulmonologist\" and \"orthopedic\". The common factor was a plain definition in the first lines, such as \"Orthopedics is the medical field focused on...\", placed before any booking or sales copy. Define the service first, then sell it."
+],
+[
+"h3s",
+"Is ranking in ChatGPT the same as ranking in AI Overviews?"
+],
+[
+"p",
+"Not exactly. ChatGPT uses its own retrieval and sources, so where you rank on Google doesn't carry across directly. The writing principle should carry over, because every AI answer engine picks passages: a clear, self-contained answer is easier for any system to quote. My own evidence so far is from Google."
+],
+[
+"cta",
+"Seen a page get cited that broke these rules?",
+"I'd like to see it. Counter-examples are how this checklist gets better.",
+"Get in touch &rarr;",
+"https://vineetonmarketing.com/contact/",
+"Continue the conversation on LinkedIn &rarr;",
+"https://www.linkedin.com/in/vineetvijay"
+]
+]

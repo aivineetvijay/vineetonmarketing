@@ -6,6 +6,15 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'rank-in-ai-overviews', 'y' => 'Oct ’26', 'date' => 'October 8, 2026', 'iso' => '2026-10-08 06:00:00', 'cat' => 'AI in Marketing',
+		'tags' => array( 'AI in Marketing', 'SEO' ),
+		't' => 'How to rank in AI Overviews: be the sentence Google quotes.',
+		'dek' => 'AI Overviews quote passages, not pages. Six citations from a DA 17 hospital site show what gets lifted, and the LIFT test turns it into a checklist.',
+		'min' => 9, 'tone' => 'blue', 'fmt' => 'Framework', 'body_src' => 'rank-in-ai-overviews',
+		/* Screenshot 587 = 1600x859 (made by wordpress/assets/essays/upload-image.php from reem-hospital-ai-overview-citations-source.webp). */
+		'figures' => array(
+			'reem-hospital-ai-overview-citations' => array( 587, 'AI Overviews citing Reem Hospital pages, 2024 to 2025. Cited sources are outlined in red.' ),
+		) ),
 	array( 'slug' => 'customer-match-ip-timestamp', 'y' => 'Oct ’26', 'date' => 'October 1, 2026', 'iso' => '2026-10-01 08:00:00', 'cat' => 'Paid Media',
 		'tags' => array( 'Thought Leadership', 'Paid Media', 'Custom Data' ),
 		't' => 'Customer Match just learned to read your server logs.',
@@ -292,7 +301,9 @@ foreach ( $posts as $k => $p ) {
 				$body[] = vv_f( "Body $i Actions", array( 'art-note' ), array( vv_p( "Body $i Actions Title", $b[1], array( 'art-callout-title' ) ), $list( "Body $i Actions", $b[2], $b[3], array( 'art-p-sm' ), array( 'sm-mark' ) ) ) );
 				break;
 			case 'cta':
-				$body[] = vv_f( "Body $i Closing", array( 'art-cta' ), array_merge( array( vv_p( "Body $i Closing Question", $b[1], array( 'art-callout-title' ) ) ), '' !== $b[2] ? array( vv_p( "Body $i Closing Text", $b[2], array( 'art-p-sm' ) ) ) : array(), array( vv_p( "Body $i Closing Link", $b[3], array( 'art-cta-link' ), 'p', $b[4] ) ) ) );
+				$body[] = vv_f( "Body $i Closing", array( 'art-cta' ), array_merge( array( vv_p( "Body $i Closing Question", $b[1], array( 'art-callout-title' ) ) ), '' !== $b[2] ? array( vv_p( "Body $i Closing Text", $b[2], array( 'art-p-sm' ) ) ) : array(), array( vv_p( "Body $i Closing Link", $b[3], array( 'art-cta-link' ), 'p', $b[4] ) ),
+					/* Optional second link (text, href). */
+					isset( $b[6] ) ? array( vv_p( "Body $i Closing Link 2", $b[5], array( 'art-cta-link' ), 'p', $b[6] ) ) : array() ) );
 				break;
 			case 'faq':
 				$items = array(); $j = 0;
