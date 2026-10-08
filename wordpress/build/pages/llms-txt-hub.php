@@ -95,21 +95,21 @@ foreach ( $faq as $qa ) {
 $nodes = array(
 	vv_hero( 'Hub',
 		array( vv_meta_block( 'Hub', 'Built for', 'Marketers and site owners' ), vv_meta_block( 'Hub', 'Generators', count( $generators ) . ' industries · ' . $live . ' live' ), vv_meta_block( 'Hub', 'Price', 'Free to use', true ) ),
-		'llms.txt Generator', '.', true,
+		'llms.txt Generator', null, true,
 		'A family of industry-specific generators that turn your website into a clean, curated llms.txt file: the short map AI assistants can read to understand who you are and which pages to trust.',
 		array(
 			vv_btn( 'Hub Industry Button', 'Choose your industry', '#generators', array( 'btn', 'btn-filled' ) ),
 			vv_btn( 'Hub How Button', 'How it works', '#how-it-works', array( 'btn' ) ),
 		)
 	),
-	vv_f( 'Generators', array( 'section', 'bg-canvas' ), array(
+	vv_f( 'Generators', array( 'section', 'bg-parchment' ), array(
 		vv_f( 'Generators Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Generators', '01', 'Generators', 'One format · industry-specific playbooks' ),
 			vv_title_block( 'Generators', 'Pick your', 'industry.' ),
 			vv_f( 'Generators List', array( 'work-list', 'mt-64' ), $rows, array(), vv_ix() ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'generators' ),
-	vv_f( 'Basics', array( 'section', 'bg-parchment' ), array(
+	vv_f( 'Basics', array( 'section', 'bg-canvas' ), array(
 		vv_f( 'Basics Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Basics', '02', 'The basics', 'One file · plain Markdown · site root' ),
 			vv_title_block( 'Basics', 'What is an', 'llms.txt file?' ),
@@ -126,7 +126,7 @@ $nodes = array(
 			) ),
 		) ),
 	), array( 'tag' => 'section' ) ),
-	vv_f( 'Reasons', array( 'section', 'bg-canvas' ), array(
+	vv_f( 'Reasons', array( 'section', 'bg-parchment' ), array(
 		vv_f( 'Reasons Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Reasons', '03', 'For marketers', 'Six reasons it earns a place on the AI-visibility checklist' ),
 			vv_title_block( 'Reasons', 'Why it matters', 'for marketers.' ),
