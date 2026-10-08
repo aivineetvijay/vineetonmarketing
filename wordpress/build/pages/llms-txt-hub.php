@@ -74,12 +74,12 @@ $reasons = array(
 	array( '06', 'A forcing function.', 'Writing one makes you decide which pages actually represent the business. Most sites have never done that exercise.' ),
 );
 $steps = array(
-	array( '01', 'Pick your industry.', 'Each generator is built for one vertical, with the sections that industry’s customers and AI assistants look for.' ),
-	array( '02', 'Enter your business details.', 'Name, website, type, markets and languages. Optionally, a one-line description, founding year, licences or accreditations.' ),
-	array( '03', 'Add your key pages.', 'A title, URL and one-line description for each hub and evergreen page, sorted into the industry’s sections.' ),
-	array( '04', 'Noise gets filtered out.', 'Query strings, filters, pagination, logins, carts, thank-you pages and duplicates are left out of the file automatically.' ),
-	array( '05', 'Guardrails flag what to fix.', 'Superlatives, prices, outcome claims and other details that go stale are flagged as you type, so the file stays factual.' ),
-	array( '06', 'Review, download, publish.', 'The file builds as you type in the llms.txt format. Copy or download it and upload it to your site root.' ),
+	array( '01', 'Choose your industry.', 'Open the generator for your industry from the cards above. Each one is set up with the sections that industry’s customers look for.' ),
+	array( '02', 'Fill in your business details.', 'Enter your business name, website URL, business type, markets and languages. Add a short description, founding year and licences if you have them.' ),
+	array( '03', 'Add your key pages.', 'For each important page, paste its title and URL, write one factual sentence about what it contains, and pick its section. Click Add page for the next one.' ),
+	array( '04', 'Fix anything flagged.', 'Read the notes under each page. Filter URLs, logins and duplicates are left out for you; rewrite any line flagged for superlatives, prices or claims.' ),
+	array( '05', 'Copy or download the file.', 'Check the preview on the right. When it looks right, click Copy or Download to save your llms.txt.' ),
+	array( '06', 'Upload it to your site root.', 'Upload the file so it opens at yourdomain.com/llms.txt, then open that address to check it loads as plain text.' ),
 );
 $implement = array(
 	array( '01', 'Upload it to the root.', 'Save the file as llms.txt so it loads at yourdomain.com/llms.txt. On WordPress, upload it through your host’s file manager. If your SEO plugin has an llms.txt setting, you can paste the file there instead of letting the plugin auto-generate one.' ),
@@ -144,8 +144,8 @@ $nodes = array(
 	), array( 'tag' => 'section' ) ),
 	vv_f( 'How', array( 'section', 'bg-ink' ), array(
 		vv_f( 'How Inner', array( 'wrap' ), array(
-			vv_sec_head( 'How', '04', 'How it works', 'Details in · ready-to-upload file out', true ),
-			vv_title_block( 'How', 'Six steps.', 'One clean file.', true ),
+			vv_sec_head( 'How', '04', 'How it works', 'From your details to a ready-to-upload file', true ),
+			vv_title_block( 'How', 'Follow these', 'six steps.', true ),
 			vv_cards( 'How', $steps, array( 'topics-grid', 'mt-96' ), true, 'Step ' ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'how-it-works' ),
