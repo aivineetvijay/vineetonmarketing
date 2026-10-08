@@ -60,23 +60,12 @@ $reasons = array(
 	array( '06', 'A forcing function.', 'Writing one makes you decide which pages actually represent the business. Most sites have never done that exercise.' ),
 );
 $steps = array(
-	array( '01', 'Enter your URL and a few facts.', 'Website, business name, business type, markets and languages. Optionally, licence numbers and a one-line description you want models to use.' ),
-	array( '02', 'It reads your site structure.', 'The generator pulls your sitemap and main navigation to find the pages that exist, with their titles and descriptions.' ),
-	array( '03', 'Noise gets filtered out.', 'Filter and pagination URLs, logins, thank-you pages, duplicates and short-lived pages are removed before anything reaches the model.' ),
-	array( '04', 'An industry prompt curates.', 'Each generator runs a prompt written for its vertical. It groups pages into the sections that industry’s customers look for and writes a factual one-line description for each.' ),
-	array( '05', 'Guardrails check the output.', 'Only URLs and facts found on your site are used. No invented details, no prices that go stale, no superlatives, and the file is validated against the llms.txt format.' ),
-	array( '06', 'Review, download, publish.', 'Edit anything you want, then copy or download the file and upload it to your site root.' ),
-);
-$playbooks = array(
-	array( 'Real Estate · Live', 'Projects over listings.', 'Projects, communities, sale and rent hubs, buyer and investor guides. Individual listings are left out because they expire and change price.' ),
-	array( 'Healthcare · Live', 'Accuracy over reach.', 'Specialties, doctors, conditions treated, locations, insurance and patient guides, with medical descriptions kept strictly factual.' ),
-	array( 'E-commerce · Live', 'Categories over SKUs.', 'Categories, flagship products, shipping, returns and sizing: the questions shoppers ask an assistant before they buy.' ),
-	array( 'Education · Live', 'Programmes over open days.', 'Programmes, admissions, accreditation and student support. Fees, deadlines and intake dates stay on the page, not in the file.' ),
-	array( 'Finance & Fintech · Live', 'Products over promotions.', 'Products, regulation and licensing, fees pages, security and help. No rates, returns or advice, and licences only as you state them.' ),
-	array( 'Content & Publishers · Live', 'Standards over headlines.', 'Sections, editorial standards, evergreen guides and named series. Dated news, tag archives and sponsored posts are left out.' ),
-	array( 'Travel · Coming soon', 'Places over prices.', 'Destinations, stays, experiences, booking policies and travel guides, without the seasonal fares and offers that go out of date.' ),
-	array( 'Small Business · Coming soon', 'Local and short.', 'Services, service areas, hours, contact details and FAQs. Compact, specific and easy for a model to quote correctly.' ),
-	array( 'Your industry?', 'Tell me what’s next.', 'Working in a vertical that isn’t here yet? ' . $link( 'Send it over', vv_url( '/contact/' ) ) . '. The most requested industries get built first.' ),
+	array( '01', 'Pick your industry.', 'Each generator is built for one vertical, with the sections that industry’s customers and AI assistants look for.' ),
+	array( '02', 'Enter your business details.', 'Name, website, type, markets and languages. Optionally, a one-line description, founding year, licences or accreditations.' ),
+	array( '03', 'Add your key pages.', 'A title, URL and one-line description for each hub and evergreen page, sorted into the industry’s sections.' ),
+	array( '04', 'Noise gets filtered out.', 'Query strings, filters, pagination, logins, carts, thank-you pages and duplicates are left out of the file automatically.' ),
+	array( '05', 'Guardrails flag what to fix.', 'Superlatives, prices, outcome claims and other details that go stale are flagged as you type, so the file stays factual.' ),
+	array( '06', 'Review, download, publish.', 'The file builds as you type in the llms.txt format. Copy or download it and upload it to your site root.' ),
 );
 $implement = array(
 	array( '01', 'Upload it to the root.', 'Save the file as llms.txt so it loads at yourdomain.com/llms.txt. On WordPress, upload it through your host’s file manager. If your SEO plugin has an llms.txt setting, you can paste the file there instead of letting the plugin auto-generate one.' ),
@@ -110,7 +99,7 @@ $nodes = array(
 	),
 	vv_f( 'Generators', array( 'section', 'bg-parchment' ), array(
 		vv_f( 'Generators Inner', array( 'wrap' ), array(
-			vv_sec_head( 'Generators', '01', 'Generators', 'One format · industry-specific playbooks' ),
+			vv_sec_head( 'Generators', '01', 'Generators', 'One format · industry-specific rules' ),
 			vv_title_block( 'Generators', 'Pick your', 'industry.' ),
 			vv_f( 'Generators List', array( 'work-list', 'mt-64' ), $rows, array(), vv_ix() ),
 		) ),
@@ -141,22 +130,14 @@ $nodes = array(
 	), array( 'tag' => 'section' ) ),
 	vv_f( 'How', array( 'section', 'bg-ink' ), array(
 		vv_f( 'How Inner', array( 'wrap' ), array(
-			vv_sec_head( 'How', '04', 'How it works', 'URL in · ready-to-upload file out', true ),
+			vv_sec_head( 'How', '04', 'How it works', 'Details in · ready-to-upload file out', true ),
 			vv_title_block( 'How', 'Six steps.', 'One clean file.', true ),
 			vv_cards( 'How', $steps, array( 'topics-grid', 'mt-96' ), true, 'Step ' ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'how-it-works' ),
-	vv_f( 'Playbooks', array( 'section', 'bg-canvas' ), array(
-		vv_f( 'Playbooks Inner', array( 'wrap' ), array(
-			vv_sec_head( 'Playbooks', '05', 'Why industry-specific', 'Same format · different priorities' ),
-			vv_title_block( 'Playbooks', 'One format.', 'Eight playbooks.' ),
-			vv_p( 'Playbooks Intro', 'The llms.txt format is the same everywhere. What changes by industry is which pages matter, what to leave out and what a model must never get wrong. Each generator builds that judgement in, instead of treating every site as a generic list of links.', array( 't-lead', 'measure-620', 'mt-32' ) ),
-			vv_cards( 'Playbooks', $playbooks, array( 'topics-grid', 'mt-96' ) ),
-		) ),
-	), array( 'tag' => 'section' ) ),
 	vv_f( 'Implement', array( 'section', 'bg-parchment' ), array(
 		vv_f( 'Implement Inner', array( 'wrap' ), array(
-			vv_sec_head( 'Implement', '06', 'Implementation', 'Three steps · no developer needed' ),
+			vv_sec_head( 'Implement', '05', 'Implementation', 'Three steps · no developer needed' ),
 			vv_title_block( 'Implement', 'How to', 'implement it.' ),
 			vv_cards( 'Implement', $implement, array( 'grid-3-stack', 'mt-96' ), false, 'Step ' ),
 			vv_f( 'Implement Callout', array( 'art-callout', 'mt-64' ), array(
@@ -167,7 +148,7 @@ $nodes = array(
 	), array( 'tag' => 'section' ) ),
 	vv_f( 'Questions', array( 'section', 'bg-canvas' ), array(
 		vv_f( 'Questions Inner', array( 'wrap' ), array(
-			vv_sec_head( 'Questions', '07', 'Questions', 'The ones that come up most' ),
+			vv_sec_head( 'Questions', '06', 'Questions', 'The ones that come up most' ),
 			vv_title_block( 'Questions', 'Common', 'questions.' ),
 			vv_f( 'Questions Holder', array( 'stack', 'mt-64' ), array(
 				vv_n( 'e-accordion', 'Questions Accordion', array( 'acc' ), array( 'default_state' => 'first_expanded', 'max_expanded' => 'one', 'show_icon' => true, 'faq_schema' => false ), $items ),
