@@ -11,9 +11,9 @@ $posts = array(
 		't' => 'How to rank in AI Overviews: be the sentence Google quotes.',
 		'dek' => 'AI Overviews quote passages, not pages. Six citations from a DA 17 hospital site show what gets lifted, and the LIFT test turns it into a checklist.',
 		'min' => 9, 'tone' => 'blue', 'fmt' => 'Framework', 'body_src' => 'rank-in-ai-overviews',
-		/* Screenshot (made by wordpress/assets/essays/upload-image.php from reem-hospital-ai-overview-citations-source.webp). */
+		/* Screenshot 587 = 1600x859 (made by wordpress/assets/essays/upload-image.php from reem-hospital-ai-overview-citations-source.webp). */
 		'figures' => array(
-			'reem-hospital-ai-overview-citations' => array( FIGID, 'AI Overviews citing Reem Hospital pages, 2024 to 2025. Cited sources are outlined in red.' ),
+			'reem-hospital-ai-overview-citations' => array( 587, 'AI Overviews citing Reem Hospital pages, 2024 to 2025. Cited sources are outlined in red.' ),
 		) ),
 	array( 'slug' => 'customer-match-ip-timestamp', 'y' => 'Oct ’26', 'date' => 'October 1, 2026', 'iso' => '2026-10-01 08:00:00', 'cat' => 'Paid Media',
 		'tags' => array( 'Thought Leadership', 'Paid Media', 'Custom Data' ),
