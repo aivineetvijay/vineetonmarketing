@@ -57,7 +57,7 @@ function vv_tools_render( $id, $slug ) {
 			<div class="vvg-hero-foot">
 				<p class="vvg-lead"><?php echo esc_html( get_post_field( 'post_excerpt', $id ) ); ?></p>
 				<div class="vvg-btns">
-					<button type="button" class="vvg-btn-filled" data-vvg="example">Load example ↗</button>
+					<button type="button" class="vvg-btn-filled" data-vvg="example">Load example</button>
 					<button type="button" class="vvg-btn" data-vvg="clear">Clear form</button>
 				</div>
 			</div>
