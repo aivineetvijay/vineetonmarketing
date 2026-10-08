@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>llms.txt Generator for Real Estate | Vineet Vijay</title>
+<link rel="icon" href="/wp-content/uploads/2026/10/vineet-vijay-site-icon-32x32.png" sizes="32x32">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/apple-design-system-013f8c05-230c-4c63-b710-2b8aaf20ff0a/colors_and_type.css">
+<link rel="stylesheet" href="_ds/apple-design-system-013f8c05-230c-4c63-b710-2b8aaf20ff0a/preview/preview.css">
+<link rel="stylesheet" href="_ds/apple-design-system-013f8c05-230c-4c63-b710-2b8aaf20ff0a/ui_kits/apple-com/kit.css">
+<link rel="stylesheet" href="_ds/apple-design-system-013f8c05-230c-4c63-b710-2b8aaf20ff0a/ui_kits/apple-store/kit.css">
+<script src="_ds/apple-design-system-013f8c05-230c-4c63-b710-2b8aaf20ff0a/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#f5f5f7;font-family:var(--font-text);color:#1d1d1f;-webkit-font-smoothing:antialiased}
+a{color:#0066cc;text-decoration:none}a:hover{text-decoration:underline}
+input,select,textarea,button{font-family:inherit}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid #0071e3;outline-offset:1px}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#f5f5f7">
+  <header style="background:#000;color:#fff;height:44px;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:-0.12px;color:#cccccc">llms.txt Generator · Real Estate</header>
+  <section style="max-width:1280px;margin:0 auto;padding:64px 24px 32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+    <h1 style="margin:0;font-family:var(--font-display);font-size:clamp(34px,5vw,56px);font-weight:600;letter-spacing:-0.374px;line-height:1.07">llms.txt for real estate.</h1>
+    <p style="margin:0;font-size:21px;font-weight:400;line-height:1.38;color:#333333;max-width:640px;text-wrap:pretty">Fill in the business details and key pages. The file builds as you type, ready to download and upload to your site root.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px">
+      <button onClick="{{ loadExample }}" style="height:36px;padding:0 20px;border-radius:9999px;border:none;background:#fafafc;box-shadow:0 0 0 1px rgba(0,0,0,0.08);color:#0066cc;font-size:14px;cursor:pointer" style-active="transform:scale(0.95)">Load example</button>
+      <button onClick="{{ clearAll }}" style="height:36px;padding:0 20px;border-radius:9999px;border:none;background:#fafafc;box-shadow:0 0 0 1px rgba(0,0,0,0.08);color:#1d1d1f;font-size:14px;cursor:pointer" style-active="transform:scale(0.95)">Clear form</button>
+    </div>
+  </section>
+
+  <main style="max-width:1280px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:24px;min-width:0">
+
+      <div style="background:#fff;border:1px solid #e0e0e0;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:12px;color:#7a7a7a">Step 1</span>
+          <h2 style="margin:0;font-family:var(--font-display);font-size:24px;font-weight:600;letter-spacing:-0.28px">Business</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Business name
+            <input value="{{ f.name }}" onChange="{{ on.name }}" placeholder="Palmera Bay Developments" style="height:44px;padding:0 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;color:#1d1d1f;background:#fff;min-width:0"></input>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Website URL
+            <input value="{{ f.url }}" onChange="{{ on.url }}" placeholder="https://example.com" style="height:44px;padding:0 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;color:#1d1d1f;background:#fff;min-width:0"></input>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Business type
+            <select value="{{ f.type }}" onChange="{{ on.type }}" style="height:44px;padding:0 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;color:#1d1d1f;background:#fff">
+              <option value="developer">Developer</option>
+              <option value="brokerage">Brokerage</option>
+              <option value="agency">Agency</option>
+              <option value="portal">Property portal</option>
+              <option value="property_manager">Property manager</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Markets / cities
+            <input value="{{ f.markets }}" onChange="{{ on.markets }}" placeholder="Dubai Creek Harbour, Dubai South" style="height:44px;padding:0 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;color:#1d1d1f;background:#fff;min-width:0"></input>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Primary language
+            <input value="{{ f.lang }}" onChange="{{ on.lang }}" placeholder="English" style="height:44px;padding:0 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;color:#1d1d1f;background:#fff;min-width:0"></input>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Other languages
+            <input value="{{ f.otherLangs }}" onChange="{{ on.otherLangs }}" placeholder="Arabic, Russian" style="height:44px;padding:0 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;color:#1d1d1f;background:#fff;min-width:0"></input>
+          </label>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:14px;font-weight:600">Property types</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="8">
+              <button onClick="{{ c.toggle }}" style="height:36px;padding:0 16px;border-radius:9999px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};font-size:14px;cursor:pointer" style-active="transform:scale(0.95)">{{ c.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e0e0e0;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:12px;color:#7a7a7a">Step 2 · Optional</span>
+          <h2 style="margin:0;font-family:var(--font-display);font-size:24px;font-weight:600;letter-spacing:-0.28px">Business Summary and Description</h2>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Short description
+          <textarea value="{{ f.desc }}" onChange="{{ on.desc }}" rows="3" placeholder="1–3 factual sentences. Leave blank to auto-write from the fields above." style="padding:12px 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;line-height:1.47;color:#1d1d1f;resize:vertical"></textarea>
+        </label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Founded year
+            <input value="{{ f.founded }}" onChange="{{ on.founded }}" placeholder="2012" style="height:44px;padding:0 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;color:#1d1d1f;background:#fff;min-width:0"></input>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Licence / registration
+            <input value="{{ f.licences }}" onChange="{{ on.licences }}" placeholder="RERA ORN 12345" style="height:44px;padding:0 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;color:#1d1d1f;background:#fff;min-width:0"></input>
+          </label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600">Other facts, one per line
+          <textarea value="{{ f.facts }}" onChange="{{ on.facts }}" rows="3" placeholder="Named awards, offices, completed units — only verifiable facts." style="padding:12px 14px;border:1px solid #e0e0e0;border-radius:11px;font-size:17px;font-weight:400;line-height:1.47;color:#1d1d1f;resize:vertical"></textarea>
+        </label>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e0e0e0;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:12px;color:#7a7a7a">Step 3</span>
+            <h2 style="margin:0;font-family:var(--font-display);font-size:24px;font-weight:600;letter-spacing:-0.28px">Key pages</h2>
+          </div>
+          <span style="font-size:14px;color:#7a7a7a">{{ pageCountLabel }}</span>
+        </div>
+        <p style="margin:0;font-size:14px;line-height:1.43;color:#333333">Add hub and evergreen pages: about, projects, area guides, services, buyer guides, contact. Skip individual listings, filter URLs and login pages — they are left out automatically.</p>
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="2">
+          <div style="border:1px solid #e0e0e0;border-radius:11px;padding:16px;display:flex;flex-direction:column;gap:12px;background:#fafafc">
+            <div style="display:flex;gap:8px;align-items:center">
+              <select value="{{ r.section }}" onChange="{{ r.onSection }}" style="flex:1;min-width:0;height:36px;padding:0 12px;border:1px solid #e0e0e0;border-radius:8px;font-size:14px;color:#1d1d1f;background:#fff">
+                <option value="about">About</option>
+                <option value="projects">Projects / Featured Developments</option>
+                <option value="sale">Properties for Sale</option>
+                <option value="rent">Properties for Rent</option>
+                <option value="areas">Communities &amp; Areas</option>
+                <option value="services">Services</option>
+                <option value="guides">Buyer &amp; Investor Guides</option>
+                <option value="insights">Market Insights</option>
+                <option value="contact">Contact</option>
+                <option value="legal">Legal &amp; Compliance</option>
+                <option value="optional">Optional</option>
+              </select>
+              <button onClick="{{ r.remove }}" aria-label="Remove page" style="width:36px;height:36px;border-radius:50%;border:none;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,0.08);color:#333333;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0" style-active="transform:scale(0.95)">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 2l8 8M10 2l-8 8"></path></svg>
+              </button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+              <input value="{{ r.title }}" onChange="{{ r.onTitle }}" placeholder="Page title" style="height:40px;padding:0 12px;border:1px solid #e0e0e0;border-radius:8px;font-size:17px;color:#1d1d1f;background:#fff;min-width:0"></input>
+              <input value="{{ r.url }}" onChange="{{ r.onUrl }}" placeholder="https://example.com/about/" style="height:40px;padding:0 12px;border:1px solid #e0e0e0;border-radius:8px;font-size:17px;color:#1d1d1f;background:#fff;min-width:0"></input>
+            </div>
+            <input value="{{ r.desc }}" onChange="{{ r.onDesc }}" placeholder="One factual sentence: what the page contains." style="height:40px;padding:0 12px;border:1px solid #e0e0e0;border-radius:8px;font-size:17px;color:#1d1d1f;background:#fff;min-width:0"></input>
+            <sc-if value="{{ r.hasIssues }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:2px;font-size:12px;line-height:1.33;color:#333333">
+                <sc-for list="{{ r.issues }}" as="msg"><span>— {{ msg }}</span></sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <button onClick="{{ addRow }}" style="height:44px;border-radius:9999px;border:1px dashed #d2d2d7;background:#fff;color:#0066cc;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px" style-active="transform:scale(0.98)">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 1v12M1 7h12"></path></svg>Add page
+        </button>
+      </div>
+    </div>
+
+    <aside style="position:sticky;top:24px;display:flex;flex-direction:column;gap:16px;min-width:0">
+      <div style="background:#272729;border-radius:18px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.08);flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-size:17px;font-weight:600;color:#fff">llms.txt</span>
+            <span style="font-size:12px;color:#cccccc">{{ statsLabel }}</span>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button onClick="{{ copy }}" style="height:36px;padding:0 18px;border-radius:9999px;border:none;background:rgba(255,255,255,0.12);color:#fff;font-size:14px;cursor:pointer" style-active="transform:scale(0.95)">{{ copyLabel }}</button>
+            <button onClick="{{ download }}" style="height:36px;padding:0 18px;border-radius:9999px;border:none;background:#0066cc;color:#fff;font-size:14px;cursor:pointer" style-active="transform:scale(0.95)">Download</button>
+          </div>
+        </div>
+        <pre style="margin:0;padding:20px;max-height:calc(100vh - 220px);min-height:320px;overflow:auto;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:#f5f5f7;white-space:pre-wrap;word-break:break-word">{{ output }}</pre>
+      </div>
+      <p style="margin:0;font-size:12px;line-height:1.33;color:#7a7a7a;padding:0 8px;text-wrap:pretty">Upload the file to your site root so it resolves at {{ fileUrl }}. Only the facts entered above are used — prices, yields and offers are best left out because they go stale.</p>
+    </aside>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const KEY = 'llmstxt-re-gen-v1';
+const PTYPES = ['Residential','Commercial','Off-plan','Ready','Villas','Apartments','Townhouses','Land','Holiday homes'];
+const SECTIONS = [['about','About'],['projects','Projects'],['sale','Properties for Sale'],['rent','Properties for Rent'],['areas','Communities & Areas'],['services','Services'],['guides','Buyer & Investor Guides'],['insights','Market Insights'],['contact','Contact'],['legal','Legal & Compliance'],['optional','Optional']];
+const TYPE_LABEL = {developer:'residential property developer',brokerage:'real estate brokerage',agency:'real estate agency',portal:'property portal',property_manager:'property management company',other:'real estate business'};
+let uid = 1;
+const row = (section='about', title='', url='', desc='') => ({ id: uid++, section, title, url, desc });
+const EMPTY = { name:'', url:'', type:'developer', markets:'', lang:'English', otherLangs:'', ptypes:[], desc:'', founded:'', licences:'', facts:'', pages:[row('about'), row('contact')] };
+const EXAMPLE = { name:'Palmera Bay Developments', url:'https://palmerabay.example', type:'developer', markets:'Dubai Creek Harbour, Dubai South', lang:'English', otherLangs:'Arabic', ptypes:['Residential','Off-plan','Ready','Apartments','Townhouses'], desc:'', founded:'2012', licences:'Registered developer with the Dubai Land Department', facts:'', pages:[
+  row('about','About Palmera Bay','https://palmerabay.example/about/','Company background, leadership team and history of completed projects since 2012.'),
+  row('about','Sustainability','https://palmerabay.example/sustainability/','Approach to energy-efficient design and green building certification across projects.'),
+  row('projects','Creekside Residences | Palmera Bay','https://palmerabay.example/projects/creekside-residences/','Off-plan 1–3 bedroom apartments in Dubai Creek Harbour with waterfront promenade access.'),
+  row('projects','Sahara Gardens','https://palmerabay.example/projects/sahara-gardens/','Completed townhouse community in Dubai South with 3–4 bedroom family homes.'),
+  row('guides','How to Buy Off-Plan in Dubai','https://palmerabay.example/guides/buying-off-plan/','Step-by-step guide to off-plan purchases, escrow, payment plans and handover.'),
+  row('guides','Fees When Buying Property','https://palmerabay.example/guides/buying-fees/','Explanation of registration, agency and service charges payable by buyers.'),
+  row('contact','Contact Us','https://palmerabay.example/contact/','Sales enquiry form, phone, email and sales centre location.'),
+  row('sale','Apartments for sale','https://palmerabay.example/listings?beds=2&sort=price',''),
+  row('optional','News','https://palmerabay.example/news/','Company announcements and project launch updates.'),
+  row('optional','العربية','https://palmerabay.example/ar/','Arabic version of the website.')
+]};
+
+const list = s => s.split(',').map(x => x.trim()).filter(Boolean);
+const joinAnd = a => a.length < 2 ? (a[0]||'') : a.slice(0,-1).join(', ') + ' and ' + a[a.length-1];
+
+function check(p, brand) {
+  const hard = [], soft = [];
+  const u = p.url.trim();
+  if (!u && !p.title.trim()) return { hard: ['empty'], soft, empty: true };
+  if (!p.title.trim()) hard.push('Add a page title.');
+  if (!u) hard.push('Add a URL.');
+  else {
+    if (!/^https?:\/\/[^\s/]+\.[^\s]+/i.test(u)) hard.push('Excluded: URL must be absolute (https://…).');
+    if (/\?/.test(u)) hard.push('Excluded: URLs with query strings or filters are not allowed.');
+    if (/\/page\/\d+|[?&]page=/i.test(u)) hard.push('Excluded: pagination URL.');
+    if (/\/(login|signin|sign-in|account|my-account|saved|compare|cart|checkout|thank-you|thanks|404|admin|wp-admin|staging)(\/|$)/i.test(u)) hard.push('Excluded: utility page (login, account, cart, thank-you…).');
+    if (/\/(listing|listings|property|properties)\/[^/]+\/?.*\d{4,}/i.test(u)) soft.push('Looks like an individual listing — link the index or category page instead.');
+  }
+  const d = p.desc.trim();
+  if (!d) soft.push('Add a one-line description.');
+  else {
+    const w = d.split(/\s+/).length;
+    if (w < 6 || w > 30) soft.push('Aim for roughly 8–25 words.');
+    if (/\b(best|leading|no\.?\s?1|number one|luxurious|world-class|stunning|iconic|finest|unrivalled|discover|unlock|premier)\b/i.test(d)) soft.push('Remove marketing superlatives — keep it factual.');
+    if (/(AED|USD|EUR|GBP|INR|\$|€|£|₹)\s?\d|\b\d[\d,.]*\s?(aed|usd|million|mn|k)\b|\byield|% off|\bdiscount|\boffer\b/i.test(d)) soft.push('Avoid prices, yields or offers — they go stale.');
+  }
+  return { hard, soft };
+}
+
+function cleanTitle(t, brand) {
+  return t.trim().replace(/\s+\|\s+[^|]*$/, '').trim();
+}
+
+function build(f) {
+  const name = f.name.trim() || 'Business name';
+  const markets = list(f.markets), others = list(f.otherLangs);
+  const out = ['# ' + name, ''];
+  let summary = f.desc.trim().replace(/\s+/g, ' ');
+  if (!summary) {
+    const lc = a => a.map(x => x.toLowerCase());
+    const cats = lc(f.ptypes.filter(x => ['Residential','Commercial'].includes(x)));
+    const units = lc(f.ptypes.filter(x => ['Villas','Apartments','Townhouses','Land','Holiday homes'].includes(x)));
+    const status = lc(f.ptypes.filter(x => ['Off-plan','Ready'].includes(x)));
+    summary = `${name} is a ${TYPE_LABEL[f.type]}${markets.length ? ' operating in ' + joinAnd(markets) : ''}.`;
+    const verb = f.type === 'developer' ? 'builds' : f.type === 'property_manager' ? 'manages' : 'offers';
+    let what = units.length ? (cats.length ? joinAnd(cats) + ' ' : '') + joinAnd(units) : cats.length ? joinAnd(cats) + ' property' : '';
+    if (what || status.length) {
+      if (!what) what = 'property';
+      summary += ` It ${verb} ${what}${status.length ? ', including ' + joinAnd(status) + (f.type === 'developer' ? ' projects' : ' homes') : ''}.`;
+    }
+  }
+  out.push('> ' + summary, '');
+  const facts = [];
+  if (f.founded.trim()) facts.push('Founded in ' + f.founded.trim());
+  if (f.licences.trim()) facts.push(f.licences.trim());
+  if (markets.length) facts.push('Markets: ' + markets.join(', '));
+  if (f.ptypes.length) facts.push('Property types: ' + f.ptypes.join(', '));
+  f.facts.split('\n').map(x => x.trim().replace(/^[-•*]\s*/, '')).filter(Boolean).forEach(x => facts.push(x));
+  if (others.length) facts.push('Website available in ' + joinAnd([f.lang.trim() || 'English', ...others]));
+  if (facts.length) { facts.forEach(x => out.push('- ' + x)); out.push(''); }
+  const seen = new Set(); let links = 0, skipped = 0;
+  for (const [key, label0] of SECTIONS) {
+    const label = key === 'projects' && f.type !== 'developer' ? 'Featured Developments' : label0;
+    const items = [];
+    for (const p of f.pages) {
+      if (p.section !== key) continue;
+      const c = check(p);
+      if (c.empty) continue;
+      const u = p.url.trim().replace(/#.*$/, '');
+      if (c.hard.length || seen.has(u.replace(/\/$/, ''))) { skipped++; continue; }
+      if (links >= 150) { skipped++; continue; }
+      seen.add(u.replace(/\/$/, ''));
+      const d = p.desc.trim().replace(/\s+/g, ' ');
+      items.push(`- [${cleanTitle(p.title, name) || p.title.trim()}](${u})${d ? ': ' + d : ''}`);
+      links++;
+    }
+    if (items.length) out.push('## ' + label, ...items, '');
+  }
+  return { text: out.join('\n').trim() + '\n', links, skipped };
+}
+
+class Component extends DCLogic {
+  state = (() => {
+    try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.pages) { s.pages = s.pages.map(p => ({ ...p, id: uid++ })); return { f: { ...EMPTY, ...s }, copied: false }; } } catch (e) {}
+    return { f: { ...EMPTY, pages: EMPTY.pages.map(p => ({ ...p })) }, copied: false };
+  })();
+  setF(patch) {
+    this.setState(s => {
+      const f = { ...s.f, ...(typeof patch === 'function' ? patch(s.f) : patch) };
+      try { localStorage.setItem(KEY, JSON.stringify(f)); } catch (e) {}
+      return { f };
+    });
+  }
+  setPage(id, k, v) { this.setF(f => ({ pages: f.pages.map(p => p.id === id ? { ...p, [k]: v } : p) })); }
+  renderVals() {
+    const f = this.state.f;
+    const on = {};
+    ['name','url','type','markets','lang','otherLangs','desc','founded','licences','facts'].forEach(k => on[k] = e => this.setF({ [k]: e.target.value }));
+    const res = build(f);
+    const site = f.url.trim().replace(/\/+$/, '');
+    return {
+      f, on,
+      chips: PTYPES.map(label => {
+        const a = f.ptypes.includes(label);
+        return { label, bg: a ? '#1d1d1f' : '#fff', fg: a ? '#fff' : '#1d1d1f', border: a ? '#1d1d1f' : '#e0e0e0',
+          toggle: () => this.setF(ff => ({ ptypes: ff.ptypes.includes(label) ? ff.ptypes.filter(x => x !== label) : [...ff.ptypes, label] })) };
+      }),
+      rows: f.pages.map(p => {
+        const c = check(p);
+        const issues = c.empty ? [] : [...c.hard, ...c.soft];
+        return { ...p, issues, hasIssues: issues.length > 0,
+          onSection: e => this.setPage(p.id, 'section', e.target.value),
+          onTitle: e => this.setPage(p.id, 'title', e.target.value),
+          onUrl: e => this.setPage(p.id, 'url', e.target.value),
+          onDesc: e => this.setPage(p.id, 'desc', e.target.value),
+          remove: () => this.setF(ff => ({ pages: ff.pages.filter(x => x.id !== p.id) })) };
+      }),
+      addRow: () => this.setF(ff => { const last = ff.pages[ff.pages.length - 1]; return { pages: [...ff.pages, row(last ? last.section : 'about')] }; }),
+      pageCountLabel: f.pages.length + (f.pages.length === 1 ? ' page' : ' pages'),
+      output: res.text,
+      statsLabel: `${res.links} ${res.links === 1 ? 'link' : 'links'}${res.skipped ? ' · ' + res.skipped + ' excluded' : ''}${res.links && res.links < 25 ? ' · 25–80 recommended' : ''}`,
+      fileUrl: (site || 'https://yoursite.com') + '/llms.txt',
+      copyLabel: this.state.copied ? 'Copied' : 'Copy',
+      copy: () => { navigator.clipboard?.writeText(res.text); this.setState({ copied: true }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ copied: false }), 1600); },
+      download: () => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([res.text], { type: 'text/plain;charset=utf-8' }));
+        a.download = 'llms.txt'; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      },
+      loadExample: () => this.setF({ ...EXAMPLE, pages: EXAMPLE.pages.map(p => ({ ...p, id: uid++ })) }),
+      clearAll: () => this.setF({ ...EMPTY, pages: [row('about'), row('contact')] })
+    };
+  }
+}
+</script>
+</body>
+</html>

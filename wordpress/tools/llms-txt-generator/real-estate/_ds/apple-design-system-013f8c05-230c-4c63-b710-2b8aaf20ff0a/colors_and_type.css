@@ -1,0 +1,199 @@
+/* =============================================================================
+   Apple Design System — Color & Type tokens
+   Sourced from the design brief: homepage, environment, store, iPhone 17 Pro
+   buy page, accessories index.
+   ============================================================================= */
+
+:root {
+  /* ---------- Brand & Accent ---------------------------------------------- */
+  --color-primary: #0066cc;              /* Action Blue — every interactive  */
+  --color-primary-focus: #0071e3;        /* Focus-ring sibling                */
+  --color-primary-on-dark: #2997ff;      /* Sky Link Blue — links on dark    */
+  --color-on-primary: #ffffff;
+
+  /* ---------- Surface ----------------------------------------------------- */
+  --color-canvas: #ffffff;               /* Pure white canvas                 */
+  --color-canvas-parchment: #f5f5f7;     /* Signature Apple off-white         */
+  --color-surface-pearl: #fafafc;        /* Ghost-button fill                 */
+  --color-surface-tile-1: #272729;       /* Primary dark tile                 */
+  --color-surface-tile-2: #2a2a2c;       /* Micro-step lighter                */
+  --color-surface-tile-3: #252527;       /* Micro-step darker                 */
+  --color-surface-black: #000000;        /* Global nav, true void             */
+  --color-surface-chip-translucent: #d2d2d7; /* Base for translucent chip    */
+
+  /* ---------- Text -------------------------------------------------------- */
+  --color-ink: #1d1d1f;                  /* Headlines, body on light          */
+  --color-body: #1d1d1f;                 /* Alias — same hex                  */
+  --color-on-dark: #ffffff;
+  --color-body-on-dark: #ffffff;
+  --color-body-muted: #cccccc;           /* Secondary copy on dark            */
+  --color-ink-muted-80: #333333;         /* Pearl-button text                 */
+  --color-ink-muted-48: #7a7a7a;         /* Disabled + fine print             */
+
+  /* ---------- Hairlines --------------------------------------------------- */
+  --color-divider-soft: #f0f0f0;         /* Ring shadow on ghost buttons      */
+  --color-hairline: #e0e0e0;             /* 1px hairline on cards/chips       */
+
+  /* ---------- Translucent / blur surfaces -------------------------------- */
+  --surface-frosted-light: rgba(245, 245, 247, 0.80);  /* sub-nav            */
+  --surface-frosted-deep:  rgba(245, 245, 247, 0.72);  /* floating bar       */
+  --blur-frosted: saturate(180%) blur(20px);
+
+  /* ---------- Elevation (the ONLY shadow) -------------------------------- */
+  --shadow-product: 0 5px 30px 3px rgba(0, 0, 0, 0.22);
+
+  /* ---------- Hairline used as a "soft ring" -----------------------------*/
+  --ring-soft: 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+  /* ---------- Radius ------------------------------------------------------ */
+  --radius-none: 0px;
+  --radius-xs: 5px;
+  --radius-sm: 8px;
+  --radius-md: 11px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+  --radius-full: 50%;
+
+  /* ---------- Spacing (base 8) ------------------------------------------- */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 17px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-section: 80px;
+
+  /* ---------- Containers ------------------------------------------------- */
+  --container-text: 980px;
+  --container-grid: 1440px;
+
+  /* ---------- Typography: families --------------------------------------- */
+  /* SF Pro is Apple's proprietary face. On Apple platforms `system-ui`
+     resolves to SF Pro; elsewhere we fall back to Inter as the documented
+     open-source substitute. */
+  --font-display: 'SF Pro Display', system-ui, -apple-system,
+                  BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-text:    'SF Pro Text', system-ui, -apple-system,
+                  BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Ladder: 300 / 400 / 600 / 700 — 500 deliberately absent */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+}
+
+/* =============================================================================
+   Type scale — exact specimens from the system brief
+   ============================================================================= */
+
+.type-hero-display {
+  font-family: var(--font-display);
+  font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.28px;
+}
+.type-display-lg {
+  font-family: var(--font-display);
+  font-size: 40px; font-weight: 600; line-height: 1.10; letter-spacing: 0;
+}
+.type-display-md {
+  font-family: var(--font-text);
+  font-size: 34px; font-weight: 600; line-height: 1.47; letter-spacing: -0.374px;
+}
+.type-lead {
+  font-family: var(--font-text);
+  font-size: 28px; font-weight: 400; line-height: 1.14; letter-spacing: 0.196px;
+}
+.type-lead-airy {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 300; line-height: 1.5; letter-spacing: 0;
+}
+.type-tagline {
+  font-family: var(--font-text);
+  font-size: 21px; font-weight: 600; line-height: 1.19; letter-spacing: 0.231px;
+}
+.type-body-strong {
+  font-family: var(--font-text);
+  font-size: 17px; font-weight: 600; line-height: 1.24; letter-spacing: -0.374px;
+}
+.type-body {
+  font-family: var(--font-text);
+  font-size: 17px; font-weight: 400; line-height: 1.47; letter-spacing: -0.374px;
+}
+.type-dense-link {
+  font-family: var(--font-text);
+  font-size: 17px; font-weight: 400; line-height: 2.41; letter-spacing: 0;
+}
+.type-caption {
+  font-family: var(--font-text);
+  font-size: 14px; font-weight: 400; line-height: 1.43; letter-spacing: -0.224px;
+}
+.type-caption-strong {
+  font-family: var(--font-text);
+  font-size: 14px; font-weight: 600; line-height: 1.29; letter-spacing: -0.224px;
+}
+.type-button-large {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 300; line-height: 1.0; letter-spacing: 0;
+}
+.type-button-utility {
+  font-family: var(--font-text);
+  font-size: 14px; font-weight: 400; line-height: 1.29; letter-spacing: -0.224px;
+}
+.type-fine-print {
+  font-family: var(--font-text);
+  font-size: 12px; font-weight: 400; line-height: 1.0; letter-spacing: -0.12px;
+}
+.type-micro-legal {
+  font-family: var(--font-text);
+  font-size: 10px; font-weight: 400; line-height: 1.3; letter-spacing: -0.08px;
+}
+.type-nav-link {
+  font-family: var(--font-text);
+  font-size: 12px; font-weight: 400; line-height: 1.0; letter-spacing: -0.12px;
+}
+
+/* =============================================================================
+   Semantic element defaults — opt-in by class on a root container
+   ============================================================================= */
+
+.apple-typeset {
+  font-family: var(--font-text);
+  color: var(--color-ink);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.apple-typeset h1 {
+  font-family: var(--font-display);
+  font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.28px;
+  margin: 0 0 var(--space-lg);
+}
+.apple-typeset h2 {
+  font-family: var(--font-display);
+  font-size: 40px; font-weight: 600; line-height: 1.10; letter-spacing: 0;
+  margin: 0 0 var(--space-md);
+}
+.apple-typeset h3 {
+  font-family: var(--font-text);
+  font-size: 28px; font-weight: 600; line-height: 1.14; letter-spacing: 0.196px;
+  margin: 0 0 var(--space-sm);
+}
+.apple-typeset h4 {
+  font-family: var(--font-text);
+  font-size: 21px; font-weight: 600; line-height: 1.19; letter-spacing: 0.231px;
+  margin: 0 0 var(--space-sm);
+}
+.apple-typeset p  { margin: 0 0 var(--space-md); }
+.apple-typeset a  { color: var(--color-primary); text-decoration: none; }
+.apple-typeset a:hover { text-decoration: underline; }
+.apple-typeset strong { font-weight: 600; }
+.apple-typeset small  { font-size: 12px; letter-spacing: -0.12px; color: var(--color-ink-muted-48); }
+
+.apple-typeset.on-dark             { color: var(--color-body-on-dark); }
+.apple-typeset.on-dark a           { color: var(--color-primary-on-dark); }
+.apple-typeset.on-dark small       { color: var(--color-body-muted); }
