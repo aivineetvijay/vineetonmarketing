@@ -108,5 +108,10 @@
   "t": "Customer Match IP and Timestamp Matching: What It Means",
   "d": "Google Ads now matches Customer Match lists on IP address and timestamp. Here is why it matters for match rates, and what to check on consent first.",
   "f": "Customer Match IP address matching"
+ },
+ "626": {
+  "t": "llms.txt Generator by Industry | Vineet Vijay",
+  "d": "Free llms.txt generators built for specific industries. Learn what llms.txt is, why it matters for AI visibility, how the generator works and how to implement it.",
+  "f": "llms.txt generator"
  }
 }

@@ -95,7 +95,7 @@ foreach ( $faq as $qa ) {
 $nodes = array(
 	vv_hero( 'Hub',
 		array( vv_meta_block( 'Hub', 'Built for', 'Marketers and site owners' ), vv_meta_block( 'Hub', 'Generators', count( $generators ) . ' industries · ' . $live . ' live' ), vv_meta_block( 'Hub', 'Price', 'Free to use', true ) ),
-		'llms.txt<br>Generator', '.', true,
+		'llms.txt Generator', '.', true,
 		'A family of industry-specific generators that turn your website into a clean, curated llms.txt file: the short map AI assistants can read to understand who you are and which pages to trust.',
 		array(
 			vv_btn( 'Hub Industry Button', 'Choose your industry', '#generators', array( 'btn', 'btn-filled' ) ),
