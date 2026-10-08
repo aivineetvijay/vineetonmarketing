@@ -79,12 +79,12 @@ $steps = array(
 	array( '03', 'Add your key pages.', 'For each important page, paste its title and URL, write one factual sentence about what it contains, and pick its section. Click Add page for the next one.' ),
 	array( '04', 'Fix anything flagged.', 'Read the notes under each page. Filter URLs, logins and duplicates are left out for you; rewrite any line flagged for superlatives, prices or claims.' ),
 	array( '05', 'Copy or download the file.', 'Check the preview on the right. When it looks right, click Copy or Download to save your llms.txt.' ),
-	array( '06', 'Upload it to your site root.', 'Upload the file so it opens at yourdomain.com/llms.txt, then open that address to check it loads as plain text.' ),
 );
-$implement = array(
-	array( '01', 'Upload it to the root.', 'Save the file as llms.txt so it loads at yourdomain.com/llms.txt. On WordPress, upload it through your host’s file manager. If your SEO plugin has an llms.txt setting, you can paste the file there instead of letting the plugin auto-generate one.' ),
-	array( '02', 'Check it is reachable.', 'Open the URL in a browser. It should return plain text with a 200 status, not a redirect, a login screen or an HTML page. Make sure robots.txt isn’t blocking it.' ),
-	array( '03', 'Keep it current.', 'Regenerate it when you launch a service, project or location, and review it at least once a quarter. An out-of-date llms.txt sends models to pages that no longer exist.' ),
+/* After the file is built: publish, check, maintain. */
+$publish = array(
+	array( '06', 'Upload it to your site root.', 'Save the file as llms.txt so it opens at yourdomain.com/llms.txt. On WordPress, upload it through your host’s file manager, or paste it into your SEO plugin’s llms.txt setting instead of letting the plugin generate one.' ),
+	array( '07', 'Check that it loads.', 'Open yourdomain.com/llms.txt in a browser. You should see plain text with a 200 status, not a redirect, a login screen or an HTML page. Make sure robots.txt isn’t blocking it.' ),
+	array( '08', 'Keep it current.', 'Your entries stay saved in your browser. Come back and regenerate the file when you launch a service, project or location, and review it at least once a quarter.' ),
 );
 /* Also written to the vv_faq post meta by the runner, for the FAQPage schema (vv-schema.php). */
 $faq = array(
@@ -135,34 +135,30 @@ $nodes = array(
 			) ),
 		) ),
 	), array( 'tag' => 'section' ) ),
-	vv_f( 'Reasons', array( 'section', 'bg-parchment' ), array(
+	vv_f( 'Reasons', array( 'section', 'bg-ink' ), array(
 		vv_f( 'Reasons Inner', array( 'wrap' ), array(
-			vv_sec_head( 'Reasons', '03', 'For marketers', 'Six reasons it earns a place on the AI-visibility checklist' ),
-			vv_title_block( 'Reasons', 'Why it matters', 'for marketers.' ),
-			vv_cards( 'Reasons', $reasons, array( 'topics-grid', 'mt-96' ) ),
+			vv_sec_head( 'Reasons', '03', 'For marketers', 'Six reasons it earns a place on the AI-visibility checklist', true ),
+			vv_title_block( 'Reasons', 'Why it matters', 'for marketers.', true ),
+			vv_cards( 'Reasons', $reasons, array( 'topics-grid', 'mt-96' ), true ),
 		) ),
 	), array( 'tag' => 'section' ) ),
-	vv_f( 'How', array( 'section', 'bg-ink' ), array(
+	vv_f( 'How', array( 'section', 'bg-parchment' ), array(
 		vv_f( 'How Inner', array( 'wrap' ), array(
-			vv_sec_head( 'How', '04', 'How it works', 'From your details to a ready-to-upload file', true ),
-			vv_title_block( 'How', 'Follow these', 'six steps.', true ),
-			vv_cards( 'How', $steps, array( 'topics-grid', 'mt-96' ), true, 'Step ' ),
-		) ),
-	), array( 'tag' => 'section' ), null, 'how-it-works' ),
-	vv_f( 'Implement', array( 'section', 'bg-parchment' ), array(
-		vv_f( 'Implement Inner', array( 'wrap' ), array(
-			vv_sec_head( 'Implement', '05', 'Implementation', 'Three steps · no developer needed' ),
-			vv_title_block( 'Implement', 'How to', 'implement it.' ),
-			vv_cards( 'Implement', $implement, array( 'grid-3-stack', 'mt-96' ), false, 'Step ' ),
-			vv_f( 'Implement Callout', array( 'art-callout', 'mt-64' ), array(
-				vv_p( 'Implement Callout Label', 'What it won’t do', array( 't-mono' ) ),
-				vv_p( 'Implement Callout Text', 'llms.txt is not a ranking factor, and no AI platform guarantees it will read the file. Support varies by platform and Google has not said it uses it. Treat it as low-cost hygiene that sits beside the work that actually moves AI visibility: structured data, crawlable content and genuine source authority.', array( 'art-p-sm' ) ),
+			vv_sec_head( 'How', '04', 'How it works', 'From your details to a live llms.txt' ),
+			vv_title_block( 'How', 'Build it.', 'Then publish it.' ),
+			vv_p( 'How Build Label', 'Build your file', array( 't-mono', 'mt-96' ) ),
+			vv_cards( 'How Build', $steps, array( 'topics-grid', 'mt-32' ), false, 'Step ' ),
+			vv_p( 'How Publish Label', 'Once it’s built', array( 't-mono', 'mt-96' ) ),
+			vv_cards( 'How Publish', $publish, array( 'grid-3-stack', 'mt-32' ), false, 'Step ' ),
+			vv_f( 'How Callout', array( 'art-callout', 'mt-64' ), array(
+				vv_p( 'How Callout Label', 'What it won’t do', array( 't-mono' ) ),
+				vv_p( 'How Callout Text', 'llms.txt is not a ranking factor, and no AI platform guarantees it will read the file. Support varies by platform and Google has not said it uses it. Treat it as low-cost hygiene that sits beside the work that actually moves AI visibility: structured data, crawlable content and genuine source authority.', array( 'art-p-sm' ) ),
 			), array(), vv_ix() ),
 		) ),
-	), array( 'tag' => 'section' ) ),
+	), array( 'tag' => 'section' ), null, 'how-it-works' ),
 	vv_f( 'Questions', array( 'section', 'bg-canvas' ), array(
 		vv_f( 'Questions Inner', array( 'wrap' ), array(
-			vv_sec_head( 'Questions', '06', 'Questions', 'The ones that come up most' ),
+			vv_sec_head( 'Questions', '05', 'Questions', 'The ones that come up most' ),
 			vv_title_block( 'Questions', 'Common', 'questions.' ),
 			vv_f( 'Questions Holder', array( 'stack', 'mt-64' ), array(
 				vv_n( 'e-accordion', 'Questions Accordion', array( 'acc' ), array( 'default_state' => 'first_expanded', 'max_expanded' => 'one', 'show_icon' => true, 'faq_schema' => false ), $items ),
