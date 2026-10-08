@@ -11,6 +11,9 @@ $posts = array(
 		't' => 'How to rank in AI Overviews: what I learned getting cited.',
 		'dek' => 'AI Overviews quote passages, not pages. Six citations from a DA 17 hospital site show what gets lifted, and the LIFT test turns it into a checklist.',
 		'min' => 9, 'tone' => 'blue', 'fmt' => 'Framework', 'body_src' => 'rank-in-ai-overviews',
+		/* Banners (made by wordpress/assets/essays/upload-image.php): 607 = 1600x534 desktop, 608 = 1586x992 mobile + featured. */
+		'banner' => array( 607, 608 ), 'thumb' => 608,
+		'banner_alt' => 'How to rank in AI Overviews: high-quality content, schema markup, internal and external links and technical SEO feeding a Google AI Overview, leading to more visibility, higher clicks, trusted authority and better engagement',
 		/* Screenshot 587 = 1600x859 (made by wordpress/assets/essays/upload-image.php from reem-hospital-ai-overview-citations-source.webp). */
 		'figures' => array(
 			'reem-hospital-ai-overview-citations' => array( 587, 'AI Overviews citing Reem Hospital pages, 2024 to 2025. Cited sources are outlined in red.' ),
