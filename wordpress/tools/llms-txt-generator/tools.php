@@ -2,7 +2,7 @@
 /**
  * The llms.txt generators: one WordPress page per industry under the hub (/ai-tools/llms-txt-generator/<slug>/).
  * Each page renders inside the theme (header, breadcrumbs, footer) via the vv-tools mu-plugin; the tool itself is
- * assets/generator.js + <slug>/config.js. Used by install-llms-generators.php. Pages are noindex: shared by link.
+ * assets/generator.js + <slug>/config.js. Used by install-llms-generators.php. Pages are indexable and listed in the sitemap.
  *
  * h1: "main|italic tail".
  */

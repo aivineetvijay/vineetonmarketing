@@ -3,7 +3,7 @@
  * Server-side installer for the llms.txt generators. Expects $vv_base (raw GitHub URL of wordpress/ at a commit).
  *  1. Copies the shared engine (assets/) and each industry's config.js to wp-content/uploads/vv-tools/llms-txt-generator/.
  *  2. Installs the vv-tools mu-plugin, which renders the tool pages inside the theme.
- *  3. Creates or updates one page per tool under the hub (/ai-tools/llms-txt-generator/<slug>/), noindex.
+ *  3. Creates or updates one page per tool under the hub (/ai-tools/llms-txt-generator/<slug>/), indexable.
  *  4. Removes the old standalone Real Estate build (index.html, support.js, _ds/) that the pages replace.
  * Re-running is safe: files are overwritten and pages are matched by slug under the hub.
  */
@@ -52,7 +52,7 @@ foreach ( $tools as $slug => $t ) {
 		'ast-site-content-layout' => 'full-width-container', 'site-content-style' => 'unboxed', 'site-sidebar-layout' => 'no-sidebar', 'site-post-title' => 'disabled',
 		'rank_math_title' => $t['seo_t'], 'rank_math_description' => $t['seo_d'], 'rank_math_facebook_title' => $t['seo_t'], 'rank_math_facebook_description' => $t['seo_d'],
 		'rank_math_focus_keyword' => 'llms.txt generator for ' . strtolower( $t['label'] ), 'rank_math_breadcrumb_title' => $t['label'],
-		'rank_math_robots' => array( 'noindex' ),
+		'rank_math_robots' => array( 'index' ),
 	);
 	foreach ( $meta as $k => $v ) { update_post_meta( $id, $k, $v ); }
 	$pages[ $slug ] = array( 'id' => $id, 'url' => get_permalink( $id ) );
