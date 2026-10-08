@@ -13,9 +13,12 @@ $link = function ( $text, $href ) { return '<a href="' . esc_url( $href ) . '"><
 /* Generators: industry, who it is for, tool slug (null = coming soon). */
 $generators = array(
 	array( 'Real Estate', 'Developers, brokerages, agencies and portals', 'real-estate' ),
-	array( 'Healthcare', 'Hospitals, clinics and specialists', null ),
+	array( 'Healthcare', 'Hospitals, clinics and specialists', 'healthcare' ),
+	array( 'E-commerce', 'D2C brands, retailers and marketplaces', 'ecommerce' ),
+	array( 'Education', 'Universities, schools, institutes and learning platforms', 'education' ),
+	array( 'Finance & Fintech', 'Banks, payments, lending, insurance and investment firms', 'finance' ),
+	array( 'Content & Publishers', 'News sites, magazines, blogs and newsletters', 'publishers' ),
 	array( 'Travel', 'Hotels, tour operators and travel agencies', null ),
-	array( 'E-commerce', 'D2C brands and online stores', null ),
 	array( 'Small Business', 'Local services and SMBs', null ),
 );
 $live = count( array_filter( $generators, function ( $g ) { return $g[2]; } ) );
@@ -66,9 +69,12 @@ $steps = array(
 );
 $playbooks = array(
 	array( 'Real Estate · Live', 'Projects over listings.', 'Projects, communities, sale and rent hubs, buyer and investor guides. Individual listings are left out because they expire and change price.' ),
-	array( 'Healthcare · Coming soon', 'Accuracy over reach.', 'Specialties, doctors, conditions treated, locations, insurance and patient guides, with medical descriptions kept strictly factual.' ),
+	array( 'Healthcare · Live', 'Accuracy over reach.', 'Specialties, doctors, conditions treated, locations, insurance and patient guides, with medical descriptions kept strictly factual.' ),
+	array( 'E-commerce · Live', 'Categories over SKUs.', 'Categories, flagship products, shipping, returns and sizing: the questions shoppers ask an assistant before they buy.' ),
+	array( 'Education · Live', 'Programmes over open days.', 'Programmes, admissions, accreditation and student support. Fees, deadlines and intake dates stay on the page, not in the file.' ),
+	array( 'Finance & Fintech · Live', 'Products over promotions.', 'Products, regulation and licensing, fees pages, security and help. No rates, returns or advice, and licences only as you state them.' ),
+	array( 'Content & Publishers · Live', 'Standards over headlines.', 'Sections, editorial standards, evergreen guides and named series. Dated news, tag archives and sponsored posts are left out.' ),
 	array( 'Travel · Coming soon', 'Places over prices.', 'Destinations, stays, experiences, booking policies and travel guides, without the seasonal fares and offers that go out of date.' ),
-	array( 'E-commerce · Coming soon', 'Categories over SKUs.', 'Categories, flagship products, shipping, returns and sizing: the questions shoppers ask an assistant before they buy.' ),
 	array( 'Small Business · Coming soon', 'Local and short.', 'Services, service areas, hours, contact details and FAQs. Compact, specific and easy for a model to quote correctly.' ),
 	array( 'Your industry?', 'Tell me what’s next.', 'Working in a vertical that isn’t here yet? ' . $link( 'Send it over', vv_url( '/contact/' ) ) . '. The most requested industries get built first.' ),
 );
@@ -143,7 +149,7 @@ $nodes = array(
 	vv_f( 'Playbooks', array( 'section', 'bg-canvas' ), array(
 		vv_f( 'Playbooks Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Playbooks', '05', 'Why industry-specific', 'Same format · different priorities' ),
-			vv_title_block( 'Playbooks', 'One format.', 'Five playbooks.' ),
+			vv_title_block( 'Playbooks', 'One format.', 'Eight playbooks.' ),
 			vv_p( 'Playbooks Intro', 'The llms.txt format is the same everywhere. What changes by industry is which pages matter, what to leave out and what a model must never get wrong. Each generator builds that judgement in, instead of treating every site as a generic list of links.', array( 't-lead', 'measure-620', 'mt-32' ) ),
 			vv_cards( 'Playbooks', $playbooks, array( 'topics-grid', 'mt-96' ) ),
 		) ),
