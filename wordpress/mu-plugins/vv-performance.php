@@ -9,13 +9,13 @@
  *              Astra's second copy of Inter is skipped there and Elementor's file is preloaded instead.
  *              Theme, Elementor and font stylesheets are printed inline in <head>; essay banners load eagerly and the
  *              one for the current screen size is preloaded at high priority. After any cache purge every public page
- *              is requested once in the background so it is cached again.
- * Version:     1.3.0
+ *              is requested once in the background so it is cached again. Fonts use font-display: optional.
+ * Version:     1.4.0
  *
  * Install: copy to wp-content/mu-plugins/vv-performance.php (must-use plugins load automatically).
  * Related settings (not in this file): Astra loads Google Fonts locally with preload (Astra > Performance);
  *              Elementor loads Google Fonts locally (elementor_local_google_fonts) and prints page CSS inline
- *              (elementor_css_print_method = internal); the kit's unused default global fonts are set to Inter, so
+ *              (elementor_css_print_method = internal) with font-display optional (elementor_font_display); the kit's unused default global fonts are set to Inter, so
  *              Roboto and Roboto Slab no longer load; LiteSpeed browser cache is on (1 year).
  */
 
@@ -198,4 +198,13 @@ add_action( 'vv_perf_warm_cache', function () {
 	foreach ( array_unique( $urls ) as $url ) {
 		wp_remote_get( $url, array( 'timeout' => 20, 'headers' => array( 'Accept-Encoding' => 'gzip, deflate, br' ) ) );
 	}
+} );
+
+/* ---------- No font swap after first paint ----------
+ * With font-display: swap, phones paint the text in the fallback font and re-wrap it when Inter arrives, which
+ * moved the essay banner down (CLS 0.23 on mobile). optional uses Inter only if it is ready for the first paint
+ * (it is preloaded, so usually it is) and never swaps afterwards; the next page view has it cached. Elementor's
+ * fonts follow its own setting (elementor_font_display = optional); this does the same for Astra's copy. */
+add_filter( 'astra_fonts_display_property', function () {
+	return 'optional';
 } );
