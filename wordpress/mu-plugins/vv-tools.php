@@ -7,7 +7,7 @@
  *              generator, FAQ and more generators. Page copy comes from <slug>/content.json and the generator from
  *              assets/generator.js + <slug>/config.js, all in wp-content/uploads/vv-tools/llms-txt-generator/.
  *              SEO meta (title, description, robots) is Rank Math's, set per page; FAQPage schema comes from vv_faq.
- * Version:     3.1.0
+ * Version:     3.2.0
  *
  * Install: copy to wp-content/mu-plugins/vv-tools.php (see wordpress/tools/install-llms-generators.php).
  */
@@ -91,10 +91,6 @@ function vv_tools_render( $id, $c ) {
 				<?php foreach ( $c['guide']['types'] as $it ) : ?>
 				<div class="vvg-card"><h3><?php $e( $it[0] ); ?></h3><p><?php $e( $it[1] ); ?></p></div>
 				<?php endforeach; ?>
-			</div>
-			<div class="vvg-inout">
-				<div class="vvg-inout-box"><h3>Include</h3><ul><?php foreach ( $c['guide']['include'] as $x ) { echo '<li>' . esc_html( $x ) . '</li>'; } ?></ul></div>
-				<div class="vvg-inout-box"><h3>Leave out</h3><ul><?php foreach ( $c['guide']['leave'] as $x ) { echo '<li>' . esc_html( $x ) . '</li>'; } ?></ul></div>
 			</div>
 			<div class="vvg-bp-head">
 				<h3><?php $e( $c['guide']['bp_h3'] ); ?></h3>
