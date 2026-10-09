@@ -147,7 +147,7 @@
  ],
  [
   "p",
-  "Why \"new\"? Because the screener changed. For twenty years the main reader of your structured data was Google's results page, and the payoff was visible: star ratings, FAQ dropdowns, recipe cards. Now the reader is a stack of systems (search indexes, knowledge graphs, retrieval layers) that feed answers in AI Overviews, ChatGPT, Copilot, Perplexity and Gemini. The payoff is less visible. The screening is more important."
+  "Why \"new\"? Because the screener changed. For twenty years the main reader of your structured data was Google's results page, and the payoff was visible: star ratings, FAQ dropdowns, recipe cards. Now the reader is a stack of systems (search indexes, knowledge graphs, retrieval layers) that feed answers in <a href=\"https://vineetonmarketing.com/rank-in-ai-overviews/\">AI Overviews</a>, ChatGPT, Copilot, Perplexity and Gemini. The payoff is less visible. The screening is more important."
  ],
  [
   "p",
@@ -351,7 +351,7 @@
   [
    "<strong>Read the resume.</strong> Run your homepage, one service page, one people page and one article through the <a href=\"https://validator.schema.org/\">Schema Markup Validator</a>. Note what types exist and what is missing against the five lines.",
    "<strong>Check the Google view.</strong> Use Google's Rich Results Test and the enhancement reports in Search Console to catch errors on types Google still supports.",
-   "<strong>Call the references.</strong> Open every sameAs link. Is it live, official and consistent with the site on name, address and description?",
+   "<strong>Call the references.</strong> Open every <a href=\"https://vineetonmarketing.com/sameas-schema/\">sameAs</a> link. Is it live, official and consistent with the site on name, address and description?",
    "<strong>Interview the machine.</strong> Ask ChatGPT, Gemini, Perplexity and Copilot the same plain questions: who is this brand, what does it do, where is it, who are its experts. Write down what is wrong or blended.",
    "<strong>Trace the errors.</strong> For each wrong answer, ask whether your own site, markup or profiles are the source of the confusion. Fix those first; they are the ones you control."
   ]

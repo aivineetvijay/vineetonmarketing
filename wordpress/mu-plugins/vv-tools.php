@@ -8,7 +8,7 @@
  *              assets/generator.js + <slug>/config.js, all in wp-content/uploads/vv-tools/llms-txt-generator/.
  *              SEO meta (title, description, robots) is Rank Math's, set per page; FAQPage schema comes from vv_faq.
  *              generator.css is printed inline in the head; the two scripts load deferred.
- * Version:     3.4.0
+ * Version:     3.5.0
  *
  * Install: copy to wp-content/mu-plugins/vv-tools.php (see wordpress/tools/install-llms-generators.php).
  */
@@ -57,6 +57,13 @@ function vv_tools_render( $id, $c ) {
 	$label  = (string) get_post_meta( $id, 'vv_tool_label', true );
 	$others = get_posts( array( 'post_type' => 'page', 'post_parent' => $hub, 'post_status' => 'publish', 'numberposts' => 20, 'orderby' => 'menu_order', 'order' => 'ASC', 'exclude' => array( $id ), 'meta_key' => 'vv_tool' ) );
 	$enc    = rawurlencode( $self );
+	/* Related essay for each generator, linked from the author card. */
+	$slug    = (string) get_post_meta( $id, 'vv_tool', true );
+	$essays  = array(
+		'real-estate' => array( '/schema-markup-for-real-estate/', 'Schema for property sites' ),
+		'healthcare'  => array( '/rank-in-ai-overviews/', 'How a hospital site got cited in AI Overviews' ),
+	);
+	$related = $essays[ $slug ] ?? array( '/schema-markup-ai-visibility/', 'Schema for AI visibility' );
 	$e      = function ( $s ) { echo esc_html( $s ); };
 	?>
 <main id="main-content" class="vvg">
@@ -160,6 +167,7 @@ function vv_tools_render( $id, $c ) {
 				<h2>Built by Vineet Vijay.</h2>
 				<p>Digital marketing strategist based in the UAE, writing about AI in marketing, search, paid media and measurement.</p>
 				<div class="vvg-more-links">
+					<a href="<?php echo esc_url( home_url( $related[0] ) ); ?>"><?php $e( $related[1] ); ?> ›</a>
 					<a href="<?php echo esc_url( home_url( '/writing/' ) ); ?>">Read the writing ›</a>
 					<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Get in touch ›</a>
 				</div>

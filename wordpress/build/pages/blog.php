@@ -439,8 +439,18 @@ foreach ( $posts as $k => $p ) {
 						vv_p( 'Sidebar Essays Heading', 'More essays', array( 't-mono' ) ),
 						vv_f( 'Sidebar Essays List', array( 'aside-list' ), $suggest ),
 					) ),
-					/* Image slot for a future ad/promo image (4:5 on desktop, 6:5 up to 300px on tablet/mobile). */
-					vv_img( 'Sidebar Image Slot', 357, '', array( 'ad-slot' ) ),
+					/* Promo for the free llms.txt generators (replaced the empty ad/promo image slot, 9 October 2026). */
+					vv_link( 'Sidebar Tool Promo', array( 'gen-card' ), vv_url( '/ai-tools/llms-txt-generator/' ), array(
+						vv_f( 'Sidebar Tool Promo Status', array( 'gen-pill' ), array(
+							vv_p( 'Sidebar Tool Promo Status Dot', '●', array( 'status-dot' ), 'span' ),
+							vv_p( 'Sidebar Tool Promo Status Label', 'Free tool', array( 'status-label' ), 'span' ),
+						) ),
+						vv_f( 'Sidebar Tool Promo Body', array( 'gen-body' ), array(
+							vv_p( 'Sidebar Tool Promo Title', 'llms.txt generator', array( 'aside-title' ) ),
+							vv_p( 'Sidebar Tool Promo Text', 'Help AI assistants describe your business accurately. Pick your industry; the file builds in your browser.', array( 'art-p-sm' ) ),
+						) ),
+						vv_p( 'Sidebar Tool Promo Action', 'Build your llms.txt →', array( 'gen-cta' ), 'span' ),
+					) ),
 				), array( 'tag' => 'aside' ) ),
 			) ),
 		) ) ), array( 'tag' => 'section' ) ),

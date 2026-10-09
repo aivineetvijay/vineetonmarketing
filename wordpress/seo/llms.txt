@@ -1,0 +1,44 @@
+# Vineet Vijay
+
+> Vineet Vijay is a digital marketing strategist based in Dubai, United Arab Emirates, with ten years in healthcare, e-commerce, FMCG and luxury marketing across the UAE and India. This site publishes his practitioner essays on AI search visibility, schema markup, SEO and paid media, and free llms.txt generators for marketers.
+
+- Type: Personal website and publication
+- Based: Dubai, United Arab Emirates
+- Markets: UAE, Saudi Arabia, India and the wider GCC
+- Current role: Digital marketing at House of Comms
+- Previously: Reem Hospital, Wavemaker (WPP), Interactive Avenues (IPG)
+- Topics: AI search visibility (AEO and GEO), schema markup, SEO, paid media, measurement
+- Quoting: welcome with attribution and a link to the original essay
+
+## About
+
+- [Experience](https://vineetonmarketing.com/experience/): Roles, results, education and skills from ten years in digital marketing across the UAE and India.
+- [Contact](https://vineetonmarketing.com/contact/): Email, phone and a contact form for advisory, speaking and podcast enquiries.
+
+## Essays
+
+- [What is sameAs schema? A plain-English guide for marketers](https://vineetonmarketing.com/sameas-schema/): What sameAs markup is, who needs it, when to use it and how to add it without writing code.
+- [How to rank in AI Overviews: what I learned getting cited](https://vineetonmarketing.com/rank-in-ai-overviews/): How a hospital website with a domain authority of 17 was cited in Google AI Overviews, and the LIFT test for writing passages AI answers can quote.
+- [Seven schemas every property site needs](https://vineetonmarketing.com/schema-markup-for-real-estate/): The seven Schema.org types a real estate developer website needs, a worked example and a brief for the development team.
+- [Schema is your website's resume](https://vineetonmarketing.com/schema-markup-ai-visibility/): A five-line framework for schema markup that helps search engines and AI tools identify a person or business correctly.
+- [Customer Match just learned to read your server logs](https://vineetonmarketing.com/customer-match-ip-timestamp/): What Google Ads Customer Match matching on IP address and timestamp means for match rates, and the consent steps to take first.
+
+## Free tools
+
+- [AI Tools](https://vineetonmarketing.com/ai-tools/): Free tools for marketers that run in the browser.
+- [llms.txt Generator](https://vineetonmarketing.com/ai-tools/llms-txt-generator/): What llms.txt is, why it matters for AI visibility, and industry-specific generators that build the file.
+- [llms.txt generator for real estate](https://vineetonmarketing.com/ai-tools/llms-txt-generator/real-estate/): For property developers, brokerages, agencies and portals.
+- [llms.txt generator for healthcare](https://vineetonmarketing.com/ai-tools/llms-txt-generator/healthcare/): For hospitals, clinics and specialists.
+- [llms.txt generator for e-commerce](https://vineetonmarketing.com/ai-tools/llms-txt-generator/ecommerce/): For D2C brands, retailers and marketplaces.
+- [llms.txt generator for education](https://vineetonmarketing.com/ai-tools/llms-txt-generator/education/): For universities, schools, institutes and learning platforms.
+- [llms.txt generator for finance and fintech](https://vineetonmarketing.com/ai-tools/llms-txt-generator/finance/): For banks, payments, lending, insurance and investment firms.
+- [llms.txt generator for publishers](https://vineetonmarketing.com/ai-tools/llms-txt-generator/publishers/): For news sites, magazines, blogs and newsletters.
+
+## Policies
+
+- [Privacy policy](https://vineetonmarketing.com/privacy-policy/): What the site collects, why, who processes it and how to see or delete it.
+
+## Optional
+
+- [Writing](https://vineetonmarketing.com/writing/): Index of all essays, filterable by topic.
+- [LinkedIn](https://www.linkedin.com/in/vineetvijay): Vineet Vijay's professional profile.

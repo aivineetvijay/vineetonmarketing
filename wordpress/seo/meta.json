@@ -16,7 +16,7 @@
  },
  "262": {
   "t": "Free AI Tools for Marketers | Vineet Vijay",
-  "d": "Small, free AI tools built for marketers: SEO briefs, ad copy variants, ROAS planning, personas, UTMs and report summaries. Take the repetitive work out.",
+  "d": "Free tools for marketers that run in your browser, starting with llms.txt generators for real estate, healthcare, e-commerce, education, finance and publishers.",
   "f": "AI tools for marketers"
  },
  "265": {
@@ -118,5 +118,10 @@
   "t": "What Is sameAs Schema? A Plain-English Guide for Marketers",
   "d": "sameAs schema tells Google and AI tools which profiles are yours. What it is, who needs it, when to use it, and how to add it without writing code.",
   "f": "sameAs schema"
+ },
+ "3": {
+  "t": "Privacy Policy | Vineet Vijay",
+  "d": "What vineetonmarketing.com collects, why, who processes it for me and how to see or delete your information. The tools keep your entries in your own browser.",
+  "f": "privacy policy"
  }
 }

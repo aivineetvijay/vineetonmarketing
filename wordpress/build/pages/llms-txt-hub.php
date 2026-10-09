@@ -69,7 +69,7 @@ $reasons = array(
 	array( '01', 'Shape the summary.', 'AI answers describe your brand in a sentence or two. llms.txt gives you a say in which facts make it into that sentence.' ),
 	array( '02', 'Point to the right pages.', 'Models choose sources quickly. A curated list steers them toward your service, product and guide pages instead of a three-year-old press release.' ),
 	array( '03', 'Fewer wrong answers.', 'Clear, factual descriptions of what you offer and where you operate leave fewer gaps for a model to fill with guesses.' ),
-	array( '04', 'Part of AEO and GEO.', 'It sits beside schema, crawlable content and source authority as one more signal in an AI-visibility programme. Not instead of them.' ),
+	array( '04', 'Part of AEO and GEO.', 'It sits beside ' . $link( 'schema', vv_url( '/schema-markup-ai-visibility/' ) ) . ', crawlable content and source authority as one more signal in an AI-visibility programme. Not instead of them.' ),
 	array( '05', 'Low effort, low risk.', 'One text file. No code changes, no effect on classic rankings. Minutes to deploy, seconds to update.' ),
 	array( '06', 'A forcing function.', 'Writing one makes you decide which pages actually represent the business. Most sites have never done that exercise.' ),
 );

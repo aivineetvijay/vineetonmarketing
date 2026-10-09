@@ -1,55 +1,76 @@
 <?php
-/** AI Tools (/ai-tools/) — rebuilt from ai-tools.html. The category chips are native v4 tabs. */
+/** AI Tools (/ai-tools/): the live tools. For now the llms.txt generator family only; cards reuse the hub's classes. */
 $id = vv_new( 'AI Tools', 'ai-tools' );
 
-$tone = array( 'mono' => 117, 'blue' => 115, 'warm' => 116, 'deep' => 118, 'sand' => 122, 'pearl' => 119, 'mint' => 121, 'rose' => 120 );
-$status = array( 'live' => 'Live', 'beta' => 'Beta', 'soon' => 'Coming soon' );
-$tools = array(
-	array( 'SEO Brief Builder', 'SEO', 'live', 'mono', 'Paste a keyword, get a structured content brief — intent, outline, FAQs and schema suggestions.' ),
-	array( 'AI Visibility Checker', 'SEO', 'beta', 'blue', 'See whether your brand is being cited in AI answers for your priority category questions.' ),
-	array( 'Ad Copy Variator', 'Paid Media', 'live', 'warm', 'Generate on-brand headline and description variants for Google and Meta, within character limits.' ),
-	array( 'ROAS Planner', 'Paid Media', 'live', 'deep', 'Work backwards from a revenue target to the budget, CPA and ROAS you actually need.' ),
-	array( 'Persona Generator', 'Strategy', 'beta', 'sand', 'Turn survey or CRM exports into clear, usable customer personas and messaging angles.' ),
-	array( 'Content Calendar AI', 'Content', 'soon', 'pearl', 'A month of topics mapped to search intent and funnel stage, ready to brief.' ),
-	array( 'UTM & Naming Kit', 'Analytics', 'live', 'mint', 'Consistent UTMs and campaign naming so GA4 reporting stays clean across teams.' ),
-	array( 'Report Summariser', 'Analytics', 'soon', 'rose', 'Drop in a GA4 or ads export, get a plain-language summary your leadership will read.' ),
+/* Live tools. For now only the llms.txt generator family (the earlier placeholder list was retired on 9 October 2026). */
+$hub  = vv_url( '/ai-tools/llms-txt-generator/' );
+$tool = function ( $slug ) { return vv_url( '/ai-tools/llms-txt-generator/' . $slug . '/' ); };
+$industries = array(
+	array( 'Real Estate', 'Developers, brokerages, agencies and portals', 'real-estate' ),
+	array( 'Healthcare', 'Hospitals, clinics and specialists', 'healthcare' ),
+	array( 'E-commerce', 'D2C brands, retailers and marketplaces', 'ecommerce' ),
+	array( 'Education', 'Universities, schools, institutes and learning platforms', 'education' ),
+	array( 'Finance & Fintech', 'Banks, payments, lending, insurance and investment firms', 'finance' ),
+	array( 'Content & Publishers', 'News sites, magazines, blogs and newsletters', 'publishers' ),
 );
-
-$card = function ( $p, $t ) use ( $tone, $status ) {
-	$dot = array( 'status-dot' ); if ( 'beta' === $t[2] ) { $dot[] = 'status-dot-beta'; } if ( 'soon' === $t[2] ) { $dot[] = 'status-dot-soon'; }
-	return vv_f( "$p", array( 'tcard' ), array(
-		vv_f( "$p Media", array( 'tcard-media' ), array(
-			vv_img( "$p Screenshot", $tone[ $t[3] ], '', array( 'tcard-img' ) ),
-			vv_f( "$p Status", array( 'tcard-status' ), array( vv_p( "$p Status Dot", '●', $dot, 'span' ), vv_p( "$p Status Label", $status[ $t[2] ], array( 'status-label' ), 'span' ) ) ),
-		) ),
-		vv_p( "$p Category", $t[1], array( 'eyebrow-accent' ), 'span' ),
-		vv_h( "$p Name", htmlspecialchars( $t[0] ), array( 'tcard-name' ), 'h3' ),
-		vv_p( "$p Use", $t[4], array( 'tcard-use' ) ),
-		vv_p( "$p Action", 'soon' === $t[2] ? 'In development →' : 'Try the tool →', 'soon' === $t[2] ? array( 'tcard-cta', 'tcard-cta-soon' ) : array( 'tcard-cta' ), 'span' ),
+$icon = function ( $slug ) {
+	$p = get_posts( array( 'post_type' => 'attachment', 'name' => 'llms-icon-' . $slug, 'post_status' => 'inherit', 'numberposts' => 1 ) );
+	return $p ? $p[0]->ID : 0;
+};
+$pill = function ( $p, $label ) {
+	return vv_f( "$p Status", array( 'gen-pill' ), array(
+		vv_p( "$p Status Dot", '●', array( 'status-dot' ), 'span' ),
+		vv_p( "$p Status Label", $label, array( 'status-label' ), 'span' ),
 	) );
 };
 
-$panels = array();
-foreach ( array( 'All', 'SEO', 'Paid Media', 'Content', 'Analytics', 'Strategy' ) as $cat ) {
-	$cards = array();
-	foreach ( $tools as $t ) {
-		if ( 'All' === $cat || $t[1] === $cat ) { $cards[] = $card( "$cat · " . $t[0], $t ); }
-	}
-	$panels[ $cat ] = $cards;
+/* Featured tool card (links to the hub), then one card per industry generator (same cards as the hub). */
+$featured = vv_link( 'Featured Tool', array( 'gen-card' ), $hub, array(
+	vv_f( 'Featured Tool Top', array( 'gen-top' ), array(
+		$pill( 'Featured Tool', 'Live' ),
+		vv_p( 'Featured Tool Count', count( $industries ) . ' industries', array( 't-mono' ), 'span' ),
+	) ),
+	vv_f( 'Featured Tool Body', array( 'gen-body' ), array(
+		vv_p( 'Featured Tool Category', 'AI visibility', array( 'eyebrow-accent' ), 'span' ),
+		vv_h( 'Featured Tool Name', 'llms.txt Generator', array( 'tcard-name' ), 'h3' ),
+		vv_p( 'Featured Tool Use', 'Turn your website into a clean, curated llms.txt file: the short map AI assistants read to understand who you are and which pages to trust. Built separately for each industry, with the pages and rules that industry needs.', array( 'tcard-use' ) ),
+	) ),
+	vv_p( 'Featured Tool Action', 'Open the llms.txt generator →', array( 'gen-cta' ), 'span' ),
+) );
+$cards = array(); $i = 0;
+foreach ( $industries as $g ) {
+	$i++;
+	$cards[] = vv_link( "Industry $i", array( 'gen-card' ), $tool( $g[2] ), array(
+		vv_f( "Industry $i Top", array( 'gen-top' ), array(
+			vv_f( "Industry $i Icon Tile", array( 'gen-icon-tile' ), array( vv_n( 'e-svg', "Industry $i Icon", array( 'gen-icon' ), array( 'svg' => array( 'id' => $icon( $g[2] ) ) ) ) ) ),
+			$pill( "Industry $i", 'Live' ),
+		) ),
+		vv_f( "Industry $i Body", array( 'gen-body' ), array(
+			vv_h( "Industry $i Title", 'llms.txt for ' . $g[0], array( 'tcard-name' ), 'h3' ),
+			vv_p( "Industry $i For", $g[1], array( 'tcard-use' ) ),
+		) ),
+		vv_p( "Industry $i Action", 'Open generator →', array( 'gen-cta' ), 'span' ),
+	) );
 }
-$live = count( array_filter( $tools, function ( $t ) { return 'live' === $t[2]; } ) );
 
 $nodes = array(
 	vv_hero( 'Tools',
-		array( vv_meta_block( 'Tools', 'Built for', 'Fellow marketers' ), vv_meta_block( 'Tools', 'Tools', count( $tools ) . ' built · ' . $live . ' live' ), vv_meta_block( 'Tools', 'Price', 'Free to use', true ) ),
+		array( vv_meta_block( 'Tools', 'Built for', 'Fellow marketers' ), vv_meta_block( 'Tools', 'Tools', '1 live · ' . count( $industries ) . ' industries' ), vv_meta_block( 'Tools', 'Price', 'Free to use', true ) ),
 		'AI Tools', 'for marketers.', false,
-		'Small, focused tools I’ve built with AI to take the repetitive work out of marketing — briefs, copy, planning and reporting. Free to use.'
+		'Small, focused tools I build for marketers. The first is a family of llms.txt generators that help AI assistants describe your business accurately. Free, and everything runs in your browser.',
+		array(
+			vv_btn( 'Tools Generator Button', 'Open the llms.txt generator', $hub, array( 'btn', 'btn-filled' ) ),
+			vv_btn( 'Tools Industry Button', 'Pick your industry', '#tools', array( 'btn' ) ),
+		)
 	),
 	vv_f( 'Directory', array( 'section', 'pt-24', 'bg-canvas' ), array(
 		vv_f( 'Directory Inner', array( 'wrap' ), array(
-			vv_tabs( 'Directory', $panels, function ( $i, $children ) { return vv_g( "Directory Grid $i", array( 'tgrid' ), $children ); } ),
+			vv_sec_head( 'Directory', '01', 'Live tools', 'Free · runs in your browser · nothing uploaded' ),
+			vv_f( 'Directory Featured', array( 'stack', 'mt-64' ), array( $featured ) ),
+			vv_p( 'Directory Industries Label', 'Or go straight to your industry', array( 't-mono', 'mt-64' ) ),
+			vv_g( 'Directory Industries', array( 'gen-grid', 'mt-32' ), $cards ),
 		) ),
-	), array( 'tag' => 'section' ) ),
+	), array( 'tag' => 'section' ), null, 'tools' ),
 	vv_f( 'Ideas', array( 'section', 'bg-ink' ), array(
 		vv_f( 'Ideas Inner', array( 'wrap' ), array(
 			vv_f( 'Ideas Split', array( 'split' ), array(
