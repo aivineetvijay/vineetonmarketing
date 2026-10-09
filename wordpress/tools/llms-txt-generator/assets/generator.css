@@ -6,7 +6,8 @@
 .vvg-page #content > .ast-container { max-width: none; padding: 0; display: block; }
 .vvg { width: 100%; color: #1d1d1f; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
 .vvg *, .vvg *::before, .vvg *::after { box-sizing: border-box; }
-.vvg h1, .vvg h2, .vvg h3, .vvg h4, .vvg p { margin: 0; }
+.vvg :where(h1, h2, h3, h4, p, ul, ol) { margin: 0; }
+.vvg h1, .vvg h2, .vvg h3, .vvg h4 { color: #1d1d1f; font-family: inherit; }
 .vvg a { color: #0066cc; text-decoration: none; }
 .vvg a:hover { text-decoration: underline; }
 .vvg [hidden] { display: none !important; }
@@ -57,7 +58,7 @@
 .vvg-why-list { display: flex; flex-direction: column; gap: 36px; }
 .vvg-why-list h3 { font-size: 22px; font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; }
 .vvg-why-list p { margin-top: 10px; font-size: 17px; line-height: 1.55; color: #333; }
-.vvg-note { font-size: 13px; line-height: 1.45; color: #6e6e73; }
+.vvg-why-list .vvg-note { margin: 0; font-size: 13px; line-height: 1.45; color: #6e6e73; }
 
 /* Guide */
 .vvg-types { margin-top: 40px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
