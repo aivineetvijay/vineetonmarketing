@@ -8,8 +8,9 @@
  *              On Elementor pages Inter comes from Elementor's local copy (one variable font file for every weight), so
  *              Astra's second copy of Inter is skipped there and Elementor's file is preloaded instead.
  *              Theme, Elementor and font stylesheets are printed inline in <head>; essay banners load eagerly and the
- *              one for the current screen size is preloaded at high priority.
- * Version:     1.2.0
+ *              one for the current screen size is preloaded at high priority. After any cache purge every public page
+ *              is requested once in the background so it is cached again.
+ * Version:     1.3.0
  *
  * Install: copy to wp-content/mu-plugins/vv-performance.php (must-use plugins load automatically).
  * Related settings (not in this file): Astra loads Google Fonts locally with preload (Astra > Performance);
@@ -171,3 +172,30 @@ add_filter( 'style_loader_tag', function ( $tag, $handle, $href, $media ) {
 	$css = str_replace( '</style', '<\/style', $css );
 	return '<style id="' . esc_attr( $handle ) . '-css"' . ( $media && 'all' !== $media ? ' media="' . esc_attr( $media ) . '"' : '' ) . '>' . $css . "</style>\n";
 }, 10, 4 );
+
+/* ---------- Cache warm-up after a purge ----------
+ * A cached page is served in about 20 ms; building one after a purge takes 300-550 ms more. Any LiteSpeed purge
+ * (an edit, a plugin update, a manual Purge All) schedules a background pass a minute later that requests every
+ * public page once, so visitors and PageSpeed Insights get cached pages. */
+
+function vv_perf_schedule_warm() {
+	if ( ! wp_next_scheduled( 'vv_perf_warm_cache' ) ) {
+		wp_schedule_single_event( time() + 60, 'vv_perf_warm_cache' );
+	}
+}
+foreach ( array( 'litespeed_purged_all', 'litespeed_purged_all_lscache', 'litespeed_purged_post', 'litespeed_purged_single', 'litespeed_purged_front', 'litespeed_purged_frontpage', 'litespeed_purged_pages' ) as $vv_hook ) {
+	add_action( $vv_hook, 'vv_perf_schedule_warm' );
+}
+
+add_action( 'vv_perf_warm_cache', function () {
+	$urls = array( home_url( '/' ) );
+	foreach ( get_posts( array( 'post_type' => array( 'page', 'post' ), 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'has_password' => false ) ) as $id ) {
+		$urls[] = get_permalink( $id );
+	}
+	foreach ( get_categories( array( 'hide_empty' => true ) ) as $cat ) {
+		$urls[] = get_category_link( $cat );
+	}
+	foreach ( array_unique( $urls ) as $url ) {
+		wp_remote_get( $url, array( 'timeout' => 20, 'headers' => array( 'Accept-Encoding' => 'gzip, deflate, br' ) ) );
+	}
+} );
