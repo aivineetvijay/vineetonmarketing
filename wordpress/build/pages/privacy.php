@@ -7,6 +7,13 @@
  */
 $id = vv_new( 'Privacy Policy', 'privacy-policy' );
 update_option( 'wp_page_for_privacy_policy', $id );
+/* WordPress created this page, not vv_new, so give it the settings every vv-built page has. */
+update_post_meta( $id, '_elementor_edit_mode', 'builder' );
+update_post_meta( $id, '_wp_page_template', 'elementor_header_footer' );
+update_post_meta( $id, 'ast-site-content-layout', 'full-width-container' );
+update_post_meta( $id, 'site-content-style', 'unboxed' );
+update_post_meta( $id, 'site-sidebar-layout', 'no-sidebar' );
+update_post_meta( $id, 'site-post-title', 'disabled' );
 
 $email = 'vineetvijay88@gmail.com';
 $a = function ( $text, $href ) { return '<a href="' . esc_url( $href ) . '"><u>' . $text . '</u></a>'; };
