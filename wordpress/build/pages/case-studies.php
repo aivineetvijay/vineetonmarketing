@@ -65,7 +65,7 @@ $work_rows = function ( $p, $list ) use ( $url ) {
 		$year = str_replace( array( ' — ', 'Present' ), array( '–', '→' ), $c['period'] );
 		$rows[] = vv_link( "$p Work $i", array( 'work-row' ), $url( $c ), array(
 			vv_p( "$p Work $i Index", sprintf( '%02d / %02d', $i, $n ), array( 'work-idx' ), 'span' ),
-			vv_h( "$p Work $i Title", htmlspecialchars( $c['name'] ), array( 'work-title' ), 'h3' ),
+			vv_h( "$p Work $i Title", htmlspecialchars( $c['name'] ), array( 'work-title' ), 'h2' ), // h2: no heading level skipped
 			vv_p( "$p Work $i Tag", htmlspecialchars( $c['industry'] ) . ' · ' . rtrim( $c['tagline'], '.' ), array( 'work-tag' ), 'span' ),
 			vv_p( "$p Work $i Year", $year, array( 'work-yr' ), 'span' ),
 			vv_p( "$p Work $i Arrow", '↗', array( 'work-arr' ), 'span' ),

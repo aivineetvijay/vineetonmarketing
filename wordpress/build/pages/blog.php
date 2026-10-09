@@ -180,7 +180,7 @@ $feed_card = function ( $l, $p ) use ( $tone, $e ) {
 				vv_p( "$l Dot 2", '•', array( 'feed-meta-text' ), 'span' ),
 				vv_p( "$l Minutes", $p['min'] . ' min', array( 'feed-meta-text' ), 'span' ),
 			) ),
-			vv_h( "$l Title", $e( $p['t'] ), array( 'feed-title' ), 'h3' ),
+			vv_h( "$l Title", $e( $p['t'] ), array( 'feed-title' ), 'h2' ), // h2: the page goes h1 -> card titles, no level skipped
 			vv_p( "$l Dek", $e( $p['dek'] ), array( 'feed-dek' ) ),
 		) ),
 	) );
