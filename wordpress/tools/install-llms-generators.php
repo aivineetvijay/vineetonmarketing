@@ -1,7 +1,8 @@
 <?php
 /**
  * Server-side installer for the llms.txt generators. Expects $vv_base (raw GitHub URL of wordpress/ at a commit).
- *  1. Copies the shared engine (assets/) and each industry's config.js to wp-content/uploads/vv-tools/llms-txt-generator/.
+ *  1. Copies the shared engine (assets/), each industry's config.js and its page copy (content.php, saved as
+ *     content.json) to wp-content/uploads/vv-tools/llms-txt-generator/.
  *  2. Installs the vv-tools mu-plugin, which renders the tool pages inside the theme.
  *  3. Creates or updates one page per tool under the hub (/ai-tools/llms-txt-generator/<slug>/), indexable.
  *  4. Removes the old standalone Real Estate build (index.html, support.js, _ds/) that the pages replace.
@@ -24,6 +25,14 @@ foreach ( $files as $rel ) {
 	$copied[ $rel ] = filesize( $root . $rel );
 }
 
+/* Page copy: <slug>/content.php in the repo becomes content.json beside the config (no PHP in uploads). */
+$copies = array();
+foreach ( array_keys( $tools ) as $slug ) {
+	$tmpc = wp_tempnam( 'vv' ); file_put_contents( $tmpc, $fetch( 'tools/llms-txt-generator/' . $slug . '/content.php' ) ); $copies[ $slug ] = include $tmpc; @unlink( $tmpc );
+	file_put_contents( $root . $slug . '/content.json', wp_json_encode( $copies[ $slug ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
+	$copied[ $slug . '/content.json' ] = filesize( $root . $slug . '/content.json' );
+}
+
 $mu = $fetch( 'mu-plugins/vv-tools.php' );
 if ( false === strpos( $mu, 'Plugin Name: VV Tools' ) ) { return array( 'error' => 'mu-plugin fetch failed' ); }
 file_put_contents( WPMU_PLUGIN_DIR . '/vv-tools.php', $mu );
@@ -43,7 +52,7 @@ $pages = array(); $order = 0;
 foreach ( $tools as $slug => $t ) {
 	$order++;
 	$existing = get_posts( array( 'post_type' => 'page', 'name' => $slug, 'post_parent' => $hub->ID, 'post_status' => 'any', 'numberposts' => 1 ) );
-	$data = array( 'post_type' => 'page', 'post_title' => $t['title'], 'post_name' => $slug, 'post_parent' => $hub->ID, 'post_status' => 'publish', 'post_excerpt' => $t['lead'], 'menu_order' => $order, 'comment_status' => 'closed', 'ping_status' => 'closed' );
+	$data = array( 'post_type' => 'page', 'post_title' => $t['title'], 'post_name' => $slug, 'post_parent' => $hub->ID, 'post_status' => 'publish', 'post_excerpt' => $copies[ $slug ]['lead'], 'menu_order' => $order, 'comment_status' => 'closed', 'ping_status' => 'closed' );
 	if ( $existing ) { $data['ID'] = $existing[0]->ID; }
 	$id = $existing ? wp_update_post( wp_slash( $data ), true ) : wp_insert_post( wp_slash( $data ), true );
 	if ( is_wp_error( $id ) ) { return array( 'error' => $slug . ': ' . $id->get_error_message() ); }
@@ -55,6 +64,8 @@ foreach ( $tools as $slug => $t ) {
 		'rank_math_robots' => array( 'index' ),
 	);
 	foreach ( $meta as $k => $v ) { update_post_meta( $id, $k, $v ); }
+	/* FAQPage schema (vv-schema.php) from the page's visible FAQ. */
+	update_post_meta( $id, 'vv_faq', $copies[ $slug ]['faqs'] );
 	$pages[ $slug ] = array( 'id' => $id, 'url' => get_permalink( $id ) );
 }
 

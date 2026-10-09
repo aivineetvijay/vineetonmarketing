@@ -1,66 +1,51 @@
-/* llms.txt generator: Real Estate. Developers, brokerages, agencies, portals and property managers. */
+/* llms.txt generator: Real Estate. types: [key, chip, summary phrase, "Type:" line]. */
 window.VVLLMS = {
-	slug: 'real-estate',
-	step1: 'Business',
-	nameLabel: 'Business name', namePh: 'Palmera Bay Developments',
-	typeLabel: 'Business type',
+	slug: 'real-estate', label: 'real estate', where: 'in',
+	shareWith: 'someone who manages a property site', reviewWhen: 'or whenever a project launches or hands over',
 	types: [
-		[ 'developer', 'Developer', 'residential property developer' ],
-		[ 'brokerage', 'Brokerage', 'real estate brokerage' ],
-		[ 'agency', 'Agency', 'real estate agency' ],
-		[ 'portal', 'Property portal', 'property portal' ],
-		[ 'property_manager', 'Property manager', 'property management company' ],
-		[ 'other', 'Other', 'real estate business' ],
+		[ 'developer', 'Developer', 'real estate developer', 'Real estate developer' ],
+		[ 'brokerage', 'Brokerage', 'real estate brokerage', 'Real estate brokerage' ],
+		[ 'agency', 'Agency', 'real estate agency', 'Real estate agency' ],
+		[ 'portal', 'Portal', 'property portal', 'Property portal' ],
 	],
-	fields: [ { key: 'markets', label: 'Markets / cities', ph: 'Dubai Creek Harbour, Dubai South' } ],
-	chips: { label: 'Property types', options: [ 'Residential', 'Commercial', 'Off-plan', 'Ready', 'Villas', 'Apartments', 'Townhouses', 'Land', 'Holiday homes' ] },
-	licenceLabel: 'Licence / registration', licencePh: 'RERA ORN 12345',
-	factsPh: 'Named awards, offices, completed units — only verifiable facts.',
-	sections: [
-		[ 'about', 'About' ], [ 'projects', 'Projects' ], [ 'sale', 'Properties for Sale' ], [ 'rent', 'Properties for Rent' ],
-		[ 'areas', 'Communities & Areas' ], [ 'services', 'Services' ], [ 'guides', 'Buyer & Investor Guides' ], [ 'insights', 'Market Insights' ],
-		[ 'contact', 'Contact' ], [ 'legal', 'Legal & Compliance' ], [ 'optional', 'Optional' ],
+	fields: {
+		name: { label: 'Business name', ph: 'Harbourline Properties' },
+		site: { label: 'Website', ph: 'https://harbourline.ae' },
+		markets: { label: 'Markets served', ph: 'Dubai, Abu Dhabi', fact: 'Markets' },
+		licence: { label: 'Licence / registration', ph: 'RERA ORN 12345', fact: 'Licence' },
+		summary: { ph: 'What the business does, for whom, and where.' },
+	},
+	groups: [
+		{ key: 'projects', label: { developer: 'Projects', portal: 'Hubs', _: 'Areas' }, heading: { developer: 'Projects & communities', portal: 'Search hubs', _: 'Areas covered' },
+			hint: { developer: 'One line per project or master community. Skip individual units.', portal: 'City and property-type hubs, not filtered searches.', _: 'Area or community pages, not listings.' },
+			ph: [ 'Marina Heights', 'https://…/projects/marina-heights', 'Waterfront apartments, handover Q4 2027' ] },
+		{ key: 'services', label: 'Services', heading: 'Services', hint: 'What the business does, and how fees or payment plans work.', ph: [ 'Payment plans', 'https://…/payment-plans', 'How instalments work, up to handover' ] },
+		{ key: 'guides', label: 'Guides', heading: 'Guides & resources', hint: 'Evergreen pages buyers and tenants read before they enquire.', ph: [ 'Buying off-plan in Dubai', 'https://…/guides/off-plan', 'Steps, fees, escrow, timelines' ] },
+		{ key: 'trust', label: 'Trust', heading: 'Licensing, policies & contact', hint: 'Regulator licence, escrow, privacy and office contact pages.', ph: [ 'Licence & regulation', 'https://…/licence', 'RERA registration and escrow details' ] },
 	],
-	sectionOptionLabel: function ( key, label ) { return 'projects' === key ? 'Projects / Featured Developments' : label; },
-	sectionLabel: function ( key, label, f ) { return 'projects' === key && 'developer' !== f.type ? 'Featured Developments' : label; },
-	pagesHelp: 'Add hub and evergreen pages: about, projects, area guides, services, buyer guides, contact. Skip individual listings, filter URLs and login pages — they are left out automatically.',
-	urlRules: [ { re: /\/(listing|listings|property|properties)\/[^/]+\/?.*\d{4,}/i, msg: 'Looks like an individual listing — link the index or category page instead.' } ],
-	superlatives: /\b(luxurious|iconic|prestigious)\b/i,
-	descRules: [ { re: /(AED|USD|EUR|GBP|INR|\$|€|£|₹)\s?\d|\b\d[\d,.]*\s?(aed|usd|million|mn|k)\b|\byields?\b|% off|\bdiscount|\boffer\b/i, msg: 'Avoid prices, yields or offers — they go stale.' } ],
-	summary: function ( f, H, name ) {
-		var lc = function ( a ) { return a.map( function ( x ) { return x.toLowerCase(); } ); };
-		var pick = function ( list ) { return lc( f.chips.filter( function ( x ) { return list.indexOf( x ) > -1; } ) ); };
-		var cats = pick( [ 'Residential', 'Commercial' ] ), units = pick( [ 'Villas', 'Apartments', 'Townhouses', 'Land', 'Holiday homes' ] ), status = pick( [ 'Off-plan', 'Ready' ] );
-		var markets = H.list( f.markets ), t = H.type( f );
-		var s = name + ' is ' + H.a( t ) + ' ' + t + ( markets.length ? ' operating in ' + H.joinAnd( H.places( markets ) ) : '' ) + '.';
-		var verb = 'developer' === f.type ? 'builds' : 'property_manager' === f.type ? 'manages' : 'offers';
-		var what = units.length ? ( cats.length ? H.joinAnd( cats ) + ' ' : '' ) + H.joinAnd( units ) : cats.length ? H.joinAnd( cats ) + ' property' : '';
-		if ( what || status.length ) {
-			s += ' It ' + verb + ' ' + ( what || 'property' ) + ( status.length ? ', including ' + H.joinAnd( status ) + ( 'developer' === f.type ? ' projects' : ' homes' ) : '' ) + '.';
-		}
-		return s;
-	},
-	facts: function ( f, H ) {
-		var out = [], m = H.list( f.markets );
-		if ( m.length ) { out.push( 'Markets: ' + m.join( ', ' ) ); }
-		if ( f.chips.length ) { out.push( 'Property types: ' + f.chips.join( ', ' ) ); }
-		return out;
-	},
+	urlRules: [ { re: /\/(listing|listings|property|unit|units)\/[^/]*\d{3,}/i, msg: 'This looks like a single listing. Link the project or area page instead.' } ],
+	superlatives: /\b(luxurious|luxury|iconic|prestigious)\b/i,
+	descRules: [ { re: /\b(aed|usd|price[ds]?|from \d|per sq|yields?|roi)\b|\$|\d{2,3},\d{3}/i, msg: 'Leave prices and yields out. They go stale and AI tools repeat them.' } ],
 	example: {
-		name: 'Palmera Bay Developments', url: 'https://palmerabay.example', type: 'developer', markets: 'Dubai Creek Harbour, Dubai South',
-		lang: 'English', otherLangs: 'Arabic', chips: [ 'Residential', 'Off-plan', 'Ready', 'Apartments', 'Townhouses' ],
-		founded: '2012', licences: 'Registered developer with the Dubai Land Department',
-		pages: [
-			[ 'about', 'About Palmera Bay', 'https://palmerabay.example/about/', 'Company background, leadership team and history of completed projects since 2012.' ],
-			[ 'about', 'Sustainability', 'https://palmerabay.example/sustainability/', 'Approach to energy-efficient design and green building certification across projects.' ],
-			[ 'projects', 'Creekside Residences | Palmera Bay', 'https://palmerabay.example/projects/creekside-residences/', 'Off-plan 1–3 bedroom apartments in Dubai Creek Harbour with waterfront promenade access.' ],
-			[ 'projects', 'Sahara Gardens', 'https://palmerabay.example/projects/sahara-gardens/', 'Completed townhouse community in Dubai South with 3–4 bedroom family homes.' ],
-			[ 'guides', 'How to Buy Off-Plan in Dubai', 'https://palmerabay.example/guides/buying-off-plan/', 'Step-by-step guide to off-plan purchases, escrow, payment plans and handover.' ],
-			[ 'guides', 'Fees When Buying Property', 'https://palmerabay.example/guides/buying-fees/', 'Explanation of registration, agency and service charges payable by buyers.' ],
-			[ 'contact', 'Contact Us', 'https://palmerabay.example/contact/', 'Sales enquiry form, phone, email and sales centre location.' ],
-			[ 'sale', 'Apartments for sale', 'https://palmerabay.example/listings?beds=2&sort=price', '' ],
-			[ 'optional', 'News', 'https://palmerabay.example/news/', 'Company announcements and project launch updates.' ],
-			[ 'optional', 'العربية', 'https://palmerabay.example/ar/', 'Arabic version of the website.' ],
-		],
+		f: { type: 'developer', name: 'Harbourline Properties', site: 'https://harbourline.ae', markets: 'Dubai, Abu Dhabi', licence: 'RERA ORN 12345', summary: 'Harbourline Properties is a Dubai developer of waterfront residential communities, selling off-plan and ready homes to end users and investors.' },
+		rows: {
+			projects: [
+				{ t: 'Marina Heights', u: 'https://harbourline.ae/projects/marina-heights', n: 'Waterfront apartments, handover Q4 2027' },
+				{ t: 'Palm Grove Villas', u: 'https://harbourline.ae/projects/palm-grove', n: 'Townhouses and villas, ready to move in' },
+				{ t: 'Creekside Residences', u: 'https://harbourline.ae/projects/creekside', n: 'Off-plan apartments near Dubai Creek' },
+			],
+			services: [
+				{ t: 'Payment plans', u: 'https://harbourline.ae/payment-plans', n: 'How instalments work, up to handover' },
+				{ t: 'After-sales & handover', u: 'https://harbourline.ae/handover', n: 'Snagging, keys and service charges' },
+			],
+			guides: [
+				{ t: 'Buying off-plan in Dubai', u: 'https://harbourline.ae/guides/off-plan', n: 'Steps, fees, escrow and timelines' },
+				{ t: 'Golden Visa through property', u: 'https://harbourline.ae/guides/golden-visa', n: 'Eligibility and process' },
+			],
+			trust: [
+				{ t: 'Licence & escrow', u: 'https://harbourline.ae/licence', n: 'RERA registration and escrow accounts' },
+				{ t: 'Contact', u: 'https://harbourline.ae/contact', n: 'Sales centre and office hours' },
+			],
+		},
 	},
 };
