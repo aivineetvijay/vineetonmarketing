@@ -114,13 +114,13 @@ function vv_perf_banners( $post_id ) {
 }
 
 /* Elementor decides loading/fetchpriority per <img> on wp_content_img_tag (priority 10) and lazy-loads everything
- * after its first few images. Marking the banners eager first makes it leave them alone. */
+ * after its first few images. Marking the banners eager first makes it leave them alone (it still adds
+ * fetchpriority="high" to a single placeholder tile itself). */
 add_filter( 'wp_content_img_tag', function ( $img ) {
-	if ( ! preg_match( '/class="[^"]*\bart-banner(-desktop|-mobile)?\b/', $img, $m ) || preg_match( '/ loading=/', $img ) ) {
+	if ( ! preg_match( '/class="[^"]*\bart-banner\b/', $img ) || preg_match( '/ loading=/', $img ) ) {
 		return $img;
 	}
-	$extra = empty( $m[1] ) && ! str_contains( $img, ' fetchpriority=' ) ? ' fetchpriority="high"' : ''; // A single placeholder tile is the LCP image on every screen.
-	return str_replace( '<img', '<img loading="eager"' . $extra, $img );
+	return str_replace( '<img', '<img loading="eager"', $img );
 }, 5 );
 
 add_action( 'wp_head', function () {
