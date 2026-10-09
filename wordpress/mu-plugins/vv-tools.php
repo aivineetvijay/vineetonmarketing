@@ -7,7 +7,8 @@
  *              generator, FAQ and more generators. Page copy comes from <slug>/content.json and the generator from
  *              assets/generator.js + <slug>/config.js, all in wp-content/uploads/vv-tools/llms-txt-generator/.
  *              SEO meta (title, description, robots) is Rank Math's, set per page; FAQPage schema comes from vv_faq.
- * Version:     3.2.0
+ *              generator.css is printed inline in the head; the two scripts load deferred.
+ * Version:     3.3.0
  *
  * Install: copy to wp-content/mu-plugins/vv-tools.php (see wordpress/tools/install-llms-generators.php).
  */
@@ -33,9 +34,13 @@ add_action( 'template_redirect', function () {
 	$url = set_url_scheme( wp_get_upload_dir()['baseurl'] . '/vv-tools/llms-txt-generator/', 'https' );
 	$ver = function ( $f ) use ( $dir ) { return (string) filemtime( $dir . $f ); };
 	add_action( 'wp_enqueue_scripts', function () use ( $slug, $url, $ver ) {
-		wp_enqueue_style( 'vv-llms', $url . 'assets/generator.css', array(), $ver( 'assets/generator.css' ) );
-		wp_enqueue_script( 'vv-llms-config', $url . $slug . '/config.js', array(), $ver( $slug . '/config.js' ), true );
-		wp_enqueue_script( 'vv-llms', $url . 'assets/generator.js', array( 'vv-llms-config' ), $ver( 'assets/generator.js' ), true );
+		/* The stylesheet is small (under 4 KiB), so it is printed in the head instead of fetched: one less render-blocking request. */
+		wp_register_style( 'vv-llms', false, array(), $ver( 'assets/generator.css' ) );
+		wp_enqueue_style( 'vv-llms' );
+		wp_add_inline_style( 'vv-llms', (string) file_get_contents( vv_tools_dir() . 'assets/generator.css' ) );
+		$defer = array( 'in_footer' => true, 'strategy' => 'defer' );
+		wp_enqueue_script( 'vv-llms-config', $url . $slug . '/config.js', array(), $ver( $slug . '/config.js' ), $defer );
+		wp_enqueue_script( 'vv-llms', $url . 'assets/generator.js', array( 'vv-llms-config' ), $ver( 'assets/generator.js' ), $defer );
 	} );
 	add_filter( 'body_class', function ( $c ) { $c[] = 'vvg-page'; return $c; } );
 	$copy = json_decode( (string) file_get_contents( $dir . $slug . '/content.json' ), true );
