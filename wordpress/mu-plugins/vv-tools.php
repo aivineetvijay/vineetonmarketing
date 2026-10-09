@@ -1,24 +1,27 @@
 <?php
 /**
  * Plugin Name: VV Tools
- * Description: Renders the llms.txt generators as part of the site. Each generator is a WordPress page under
- *              /ai-tools/llms-txt-generator/ with post meta vv_tool = <slug>; this plugin draws the page inside the
- *              theme (Astra header, Rank Math breadcrumbs, footer) with the tool's hero, the generator app and a
- *              share card. The app is wp-content/uploads/vv-tools/llms-txt-generator/assets/generator.js with the
- *              industry's <slug>/config.js. SEO meta (title, description, robots) is Rank Math's, set per page.
- * Version:     2.0.0
+ * Description: Renders the llms.txt generator pages as part of the site. Each generator is a WordPress page under
+ *              /ai-tools/llms-txt-generator/ with post meta vv_tool = <slug>; this plugin draws it inside the theme
+ *              (Astra header, Rank Math breadcrumbs, footer): local sub-nav, hero, why, what to include, the stepped
+ *              generator, FAQ and more generators. Page copy comes from <slug>/content.json and the generator from
+ *              assets/generator.js + <slug>/config.js, all in wp-content/uploads/vv-tools/llms-txt-generator/.
+ *              SEO meta (title, description, robots) is Rank Math's, set per page; FAQPage schema comes from vv_faq.
+ * Version:     3.0.0
  *
  * Install: copy to wp-content/mu-plugins/vv-tools.php (see wordpress/tools/install-llms-generators.php).
  */
 
 defined( 'ABSPATH' ) || exit;
 
+function vv_tools_dir() { return wp_get_upload_dir()['basedir'] . '/vv-tools/llms-txt-generator/'; }
+
 function vv_tools_slug() {
 	if ( ! is_page() ) {
 		return '';
 	}
 	$slug = (string) get_post_meta( get_queried_object_id(), 'vv_tool', true );
-	return $slug && preg_match( '/^[a-z0-9-]+$/', $slug ) && is_file( wp_get_upload_dir()['basedir'] . '/vv-tools/llms-txt-generator/' . $slug . '/config.js' ) ? $slug : '';
+	return $slug && preg_match( '/^[a-z0-9-]+$/', $slug ) && is_file( vv_tools_dir() . $slug . '/config.js' ) && is_file( vv_tools_dir() . $slug . '/content.json' ) ? $slug : '';
 }
 
 add_action( 'template_redirect', function () {
@@ -26,9 +29,8 @@ add_action( 'template_redirect', function () {
 	if ( ! $slug ) {
 		return;
 	}
-	$up  = wp_get_upload_dir();
-	$dir = $up['basedir'] . '/vv-tools/llms-txt-generator/';
-	$url = set_url_scheme( $up['baseurl'] . '/vv-tools/llms-txt-generator/', 'https' );
+	$dir = vv_tools_dir();
+	$url = set_url_scheme( wp_get_upload_dir()['baseurl'] . '/vv-tools/llms-txt-generator/', 'https' );
 	$ver = function ( $f ) use ( $dir ) { return (string) filemtime( $dir . $f ); };
 	add_action( 'wp_enqueue_scripts', function () use ( $slug, $url, $ver ) {
 		wp_enqueue_style( 'vv-llms', $url . 'assets/generator.css', array(), $ver( 'assets/generator.css' ) );
@@ -36,47 +38,142 @@ add_action( 'template_redirect', function () {
 		wp_enqueue_script( 'vv-llms', $url . 'assets/generator.js', array( 'vv-llms-config' ), $ver( 'assets/generator.js' ), true );
 	} );
 	add_filter( 'body_class', function ( $c ) { $c[] = 'vvg-page'; return $c; } );
+	$copy = json_decode( (string) file_get_contents( $dir . $slug . '/content.json' ), true );
 	get_header();
-	vv_tools_render( get_queried_object_id(), $slug );
+	vv_tools_render( get_queried_object_id(), $copy );
 	get_footer();
 	exit;
 } );
 
-function vv_tools_render( $id, $slug ) {
-	$h1    = explode( '|', (string) get_post_meta( $id, 'vv_tool_h1', true ) . '|' );
-	$label = (string) get_post_meta( $id, 'vv_tool_label', true );
-	$hub   = get_permalink( wp_get_post_parent_id( $id ) );
-	$link  = rawurlencode( get_permalink( $id ) );
-	$what  = rawurlencode( 'A free llms.txt generator for ' . strtolower( $label ) . ' websites: ' );
+function vv_tools_render( $id, $c ) {
+	$hub    = wp_get_post_parent_id( $id );
+	$hubUrl = get_permalink( $hub );
+	$self   = get_permalink( $id );
+	$label  = (string) get_post_meta( $id, 'vv_tool_label', true );
+	$others = get_posts( array( 'post_type' => 'page', 'post_parent' => $hub, 'post_status' => 'publish', 'numberposts' => 20, 'orderby' => 'menu_order', 'order' => 'ASC', 'exclude' => array( $id ), 'meta_key' => 'vv_tool' ) );
+	$enc    = rawurlencode( $self );
+	$e      = function ( $s ) { echo esc_html( $s ); };
 	?>
 <div class="vvg">
-	<section class="vvg-hero">
+	<nav class="vvg-subnav" aria-label="<?php echo esc_attr( 'llms.txt ' . $label ); ?>">
+		<div class="vvg-subnav-in">
+			<span class="vvg-subnav-title">llms.txt · <?php $e( $c['nav'] ); ?></span>
+			<div class="vvg-subnav-links">
+				<a href="#generator">Generator</a>
+				<a href="#guide">What to include</a>
+				<a href="#faq">FAQ</a>
+				<a class="vvg-subnav-dl" href="#generator" data-vvg="download">Download</a>
+			</div>
+		</div>
+	</nav>
+
+	<header class="vvg-hero">
 		<div class="vvg-wrap">
-			<p class="vvg-eyebrow"><a href="<?php echo esc_url( $hub ); ?>">llms.txt Generator</a> · <?php echo esc_html( $label ); ?></p>
-			<h1 class="vvg-h1"><?php echo esc_html( trim( $h1[0] ) ); ?> <em><?php echo esc_html( trim( $h1[1] ) ); ?></em></h1>
-			<div class="vvg-hero-foot">
-				<p class="vvg-lead"><?php echo esc_html( get_post_field( 'post_excerpt', $id ) ); ?></p>
-				<div class="vvg-btns">
-					<button type="button" class="vvg-btn-filled" data-vvg="example">Load example</button>
-					<button type="button" class="vvg-btn" data-vvg="clear">Clear form</button>
-				</div>
+			<h1><?php $e( $c['h1'] ); ?></h1>
+			<p class="vvg-hero-lead"><?php $e( $c['lead'] ); ?></p>
+			<div class="vvg-hero-btns">
+				<a class="vvg-btn-outline" href="#guide">What to include</a>
+				<a class="vvg-btn-blue" href="#generator">Build the file</a>
+			</div>
+			<p class="vvg-byline">By <a href="<?php echo esc_url( home_url( '/experience/' ) ); ?>">Vineet Vijay</a> · Updated <?php $e( get_the_modified_date( 'j F Y', $id ) ); ?> · Runs in the browser. Nothing is uploaded.</p>
+		</div>
+	</header>
+
+	<section id="why" class="vvg-section vvg-bg-parch">
+		<div class="vvg-wrap vvg-why">
+			<div class="vvg-why-copy">
+				<h2 class="vvg-h2"><?php $e( $c['why']['h2'] ); ?></h2>
+				<p class="vvg-intro"><?php $e( $c['why']['intro'] ); ?></p>
+				<a class="vvg-btn-blue" href="#generator">Generate llms.txt file</a>
+			</div>
+			<div class="vvg-why-list">
+				<?php foreach ( $c['why']['items'] as $it ) : ?>
+				<div><h3><?php $e( $it[0] ); ?></h3><p><?php $e( $it[1] ); ?></p></div>
+				<?php endforeach; ?>
+				<p class="vvg-note">llms.txt is an emerging, voluntary standard. Support differs between AI platforms and continues to develop.</p>
 			</div>
 		</div>
 	</section>
-	<section class="vvg-tool" id="vvg-tool">
-		<div class="vvg-wrap"><div id="vvg-app"><noscript>This generator runs in your browser and needs JavaScript.</noscript></div></div>
-	</section>
-	<section class="vvg-share">
-		<div class="vvg-wrap vvg-share-inner">
-			<div>
-				<h2>Did this make your llms.txt <em>easier?</em></h2>
-				<p>If this tool made it easy for you to build your llms.txt file, share it with your peers and fellow marketers.</p>
-				<a class="vvg-share-more" href="<?php echo esc_url( $hub ); ?>">All llms.txt generators</a>
+
+	<section id="guide" class="vvg-section vvg-bg-white">
+		<div class="vvg-wrap">
+			<h2 class="vvg-h2"><?php $e( $c['guide']['h2'] ); ?></h2>
+			<p class="vvg-intro"><?php $e( $c['guide']['intro'] ); ?></p>
+			<div class="vvg-types">
+				<?php foreach ( $c['guide']['types'] as $it ) : ?>
+				<div class="vvg-card"><h3><?php $e( $it[0] ); ?></h3><p><?php $e( $it[1] ); ?></p></div>
+				<?php endforeach; ?>
 			</div>
-			<div class="vvg-btns">
-				<a class="vvg-btn-filled" href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo esc_attr( $link ); ?>" target="_blank" rel="noopener">Share on LinkedIn ↗</a>
-				<a class="vvg-btn" href="https://wa.me/?text=<?php echo esc_attr( $what . $link ); ?>" target="_blank" rel="noopener">WhatsApp ↗</a>
-				<a class="vvg-btn" href="mailto:?subject=<?php echo esc_attr( rawurlencode( 'A free llms.txt generator for ' . strtolower( $label ) ) ); ?>&amp;body=<?php echo esc_attr( rawurlencode( 'Thought this might help: ' ) . $link ); ?>">Email ↗</a>
+			<div class="vvg-inout">
+				<div class="vvg-inout-box"><h3>Include</h3><ul><?php foreach ( $c['guide']['include'] as $x ) { echo '<li>' . esc_html( $x ) . '</li>'; } ?></ul></div>
+				<div class="vvg-inout-box"><h3>Leave out</h3><ul><?php foreach ( $c['guide']['leave'] as $x ) { echo '<li>' . esc_html( $x ) . '</li>'; } ?></ul></div>
+			</div>
+			<div class="vvg-bp-head">
+				<h3><?php $e( $c['guide']['bp_h3'] ); ?></h3>
+				<p>The file is only as useful as the pages it points to. These habits keep both accurate.</p>
+			</div>
+			<div class="vvg-bp">
+				<?php foreach ( $c['guide']['bp'] as $it ) : ?>
+				<div class="vvg-card"><h4><?php $e( $it[0] ); ?></h4><p><?php $e( $it[1] ); ?></p></div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</section>
+
+	<section id="generator" class="vvg-section vvg-bg-parch">
+		<div class="vvg-wrap-wide">
+			<div class="vvg-gen-head">
+				<div>
+					<h2 class="vvg-h2">Generator.</h2>
+					<p>Fill in each step. The preview updates as you type.</p>
+				</div>
+				<div class="vvg-gen-tools">
+					<button type="button" class="vvg-btn-light" data-vvg="example">Load example</button>
+					<button type="button" class="vvg-link-btn" data-vvg="clear">Clear form</button>
+				</div>
+			</div>
+			<div id="vvg-app"><noscript>This generator runs in your browser and needs JavaScript.</noscript></div>
+		</div>
+	</section>
+
+	<section id="faq" class="vvg-section vvg-bg-white">
+		<div class="vvg-wrap-narrow">
+			<h2 class="vvg-h2">Frequently asked questions.</h2>
+			<div class="vvg-faq">
+				<?php foreach ( $c['faqs'] as $i => $q ) : ?>
+				<details<?php echo 0 === $i ? ' open' : ''; ?>><summary><h3><?php $e( $q[0] ); ?></h3></summary><p><?php $e( $q[1] ); ?></p></details>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</section>
+
+	<section class="vvg-section vvg-bg-parch">
+		<div class="vvg-wrap vvg-more">
+			<div class="vvg-card">
+				<span class="vvg-eyebrow">Other industries</span>
+				<h2>More llms.txt generators.</h2>
+				<div class="vvg-more-links">
+					<?php foreach ( $others as $o ) : ?>
+					<a href="<?php echo esc_url( get_permalink( $o ) ); ?>"><?php $e( get_post_meta( $o->ID, 'vv_tool_label', true ) ); ?> ›</a>
+					<?php endforeach; ?>
+					<a href="<?php echo esc_url( $hubUrl ); ?>">All industries ›</a>
+				</div>
+				<div class="vvg-more-share">If this tool made it easy for you to build your llms.txt file, share it with your peers and fellow marketers.
+					<div class="vvg-more-links">
+						<a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo esc_attr( $enc ); ?>" target="_blank" rel="noopener">LinkedIn ↗</a>
+						<a href="https://wa.me/?text=<?php echo esc_attr( rawurlencode( 'A free llms.txt generator for ' . strtolower( $label ) . ' websites: ' ) . $enc ); ?>" target="_blank" rel="noopener">WhatsApp ↗</a>
+						<a href="mailto:?subject=<?php echo esc_attr( rawurlencode( 'A free llms.txt generator for ' . strtolower( $label ) ) ); ?>&amp;body=<?php echo esc_attr( rawurlencode( 'Thought this might help: ' ) . $enc ); ?>">Email ↗</a>
+					</div>
+				</div>
+			</div>
+			<div class="vvg-card">
+				<span class="vvg-eyebrow">About the author</span>
+				<h2>Built by Vineet Vijay.</h2>
+				<p>Digital marketing strategist based in the UAE, writing about AI in marketing, search, paid media and measurement.</p>
+				<div class="vvg-more-links">
+					<a href="<?php echo esc_url( home_url( '/writing/' ) ); ?>">Read the writing ›</a>
+					<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Get in touch ›</a>
+				</div>
 			</div>
 		</div>
 	</section>
