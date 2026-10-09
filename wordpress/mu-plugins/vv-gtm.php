@@ -2,7 +2,10 @@
 /**
  * Plugin Name: VV Google Tag Manager
  * Description: Prints the Google Tag Manager container (GTM-MPZBRGLB) first in <head>, plus the <noscript> fallback right after <body>.
- * Version:     1.0.0
+ *              gtm.js (and the GA4 tag it loads) is fetched on the visitor's first scroll, tap, click, key press or mouse
+ *              move, or 5 seconds after the page has loaded, whichever comes first, so it stays off the critical path.
+ *              The gtm.start timestamp is still recorded at page start.
+ * Version:     1.1.0
  *
  * Install: copy to wp-content/mu-plugins/vv-gtm.php (must-use plugins load automatically).
  */
@@ -13,12 +16,14 @@ const VV_GTM_ID = 'GTM-MPZBRGLB';
 
 add_action( 'wp_head', function () {
 	?>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','<?php echo esc_js( VV_GTM_ID ); ?>');</script>
+<!-- Google Tag Manager (loads on first interaction, or 5 s after the page has loaded) -->
+<script>(function(w,d,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+var done=0,ev=['scroll','mousemove','touchstart','keydown','click'];
+function go(){if(done)return;done=1;ev.forEach(function(e){w.removeEventListener(e,go,{passive:true});});
+var j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;d.head.appendChild(j);}
+ev.forEach(function(e){w.addEventListener(e,go,{passive:true});});
+w.addEventListener('load',function(){setTimeout(go,5000);});
+})(window,document,'dataLayer','<?php echo esc_js( VV_GTM_ID ); ?>');</script>
 <!-- End Google Tag Manager -->
 	<?php
 }, PHP_INT_MIN );
