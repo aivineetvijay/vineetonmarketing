@@ -8,7 +8,7 @@
  *              assets/generator.js + <slug>/config.js, all in wp-content/uploads/vv-tools/llms-txt-generator/.
  *              SEO meta (title, description, robots) is Rank Math's, set per page; FAQPage schema comes from vv_faq.
  *              generator.css is printed inline in the head; the two scripts load deferred.
- * Version:     3.3.0
+ * Version:     3.4.0
  *
  * Install: copy to wp-content/mu-plugins/vv-tools.php (see wordpress/tools/install-llms-generators.php).
  */
@@ -59,7 +59,7 @@ function vv_tools_render( $id, $c ) {
 	$enc    = rawurlencode( $self );
 	$e      = function ( $s ) { echo esc_html( $s ); };
 	?>
-<div class="vvg">
+<main id="main-content" class="vvg">
 	<header class="vvg-hero">
 		<div class="vvg-wrap">
 			<h1><?php $e( $c['h1'] ); ?></h1>
@@ -166,6 +166,6 @@ function vv_tools_render( $id, $c ) {
 			</div>
 		</div>
 	</section>
-</div>
+</main>
 	<?php
 }

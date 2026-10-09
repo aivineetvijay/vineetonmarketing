@@ -142,11 +142,11 @@ $set = array(
 	'footer-widget-2-content-font-extras' => array( 'line-height' => '1.6', 'line-height-unit' => '', 'letter-spacing' => '-0.13', 'letter-spacing-unit' => 'px', 'text-transform' => '', 'text-decoration' => '' ),
 
 	'footer-copyright-editor' => '© [current_year] Vineet Vijay. All rights reserved.',
-	'footer-copyright-color' => 'rgba(255,255,255,0.4)',
+	'footer-copyright-color' => 'rgba(255,255,255,0.55)', // 6.3:1 on black (WCAG AA needs 4.5:1)
 	'font-size-section-footer-copyright' => $size( 12 ),
 	'footer-copyright-alignment' => array( 'desktop' => 'left', 'tablet' => 'left', 'mobile' => 'left' ),
 	'footer-html-1' => 'Built with restraint in Dubai.',
-	'footer-html-1color' => $resp( 'rgba(255,255,255,0.4)' ),
+	'footer-html-1color' => $resp( 'rgba(255,255,255,0.55)' ),
 	'font-size-section-fb-html-1' => $size( 12 ),
 	'footer-html-1-alignment' => array( 'desktop' => 'right', 'tablet' => 'right', 'mobile' => 'left' ),
 );
@@ -173,7 +173,9 @@ $mega = '<!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","letterSpac
 $details = '<!-- wp:group {"style":{"spacing":{"blockGap":"32px"}},"layout":{"type":"grid","minimumColumnWidth":"14rem"}} --><div class="wp-block-group">'
 	. $column( $label( 'Based' ) . $text( 'Abu Dhabi · Dubai<br>United Arab Emirates' ) )
 	. $column( $label( 'Phone' ) . $text( '<a href="tel:+971586823646">+971 58 682 3646</a>' ) )
-	. $column( $label( 'Elsewhere' ) . $text( '<a href="https://linkedin.com/in/vineetvijay" target="_blank" rel="noreferrer noopener">LinkedIn</a><br><a href="' . esc_url( home_url( '/writing/#subscribe' ) ) . '">Subscribe</a>' ) )
+	/* Line height 2 (26px lines) keeps the two stacked links at least 24px apart as touch targets. */
+	. $column( $label( 'Elsewhere' ) . '<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"typography":{"lineHeight":"2"}}} --><p style="margin-top:0;margin-bottom:0;line-height:2">'
+		. '<a href="https://linkedin.com/in/vineetvijay" target="_blank" rel="noreferrer noopener">LinkedIn</a><br><a href="' . esc_url( home_url( '/writing/#subscribe' ) ) . '">Subscribe</a></p><!-- /wp:paragraph -->' )
 	. $column( $label( 'Status' ) . $text( '<mark style="background-color:rgba(0,0,0,0);color:#1f8a5b" class="has-inline-color">●</mark> Open to new conversations' ) )
 	. '</div><!-- /wp:group -->';
 
