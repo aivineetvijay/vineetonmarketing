@@ -5,11 +5,9 @@ window.VVLLMS = {
 	typeLabel: 'Company type',
 	types: [
 		[ 'bank', 'Bank', 'bank', 'Bank' ],
-		[ 'digital_bank', 'Digital bank', 'digital bank', 'Digital bank' ],
-		[ 'payments', 'Payments', 'payments company', 'Payments company' ],
-		[ 'lending', 'Lending', 'lending company', 'Lending company' ],
-		[ 'insurance', 'Insurance', 'insurance company', 'Insurance company' ],
-		[ 'investment', 'Investment', 'investment firm', 'Investment and wealth firm' ],
+		[ 'payments', 'Payments & fintech', 'payments and fintech company', 'Payments and fintech company' ],
+		[ 'lending', 'Lending & insurance', 'lending and insurance company', 'Lending and insurance company' ],
+		[ 'investment', 'Investment & wealth', 'investment and wealth firm', 'Investment and wealth firm' ],
 	],
 	fields: {
 		name: { label: 'Company name', ph: 'Falcon Pay' },

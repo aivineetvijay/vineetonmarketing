@@ -6,10 +6,8 @@ window.VVLLMS = {
 	types: [
 		[ 'news', 'News outlet', 'news outlet', 'News outlet' ],
 		[ 'magazine', 'Magazine', 'magazine', 'Magazine' ],
-		[ 'digital', 'Digital publisher', 'digital publication', 'Digital publisher' ],
 		[ 'trade', 'Trade publication', 'trade publication', 'Trade publication' ],
-		[ 'blog', 'Blog', 'blog', 'Blog' ],
-		[ 'newsletter', 'Newsletter', 'newsletter', 'Newsletter' ],
+		[ 'blog', 'Blog / newsletter', 'blog', 'Blog or newsletter' ],
 	],
 	fields: {
 		name: { label: 'Publication name', ph: 'The Gulf Ledger' },
@@ -37,7 +35,7 @@ window.VVLLMS = {
 		{ re: /\b(says|said|claims|reveals|warns|announced)\b/i, msg: 'Describe what the page covers, not what an article claims.' },
 	],
 	example: {
-		f: { type: 'digital', name: 'The Gulf Ledger', site: 'https://gulfledger.com', markets: 'Business news across the GCC', licence: '', summary: 'The Gulf Ledger is a digital business publication covering markets, startups and policy across the GCC, published daily online with a weekday morning newsletter.' },
+		f: { type: 'news', name: 'The Gulf Ledger', site: 'https://gulfledger.com', markets: 'Business news across the GCC', licence: '', summary: 'The Gulf Ledger is a digital business publication covering markets, startups and policy across the GCC, published daily online with a weekday morning newsletter.' },
 		rows: {
 			sections: [
 				{ t: 'Markets', u: 'https://gulfledger.com/markets', n: 'Coverage of GCC stock exchanges, IPOs and listed companies' },

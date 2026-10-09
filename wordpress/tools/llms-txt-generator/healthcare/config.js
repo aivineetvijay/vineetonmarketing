@@ -8,8 +8,6 @@ window.VVLLMS = {
 		[ 'clinic', 'Clinic', 'clinic', 'Clinic' ],
 		[ 'specialist', 'Specialist practice', 'specialist practice', 'Specialist practice' ],
 		[ 'diagnostic', 'Diagnostic centre', 'diagnostic centre', 'Diagnostic centre' ],
-		[ 'telehealth', 'Telehealth', 'telehealth provider', 'Telehealth provider' ],
-		[ 'pharmacy', 'Pharmacy', 'pharmacy', 'Pharmacy' ],
 	],
 	fields: {
 		name: { label: 'Organisation name', ph: 'Al Noor Specialty Hospital' },
