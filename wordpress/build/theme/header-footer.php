@@ -145,8 +145,10 @@ $set = array(
 	'footer-copyright-color' => 'rgba(255,255,255,0.55)', // 6.3:1 on black (WCAG AA needs 4.5:1)
 	'font-size-section-footer-copyright' => $size( 12 ),
 	'footer-copyright-alignment' => array( 'desktop' => 'left', 'tablet' => 'left', 'mobile' => 'left' ),
-	'footer-html-1' => 'Built with restraint in Dubai.',
+	'footer-html-1' => '<a href="' . esc_url( home_url( '/privacy-policy/' ) ) . '">Privacy policy</a> · Built with restraint in Dubai.',
 	'footer-html-1color' => $resp( 'rgba(255,255,255,0.55)' ),
+	'footer-html-1link-color' => $resp( 'rgba(255,255,255,0.8)' ),
+	'footer-html-1link-h-color' => $resp( $blue_dark ),
 	'font-size-section-fb-html-1' => $size( 12 ),
 	'footer-html-1-alignment' => array( 'desktop' => 'right', 'tablet' => 'right', 'mobile' => 'left' ),
 );

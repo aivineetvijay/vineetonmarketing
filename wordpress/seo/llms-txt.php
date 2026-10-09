@@ -1,34 +1,20 @@
 <?php
 /**
- * llms.txt (https://vineetonmarketing.com/llms.txt) via Rank Math's llms-txt module.
- * Run server-side. Lists published pages and posts with their summaries, plus an "About" block.
- * Page summaries come from post_excerpt, so each page's excerpt is set to its Rank Math meta description
- * (otherwise Rank Math falls back to the first line of page text, e.g. "Status" or "Industry").
+ * llms.txt (https://vineetonmarketing.com/llms.txt): the hand-written file in wordpress/seo/llms.txt, in the same
+ * format the site's llms.txt generators produce (H1, summary, key facts, then curated sections of links with one
+ * factual line each). Run server-side via Novamira execute-php with $vv_base set to the raw GitHub URL of
+ * wordpress/ at a commit, e.g. https://raw.githubusercontent.com/<owner>/<repo>/<sha>/wordpress/.
+ *
+ * Rank Math's generated llms.txt (a list of every page) is switched off, and the file is written to the site root,
+ * where the web server serves it directly as text/plain. Update wordpress/seo/llms.txt and re-run when pages change.
  */
-global $wpdb;
-wp_get_ability( 'rank-math/set-module-status' )->execute( array( 'modules' => array( 'llms-txt' => true ) ) );
-
-$gen = get_option( 'rank-math-options-general', array() );
-$gen['llms_post_types']    = array( 'page', 'post' );
-$gen['llms_taxonomies']    = array();
-$gen['llms_limit']         = 100;
-$gen['llms_extra_content'] = "## About\n\n"
-	. "Vineet Vijay is a digital marketing strategist based in Dubai, UAE, with ten years across healthcare, e-commerce, FMCG and luxury. "
-	. "He writes practitioner essays on AI in marketing, SEO and AI search visibility, schema markup, paid media and measurement, for marketing leaders in the GCC and India.\n\n"
-	. "- Writing: https://vineetonmarketing.com/writing/\n"
-	. "- Experience: https://vineetonmarketing.com/experience/\n"
-	. "- Case studies: https://vineetonmarketing.com/case-studies/\n"
-	. "- Contact: https://vineetonmarketing.com/contact/\n"
-	. "- LinkedIn: https://www.linkedin.com/in/vineetvijay\n\n"
-	. 'Quoting is welcome with attribution and a link to the original essay.';
-update_option( 'rank-math-options-general', $gen );
-
-foreach ( get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => -1 ) ) as $p ) {
-	$d = get_post_meta( $p->ID, 'rank_math_description', true );
-	if ( $d ) { $wpdb->update( $wpdb->posts, array( 'post_excerpt' => $d ), array( 'ID' => $p->ID ) ); clean_post_cache( $p->ID ); }
+$r = wp_remote_get( $vv_base . 'seo/llms.txt', array( 'timeout' => 30 ) );
+$txt = wp_remote_retrieve_body( $r );
+if ( 200 !== wp_remote_retrieve_response_code( $r ) || 0 !== strpos( $txt, '# ' ) ) {
+	return array( 'error' => 'could not fetch seo/llms.txt' );
 }
-
-/* The module registers ^llms\.txt$ once loaded; flush so the URL resolves on the next request. */
+wp_get_ability( 'rank-math/set-module-status' )->execute( array( 'modules' => array( 'llms-txt' => false ) ) );
+file_put_contents( ABSPATH . 'llms.txt', $txt );
 flush_rewrite_rules( false );
 do_action( 'litespeed_purge_all' );
-return 'ok';
+return array( 'bytes' => strlen( $txt ) );
