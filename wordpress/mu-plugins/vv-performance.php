@@ -8,7 +8,8 @@
  * Version:     1.0.0
  *
  * Install: copy to wp-content/mu-plugins/vv-performance.php (must-use plugins load automatically).
- * Related settings (not in this file): Astra loads Google Fonts locally with preload; LiteSpeed browser cache is on.
+ * Related settings (not in this file): Astra loads Google Fonts locally with preload (Astra > Performance);
+ *              Elementor loads Google Fonts locally (elementor_local_google_fonts); LiteSpeed browser cache is on (1 year).
  */
 
 defined( 'ABSPATH' ) || exit;
