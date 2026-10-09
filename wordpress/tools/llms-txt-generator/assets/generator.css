@@ -33,16 +33,6 @@
 .vvg-link-btn { background: none; border: 0; padding: 0 4px; font-family: inherit; font-size: 15px; color: #0066cc; cursor: pointer; }
 .vvg-btn-blue:active, .vvg-btn-outline:active, .vvg-btn-light:active { transform: scale(0.97); }
 
-/* Local sub-nav (sticky) */
-.vvg-subnav { position: sticky; top: 0; z-index: 50; background: rgba(245,245,247,0.86); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid #e0e0e0; }
-.admin-bar .vvg-subnav { top: 32px; }
-.vvg-subnav-in { max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.vvg-subnav-title { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; color: #1d1d1f; white-space: nowrap; }
-.vvg-subnav-links { display: flex; align-items: center; gap: 28px; }
-.vvg-subnav-links a { font-size: 14px; color: #1d1d1f; }
-.vvg-subnav-links a.vvg-subnav-dl { height: 30px; padding: 0 16px; display: inline-flex; align-items: center; border-radius: 9999px; background: #0071e3; color: #fff; font-size: 14px; }
-.vvg-subnav-links a.vvg-subnav-dl:hover { background: #0077ed; text-decoration: none; }
-
 /* Hero */
 .vvg-hero { padding: 88px 0 72px; text-align: center; background: #fff; }
 .vvg-hero h1 { max-width: 860px; margin: 0 auto; font-size: clamp(40px, 6vw, 72px); font-weight: 600; line-height: 1.04; letter-spacing: -0.035em; }
@@ -100,6 +90,9 @@
 .vvg .vvg-form input:focus, .vvg .vvg-form textarea:focus { outline: 2px solid #0071e3; outline-offset: 0; border-color: #0071e3; }
 .vvg ::placeholder { color: #a1a1a6; }
 .vvg-hint { font-size: 12px; color: #6e6e73; }
+.vvg-groups { gap: 32px; }
+.vvg-group { display: flex; flex-direction: column; gap: 14px; padding-top: 24px; border-top: 1px solid #f0f0f0; }
+.vvg-group:first-child { padding-top: 0; border-top: 0; }
 .vvg-group-head h3 { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; }
 .vvg-group-head p { margin-top: 4px; font-size: 14px; line-height: 1.45; color: #6e6e73; }
 .vvg-rows { display: flex; flex-direction: column; gap: 12px; }
@@ -156,6 +149,13 @@
 .vvg-more-share { margin-top: 6px; padding-top: 16px; border-top: 1px solid #f0f0f0; font-size: 15px; color: #333; }
 .vvg-more-share .vvg-more-links { margin-top: 8px; font-size: 15px; }
 
+/* Desktop: the site header is sticky (vv-sticky-header, 80px), so in-page anchors and sticky panels sit below it. */
+@media (min-width: 922px) {
+	.vvg-section { scroll-margin-top: 88px; }
+	.vvg-why-copy { top: 112px; }
+	.vvg-out { top: 104px; }
+}
+
 @media (max-width: 1068px) {
 	.vvg-types { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.vvg-bp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -167,8 +167,6 @@
 	.vvg-section { padding: 64px 0; }
 	.vvg-hero { padding: 56px 0 48px; }
 	.vvg-hero-lead { font-size: 19px; }
-	.vvg-subnav-links a:not(.vvg-subnav-dl) { display: none; }
-	.vvg-subnav-title { font-size: 17px; }
 	.vvg-why { grid-template-columns: 1fr; }
 	.vvg-why-copy { position: static; }
 	.vvg-types, .vvg-bp, .vvg-inout, .vvg-more, .vvg-fields, .vvg-done { grid-template-columns: 1fr; }

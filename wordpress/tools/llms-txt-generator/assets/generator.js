@@ -1,6 +1,6 @@
 /**
  * llms.txt generator engine (v3), shared by every industry page under /ai-tools/llms-txt-generator/.
- * Stepped form: 1 Business, then one step per page group from the industry config (window.VVLLMS, loaded
+ * Two steps: 1 Business details, 2 Key pages (every page group from the industry config, window.VVLLMS, loaded
  * from <industry>/config.js). The preview builds as you type. Everything runs in the browser.
  */
 ( function () {
@@ -93,7 +93,7 @@
 	}
 
 	/* ---------- Render ---------- */
-	var steps = function () { return [ { key: 'business', label: 'Business' } ].concat( C.groups.map( function ( g ) { return { key: g.key, label: pick( g.label, st.f.type ) }; } ) ); };
+	var steps = function () { return [ { key: 'business', label: 'Business details' }, { key: 'pages', label: 'Key pages' } ]; };
 	function field( k, wide ) {
 		var d = C.fields[ k ];
 		return '<label class="vvg-field' + ( wide ? ' vvg-wide' : '' ) + '"><span>' + esc( d.label ) + '</span><input type="' + ( 'site' === k ? 'url' : 'text' ) + '" data-f="' + k + '" placeholder="' + esc( d.ph ) + '" value="' + esc( st.f[ k ] ) + '"></label>';
@@ -115,10 +115,11 @@
 				'<div class="vvg-fields">' + field( 'name' ) + field( 'site' ) + field( 'markets' ) + field( 'licence' ) + '</div>' +
 				'<label class="vvg-field vvg-wide"><span>One-line summary</span><textarea rows="3" data-f="summary" placeholder="' + esc( C.fields.summary.ph ) + '">' + esc( st.f.summary ) + '</textarea><small class="vvg-hint" data-hint="summary"></small></label></div>';
 		}
-		var g = C.groups.filter( function ( x ) { return x.key === s.key; } )[ 0 ];
-		return '<div class="vvg-panel"><div class="vvg-group-head"><h3>' + esc( pick( g.heading, st.f.type ) ) + '</h3><p>' + esc( pick( g.hint, st.f.type ) ) + '</p></div>' +
-			'<div class="vvg-rows">' + st.rows[ g.key ].map( function ( r, i ) { return rowHtml( g, r, i ); } ).join( '' ) + '</div>' +
-			'<button type="button" class="vvg-add" data-act="add">+ Add a page</button></div>';
+		return '<div class="vvg-panel vvg-groups">' + C.groups.map( function ( g ) {
+			return '<div class="vvg-group"><div class="vvg-group-head"><h3>' + esc( pick( g.heading, st.f.type ) ) + '</h3><p>' + esc( pick( g.hint, st.f.type ) ) + '</p></div>' +
+				'<div class="vvg-rows">' + st.rows[ g.key ].map( function ( r, i ) { return rowHtml( g, r, i ); } ).join( '' ) + '</div>' +
+				'<button type="button" class="vvg-add" data-act="add" data-g="' + g.key + '">+ Add a page</button></div>';
+		} ).join( '' ) + '</div>';
 	}
 	function render() {
 		var n = steps().length;
@@ -161,14 +162,14 @@
 	function update() {
 		var b = build(), list = steps(), n = list.length;
 		var bizDone = st.f.name.trim() && st.f.site.trim();
-		var doneCount = ( bizDone ? 1 : 0 ) + C.groups.filter( function ( g ) { return b.counts[ g.key ] > 0; } ).length;
+		var doneCount = ( bizDone ? 1 : 0 ) + ( b.links > 0 ? 1 : 0 );
 		root.querySelector( '.vvg-pre' ).textContent = b.text;
 		root.querySelector( '.vvg-stats' ).textContent = b.links + ( 1 === b.links ? ' link' : ' links' ) + ' · ' + b.text.split( '\n' ).length + ' lines' + ( b.left ? ' · ' + b.left + ' left out' : '' );
 		root.querySelectorAll( '.vvg-file' ).forEach( function ( x ) { x.textContent = ( st.f.site.trim().replace( /\/+$/, '' ) || 'https://yoursite.com' ) + '/llms.txt'; } );
 		root.querySelector( '.vvg-progress-label' ).textContent = doneCount + ' of ' + n + ' sections complete';
 		root.querySelector( '.vvg-bar-fill' ).style.width = ( doneCount / n * 100 ) + '%';
 		root.querySelector( '.vvg-tabs' ).innerHTML = list.map( function ( s, i ) {
-			var c = 'business' === s.key ? '' : ( b.counts[ s.key ] ? ' · ' + b.counts[ s.key ] : '' );
+			var c = 'business' === s.key ? '' : ( b.links ? ' · ' + b.links : '' );
 			return '<button type="button" role="tab" class="vvg-tab" data-step="' + i + '" aria-selected="' + ( i === step ) + '">' + ( i + 1 ) + ' ' + esc( s.label ) + c + '</button>';
 		} ).join( '' );
 		var hint = root.querySelector( '[data-hint="summary"]' );
@@ -208,14 +209,15 @@
 		if ( ty ) { st.f.type = ty.getAttribute( 'data-type' ); save(); render(); return; }
 		var b = e.target.closest( '[data-act]' );
 		if ( ! b ) { return; }
-		var act = b.getAttribute( 'data-act' ), key = steps()[ step ].key;
+		var act = b.getAttribute( 'data-act' );
 		if ( 'prev' === act ) { go( step - 1 ); }
 		else if ( 'next' === act ) { if ( step === steps().length - 1 ) { download(); } else { go( step + 1 ); } }
 		else if ( 'add' === act ) {
-			st.rows[ key ].push( { t: '', u: '', n: '' } ); save(); render();
-			var rows = root.querySelectorAll( '.vvg-row [data-k="t"]' ); rows[ rows.length - 1 ].focus();
+			var gk = b.getAttribute( 'data-g' );
+			st.rows[ gk ].push( { t: '', u: '', n: '' } ); save(); render();
+			var rows = root.querySelectorAll( '.vvg-row[data-g="' + gk + '"] [data-k="t"]' ); rows[ rows.length - 1 ].focus();
 		} else if ( 'remove' === act ) {
-			var el = b.closest( '.vvg-row' );
+			var el = b.closest( '.vvg-row' ), key = el.getAttribute( 'data-g' );
 			st.rows[ key ].splice( +el.getAttribute( 'data-i' ), 1 );
 			if ( ! st.rows[ key ].length ) { st.rows[ key ].push( { t: '', u: '', n: '' } ); }
 			save(); render();
