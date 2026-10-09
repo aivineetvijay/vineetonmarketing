@@ -4,10 +4,8 @@ window.VVLLMS = {
 	shareWith: 'someone who manages a school or university website', reviewWhen: 'and at the start of each term or intake',
 	typeLabel: 'Institution type',
 	types: [
-		[ 'university', 'University', 'university', 'University' ],
-		[ 'college', 'College', 'college', 'College' ],
-		[ 'school', 'School', 'school', 'School' ],
-		[ 'nursery', 'Nursery', 'nursery', 'Nursery' ],
+		[ 'university', 'University / college', 'university', 'University' ],
+		[ 'school', 'School / nursery', 'school', 'School' ],
 		[ 'training', 'Training institute', 'training institute', 'Training institute' ],
 		[ 'platform', 'Learning platform', 'online learning platform', 'Online learning platform' ],
 	],
@@ -19,8 +17,8 @@ window.VVLLMS = {
 		summary: { ph: 'What the institution is, what it teaches, and where.' },
 	},
 	groups: [
-		{ key: 'programmes', label: { school: 'Curriculum', nursery: 'Curriculum', training: 'Courses', platform: 'Courses', _: 'Programmes' },
-			heading: { school: 'Curriculum', nursery: 'Curriculum', training: 'Courses', platform: 'Courses', _: 'Programmes' },
+		{ key: 'programmes', label: { school: 'Curriculum', training: 'Courses', platform: 'Courses', _: 'Programmes' },
+			heading: { school: 'Curriculum', training: 'Courses', platform: 'Courses', _: 'Programmes' },
 			hint: 'Faculty or department hubs, the full catalogue and flagship programmes. More than 40? Add hubs plus up to 20 flagships.', ph: [ 'BSc Computer Science', 'https://…/programmes/computer-science', 'Four-year degree, full-time on the Dubai campus' ] },
 		{ key: 'admissions', label: 'Admissions', heading: 'Admissions & fees', hint: 'How to apply, entry requirements, fees overview and scholarships. No figures or deadlines.', ph: [ 'How to apply', 'https://…/admissions/apply', 'Application steps and required documents' ] },
 		{ key: 'life', label: 'Student life', heading: 'Student life & support', hint: 'Campus, facilities, housing, wellbeing, careers and parent information.', ph: [ 'Student services', 'https://…/student-services', 'Counselling, careers advice and housing support' ] },
