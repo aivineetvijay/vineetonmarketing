@@ -6,6 +6,11 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'sameas-schema', 'y' => 'Oct ’26', 'date' => 'October 9, 2026', 'iso' => '2026-10-09 07:00:00', 'cat' => 'AI in Marketing',
+		'tags' => array( 'AI in Marketing', 'SEO' ),
+		't' => 'What is sameAs schema? A plain-English guide for marketers.',
+		'dek' => 'sameAs tells Google and AI tools which profiles are yours. What it is, who needs it, when to use it and how to add it without writing code.',
+		'min' => 8, 'tone' => 'deep', 'fmt' => 'Guide', 'body_src' => 'sameas-schema' ),
 	array( 'slug' => 'rank-in-ai-overviews', 'y' => 'Oct ’26', 'date' => 'October 8, 2026', 'iso' => '2026-10-08 06:00:00', 'cat' => 'AI in Marketing',
 		'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'How to rank in AI Overviews: what I learned getting cited.',

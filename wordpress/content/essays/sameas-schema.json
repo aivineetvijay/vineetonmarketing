@@ -1,0 +1,363 @@
+[
+ [
+  "p",
+  "<strong>sameAs schema is a short list, hidden in your website's code, that tells Google and AI tools \"these other pages are also us\". Your LinkedIn page, your Instagram, your Wikipedia entry. It helps machines be sure which business or person your website belongs to, especially when someone else has a similar name. You do not need to write the code to own it. You need to own the list.</strong>"
+ ],
+ [
+  "p",
+  "This is a plain-English guide for marketers who have heard the term and want to know what it is, who needs it, when to use it, and what a good one looks like. No developer vocabulary required. It expands line two of the <a href=\"https://vineetonmarketing.com/schema-markup-ai-visibility/\">Five-Line Schema Resume</a>."
+ ],
+ [
+  "box",
+  "Key takeaways",
+  "ul",
+  [
+   "sameAs is the machine-readable version of the \"find us on\" icons in your website footer.",
+   "It matters most for businesses with common names, local businesses, personal brands and recent rebrands.",
+   "Use it whenever your official profiles change: a new website, a rebrand, a new account, a job move.",
+   "Fewer, accurate links beat a long list. Only include pages that are genuinely you and that agree with your website."
+  ]
+ ],
+ [
+  "h2",
+  "What is sameAs schema?",
+  "what-is-sameas"
+ ],
+ [
+  "p",
+  "Look at the footer of almost any website. There is a row of small icons: LinkedIn, Instagram, YouTube. They tell a human visitor where else to find the brand."
+ ],
+ [
+  "p",
+  "sameAs does the same job for machines. It is a line in a page's <a href=\"https://vineetonmarketing.com/schema-markup-ai-visibility/\">schema markup</a> (structured code that describes the page) that lists your other official pages on the web. Schema.org, the shared vocabulary search engines use, defines it as a link to a reference page that <a href=\"https://schema.org/sameAs\">unambiguously indicates the item's identity</a>."
+ ],
+ [
+  "p",
+  "Put simply: your website says \"this is us\", and sameAs says \"and so are these\"."
+ ],
+ [
+  "p",
+  "<strong>Footer icons are for visitors. sameAs is the same list, written for Google, Bing and the AI tools that read them.</strong>"
+ ],
+ [
+  "h2",
+  "What problem does sameAs solve?",
+  "problem"
+ ],
+ [
+  "p",
+  "Names are not unique. There are many cafés called Blue Door, many consultants called Sara Khan, many companies called Apex. A human uses context to tell them apart. A machine needs evidence."
+ ],
+ [
+  "p",
+  "When Google or an AI assistant builds its picture of who you are, it has to decide which LinkedIn page, which Instagram account and which news mentions belong to your website, and which belong to someone else with a similar name. sameAs removes the guesswork by stating the connections outright. Google's <a href=\"https://developers.google.com/search/docs/appearance/structured-data/organization\">Organization structured data guide</a> describes this markup as a way to help it understand an organisation and tell it apart from others."
+ ],
+ [
+  "p",
+  "<strong>sameAs does not tell machines you are good. It tells them which one you are.</strong>"
+ ],
+ [
+  "h2",
+  "Who is sameAs schema for?",
+  "who"
+ ],
+ [
+  "p",
+  "Almost every business and personal brand with a website and at least one official profile elsewhere. It matters more for some than others:"
+ ],
+ [
+  "table",
+  [
+   "Who",
+   "Why it matters",
+   "Typical sameAs links"
+  ],
+  [
+   [
+    "<strong>Businesses with common names</strong>",
+    "Highest risk of being confused with someone else",
+    "LinkedIn company page, official social accounts"
+   ],
+   [
+    "<strong>Local businesses</strong> (clinics, restaurants, agents)",
+    "Address and location details must line up across platforms",
+    "Social accounts, claimed directory or booking profiles"
+   ],
+   [
+    "<strong>Professionals and personal brands</strong> (doctors, lawyers, consultants, authors)",
+    "People share names far more often than brands do",
+    "Personal LinkedIn, professional profile pages, author pages"
+   ],
+   [
+    "<strong>Recently rebranded or merged companies</strong>",
+    "Old and new names need connecting to one identity",
+    "Updated social and LinkedIn pages under the new name"
+   ],
+   [
+    "<strong>New brands</strong>",
+    "Few mentions online, so each official link carries more weight",
+    "Whatever official profiles exist, even if only two"
+   ]
+  ]
+ ],
+ [
+  "cite",
+  "Source: author's framework."
+ ],
+ [
+  "p",
+  "Large, famous brands with a Wikipedia page and a knowledge panel benefit least, because the machines already know them well. They should still do it. It costs almost nothing."
+ ],
+ [
+  "h2",
+  "When should you use sameAs?",
+  "when"
+ ],
+ [
+  "p",
+  "sameAs is not a one-time task. Add or review it whenever your official presence changes:"
+ ],
+ [
+  "ul",
+  [
+   "<strong>Launching or redesigning a website.</strong> Schema often gets lost in a rebuild. Check it survived.",
+   "<strong>Opening a new official profile</strong>, or claiming a listing on a directory or booking platform.",
+   "<strong>Rebranding or changing your name.</strong> Update every profile first, then the list.",
+   "<strong>A key person changes jobs.</strong> Their old employer's profile page should leave their list.",
+   "<strong>An AI tool describes you wrongly.</strong> A confused answer is often a sign the machine is mixing your profiles with someone else's.",
+   "<strong>Every quarter, as routine.</strong> Profiles drift. The code does not notice."
+  ]
+ ],
+ [
+  "h2",
+  "A worked example, line by line",
+  "example"
+ ],
+ [
+  "p",
+  "Take a fictional café, Blue Door Café in Dubai Marina. There is another Blue Door Café in London. The Dubai café has a website, a LinkedIn page, an Instagram account and a claimed listing on a restaurant directory."
+ ],
+ [
+  "p",
+  "Here is what its sameAs markup could look like on the homepage:"
+ ],
+ [
+  "code",
+  [
+   "{",
+   "  \"@context\": \"https://schema.org\",",
+   "  \"@type\": \"CafeOrCoffeeShop\",",
+   "  \"name\": \"Blue Door Café\",",
+   "  \"url\": \"https://www.bluedoorcafe.ae/\",",
+   "  \"address\": \"Dubai Marina, Dubai, UAE\",",
+   "  \"sameAs\": [",
+   "    \"https://www.linkedin.com/company/bluedoorcafe-dubai\",",
+   "    \"https://www.instagram.com/bluedoorcafe.dubai\",",
+   "    \"https://www.example-directory.com/dubai/blue-door-cafe\"",
+   "  ]",
+   "}"
+  ]
+ ],
+ [
+  "cite",
+  "An illustrative example with a fictional business and placeholder links."
+ ],
+ [
+  "p",
+  "And here is what each part is saying, in plain English:"
+ ],
+ [
+  "table",
+  [
+   "Line",
+   "What it tells the machine"
+  ],
+  [
+   [
+    "@type",
+    "What kind of thing this is: a café, not a person or a product"
+   ],
+   [
+    "name, url, address",
+    "Which café: this name, this website, this location"
+   ],
+   [
+    "sameAs",
+    "\"These three pages are also us.\" Not the London café, not a fan account, us."
+   ]
+  ]
+ ],
+ [
+  "p",
+  "Notice what is not in the list: a newspaper review, a \"best cafés in Dubai\" article, the London café's Instagram. The first two are about the café, not the café itself. The third is someone else entirely."
+ ],
+ [
+  "p",
+  "<strong>A good sameAs list reads like a short, verified set of official accounts. Not a press cuttings file.</strong>"
+ ],
+ [
+  "h2",
+  "What to include, and what to leave out",
+  "what-to-include"
+ ],
+ [
+  "p",
+  "The common advice is to add as many links as you can. I disagree. Every link in sameAs says \"this page is us\", so it also vouches for everything that page says. A directory listing with your old address does not add a reference. It adds a contradiction, with your name on it."
+ ],
+ [
+  "p",
+  "Before adding any link, I ask three questions. If the answer to any of them is no, the link stays out until the profile is fixed."
+ ],
+ [
+  "callout",
+  "Framework",
+  "The Reference Check",
+  "ol",
+  [
+   "<strong>Is it us?</strong> The page is your official profile, not an article, list or review about you.",
+   "<strong>Do we control it?</strong> You can log in and edit it, or it is an official registry. Not an unclaimed listing.",
+   "<strong>Does it agree?</strong> Name, address and description match your website today."
+  ]
+ ],
+ [
+  "table",
+  [
+   "Usually include",
+   "Usually leave out"
+  ],
+  [
+   [
+    "Official LinkedIn page",
+    "News articles and reviews about you"
+   ],
+   [
+    "Active official social accounts",
+    "Dormant, duplicate or fan-run accounts"
+   ],
+   [
+    "Wikipedia or Wikidata, if they exist and are accurate",
+    "Unclaimed or outdated directory listings"
+   ],
+   [
+    "Claimed directory or booking profiles that are up to date",
+    "Other pages on your own website"
+   ]
+  ]
+ ],
+ [
+  "cite",
+  "Source: author's framework. Articles about you have their own Schema.org property, <a href=\"https://schema.org/subjectOf\">subjectOf</a>, if your developer wants to mark them up."
+ ],
+ [
+  "quote",
+  "The test is not \"does this page mention us?\" It is \"would we sign this page as our own?\"",
+  ""
+ ],
+ [
+  "h2",
+  "How do you add sameAs without writing code?",
+  "how"
+ ],
+ [
+  "p",
+  "You have three routes, and none of them needs you to touch the code yourself:"
+ ],
+ [
+  "ol",
+  [
+   "<strong>Your SEO plugin.</strong> On WordPress, the main SEO plugins have a settings field for your social profiles, and they generally use it to fill in sameAs for your organisation. Check what yours outputs.",
+   "<strong>Your developer.</strong> Send them the final list of URLs and ask for it in the Organization or Person markup on the homepage and about pages.",
+   "<strong>Your website platform.</strong> Many site builders add basic schema automatically. It is often incomplete, so check it rather than assume it."
+  ]
+ ],
+ [
+  "p",
+  "Whichever route you take, paste your homepage into the free <a href=\"https://validator.schema.org/\">Schema Markup Validator</a> afterwards and look for the sameAs line. If your links are there, it is live."
+ ],
+ [
+  "h2",
+  "What sameAs will not do",
+  "limits"
+ ],
+ [
+  "p",
+  "sameAs is not a ranking button. It will not push you up Google or get you mentioned by ChatGPT on its own. Its job is narrower: making sure that when machines do talk about you, they are talking about the right you."
+ ],
+ [
+  "p",
+  "The benefit is also hard to measure. You will rarely see a before-and-after chart. What you can see is the absence of a problem: AI answers that get your name, location and profiles right, instead of blending you with someone else."
+ ],
+ [
+  "p",
+  "<strong>Treat sameAs like your business registration details: unexciting, quick to get right, and expensive to get wrong.</strong>"
+ ],
+ [
+  "note",
+  "What to do on Monday",
+  "ul",
+  [
+   "List every official profile you have: social, LinkedIn, directories, booking platforms.",
+   "Run each one through the three Reference Check questions.",
+   "Fix any profile with an old name, address or description before adding it.",
+   "Add the final list through your SEO plugin or your developer.",
+   "Check it in the Schema Markup Validator, then set a quarterly reminder."
+  ]
+ ],
+ [
+  "cta",
+  "Schema is your website’s resume.",
+  "sameAs is one line of five. The full framework covers identity, credentials, what you offer and your content.",
+  "Read the framework &rarr;",
+  "https://vineetonmarketing.com/schema-markup-ai-visibility/"
+ ],
+ [
+  "p",
+  "Working in property? I cover sameAs alongside six other types in <a href=\"https://vineetonmarketing.com/schema-markup-for-real-estate/\">seven schemas every property site needs</a>."
+ ],
+ [
+  "h2",
+  "Frequently asked questions",
+  "faq"
+ ],
+ [
+  "h3s",
+  "What is sameAs schema in simple terms?"
+ ],
+ [
+  "p",
+  "sameAs is a line in your website's structured data that lists your other official pages online, such as your LinkedIn page, social accounts or Wikipedia entry. It tells search engines and AI tools that those pages and your website belong to the same business or person, so they do not confuse you with someone else."
+ ],
+ [
+  "h3s",
+  "Do small businesses need sameAs?"
+ ],
+ [
+  "p",
+  "Yes, often more than big brands do. A small business has fewer mentions online, so search engines have less evidence about who it is. A short, accurate sameAs list linking the website to its official profiles gives them clear confirmation. It is especially useful if your business shares its name with another one."
+ ],
+ [
+  "h3s",
+  "How many sameAs links should I have?"
+ ],
+ [
+  "p",
+  "There is no target number. Include every official profile that is genuinely yours, that you control, and that matches your website on name, address and description. Three accurate links are more useful than fifteen where some carry outdated details, because every link vouches for what that page says about you."
+ ],
+ [
+  "h3s",
+  "Does sameAs help with AI search visibility?"
+ ],
+ [
+  "p",
+  "Indirectly. It will not get you cited by AI tools on its own. It helps search engines and knowledge graphs identify you correctly, and many AI answers draw on those systems. Its real value is preventing mix-ups, so that when an AI tool does describe you, it describes the right business or person."
+ ],
+ [
+  "cta",
+  "Has an AI tool ever confused your brand with someone else's?",
+  "If you are seeing something different on your accounts, I would like to hear it.",
+  "Get in touch &rarr;",
+  "https://vineetonmarketing.com/contact/",
+  "Continue the conversation on LinkedIn &rarr;",
+  "https://www.linkedin.com/in/vineetvijay"
+ ]
+]
