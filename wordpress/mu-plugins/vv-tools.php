@@ -3,11 +3,11 @@
  * Plugin Name: VV Tools
  * Description: Renders the llms.txt generator pages as part of the site. Each generator is a WordPress page under
  *              /ai-tools/llms-txt-generator/ with post meta vv_tool = <slug>; this plugin draws it inside the theme
- *              (Astra header, Rank Math breadcrumbs, footer): local sub-nav, hero, why, what to include, the stepped
+ *              (Astra header, Rank Math breadcrumbs, footer): hero, why, what to include, the stepped
  *              generator, FAQ and more generators. Page copy comes from <slug>/content.json and the generator from
  *              assets/generator.js + <slug>/config.js, all in wp-content/uploads/vv-tools/llms-txt-generator/.
  *              SEO meta (title, description, robots) is Rank Math's, set per page; FAQPage schema comes from vv_faq.
- * Version:     3.0.0
+ * Version:     3.1.0
  *
  * Install: copy to wp-content/mu-plugins/vv-tools.php (see wordpress/tools/install-llms-generators.php).
  */
@@ -55,18 +55,6 @@ function vv_tools_render( $id, $c ) {
 	$e      = function ( $s ) { echo esc_html( $s ); };
 	?>
 <div class="vvg">
-	<nav class="vvg-subnav" aria-label="<?php echo esc_attr( 'llms.txt ' . $label ); ?>">
-		<div class="vvg-subnav-in">
-			<span class="vvg-subnav-title">llms.txt · <?php $e( $c['nav'] ); ?></span>
-			<div class="vvg-subnav-links">
-				<a href="#generator">Generator</a>
-				<a href="#guide">What to include</a>
-				<a href="#faq">FAQ</a>
-				<a class="vvg-subnav-dl" href="#generator" data-vvg="download">Download</a>
-			</div>
-		</div>
-	</nav>
-
 	<header class="vvg-hero">
 		<div class="vvg-wrap">
 			<h1><?php $e( $c['h1'] ); ?></h1>
