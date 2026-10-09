@@ -289,7 +289,7 @@
    [
     "ol",
     [
-     "<strong>Homepage:</strong> Organization with legal and brand name, logo, URL, phone, email, official social profile links (sameAs), and our registration or licence number as an identifier. Plus WebSite with our preferred site name.",
+     "<strong>Homepage:</strong> Organization with legal and brand name, logo, URL, phone, email, official social profile links (<a href=\"https://vineetonmarketing.com/sameas-schema/\">sameAs</a>), and our registration or licence number as an identifier. Plus WebSite with our preferred site name.",
      "<strong>Sales centre pages:</strong> one LocalBusiness per sales centre or gallery, with address, geo coordinates, phone and opening hours matching our Google Business Profiles exactly.",
      "<strong>All pages except home:</strong> BreadcrumbList matching the visible breadcrumb trail (communities, community, project, unit type).",
      "<strong>Community and project pages:</strong> Place, GatedResidenceCommunity or ApartmentComplex as appropriate, with name, address, geo, images, amenities, our organisation as developer, and each project linked to its master community.",
