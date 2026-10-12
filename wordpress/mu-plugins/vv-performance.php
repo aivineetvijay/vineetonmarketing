@@ -10,7 +10,7 @@
  *              Theme, Elementor and font stylesheets are printed inline in <head>; essay banners load eagerly and the
  *              one for the current screen size is preloaded at high priority. After any cache purge every public page
  *              is requested once in the background so it is cached again. Fonts use font-display: optional.
- * Version:     1.4.0
+ * Version:     1.4.1
  *
  * Install: copy to wp-content/mu-plugins/vv-performance.php (must-use plugins load automatically).
  * Related settings (not in this file): Astra loads Google Fonts locally with preload (Astra > Performance);
@@ -89,7 +89,10 @@ function vv_perf_banner_classes() {
 
 /* Banner attachment IDs on a post, by class label: art-banner-desktop / art-banner-mobile / art-banner. */
 function vv_perf_banners( $post_id ) {
-	$key = 'vv_perf_banners_' . $post_id . '_' . get_post_modified_time( 'U', true, $post_id );
+	/* Keyed on the Elementor data itself: a rebuild can land within the same second as a render, so the modified
+	   time alone could keep serving the previous banners. */
+	$raw   = (string) get_post_meta( $post_id, '_elementor_data', true );
+	$key   = 'vv_perf_banners_' . $post_id . '_' . md5( $raw );
 	$found = get_transient( $key );
 	if ( false !== $found ) {
 		return $found;
@@ -109,7 +112,7 @@ function vv_perf_banners( $post_id ) {
 			$walk( $el['elements'] ?? array() );
 		}
 	};
-	$walk( json_decode( (string) get_post_meta( $post_id, '_elementor_data', true ), true ) );
+	$walk( json_decode( $raw, true ) );
 	set_transient( $key, $found, MONTH_IN_SECONDS );
 	return $found;
 }
