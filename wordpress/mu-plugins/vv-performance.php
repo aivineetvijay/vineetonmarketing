@@ -6,11 +6,11 @@
  *              with nothing to style. They still load on any page whose content does contain blocks. Also removes
  *              the emoji detection script and styles (browsers draw emoji natively).
  *              On Elementor pages Inter comes from Elementor's local copy (one variable font file for every weight), so
- *              Astra's second copy of Inter is skipped there and Elementor's file is preloaded instead.
+ *              Astra's second copy of Inter is skipped there and Elementor's upright and italic files are preloaded.
  *              Theme, Elementor and font stylesheets are printed inline in <head>; essay banners load eagerly and the
  *              one for the current screen size is preloaded at high priority. After any cache purge every public page
  *              is requested once in the background so it is cached again. Fonts use font-display: optional.
- * Version:     1.4.1
+ * Version:     1.5.0
  *
  * Install: copy to wp-content/mu-plugins/vv-performance.php (must-use plugins load automatically).
  * Related settings (not in this file): Astra loads Google Fonts locally with preload (Astra > Performance);
@@ -35,19 +35,27 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 remove_action( 'wp_enqueue_scripts', 'wp_enqueue_emoji_styles' );
 add_filter( 'emoji_svg_url', '__return_false' );
 
-/* Elementor's local Inter stylesheet and its Latin upright file (all weights). Empty if Elementor has not built it. */
+/* Elementor's local Inter stylesheet: its Latin upright and Latin italic files (each covers every weight), keyed
+ * 'normal' / 'italic'. Empty if Elementor has not built it. Fonts use font-display: optional, so a file that is not
+ * preloaded can miss the first paint; the italic is used by the light italic headline words (t-italic). */
 function vv_perf_elementor_inter() {
 	$css = wp_get_upload_dir()['basedir'] . '/elementor/google-fonts/css/inter.css';
 	if ( ! is_file( $css ) ) {
-		return '';
+		return array();
 	}
-	$key  = 'vv_perf_inter_' . filemtime( $css );
-	$font = get_transient( $key );
-	if ( false === $font ) {
-		$font = preg_match( '#/\* latin \*/\s*@font-face \{[^}]*font-style: normal;[^}]*url\(([^)]+)\)#', (string) file_get_contents( $css ), $m ) ? trim( $m[1], '\'"' ) : '';
-		set_transient( $key, $font, MONTH_IN_SECONDS );
+	$key   = 'vv_perf_inter2_' . filemtime( $css );
+	$files = get_transient( $key );
+	if ( false === $files ) {
+		$files = array();
+		preg_match_all( '#/\* latin \*/\s*@font-face \{[^}]*font-style: (normal|italic);[^}]*url\(([^)]+)\)#', (string) file_get_contents( $css ), $m, PREG_SET_ORDER );
+		foreach ( $m as $face ) {
+			if ( ! isset( $files[ $face[1] ] ) ) {
+				$files[ $face[1] ] = trim( $face[2], '\'"' );
+			}
+		}
+		set_transient( $key, $files, MONTH_IN_SECONDS );
 	}
-	return $font;
+	return $files;
 }
 
 function vv_perf_is_elementor_page() {
@@ -61,8 +69,7 @@ add_filter( 'astra_render_fonts', function ( $fonts ) {
 } );
 
 add_action( 'wp_head', function () {
-	$font = vv_perf_is_elementor_page() ? vv_perf_elementor_inter() : '';
-	if ( $font ) {
+	foreach ( vv_perf_is_elementor_page() ? vv_perf_elementor_inter() : array() as $font ) {
 		echo '<link rel="preload" href="' . esc_url( $font ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	}
 }, 1 );
