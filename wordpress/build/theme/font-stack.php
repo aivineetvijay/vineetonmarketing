@@ -1,6 +1,6 @@
 <?php
 /**
- * Sans-serif fallbacks for the site fonts. Run once via Novamira execute-php (no inputs).
+ * Sans-serif fallbacks for the site fonts, and a font-mono variable for code. Run via Novamira execute-php (no inputs).
  *
  * The Elementor global font variables font-text and font-display were just "Inter". Fonts load with
  * font-display: optional (no layout shift), so if Inter is not ready at first paint the browser uses the next font
@@ -22,6 +22,25 @@ foreach ( $vars['data'] as $id => $v ) {
 if ( ! $hit ) {
 	return array( 'error' => 'font variables not found' );
 }
+/* font-mono: one system monospace stack for code (art-code; the generator pages use the same stack). A variable,
+   because Elementor quotes a plain comma-separated font-family value as one family name. */
+$mono   = 'ui-monospace, SF Mono, Menlo, Consolas, Liberation Mono, monospace';
+$has    = false;
+$orders = array( 0 );
+foreach ( $vars['data'] as $id => $v ) {
+	$orders[] = (int) ( $v['order'] ?? 0 );
+	if ( 'font-mono' === ( $v['label'] ?? '' ) ) {
+		$vars['data'][ $id ]['value']['value'] = $mono;
+		$has = true;
+	}
+}
+if ( ! $has ) {
+	$vars['data'][ 'e-gv-' . substr( md5( 'font-mono' ), 0, 7 ) ] = array(
+		'type' => 'global-font-variable', 'label' => 'font-mono', 'value' => array( '$$type' => 'string', 'value' => $mono ),
+		'order' => max( $orders ) + 1, 'created_at' => current_time( 'mysql' ), 'updated_at' => current_time( 'mysql' ),
+	);
+}
+$hit[] = 'font-mono';
 update_post_meta( $kit, '_elementor_global_variables', wp_slash( wp_json_encode( $vars ) ) );
 \Elementor\Plugin::$instance->files_manager->clear_cache();
 do_action( 'litespeed_purge_all' );
