@@ -310,6 +310,10 @@ foreach ( $posts as $k => $p ) {
 			case 'note':
 				$body[] = vv_f( "Body $i Actions", array( 'art-note' ), array( vv_p( "Body $i Actions Title", $b[1], array( 'art-callout-title' ) ), $list( "Body $i Actions", $b[2], $b[3], array( 'art-p-sm' ), array( 'sm-mark' ) ) ) );
 				break;
+			/* Text box (Bonus Tip, compliance note): ['tip', title or '', paragraph]. Same box as the action list. */
+			case 'tip':
+				$body[] = vv_f( "Body $i Tip", array( 'art-note' ), array_merge( '' !== $b[1] ? array( vv_p( "Body $i Tip Title", $b[1], array( 'art-callout-title' ) ) ) : array(), array( vv_p( "Body $i Tip Text", $b[2], array( 'art-p-sm' ) ) ) ) );
+				break;
 			case 'cta':
 				$body[] = vv_f( "Body $i Closing", array( 'art-cta' ), array_merge( array( vv_p( "Body $i Closing Question", $b[1], array( 'art-callout-title' ) ) ), '' !== $b[2] ? array( vv_p( "Body $i Closing Text", $b[2], array( 'art-p-sm' ) ) ) : array(), array( vv_p( "Body $i Closing Link", $b[3], array( 'art-cta-link' ), 'p', $b[4] ) ),
 					/* Optional second link (text, href). */
