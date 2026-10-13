@@ -6,6 +6,11 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'digital-marketing-for-doctors', 'y' => 'Oct ’26', 'date' => 'October 13, 2026', 'iso' => '2026-10-13 07:00:00', 'cat' => 'Strategy',
+		'tags' => array( 'Strategy', 'Paid Media' ),
+		't' => 'How I’d build a doctor’s marketing plan from zero.',
+		'dek' => 'A doctor’s marketing plan should start at the booked appointment and work backwards. Here’s the five-step Appointment Path I’d use, and the plastic surgeon story behind it.',
+		'min' => 10, 'tone' => 'warm', 'fmt' => 'Playbook', 'body_src' => 'digital-marketing-for-doctors' ),
 	array( 'slug' => 'sameas-schema', 'y' => 'Oct ’26', 'date' => 'October 9, 2026', 'iso' => '2026-10-09 07:00:00', 'cat' => 'AI in Marketing',
 		'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'What is sameAs schema? A plain-English guide for marketers.',
@@ -309,6 +314,10 @@ foreach ( $posts as $k => $p ) {
 				break;
 			case 'note':
 				$body[] = vv_f( "Body $i Actions", array( 'art-note' ), array( vv_p( "Body $i Actions Title", $b[1], array( 'art-callout-title' ) ), $list( "Body $i Actions", $b[2], $b[3], array( 'art-p-sm' ), array( 'sm-mark' ) ) ) );
+				break;
+			/* Text box (Bonus Tip, compliance note): ['tip', title or '', paragraph]. Same box as the action list. */
+			case 'tip':
+				$body[] = vv_f( "Body $i Tip", array( 'art-note' ), array_merge( '' !== $b[1] ? array( vv_p( "Body $i Tip Title", $b[1], array( 'art-callout-title' ) ) ) : array(), array( vv_p( "Body $i Tip Text", $b[2], array( 'art-p-sm' ) ) ) ) );
 				break;
 			case 'cta':
 				$body[] = vv_f( "Body $i Closing", array( 'art-cta' ), array_merge( array( vv_p( "Body $i Closing Question", $b[1], array( 'art-callout-title' ) ) ), '' !== $b[2] ? array( vv_p( "Body $i Closing Text", $b[2], array( 'art-p-sm' ) ) ) : array(), array( vv_p( "Body $i Closing Link", $b[3], array( 'art-cta-link' ), 'p', $b[4] ) ),
