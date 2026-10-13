@@ -6,6 +6,11 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'digital-marketing-for-doctors', 'y' => 'Oct ’26', 'date' => 'October 13, 2026', 'iso' => '2026-10-13 07:00:00', 'cat' => 'Strategy',
+		'tags' => array( 'Strategy', 'Paid Media' ),
+		't' => 'How I’d build a doctor’s marketing plan from zero.',
+		'dek' => 'A doctor’s marketing plan should start at the booked appointment and work backwards. Here’s the five-step Appointment Path I’d use, and the plastic surgeon story behind it.',
+		'min' => 10, 'tone' => 'warm', 'fmt' => 'Playbook', 'body_src' => 'digital-marketing-for-doctors' ),
 	array( 'slug' => 'sameas-schema', 'y' => 'Oct ’26', 'date' => 'October 9, 2026', 'iso' => '2026-10-09 07:00:00', 'cat' => 'AI in Marketing',
 		'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'What is sameAs schema? A plain-English guide for marketers.',

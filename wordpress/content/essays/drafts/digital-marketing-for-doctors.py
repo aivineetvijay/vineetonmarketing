@@ -2,7 +2,7 @@ import json,sys
 U='https://vineetonmarketing.com'
 def a(t,h): return f'<a href="{h}">{t}</a>'
 b=[]
-b.append(['p','<strong>{{C1}}A plastic surgeon\'s ads were doing their job. People clicked, and some filled in the form. But the consultation diary barely moved. When I looked closely, the ads weren\'t the problem. The landing page and the tracking were. So here\'s the short answer: a doctor\'s marketing plan should start at the booked appointment and work backwards. Make booking easy, make the page answer a nervous patient\'s questions, track consultations instead of clicks, and only then spend more on being found.</strong>'])
+b.append(['p','<strong>{{C1}}The department\'s ads were doing their job. People clicked, and some filled in the form. But the consultation diary barely moved. When I looked closely, the ads weren\'t the problem. The landing page and the tracking were. So here\'s the short answer: a doctor\'s marketing plan should start at the booked appointment and work backwards. Make booking easy, make the page answer a nervous patient\'s questions, track consultations instead of clicks, and only then spend more on being found.</strong>'])
 b.append(['p',"That's the short answer. Here's the story behind it, and the five-step plan I'd use if I were starting a doctor's marketing from scratch today. It works whether the doctor is a surgeon, a dentist or a GP, and you don't need a big budget to start."])
 b.append(['box','Key takeaways','ul',[
  "A doctor's marketing plan exists to fill the appointment diary. Likes, clicks and form fills only matter if they turn into booked consultations.",
