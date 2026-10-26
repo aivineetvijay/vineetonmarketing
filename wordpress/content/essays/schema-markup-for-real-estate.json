@@ -260,6 +260,80 @@
  ],
  [
   "h2",
+  "What schema does a villa category page need?",
+  "villa-category"
+ ],
+ [
+  "p",
+  "A villa category page is the page that lists every villa project you sell, usually at an address like /villas/ or /communities/villas/. It is not one property, so it should not be marked up like one. It is a collection: its job is to point buyers, and machines, to many villas."
+ ],
+ [
+  "p",
+  "The right shape for villa category page schema is a <a href=\"https://schema.org/CollectionPage\">CollectionPage</a> with an <a href=\"https://schema.org/ItemList\">ItemList</a> inside it. Each item in the list points to a villa project or unit type page, and that page carries the full schema: property type, bedrooms, size, starting price and availability. The category page only needs to say which villas it lists and where each one lives."
+ ],
+ [
+  "ul",
+  [
+   "<strong>CollectionPage.</strong> A name and description that match the page's heading and intro, with your company as publisher, linked to the Organization on your homepage.",
+   "<strong>ItemList.</strong> One ListItem per villa project shown, in the same order as on the page, each with its position, name and the URL of its own page.",
+   "<strong>BreadcrumbList.</strong> The same trail the buyer sees, for example Home &gt; Communities &gt; Villas.",
+   "<strong>Nothing more per villa.</strong> Starting prices, bedrooms and availability belong on each villa's own page, where they are generated from inventory. Repeating them on the category page creates a second copy that drifts out of date."
+  ]
+ ],
+ [
+  "p",
+  "Here is what that looks like for a developer with three villa projects:"
+ ],
+ [
+  "code",
+  [
+   "{",
+   "  \"@context\": \"https://schema.org\",",
+   "  \"@type\": \"CollectionPage\",",
+   "  \"@id\": \"https://www.example-developer.ae/villas/#webpage\",",
+   "  \"url\": \"https://www.example-developer.ae/villas/\",",
+   "  \"name\": \"Villas for sale in Dubai\",",
+   "  \"publisher\": { \"@id\": \"https://www.example-developer.ae/#organization\" },",
+   "  \"breadcrumb\": { \"@id\": \"https://www.example-developer.ae/villas/#breadcrumb\" },",
+   "  \"mainEntity\": {",
+   "    \"@type\": \"ItemList\",",
+   "    \"numberOfItems\": 3,",
+   "    \"itemListElement\": [",
+   "      { \"@type\": \"ListItem\", \"position\": 1, \"name\": \"Palm Grove Villas\",",
+   "        \"url\": \"https://www.example-developer.ae/villas/palm-grove/\" },",
+   "      { \"@type\": \"ListItem\", \"position\": 2, \"name\": \"Sidra Gardens\",",
+   "        \"url\": \"https://www.example-developer.ae/villas/sidra-gardens/\" },",
+   "      { \"@type\": \"ListItem\", \"position\": 3, \"name\": \"Lakeside Estates\",",
+   "        \"url\": \"https://www.example-developer.ae/villas/lakeside-estates/\" }",
+   "    ]",
+   "  }",
+   "}"
+  ]
+ ],
+ [
+  "p",
+  "Google does not show a special result for property lists, so do not expect a carousel. What the markup does is tell search engines and AI tools that this page is your official list of villas, and which pages hold the facts for each one."
+ ],
+ [
+  "p",
+  "The mistakes I see most often on villa category pages:"
+ ],
+ [
+  "ul",
+  [
+   "<strong>Every villa card marked up as a full listing</strong>, with prices and offers that contradict the villa's own page a few weeks after launch.",
+   "<strong>Product or star ratings on the cards.</strong> Villas are not products, and ratings from your own testimonials are not eligible.",
+   "<strong>A list that does not match the page.</strong> If the page shows nine villa projects, the ItemList should show the same nine. On paginated lists, each page lists only its own villas.",
+   "<strong>Sold-out projects still in the list as if they are on sale</strong>, after they have been removed from the page or marked as sold out.",
+   "<strong>Filtered and sorted versions</strong> (by price, by bedrooms) each carrying their own schema. Mark up the main category page; filter pages kept out of search do not need it."
+  ]
+ ],
+ [
+  "p",
+  "<strong>The villa category page is a signpost. Its schema should point to your villas, not try to describe them all.</strong>"
+ ],
+ [
+  "h2",
   "How do you get schema implemented?",
   "implement"
  ],
@@ -270,7 +344,7 @@
    "<strong>Split the work.</strong> Your CMS or an SEO plugin can often handle 1 to 4 through settings. Community, project, unit and video schema usually need your development team or agency, because they pull live data.",
    "<strong>Send the brief below.</strong>",
    "<strong>Test on staging</strong> before launch. Errors must be fixed; warnings are optional.",
-   "<strong>Monitor monthly</strong> in Google Search Console, and re-check before every launch. Schema breaks quietly during redesigns and campaign microsites, the kind of <a href=\"https://vineetonmarketing.com/technical-debt-nobody-audits/\">technical debt nobody is auditing</a>."
+   "<strong>Monitor monthly</strong> in Google Search Console, and re-check before every launch. Schema breaks quietly during redesigns and campaign microsites, the kind of technical debt nobody is auditing."
   ]
  ],
  [
@@ -293,6 +367,7 @@
      "<strong>Sales centre pages:</strong> one LocalBusiness per sales centre or gallery, with address, geo coordinates, phone and opening hours matching our Google Business Profiles exactly.",
      "<strong>All pages except home:</strong> BreadcrumbList matching the visible breadcrumb trail (communities, community, project, unit type).",
      "<strong>Community and project pages:</strong> Place, GatedResidenceCommunity or ApartmentComplex as appropriate, with name, address, geo, images, amenities, our organisation as developer, and each project linked to its master community.",
+     "<strong>Category pages (villas, townhouses, apartments):</strong> CollectionPage with an ItemList that links to each project or unit type page in the order shown, plus BreadcrumbList. No prices or offers on the category page itself.",
      "<strong>Unit pages:</strong> RealEstateListing containing the property (Apartment, House or SingleFamilyResidence as appropriate) with bedrooms, bathrooms, floor size, images and a link to its project, and an Offer with starting price, AED currency and availability. Generated automatically from the inventory system.",
      "<strong>Pages with video:</strong> VideoObject with name, description, thumbnail, upload date and duration."
     ]
@@ -340,6 +415,14 @@
  [
   "p",
   "The master community page describes the destination: location, amenities, schools, access and the list of projects inside it. Each project page describes one development and links back up to its community. This parent and child structure helps search engines and AI tools understand that several launches belong to one address."
+ ],
+ [
+  "h3s",
+  "Should a villa category page use RealEstateListing schema?"
+ ],
+ [
+  "p",
+  "No. RealEstateListing describes one listing. A villa category page lists many, so use CollectionPage with an ItemList that links to each villa project or unit page. Keep the full listing schema, with starting price and availability, on those pages, where it updates with your inventory."
  ],
  [
   "h3s",

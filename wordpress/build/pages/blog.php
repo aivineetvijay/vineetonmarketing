@@ -43,7 +43,7 @@ $posts = array(
 	array( 'slug' => 'schema-markup-for-real-estate', 'y' => 'Sep ’26', 'date' => 'September 30, 2026', 'iso' => '2026-09-30 10:00:00', 'cat' => 'AI in Marketing', 'tags' => array( 'AI in Marketing', 'SEO' ),
 		't' => 'Seven schemas every property site needs.',
 		'dek' => 'Buyers increasingly meet your project in an AI answer first. Here are the seven schemas that make sure those facts come from your own website, and the brief to get them built.',
-		'min' => 10, 'tone' => 'warm', 'fmt' => 'Guide', 'body_src' => 'schema-markup-for-real-estate',
+		'min' => 12, 'tone' => 'warm', 'fmt' => 'Guide', 'body_src' => 'schema-markup-for-real-estate',
 		/* Banners (made by wordpress/assets/essays/upload-image.php): 540 = 1600x534 desktop, 541 = 1586x992 mobile + featured. */
 		'banner' => array( 540, 541 ), 'thumb' => 541,
 		'banner_alt' => 'Schema markup for real estate illustrated: a modern villa listing mapped to Schema.org Residence JSON-LD (address, geo, numberOfRooms, amenityFeature) and shown as a rich property result in search',
