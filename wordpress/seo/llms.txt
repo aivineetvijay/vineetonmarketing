@@ -20,7 +20,7 @@
 - [How I'd build a doctor's marketing plan from zero](https://vineetonmarketing.com/digital-marketing-for-doctors/): A five-step plan for digital marketing for surgeons and doctors that starts at the booked appointment, with a plastic surgery department case from Reem Hospital.
 - [What is sameAs schema? A plain-English guide for marketers](https://vineetonmarketing.com/sameas-schema/): What sameAs markup is, who needs it, when to use it and how to add it without writing code.
 - [How to rank in AI Overviews: what I learned getting cited](https://vineetonmarketing.com/rank-in-ai-overviews/): How a hospital website with a domain authority of 17 was cited in Google AI Overviews, and the LIFT test for writing passages AI answers can quote.
-- [Seven schemas every property site needs](https://vineetonmarketing.com/schema-markup-for-real-estate/): The seven Schema.org types a real estate developer website needs, a worked example and a brief for the development team.
+- [Seven schemas every property site needs](https://vineetonmarketing.com/schema-markup-for-real-estate/): The seven Schema.org types a real estate developer website needs, villa category page schema, a worked example and a brief for the development team.
 - [Schema is your website's resume](https://vineetonmarketing.com/schema-markup-ai-visibility/): A five-line framework for schema markup that helps search engines and AI tools identify a person or business correctly.
 - [Customer Match just learned to read your server logs](https://vineetonmarketing.com/customer-match-ip-timestamp/): What Google Ads Customer Match matching on IP address and timestamp means for match rates, and the consent steps to take first.
 
