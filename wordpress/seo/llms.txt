@@ -17,6 +17,7 @@
 
 ## Essays
 
+- [Snapchat works for some UAE brands. Here's how to tell if it's yours](https://vineetonmarketing.com/snapchat-advertising-uae/): Snapchat advertising in the UAE: what the public evidence shows for Sponsored Snaps, takeovers, lead forms, automation and Lenses, how to read a platform case study, and a five-point fit test.
 - [How I'd build a doctor's marketing plan from zero](https://vineetonmarketing.com/digital-marketing-for-doctors/): A five-step plan for digital marketing for surgeons and doctors that starts at the booked appointment, with a plastic surgery department case from Reem Hospital.
 - [What is sameAs schema? A plain-English guide for marketers](https://vineetonmarketing.com/sameas-schema/): What sameAs markup is, who needs it, when to use it and how to add it without writing code.
 - [How to rank in AI Overviews: what I learned getting cited](https://vineetonmarketing.com/rank-in-ai-overviews/): How a hospital website with a domain authority of 17 was cited in Google AI Overviews, and the LIFT test for writing passages AI answers can quote.
