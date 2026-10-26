@@ -10,7 +10,13 @@ $posts = array(
 		'tags' => array( 'Measurement' ),
 		't' => 'What is an AI visibility score? And what’s actually worth measuring.',
 		'dek' => 'An AI visibility score estimates how often AI tools mention your brand across a sample of prompts. It’s useful, but only once you know what your tool actually measured.',
-		'min' => 10, 'tone' => 'sand', 'fmt' => 'Guide', 'body_src' => 'ai-visibility-score' ),
+		'min' => 10, 'tone' => 'sand', 'fmt' => 'Guide', 'body_src' => 'ai-visibility-score',
+		/* Tool screenshots, site domain blurred (wordpress/assets/essays): marker => attachment id, caption, alt. */
+		'figures' => array(
+			'ai-visibility-score-arobis-checker.webp' => array( 839, 'Arobis free checker: 82/100, scored from site signals rather than live AI answers.', 'Arobis AI visibility checker showing an overall score of 82 and readiness scores for ChatGPT, Gemini, Claude and Perplexity' ),
+			'ai-visibility-score-omnibound-audit.webp' => array( 840, 'Omnibound AI free audit: 26/100 visibility from 23 prompts across 4 engines.', 'Omnibound AI audit showing an AEO readiness score of 72, an AI visibility score of 26, a mention rate of 39 and a recommendation rate of 17' ),
+			'ai-visibility-score-ahrefs-ai-responses.webp' => array( 841, 'Ahrefs Site Explorer: 25.9K AI responses, most of them from Google’s AI Overviews.', 'Ahrefs Site Explorer AI responses panel showing 25.9K responses across platforms, led by AI Overviews and AI Mode' ),
+		) ),
 	array( 'slug' => 'snapchat-advertising-uae', 'y' => 'Oct ’26', 'date' => 'October 26, 2026', 'iso' => '2026-10-26 07:00:00', 'cat' => 'Paid Media',
 		'tags' => array( 'Paid Media' ),
 		't' => 'Snapchat works for some UAE brands. Here’s how to tell if it’s yours.',
@@ -351,7 +357,7 @@ foreach ( $posts as $k => $p ) {
 			case 'figure':
 				$fig = $p['figures'][ $b[1] ];
 				$body[] = vv_f( "Body $i Screenshot", array( 'art-figure' ), array(
-					vv_img( "Body $i Screenshot Image", $fig[0], '', ( wp_get_attachment_image_src( $fig[0], 'full' )[1] ?? 0 ) < 1100 ? array( 'art-shot', 'art-shot-sm' ) : array( 'art-shot' ) ),
+					vv_img( "Body $i Screenshot Image", $fig[0], $fig[2] ?? '', ( wp_get_attachment_image_src( $fig[0], 'full' )[1] ?? 0 ) < 1100 ? array( 'art-shot', 'art-shot-sm' ) : array( 'art-shot' ) ),
 					vv_p( "Body $i Screenshot Caption", $e( $fig[1] ), array( 'art-cite' ) ),
 				) );
 				break;

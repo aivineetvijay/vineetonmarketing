@@ -51,8 +51,11 @@ b = [
  ['cite', "Source: author's checks, October 2026. Hospital anonymised."],
  ['p', "So which one was right? In a way, all three. They just answered different questions."],
  ['p', "Arobis asked: <strong>can AI engines read this site?</strong> The answer was yes. But its \"Gemini 92\" had nothing to do with what Gemini actually says about the hospital."],
+ ['figure', 'ai-visibility-score-arobis-checker.webp'],
  ['p', "Omnibound asked: <strong>when buyers ask questions, does AI name this hospital?</strong> Across 23 prompts, the hospital was mentioned in 39 percent of answers and recommended in 17 percent. One detail worried me. The tool had filed the hospital as a \"healthcare and pharmaceutical company\". If the category is wrong, the prompts are wrong, and so is the score."],
+ ['figure', 'ai-visibility-score-omnibound-audit.webp'],
  ['p', "Ahrefs asked: <strong>across millions of tracked prompts, how often is this site linked?</strong> It doesn't give a score out of 100. And of those 25.9K responses, 21.2K came from Google's AI Overviews and 3.8K from AI Mode. ChatGPT accounted for 467. Google's two AI features made up about 96 percent of the total."],
+ ['figure', 'ai-visibility-score-ahrefs-ai-responses.webp'],
  ['p', "That last detail changed how I read the whole thing. Part of it reflects the hospital's real audience, and part reflects Ahrefs' own index, which tracks far more Google searches than ChatGPT prompts. Either way, for this hospital, \"AI visibility\" in that tool is mostly Google visibility."],
  ['p', "<strong>Before you trust a score, find out which question it answered: can AI read you, does AI mention you, or does AI cite you?</strong>"],
 
