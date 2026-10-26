@@ -6,6 +6,11 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'ai-visibility-score', 'y' => 'Oct ’26', 'date' => 'October 26, 2026', 'iso' => '2026-10-26 09:00:00', 'cat' => 'Measurement',
+		'tags' => array( 'Measurement' ),
+		't' => 'What is an AI visibility score? And what’s actually worth measuring.',
+		'dek' => 'An AI visibility score estimates how often AI tools mention your brand across a sample of prompts. It’s useful, but only once you know what your tool actually measured.',
+		'min' => 10, 'tone' => 'sand', 'fmt' => 'Guide', 'body_src' => 'ai-visibility-score' ),
 	array( 'slug' => 'snapchat-advertising-uae', 'y' => 'Oct ’26', 'date' => 'October 26, 2026', 'iso' => '2026-10-26 07:00:00', 'cat' => 'Paid Media',
 		'tags' => array( 'Paid Media' ),
 		't' => 'Snapchat works for some UAE brands. Here’s how to tell if it’s yours.',
