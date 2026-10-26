@@ -20,7 +20,8 @@ foreach ( $slugs as $slug ) {
 	$name = 'llms-icon-' . $slug;
 	$old  = get_posts( array( 'post_type' => 'attachment', 'name' => $name, 'post_status' => 'inherit', 'numberposts' => 1 ) );
 	if ( $old ) { wp_delete_attachment( $old[0]->ID, true ); }
-	$file = wp_handle_sideload( array( 'name' => $name . '.svg', 'tmp_name' => $vv_files[ 'assets/icons/llms/' . $slug . '.svg' ] ), array( 'test_form' => false, 'test_type' => false ) );
+	$upload = array( 'name' => $name . '.svg', 'tmp_name' => $vv_files[ 'assets/icons/llms/' . $slug . '.svg' ] );
+	$file = wp_handle_sideload( $upload, array( 'test_form' => false, 'test_type' => false ) );
 	if ( isset( $file['error'] ) ) { return array( 'error' => $slug . ': ' . $file['error'] ); }
 	$path = $file['file'];
 	$id = wp_insert_attachment( array( 'post_mime_type' => 'image/svg+xml', 'post_title' => 'Icon: ' . ucwords( str_replace( '-', ' ', $slug ) ), 'post_status' => 'inherit', 'post_name' => $name ), $path );

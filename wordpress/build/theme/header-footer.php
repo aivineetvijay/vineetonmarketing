@@ -16,7 +16,8 @@ $logo_id = (int) get_theme_mod( 'custom_logo' );
 if ( ! $logo_id || 'image/svg+xml' !== get_post_mime_type( $logo_id ) ) {
 	if ( empty( $vv_files['assets/logo-vineet-vijay.svg'] ) ) { return array( 'vv_need' => array( 'assets/logo-vineet-vijay.svg' ) ); }
 	require_once ABSPATH . 'wp-admin/includes/file.php';
-	$file = wp_handle_sideload( array( 'name' => 'logo-vineet-vijay.svg', 'tmp_name' => $vv_files['assets/logo-vineet-vijay.svg'] ), array( 'test_form' => false, 'test_type' => false ) );
+	$upload = array( 'name' => 'logo-vineet-vijay.svg', 'tmp_name' => $vv_files['assets/logo-vineet-vijay.svg'] );
+	$file = wp_handle_sideload( $upload, array( 'test_form' => false, 'test_type' => false ) );
 	if ( isset( $file['error'] ) ) { return 'logo upload failed: ' . $file['error']; }
 	$path = $file['file'];
 	$logo_id = wp_insert_attachment( array( 'post_mime_type' => 'image/svg+xml', 'post_title' => 'Logo: Vineet Vijay', 'post_status' => 'inherit' ), $path );

@@ -19,7 +19,8 @@ require_once ABSPATH . 'wp-admin/includes/class-wp-site-icon.php';
 $name = 'vineet-vijay-site-icon';
 $existing = get_posts( array( 'post_type' => 'attachment', 'name' => $name, 'numberposts' => 1, 'post_status' => 'inherit' ) );
 if ( $existing ) { wp_delete_attachment( $existing[0]->ID, true ); }
-$file = wp_handle_sideload( array( 'name' => $name . '.png', 'tmp_name' => $vv_files['assets/brand/site-icon.png'] ), array( 'test_form' => false ) );
+$upload = array( 'name' => $name . '.png', 'tmp_name' => $vv_files['assets/brand/site-icon.png'] );
+$file = wp_handle_sideload( $upload, array( 'test_form' => false ) );
 if ( isset( $file['error'] ) ) { return array( 'error' => $file['error'] ); }
 $path = $file['file'];
 $id = wp_insert_attachment( array( 'post_mime_type' => 'image/png', 'post_title' => 'Vineet Vijay site icon', 'post_status' => 'inherit', 'post_name' => $name ), $path );
