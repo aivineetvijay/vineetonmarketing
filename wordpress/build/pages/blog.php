@@ -11,6 +11,8 @@ $posts = array(
 		't' => 'What is an AI visibility score? And what’s actually worth measuring.',
 		'dek' => 'An AI visibility score estimates how often AI tools mention your brand across a sample of prompts. It’s useful, but only once you know what your tool actually measured.',
 		'min' => 10, 'tone' => 'sand', 'fmt' => 'Guide', 'body_src' => 'ai-visibility-score',
+		'banner' => array( 851, 852 ), 'thumb' => 852,
+		'banner_alt' => 'AI visibility score illustrated: a marketer at a laptop with Google, ChatGPT, Perplexity and Claude feeding a dashboard that shows an AI visibility score of 78 out of 100, mentions, citations, sentiment, share of voice and a rising visibility trend, linked to AI Overviews, AI-generated answers and cited sources',
 		/* Tool screenshots, site domain blurred (wordpress/assets/essays): marker => attachment id, caption, alt. */
 		'figures' => array(
 			'ai-visibility-score-arobis-checker.webp' => array( 839, 'Arobis free checker: 82/100, scored from site signals rather than live AI answers.', 'Arobis AI visibility checker showing an overall score of 82 and readiness scores for ChatGPT, Gemini, Claude and Perplexity' ),
