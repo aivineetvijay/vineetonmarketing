@@ -1,7 +1,18 @@
 <?php
 /**
- * Snapshot helper: fetches a page's logged-in preview and zips it with the
- * local assets it references, so it can be rendered outside the server.
+ * Snapshot helper: fetches a page's logged-in preview and lists the local assets it references, so the
+ * top-level code can zip them and the page can be rendered outside the server.
+ *
+ * Calling pattern: code in an included temp file cannot call file_get_contents() / file_put_contents(),
+ * so vv_bundle() only returns a manifest. The top-level execute-php code builds and reads the zip itself:
+ *   include $tmp;                       // $tmp = this file, fetched and written by the top-level code
+ *   $m  = vv_bundle( $post_id );
+ *   $zf = wp_tempnam( 'vv-bundle' );
+ *   $zip = new ZipArchive(); $zip->open( $zf, ZipArchive::OVERWRITE );
+ *   $zip->addFromString( 'index.html', $m['html'] );
+ *   foreach ( $m['files'] as $name => $local ) { $zip->addFile( $local, $name ); }
+ *   $zip->close();
+ *   $b = base64_encode( file_get_contents( $zf ) ); unlink( $zf );
  */
 function vv_bundle( $post_id ) {
 	$cookie = wp_generate_auth_cookie( 1, time() + 600, 'logged_in' );
@@ -10,18 +21,12 @@ function vv_bundle( $post_id ) {
 	$html = wp_remote_retrieve_body( $r );
 	$host = preg_quote( wp_parse_url( home_url(), PHP_URL_HOST ), '/' );
 	preg_match_all( '/https?:\/\/' . $host . '(\/[^"\'\s\)\?,]+)/', $html, $m );
-	$zf = wp_tempnam( 'vv-bundle' );
-	$zip = new ZipArchive();
-	$zip->open( $zf, ZipArchive::OVERWRITE );
-	$zip->addFromString( 'index.html', $html );
+	$files = array();
 	foreach ( array_unique( $m[1] ) as $p ) {
 		$local = ABSPATH . ltrim( urldecode( $p ), '/' );
 		if ( is_file( $local ) && filesize( $local ) < 3000000 && preg_match( '/\.(css|js|webp|png|jpe?g|svg|woff2?|ttf)$/i', $local ) ) {
-			$zip->addFile( $local, 'site' . $p );
+			$files[ 'site' . $p ] = $local;
 		}
 	}
-	$zip->close();
-	$b = base64_encode( file_get_contents( $zf ) );
-	unlink( $zf );
-	return $b;
+	return array( 'html' => $html, 'files' => $files );
 }

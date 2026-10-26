@@ -1,27 +1,38 @@
 <?php
 /**
- * Server-side runner for the Blog index + essays. Fetches the build files from GitHub at
- * $vv_base (e.g. https://raw.githubusercontent.com/<owner>/<repo>/<ref>/wordpress/), then:
- * creates/updates the essay-block global classes, rebuilds /writing/ and every essay, publishes
- * them, and keeps the other essays' "last modified" dates unchanged (their text did not change).
+ * Server-side runner for the Blog index + essays: creates/updates the essay-block global classes, rebuilds
+ * /writing/ and every essay, publishes them, and keeps the other essays' "last modified" dates unchanged
+ * (their text did not change).
+ *
+ * Calling pattern (see wordpress/README.md for the runner): include this file from the top-level execute-php
+ * code with
+ *   $vv_base   raw GitHub URL of wordpress/ at a commit, e.g. https://raw.githubusercontent.com/<owner>/<repo>/<sha>/wordpress/
+ *              (essay bodies, content/essays/<slug>.json, are fetched from here),
+ *   $vv_essays the essays changed in this run (array() for a no-change rebuild),
+ *   $vv_json   every essay whose body lives in a JSON file (every body_src in build/pages/blog.php),
+ *   $vv_files  repo path => temp file the caller already wrote, for build/vv-builder.php,
+ *              build/classes/essay-blocks.php and build/pages/blog.php.
+ * This file writes no files. Code in an included temp file cannot call file_put_contents() / file_get_contents().
+ * If $vv_files lacks a path it returns array( 'vv_need' => <paths> ) before changing anything. The caller writes
+ * those paths and includes this file again.
  */
+$need = array_values( array_diff( array( 'build/vv-builder.php', 'build/classes/essay-blocks.php', 'build/pages/blog.php' ), array_keys( $vv_files ?? array() ) ) );
+if ( $need ) { return array( 'vv_need' => $need ); }
 $get = function ( $path ) use ( $vv_base ) {
 	$r = wp_remote_get( $vv_base . $path, array( 'timeout' => 30 ) );
 	if ( 200 !== wp_remote_retrieve_response_code( $r ) ) { throw new Exception( 'fetch failed: ' . $path ); }
 	return wp_remote_retrieve_body( $r );
 };
-$load = function ( $path, $vars = array() ) use ( $get ) {
-	$tmp = wp_tempnam( 'vv' );
-	file_put_contents( $tmp, $get( $path ) );
+/* Includes a caller-written file in its own scope, so its variables cannot overwrite this runner's. */
+$load = function ( $path, $vars = array() ) use ( $vv_files ) {
 	extract( $vars );
-	$res = include $tmp;
-	unlink( $tmp );
-	return $res;
+	return include $vv_files[ $path ];
 };
 if ( ! function_exists( 'vv_build' ) ) { $load( 'build/vv-builder.php' ); }
 
 /* 1. Global classes for the long-form blocks (create, or patch if the label already exists). */
-$tmp = wp_tempnam( 'vv' ); file_put_contents( $tmp, $get( 'build/classes/essay-blocks.php' ) ); include $tmp; unlink( $tmp );
+include $vv_files['build/classes/essay-blocks.php'];
+if ( empty( $vv_essay_classes ) ) { return array( 'error' => 'build/classes/essay-blocks.php did not define $vv_essay_classes' ); }
 $existing = array();
 foreach ( \Elementor\Modules\GlobalClasses\Global_Classes_Repository::make()->all()->get_items()->all() as $c ) { $existing[ $c['label'] ] = $c['id']; }
 $ops = array();

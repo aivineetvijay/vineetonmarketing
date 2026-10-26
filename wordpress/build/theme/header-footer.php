@@ -3,18 +3,22 @@
  * Astra header + footer set up to match the Claude Design nav and footer
  * (js/Shared.jsx: Nav, Footer). Uses only Astra's own builder settings, the
  * site logo, the "Header" menu and core blocks in the footer widget areas.
- * Expects $sha (git commit to fetch assets from) to be set by the runner.
+ *
+ * Calling pattern (see wordpress/README.md for the runner): include from the top-level execute-php code. Only
+ * when the site has no SVG logo yet does it need $vv_files['assets/logo-vineet-vijay.svg'] = a temp file holding
+ * the logo, written by the caller. Code in an included temp file cannot call file_put_contents(), so this file
+ * writes nothing itself. WordPress core (wp_handle_sideload) moves the temp file into uploads. If the logo is
+ * needed and missing, it returns array( 'vv_need' => array( 'assets/logo-vineet-vijay.svg' ) ) before changing anything.
  */
-$raw = 'https://raw.githubusercontent.com/aivineetvijay/vineetonmarketing/' . $sha . '/wordpress/assets/';
 
 /* ---------- Logo: pulsing dot + "Vineet Vijay" (SVG, see build_logo.py) ---------- */
 $logo_id = (int) get_theme_mod( 'custom_logo' );
 if ( ! $logo_id || 'image/svg+xml' !== get_post_mime_type( $logo_id ) ) {
-	$svg = wp_remote_retrieve_body( wp_remote_get( $raw . 'logo-vineet-vijay.svg', array( 'timeout' => 30 ) ) );
-	if ( 0 !== strpos( $svg, '<svg' ) ) { return 'logo fetch failed'; }
-	$up = wp_upload_dir();
-	$path = $up['path'] . '/' . wp_unique_filename( $up['path'], 'logo-vineet-vijay.svg' );
-	file_put_contents( $path, $svg );
+	if ( empty( $vv_files['assets/logo-vineet-vijay.svg'] ) ) { return array( 'vv_need' => array( 'assets/logo-vineet-vijay.svg' ) ); }
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	$file = wp_handle_sideload( array( 'name' => 'logo-vineet-vijay.svg', 'tmp_name' => $vv_files['assets/logo-vineet-vijay.svg'] ), array( 'test_form' => false, 'test_type' => false ) );
+	if ( isset( $file['error'] ) ) { return 'logo upload failed: ' . $file['error']; }
+	$path = $file['file'];
 	$logo_id = wp_insert_attachment( array( 'post_mime_type' => 'image/svg+xml', 'post_title' => 'Logo: Vineet Vijay', 'post_status' => 'inherit' ), $path );
 	update_post_meta( $logo_id, '_wp_attachment_image_alt', 'Vineet Vijay' );
 	wp_update_attachment_metadata( $logo_id, array( 'width' => 119, 'height' => 28, 'file' => _wp_relative_upload_path( $path ) ) );

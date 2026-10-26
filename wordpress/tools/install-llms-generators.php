@@ -1,50 +1,50 @@
 <?php
 /**
- * Server-side installer for the llms.txt generators. Expects $vv_base (raw GitHub URL of wordpress/ at a commit).
+ * Server-side installer for the llms.txt generators.
  *  1. Copies the shared engine (assets/), each industry's config.js and its page copy (content.php, saved as
  *     content.json) to wp-content/uploads/vv-tools/llms-txt-generator/.
  *  2. Installs the vv-tools mu-plugin, which renders the tool pages inside the theme.
  *  3. Creates or updates one page per tool under the hub (/ai-tools/llms-txt-generator/<slug>/), indexable.
- *  4. Removes the old standalone Real Estate build (index.html, support.js, _ds/) that the pages replace.
  * Re-running is safe: files are overwritten and pages are matched by slug under the hub.
+ *
+ * Calling pattern (see wordpress/README.md for the runner): include from the top-level execute-php code with
+ * $vv_base (raw GitHub URL of wordpress/ at a commit) and $vv_files (repo path => temp file the caller already
+ * wrote). This file writes no files, because code in an included temp file cannot call file_put_contents():
+ *  - it returns array( 'vv_need' => <paths> ) until $vv_files holds tools/llms-txt-generator/tools.php and then
+ *    every tools/llms-txt-generator/<slug>/content.php (so the runner takes three passes);
+ *  - the copies in step 1 and the mu-plugin come back as 'vv_write' => array( <absolute path> => <contents> ),
+ *    for the top-level code to write (creating directories first). The pages in step 3 are created directly.
  */
 $fetch = function ( $path ) use ( $vv_base ) {
 	$r = wp_remote_get( $vv_base . $path, array( 'timeout' => 30 ) );
 	if ( 200 !== wp_remote_retrieve_response_code( $r ) ) { throw new Exception( 'fetch failed: ' . $path ); }
 	return wp_remote_retrieve_body( $r );
 };
-$tmp = wp_tempnam( 'vv' ); file_put_contents( $tmp, $fetch( 'tools/llms-txt-generator/tools.php' ) ); $tools = include $tmp; @unlink( $tmp );
+$vv_files = $vv_files ?? array();
+if ( ! isset( $vv_files['tools/llms-txt-generator/tools.php'] ) ) { return array( 'vv_need' => array( 'tools/llms-txt-generator/tools.php' ) ); }
+$tools = include $vv_files['tools/llms-txt-generator/tools.php'];
+$need = array();
+foreach ( array_keys( $tools ) as $slug ) {
+	if ( ! isset( $vv_files[ 'tools/llms-txt-generator/' . $slug . '/content.php' ] ) ) { $need[] = 'tools/llms-txt-generator/' . $slug . '/content.php'; }
+}
+if ( $need ) { return array( 'vv_need' => $need ); }
 
 $root = wp_get_upload_dir()['basedir'] . '/vv-tools/llms-txt-generator/';
 $files = array( 'assets/generator.js', 'assets/generator.css' );
 foreach ( array_keys( $tools ) as $slug ) { $files[] = $slug . '/config.js'; }
-$copied = array();
-foreach ( $files as $rel ) {
-	wp_mkdir_p( dirname( $root . $rel ) );
-	file_put_contents( $root . $rel, $fetch( 'tools/llms-txt-generator/' . $rel ) );
-	$copied[ $rel ] = filesize( $root . $rel );
-}
+$write = array();
+foreach ( $files as $rel ) { $write[ $root . $rel ] = $fetch( 'tools/llms-txt-generator/' . $rel ); }
 
 /* Page copy: <slug>/content.php in the repo becomes content.json beside the config (no PHP in uploads). */
 $copies = array();
 foreach ( array_keys( $tools ) as $slug ) {
-	$tmpc = wp_tempnam( 'vv' ); file_put_contents( $tmpc, $fetch( 'tools/llms-txt-generator/' . $slug . '/content.php' ) ); $copies[ $slug ] = include $tmpc; @unlink( $tmpc );
-	file_put_contents( $root . $slug . '/content.json', wp_json_encode( $copies[ $slug ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
-	$copied[ $slug . '/content.json' ] = filesize( $root . $slug . '/content.json' );
+	$copies[ $slug ] = include $vv_files[ 'tools/llms-txt-generator/' . $slug . '/content.php' ];
+	$write[ $root . $slug . '/content.json' ] = wp_json_encode( $copies[ $slug ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
 }
 
 $mu = $fetch( 'mu-plugins/vv-tools.php' );
 if ( false === strpos( $mu, 'Plugin Name: VV Tools' ) ) { return array( 'error' => 'mu-plugin fetch failed' ); }
-file_put_contents( WPMU_PLUGIN_DIR . '/vv-tools.php', $mu );
-
-/* Old standalone Real Estate build. */
-$old = $root . 'real-estate/';
-foreach ( array( 'index.html', 'support.js' ) as $f ) { if ( is_file( $old . $f ) ) { unlink( $old . $f ); } }
-if ( is_dir( $old . '_ds' ) ) {
-	$it = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $old . '_ds', FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
-	foreach ( $it as $item ) { $item->isDir() ? rmdir( $item->getPathname() ) : unlink( $item->getPathname() ); }
-	rmdir( $old . '_ds' );
-}
+$write[ WPMU_PLUGIN_DIR . '/vv-tools.php' ] = $mu;
 
 $hub = get_page_by_path( 'ai-tools/llms-txt-generator' );
 if ( ! $hub ) { return array( 'error' => 'hub page not found' ); }
@@ -71,4 +71,4 @@ foreach ( $tools as $slug => $t ) {
 
 if ( class_exists( '\RankMath\Sitemap\Cache' ) ) { \RankMath\Sitemap\Cache::invalidate_storage(); }
 do_action( 'litespeed_purge_all' );
-return array( 'copied' => $copied, 'pages' => $pages );
+return array( 'pages' => $pages, 'vv_write' => $write );
