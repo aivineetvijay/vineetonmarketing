@@ -30,6 +30,7 @@ toc = [
     ['The Snap Fit Test', 'fit-test'],
     ["Where Snapchat doesn't fit", 'limits'],
     ['Frequently asked questions', 'faq'],
+    ['Sources', 'sources'],
 ]
 
 b = [
@@ -143,6 +144,20 @@ b = [
  ['p', "Usually not as a first channel. Snapchat's strengths are reach among younger and Emirati audiences, visual formats and cultural moments. Narrow B2B audiences, such as finance directors or IT buyers, are typically reached more precisely through LinkedIn and search. A B2B brand hiring young talent or selling to small businesses is the exception worth testing."],
  ['h3s', 'How should I measure Snapchat advertising?'],
  ['p', "Install the Snap Pixel or Conversions API so the platform can see conversions, then test with a holdout group or a lift study. Compare results against your own previous campaigns, not industry averages. Be cautious with short test windows, especially around Ramadan and Eid, when spending patterns are unusual."],
+ ['h2', toc[9][0], toc[9][1]],
+ ['p', "Every figure in this essay comes from a public source. Results from Snap are Snap's own measurements. Dates show when the campaign ran or when the source was published."],
+ ['ul', [
+   a(E + ': Sponsored Snaps A/B test', U['etisalat']) + ". Snap success story, UAE, August to September 2025.",
+   a('Level Shoes: First Story takeovers', U['level']) + ". Snap success story, UAE, Q4 2025 to Q1 2026.",
+   a('Snap x Publicis Media: First Ad takeover study', U['publicis']) + ". MENA, data from Q4 2024, published 16 October 2025.",
+   a('PSI Real Estate: lead forms and tCPA', U['psi']) + ". Snap success story, UAE, undated.",
+   a('Lanc\u00f4me: smart automation', U['lancome']) + ". Snap success story, UAE, January to March 2026.",
+   a('Rakez Real Estate: Conversions API', U['rakez']) + ". Snap success story, Riyadh and Jeddah, undated.",
+   a("Snap's Ramadan 2026 insights", U['ramadan']) + ". Reported by Campaign Middle East, 17 February 2026.",
+   a('Sponsored Snaps launch in Saudi Arabia and the UAE', U['sponsored']) + ". Reported by The Brand Berries, 13 February 2025.",
+   a('Sponsored AI Lenses launch in the UAE and Saudi Arabia', U['lenses']) + ". Reported by Riyadh Daily, 6 May 2025.",
+   a('The "Snapchat Generation" study', U['generation']) + ". Snap research from 2021, reported by Campaign Middle East.",
+   a('All Snap success stories', 'https://forbusiness.snapchat.com/success-stories') + ". Snap's public library of campaign results, filterable by region and industry."]],
  ['cta', "Has Snapchat ever paid for itself on a brand you know, in a way you could actually measure?", "If you run the Snap Fit Test on your brand, or you've seen a UAE result that tells a different story, write to me. I'd genuinely love to hear how it goes.", 'Get in touch &rarr;', SITE + '/contact/'],
 ]
 json.dump(b, open(sys.argv[1], 'w'), ensure_ascii=True)
