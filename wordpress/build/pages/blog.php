@@ -6,6 +6,11 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'snapchat-advertising-uae', 'y' => 'Oct ’26', 'date' => 'October 26, 2026', 'iso' => '2026-10-26 07:00:00', 'cat' => 'Paid Media',
+		'tags' => array( 'Paid Media' ),
+		't' => 'Snapchat works for some UAE brands. Here’s how to tell if it’s yours.',
+		'dek' => 'Snapchat pays off for UAE brands that use what only it offers: chat inbox ads, takeover days and in-app lead forms. Here’s the public evidence and a five-point fit test.',
+		'min' => 11, 'tone' => 'mint', 'fmt' => 'Playbook', 'body_src' => 'snapchat-advertising-uae' ),
 	array( 'slug' => 'digital-marketing-for-doctors', 'y' => 'Oct ’26', 'date' => 'October 13, 2026', 'iso' => '2026-10-13 07:00:00', 'cat' => 'Strategy',
 		'tags' => array( 'Strategy', 'Paid Media' ),
 		't' => 'How I’d build a doctor’s marketing plan from zero.',
