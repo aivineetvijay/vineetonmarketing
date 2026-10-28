@@ -43,11 +43,11 @@ Rank Math handles the title, description, robots, breadcrumbs and sitemap. FAQPa
 2. Run `node build.mjs` to rebuild `pages.json`.
 3. Commit, then run the body of `install.php` through Novamira execute-php with `$vv_base` set to the raw GitHub URL of `wordpress/` at that commit.
 
-To add a builder, copy one of the industry objects in `src/configs.js`, change `id`, `slug`, `nav`, the copy, `channels`, `campaign` and `content`, add it to the `builders` array and add a one-line blurb in `BLURBS` in `build.mjs`. The installer creates its page.
+To add a builder, copy one of the industry objects in `src/configs.js`, change `id`, `slug`, `nav`, the copy, `channels`, `campaign` and `content`, add it to the `builders` array and add its audience line to `AUDIENCE` in `build.mjs`. The installer creates its page.
 
 ## Design
 
-Ported from the Apple design system mock-up (`UTM Builder.html`): parchment hero with the builder tabs, a two-column builder with a sticky "Your link" panel, and the guide on white below. Industry builders show only the required campaign parts and the formatting rules; the basic builder also shows the extra GA4 fields.
+The page uses the site's own patterns: the standard hero (meta strip, large headline with an italic tail, lead and pill buttons), then numbered sections with alternating white, parchment and black backgrounds (the builder, the basics, why it matters, how it works, cheat sheet, tips, the developer brief, questions, more builders). The builder itself comes from the Apple design system mock-up (`UTM Builder.html`): a two-column form with a sticky "Your link" panel. Industry builders show only the required campaign parts and the formatting rules; the basic builder also shows the extra GA4 fields.
 
 ## Accessibility
 
