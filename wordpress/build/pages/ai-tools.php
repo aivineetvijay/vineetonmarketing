@@ -1,8 +1,8 @@
 <?php
-/** AI Tools (/ai-tools/): the live tools. For now the llms.txt generator family only; cards reuse the hub's classes. */
+/** AI Tools (/ai-tools/): the live tools, the llms.txt generators and the UTM builders. Cards reuse the llms.txt hub's classes. */
 $id = vv_new( 'AI Tools', 'ai-tools' );
 
-/* Live tools. For now only the llms.txt generator family (the earlier placeholder list was retired on 9 October 2026). */
+/* Live tools: the llms.txt generator family (9 October 2026) and the UTM builder family (28 October 2026). */
 $hub  = vv_url( '/ai-tools/llms-txt-generator/' );
 $tool = function ( $slug ) { return vv_url( '/ai-tools/llms-txt-generator/' . $slug . '/' ); };
 $industries = array(
@@ -37,6 +37,40 @@ $featured = vv_link( 'Featured Tool', array( 'gen-card' ), $hub, array(
 	) ),
 	vv_p( 'Featured Tool Action', 'Open the llms.txt generator →', array( 'gen-cta' ), 'span' ),
 ) );
+/* UTM builders: the basic builder (hub) and one per industry (wordpress/tools/utm-builder). */
+$utm_hub = vv_url( '/ai-tools/utm-builder/' );
+$utm_industries = array(
+	array( 'Healthcare', 'Service line and objective for hospitals and clinics', 'healthcare' ),
+	array( 'Ecommerce', 'Campaign type and category for online stores', 'ecommerce' ),
+	array( 'Real estate', 'Project and objective for property launches', 'real-estate' ),
+	array( 'Travel & tourism', 'Destination and product for hotels and travel', 'travel-tourism' ),
+	array( 'B2B', 'Product, campaign type and funnel stage for B2B and SaaS', 'b2b' ),
+);
+$utm_featured = vv_link( 'UTM Tool', array( 'gen-card' ), $utm_hub, array(
+	vv_f( 'UTM Tool Top', array( 'gen-top' ), array(
+		$pill( 'UTM Tool', 'Live' ),
+		vv_p( 'UTM Tool Count', ( count( $utm_industries ) + 1 ) . ' builders', array( 't-mono' ), 'span' ),
+	) ),
+	vv_f( 'UTM Tool Body', array( 'gen-body' ), array(
+		vv_p( 'UTM Tool Category', 'Measurement', array( 'eyebrow-accent' ), 'span' ),
+		vv_h( 'UTM Tool Name', 'UTM Builder', array( 'tcard-name' ), 'h3' ),
+		vv_p( 'UTM Tool Use', 'Build clean UTM links and see which GA4 channel each one will report under before you publish. Catches naming mistakes, adds Google Ads, Meta and TikTok macros, and makes a QR code. Industry builders come with a ready-made campaign naming convention.', array( 'tcard-use' ) ),
+	) ),
+	vv_p( 'UTM Tool Action', 'Open the UTM builder →', array( 'gen-cta' ), 'span' ),
+) );
+$utm_cards = array(); $j = 0;
+foreach ( $utm_industries as $g ) {
+	$j++;
+	$utm_cards[] = vv_link( "UTM Industry $j", array( 'gen-card' ), $utm_hub . $g[2] . '/', array(
+		vv_f( "UTM Industry $j Top", array( 'gen-top' ), array( $pill( "UTM Industry $j", 'Live' ) ) ),
+		vv_f( "UTM Industry $j Body", array( 'gen-body' ), array(
+			vv_h( "UTM Industry $j Title", 'UTM builder for ' . $g[0], array( 'tcard-name' ), 'h3' ),
+			vv_p( "UTM Industry $j For", $g[1], array( 'tcard-use' ) ),
+		) ),
+		vv_p( "UTM Industry $j Action", 'Open builder →', array( 'gen-cta' ), 'span' ),
+	) );
+}
+
 $cards = array(); $i = 0;
 foreach ( $industries as $g ) {
 	$i++;
@@ -55,12 +89,12 @@ foreach ( $industries as $g ) {
 
 $nodes = array(
 	vv_hero( 'Tools',
-		array( vv_meta_block( 'Tools', 'Built for', 'Fellow marketers' ), vv_meta_block( 'Tools', 'Tools', '1 live · ' . count( $industries ) . ' industries' ), vv_meta_block( 'Tools', 'Price', 'Free to use', true ) ),
+		array( vv_meta_block( 'Tools', 'Built for', 'Fellow marketers' ), vv_meta_block( 'Tools', 'Tools', '2 live · ' . ( count( $industries ) + count( $utm_industries ) + 1 ) . ' builders' ), vv_meta_block( 'Tools', 'Price', 'Free to use', true ) ),
 		'AI Tools', 'for marketers.', false,
-		'Small, focused tools I build for marketers. The first is a family of llms.txt generators that help AI assistants describe your business accurately. Free, and everything runs in your browser.',
+		'Small, focused tools I build for marketers: llms.txt generators that help AI assistants describe your business accurately, and UTM builders that keep campaign tracking clean in GA4. Free, and everything runs in your browser.',
 		array(
 			vv_btn( 'Tools Generator Button', 'Open the llms.txt generator', $hub, array( 'btn', 'btn-filled' ) ),
-			vv_btn( 'Tools Industry Button', 'Pick your industry', '#tools', array( 'btn' ) ),
+			vv_btn( 'Tools UTM Button', 'Open the UTM builder', $utm_hub, array( 'btn' ) ),
 		)
 	),
 	vv_f( 'Directory', array( 'section', 'pt-24', 'bg-canvas' ), array(
@@ -69,6 +103,9 @@ $nodes = array(
 			vv_f( 'Directory Featured', array( 'stack', 'mt-64' ), array( $featured ) ),
 			vv_p( 'Directory Industries Label', 'Or go straight to your industry', array( 't-mono', 'mt-64' ) ),
 			vv_g( 'Directory Industries', array( 'gen-grid', 'mt-32' ), $cards ),
+			vv_f( 'Directory UTM', array( 'stack', 'mt-64' ), array( $utm_featured ) ),
+			vv_p( 'Directory UTM Label', 'UTM builders by industry', array( 't-mono', 'mt-64' ) ),
+			vv_g( 'Directory UTM Industries', array( 'gen-grid', 'mt-32' ), $utm_cards ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'tools' ),
 	vv_f( 'Ideas', array( 'section', 'bg-ink' ), array(
