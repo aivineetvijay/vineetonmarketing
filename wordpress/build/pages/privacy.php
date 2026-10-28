@@ -3,7 +3,7 @@
  * Privacy policy (/privacy-policy/). Reuses WordPress's privacy page (ID 3, set as the site's privacy policy page)
  * and the essay text classes. Describes what the site actually does: contact form and email, the Hostinger Reach
  * newsletter, Google Analytics through Google Tag Manager (loaded on first interaction or after 10 seconds),
- * Hostinger hosting logs, and the llms.txt generators, which keep entries in the visitor's browser only.
+ * Hostinger hosting logs, and the llms.txt generators and UTM builders, which keep entries in the visitor's browser only.
  */
 $id = vv_new( 'Privacy Policy', 'privacy-policy' );
 update_option( 'wp_page_for_privacy_policy', $id );
@@ -31,7 +31,7 @@ $sections = array(
 			'<strong>When you read the site.</strong> Google Analytics, loaded through Google Tag Manager, records which pages are visited, how visitors arrived, and general device, browser and approximate location details. I use it to understand which writing and tools are useful. It loads on your first scroll, tap or click, or after 10 seconds on a page.',
 			'<strong>When your browser requests a page.</strong> My hosting provider keeps standard server logs, including IP address, browser and the page requested, to run the site securely and keep it fast.',
 		) ),
-		array( 'p', '<strong>The llms.txt generators.</strong> The ' . $a( 'llms.txt generators', vv_url( '/ai-tools/llms-txt-generator/' ) ) . ' run entirely in your browser. What you type is saved in your own browser’s local storage so you can come back to it, and is never sent to me or anyone else. Use <em>Clear form</em> or clear your browser data to remove it.' ),
+		array( 'p', '<strong>The free tools.</strong> The ' . $a( 'llms.txt generators', vv_url( '/ai-tools/llms-txt-generator/' ) ) . ' and ' . $a( 'UTM builders', vv_url( '/ai-tools/utm-builder/' ) ) . ' run entirely in your browser. What you type, your formatting settings and the UTM builders’ recent-links list are saved in your own browser’s local storage so you can come back to them, and are never sent to me or anyone else. Use <em>Clear form</em> or <em>Clear</em> in the tool, or clear your browser data, to remove them.' ),
 		array( 'p', 'I do not sell or rent personal information, and I do not knowingly collect information from children under 16.' ),
 	) ),
 	array( 'Legal basis', 'basis', array(
@@ -83,7 +83,7 @@ foreach ( $sections as $s ) {
 
 $nodes = array(
 	vv_hero( 'Privacy',
-		array( vv_meta_block( 'Privacy', 'Last updated', '9 October 2026' ), vv_meta_block( 'Privacy', 'Applies to', 'vineetonmarketing.com' ), vv_meta_block( 'Privacy', 'Questions', $email, true ) ),
+		array( vv_meta_block( 'Privacy', 'Last updated', '28 October 2026' ), vv_meta_block( 'Privacy', 'Applies to', 'vineetonmarketing.com' ), vv_meta_block( 'Privacy', 'Questions', $email, true ) ),
 		'Privacy', 'policy.', true,
 		'What this site collects, why, who helps me process it, and how to see or delete it. Short version: very little, never sold, and the tools keep your entries in your own browser.'
 	),

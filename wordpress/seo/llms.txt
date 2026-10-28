@@ -1,6 +1,6 @@
 # Vineet Vijay
 
-> Vineet Vijay is a digital marketing strategist based in Dubai, United Arab Emirates, with ten years in healthcare, e-commerce, FMCG and luxury marketing across the UAE and India. This site publishes his practitioner essays on AI search visibility, schema markup, SEO and paid media, and free llms.txt generators for marketers.
+> Vineet Vijay is a digital marketing strategist based in Dubai, United Arab Emirates, with ten years in healthcare, e-commerce, FMCG and luxury marketing across the UAE and India. This site publishes his practitioner essays on AI search visibility, schema markup, SEO and paid media, and free llms.txt generators and UTM builders for marketers.
 
 - Type: Personal website and publication
 - Based: Dubai, United Arab Emirates
@@ -36,6 +36,12 @@
 - [llms.txt generator for education](https://vineetonmarketing.com/ai-tools/llms-txt-generator/education/): For universities, schools, institutes and learning platforms.
 - [llms.txt generator for finance and fintech](https://vineetonmarketing.com/ai-tools/llms-txt-generator/finance/): For banks, payments, lending, insurance and investment firms.
 - [llms.txt generator for publishers](https://vineetonmarketing.com/ai-tools/llms-txt-generator/publishers/): For news sites, magazines, blogs and newsletters.
+- [UTM Builder](https://vineetonmarketing.com/ai-tools/utm-builder/): Builds UTM links, predicts the GA4 default channel each link reports under, and checks for naming mistakes.
+- [UTM builder for healthcare](https://vineetonmarketing.com/ai-tools/utm-builder/healthcare/): For hospitals and clinics, with a service line and objective naming convention.
+- [UTM builder for ecommerce](https://vineetonmarketing.com/ai-tools/utm-builder/ecommerce/): For online stores, including Shopping, email flows and creators.
+- [UTM builder for real estate](https://vineetonmarketing.com/ai-tools/utm-builder/real-estate/): For property developers and brokers, by project and objective.
+- [UTM builder for travel and tourism](https://vineetonmarketing.com/ai-tools/utm-builder/travel-tourism/): For hotels, tour operators and destinations.
+- [UTM builder for B2B](https://vineetonmarketing.com/ai-tools/utm-builder/b2b/): For B2B and SaaS teams, by product, offer and funnel stage.
 
 ## Policies
 
