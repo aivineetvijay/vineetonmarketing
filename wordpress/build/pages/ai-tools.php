@@ -1,10 +1,10 @@
 <?php
-/** AI Tools (/ai-tools/): the live tools, the llms.txt generators and the UTM builders. Cards reuse the llms.txt hub's classes. */
+/** AI Tools (/ai-tools/): one card per live tool (llms.txt Generator, UTM Builder), each linking to its hub, where the
+ *  industry versions are listed. Cards reuse the llms.txt hub's classes. */
 $id = vv_new( 'AI Tools', 'ai-tools' );
 
 /* Live tools: the llms.txt generator family (9 October 2026) and the UTM builder family (28 October 2026). */
 $hub  = vv_url( '/ai-tools/llms-txt-generator/' );
-$tool = function ( $slug ) { return vv_url( '/ai-tools/llms-txt-generator/' . $slug . '/' ); };
 $industries = array(
 	array( 'Real Estate', 'Developers, brokerages, agencies and portals', 'real-estate' ),
 	array( 'Healthcare', 'Hospitals, clinics and specialists', 'healthcare' ),
@@ -13,10 +13,6 @@ $industries = array(
 	array( 'Finance & Fintech', 'Banks, payments, lending, insurance and investment firms', 'finance' ),
 	array( 'Content & Publishers', 'News sites, magazines, blogs and newsletters', 'publishers' ),
 );
-$icon = function ( $slug ) {
-	$p = get_posts( array( 'post_type' => 'attachment', 'name' => 'llms-icon-' . $slug, 'post_status' => 'inherit', 'numberposts' => 1 ) );
-	return $p ? $p[0]->ID : 0;
-};
 $pill = function ( $p, $label ) {
 	return vv_f( "$p Status", array( 'gen-pill' ), array(
 		vv_p( "$p Status Dot", '●', array( 'status-dot' ), 'span' ),
@@ -24,7 +20,7 @@ $pill = function ( $p, $label ) {
 	) );
 };
 
-/* Featured tool card (links to the hub), then one card per industry generator (same cards as the hub). */
+/* One card per tool, linking to its hub. The industry counts come from the lists above. */
 $featured = vv_link( 'Featured Tool', array( 'gen-card' ), $hub, array(
 	vv_f( 'Featured Tool Top', array( 'gen-top' ), array(
 		$pill( 'Featured Tool', 'Live' ),
@@ -58,38 +54,9 @@ $utm_featured = vv_link( 'UTM Tool', array( 'gen-card' ), $utm_hub, array(
 	) ),
 	vv_p( 'UTM Tool Action', 'Open the UTM builder →', array( 'gen-cta' ), 'span' ),
 ) );
-$utm_cards = array(); $j = 0;
-foreach ( $utm_industries as $g ) {
-	$j++;
-	$utm_cards[] = vv_link( "UTM Industry $j", array( 'gen-card' ), $utm_hub . $g[2] . '/', array(
-		vv_f( "UTM Industry $j Top", array( 'gen-top' ), array( $pill( "UTM Industry $j", 'Live' ) ) ),
-		vv_f( "UTM Industry $j Body", array( 'gen-body' ), array(
-			vv_h( "UTM Industry $j Title", 'UTM builder for ' . $g[0], array( 'tcard-name' ), 'h3' ),
-			vv_p( "UTM Industry $j For", $g[1], array( 'tcard-use' ) ),
-		) ),
-		vv_p( "UTM Industry $j Action", 'Open builder →', array( 'gen-cta' ), 'span' ),
-	) );
-}
-
-$cards = array(); $i = 0;
-foreach ( $industries as $g ) {
-	$i++;
-	$cards[] = vv_link( "Industry $i", array( 'gen-card' ), $tool( $g[2] ), array(
-		vv_f( "Industry $i Top", array( 'gen-top' ), array(
-			vv_f( "Industry $i Icon Tile", array( 'gen-icon-tile' ), array( vv_n( 'e-svg', "Industry $i Icon", array( 'gen-icon' ), array( 'svg' => array( 'id' => $icon( $g[2] ) ) ) ) ) ),
-			$pill( "Industry $i", 'Live' ),
-		) ),
-		vv_f( "Industry $i Body", array( 'gen-body' ), array(
-			vv_h( "Industry $i Title", 'llms.txt for ' . $g[0], array( 'tcard-name' ), 'h3' ),
-			vv_p( "Industry $i For", $g[1], array( 'tcard-use' ) ),
-		) ),
-		vv_p( "Industry $i Action", 'Open generator →', array( 'gen-cta' ), 'span' ),
-	) );
-}
-
 $nodes = array(
 	vv_hero( 'Tools',
-		array( vv_meta_block( 'Tools', 'Built for', 'Fellow marketers' ), vv_meta_block( 'Tools', 'Tools', '2 live · ' . ( count( $industries ) + count( $utm_industries ) + 1 ) . ' builders' ), vv_meta_block( 'Tools', 'Price', 'Free to use', true ) ),
+		array( vv_meta_block( 'Tools', 'Built for', 'Fellow marketers' ), vv_meta_block( 'Tools', 'Tools', '2 live' ), vv_meta_block( 'Tools', 'Price', 'Free to use', true ) ),
 		'AI Tools', 'for marketers.', false,
 		'Small, focused tools I build for marketers: llms.txt generators that help AI assistants describe your business accurately, and UTM builders that keep campaign tracking clean in GA4. Free, and everything runs in your browser.',
 		array(
@@ -101,11 +68,7 @@ $nodes = array(
 		vv_f( 'Directory Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Directory', '01', 'Live tools', 'Free · runs in your browser · nothing uploaded' ),
 			vv_f( 'Directory Featured', array( 'stack', 'mt-64' ), array( $featured ) ),
-			vv_p( 'Directory Industries Label', 'Or go straight to your industry', array( 't-mono', 'mt-64' ) ),
-			vv_g( 'Directory Industries', array( 'gen-grid', 'mt-32' ), $cards ),
-			vv_f( 'Directory UTM', array( 'stack', 'mt-64' ), array( $utm_featured ) ),
-			vv_p( 'Directory UTM Label', 'UTM builders by industry', array( 't-mono', 'mt-64' ) ),
-			vv_g( 'Directory UTM Industries', array( 'gen-grid', 'mt-32' ), $utm_cards ),
+			vv_f( 'Directory UTM', array( 'stack', 'mt-32' ), array( $utm_featured ) ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'tools' ),
 	vv_f( 'Ideas', array( 'section', 'bg-ink' ), array(
