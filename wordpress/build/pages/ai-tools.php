@@ -67,8 +67,7 @@ $nodes = array(
 	vv_f( 'Directory', array( 'section', 'pt-24', 'bg-canvas' ), array(
 		vv_f( 'Directory Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Directory', '01', 'Live tools', 'Free · runs in your browser · nothing uploaded' ),
-			vv_f( 'Directory Featured', array( 'stack', 'mt-64' ), array( $featured ) ),
-			vv_f( 'Directory UTM', array( 'stack', 'mt-32' ), array( $utm_featured ) ),
+			vv_g( 'Directory Tools', array( 'gen-grid', 'mt-64' ), array( $featured, $utm_featured ) ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'tools' ),
 	vv_f( 'Ideas', array( 'section', 'bg-ink' ), array(
