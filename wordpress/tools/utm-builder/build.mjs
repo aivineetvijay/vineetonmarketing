@@ -101,7 +101,8 @@ function section(bg, idx, label, note, main, aside, inner, id) {
     '<h2 class="vvu-disp">' + esc(main) + ' <span class="vvu-disp-aside">' + esc(aside) + '</span></h2>' +
     inner + '</div></section>';
 }
-const items = (list, label) => '<div class="vvu-grid3">' + list.map((it, i) =>
+// Grids whose titles run long (full sentences) use the smaller card title, so no item towers over the others.
+const items = (list, label) => '<div class="vvu-grid3' + (list.some((it) => it[0].length > 60) ? ' vvu-grid-sm' : '') + '">' + list.map((it, i) =>
   '<div class="vvu-item"><p class="vvu-mono">' + (label ? label + ' ' : '') + pad2(i + 1) + '</p><h3 class="vvu-card-t">' + esc(it[0]) + '</h3>' + (it[1] ? '<p class="vvu-body">' + esc(it[1]) + '</p>' : '') + '</div>').join('') + '</div>';
 const table = (head, rowsHtml) => '<div class="vvu-table"><table><thead><tr>' + head.map((h) => '<th scope="col">' + h + '</th>').join('') + '</tr></thead><tbody>' + rowsHtml + '</tbody></table></div>';
 
@@ -161,7 +162,7 @@ function content(b) {
     '<section class="vvu-sec vvu-ink vvu-cta"><div class="vvu-wrap">' +
       '<h2 class="vvu-huge">More UTM <span class="vvu-aside">builders.</span></h2>' +
       '<div class="vvu-btns vvu-mt">' + others.map((x, i) => '<a class="vvu-btn vvu-btn-dark' + (i === 0 ? ' vvu-btn-dark-filled' : '') + '" href="' + href(x) + '">' + esc(x.name) + ' ↗</a>').join('') + '</div>' +
-      '<p class="vvu-mono vvu-byline">By <a href="/experience/">Vineet Vijay</a> · Updated {{UPDATED}} · Runs in your browser. Nothing is uploaded.</p>' +
+      '<p class="vvu-note vvu-byline">By <a href="/experience/">Vineet Vijay</a> · Updated {{UPDATED}} · Runs in your browser. Nothing is uploaded.</p>' +
     '</div></section>',
   ].join('');
 }

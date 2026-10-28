@@ -190,11 +190,14 @@ body.is-industry #utm-app details.more:not(#fmt){display:none}
 .vvu .vvu-group{margin-top:96px;margin-bottom:32px}
 .vvu .vvu-group:first-of-type{margin-top:0}
 .vvu .vvu-mt{margin-top:24px}
-.vvu .vvu-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 24px}
+.vvu .vvu-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 24px}
 .vvu .vvu-item .vvu-card-t{margin:16px 0 0;font-family:var(--font-display);font-weight:600;font-size:clamp(28px,2.6vw,44px);line-height:1.04;letter-spacing:-.025em;color:var(--color-ink)}
 .vvu .vvu-item .vvu-body{margin-top:16px}
+.vvu .vvu-grid-sm .vvu-item .vvu-card-t{font-size:clamp(20px,1.7vw,26px);line-height:1.25;letter-spacing:-.015em}
+.vvu .vvu-measure + .vvu-table{margin-top:48px}
 .vvu .vvu-split{display:grid;grid-template-columns:minmax(0,680px) minmax(0,1fr);gap:48px 112px;align-items:start}
 .vvu .vvu-split-r > .vvu-mono,.vvu .vvu-split-l > .vvu-mono{margin-bottom:16px}
+.vvu .vvu-split-l,.vvu .vvu-split-r,.vvu .vvu-item{min-width:0}
 .vvu .vvu-table{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .vvu .vvu-table table{border-collapse:collapse;width:100%;margin:0;border:0;font-size:15px;line-height:1.45;letter-spacing:-.01em}
 .vvu .vvu-table th,.vvu .vvu-table td{text-align:left;vertical-align:top;padding:14px 16px 14px 0;border:0;border-bottom:1px solid var(--color-hairline);color:#333}
@@ -221,24 +224,25 @@ body.is-industry #utm-app details.more:not(#fmt){display:none}
 /* Black sections */
 .vvu .vvu-ink .vvu-label,.vvu .vvu-ink .vvu-disp,.vvu .vvu-ink .vvu-card-t,.vvu .vvu-ink .vvu-huge,.vvu .vvu-ink h2,.vvu .vvu-ink h3{color:#fff}
 .vvu .vvu-ink .vvu-idx,.vvu .vvu-ink .vvu-note,.vvu .vvu-ink .vvu-mono,.vvu .vvu-ink .vvu-body,.vvu .vvu-ink .vvu-disp-aside,.vvu .vvu-ink .vvu-aside{color:#ccc}
-.vvu .vvu-ink .vvu-mono a{color:#fff;text-decoration:underline}
+.vvu .vvu-ink .vvu-mono a,.vvu .vvu-ink .vvu-note a{color:#fff;text-decoration:underline}
 .vvu .vvu-btn-dark{color:#fff;border-color:rgba(255,255,255,.2)}
 .vvu .vvu-btn-dark-filled{background:#1d1d1f}
 .vvu .vvu-btn-dark:hover,.vvu .vvu-btn-dark:focus-visible{background:#fff;border-color:#fff;color:var(--color-ink)}
 .vvu button.vvu-btn{font-family:inherit;cursor:pointer}
 .vvu .vvu-cta .vvu-huge{margin:0}
-.vvu .vvu-byline{margin-top:96px;line-height:1.6}
+.vvu .vvu-byline{margin-top:96px;font-size:14px;line-height:1.6}
 @media (max-width:1024px){
-.vvu .vvu-split{grid-template-columns:1fr}
-.vvu .vvu-grid3{grid-template-columns:repeat(2,1fr)}
+.vvu .vvu-split{grid-template-columns:minmax(0,1fr)}
+.vvu .vvu-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:767px){
 .vvu .vvu-sec{padding:64px 0}
 .vvu .vvu-sec-head{flex-direction:column;gap:8px;margin-bottom:32px}
 .vvu .vvu-sec-l{gap:12px}
 .vvu .vvu-disp{font-size:clamp(32px,10vw,56px);letter-spacing:-.03em;margin-bottom:32px}
-.vvu .vvu-grid3{grid-template-columns:1fr;gap:32px}
+.vvu .vvu-grid3{grid-template-columns:minmax(0,1fr);gap:32px}
 .vvu .vvu-item .vvu-card-t{font-size:28px}
+.vvu .vvu-grid-sm .vvu-item .vvu-card-t{font-size:20px}
 .vvu .vvu-body{font-size:16px}
 .vvu .vvu-group{margin-top:64px;margin-bottom:24px}
 .vvu .vvu-callout{padding:18px}
