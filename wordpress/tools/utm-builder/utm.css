@@ -12,8 +12,6 @@
 --good:#1d7449;--warn:#875800;--bad:#c4281c;
 display:block;font-family:var(--font-text);font-size:17px;line-height:1.47;letter-spacing:-0.374px;color:var(--color-ink);background:var(--color-canvas)}
 .vvu h1,.vvu h2,.vvu h3,.vvu strong{color:var(--color-ink)}
-.vvu-page #content > .ast-container{max-width:none;padding:0;display:block}
-.vvu .content table{border:0;margin:0}.vvu .content th,.vvu .content td{border-width:0 0 1px;border-style:solid;border-color:var(--color-hairline)}
 .vvu *,.vvu *::before,.vvu *::after{box-sizing:border-box}
 
 .vvu [hidden]{display:none !important}
@@ -54,9 +52,7 @@ display:block;font-family:var(--font-text);font-size:17px;line-height:1.47;lette
 .vvu .vvu-btns{gap:10px}
 .vvu .vvu-btn{font-size:14px;padding:12px 18px}
 }
-.vvu .tile-top{background:var(--color-canvas-parchment);padding:64px 22px 80px}
-@media (max-width:833px){.vvu .tile-top{padding:40px 16px 48px}}
-#utm-app{max-width:1180px;margin:0 auto;display:grid;gap:24px}
+#utm-app{display:grid;gap:24px}
 @media (min-width:980px){#utm-app{grid-template-columns:minmax(0,1fr) 400px;align-items:start}}
 #utm-app .builder{background:var(--color-canvas);border:1px solid var(--color-hairline);border-radius:var(--radius-lg);padding:8px 32px 32px}
 @media (max-width:719px){#utm-app .builder{padding:4px 20px 24px}}
@@ -163,53 +159,92 @@ display:block;font-family:var(--font-text);font-size:17px;line-height:1.47;lette
 #utm-app .dock .btn.primary{flex:none;min-height:40px;font-size:15px;padding:9px 20px}
 @media (min-width:980px){#utm-app .dock{display:none !important}}
 @media (max-width:979px){body.has-dock{padding-bottom:72px}}
-.vvu .tile-content{background:var(--color-canvas);padding:80px 22px}
-.vvu .content{max-width:820px;margin:0 auto}
-.vvu .content h2{font-family:var(--font-display);font-size:34px;font-weight:600;line-height:1.18;letter-spacing:-0.374px;margin:64px 0 16px}
-.vvu .content h2:first-child{margin-top:0}
-.vvu .content p,.vvu .content li{text-wrap:pretty}
-.vvu .content ol,.vvu .content ul{padding-left:1.3em;margin:0}
-.vvu .content li{margin:8px 0}
-.vvu .conv-block{background:var(--color-canvas-parchment);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:16px}
-.vvu .conv-block p{margin:0 0 6px}
-.vvu .conv-block p:last-child{margin:0}
-.vvu .conv-block code{color:var(--cmp);word-break:break-all}
-.vvu .table-wrap{overflow-x:auto;border:1px solid var(--color-hairline);border-radius:var(--radius-lg);margin-top:16px}
-.vvu .content table{border-collapse:collapse;width:100%;font-size:15px;letter-spacing:-0.224px}
-.vvu .content th,.vvu .content td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--color-hairline);vertical-align:top}
-.vvu .content tr:last-child td{border-bottom:0}
-.vvu .content th{font-weight:600;font-size:12px;letter-spacing:-0.12px;color:var(--color-ink-muted-80);background:var(--color-canvas-parchment);white-space:nowrap}
-.vvu .content td code{white-space:nowrap}
-.vvu .content td.ga-Unassigned{color:var(--bad)}
-.vvu .faq details{border-bottom:1px solid var(--color-hairline);padding:20px 0}
-.vvu .faq details:first-child{border-top:1px solid var(--color-hairline)}
-.vvu .faq summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
-.vvu .faq summary::-webkit-details-marker{display:none}
-.vvu .faq summary::after{content:'+';font-weight:300;font-size:24px;line-height:.9;color:var(--color-ink-muted-48);flex:none}
-.vvu .faq details[open] summary::after{content:'\2212'}
-.vvu .faq details p{margin:12px 0 0;color:var(--color-ink-muted-80)}
-.vvu .others{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));margin-top:16px}
-.vvu .others a{display:flex;flex-direction:column;gap:4px;padding:20px 24px;background:var(--color-canvas-parchment);border-radius:var(--radius-lg);color:var(--color-ink);transition:transform 80ms ease}
-.vvu .others a:hover{text-decoration:none;opacity:.84}
-.vvu .others a:active{transform:scale(0.98)}
-.vvu .others strong{font-weight:600}
-.vvu .others span{color:var(--color-ink-muted-80);font-size:14px;letter-spacing:-0.224px;line-height:1.43}
-.vvu .others em{font-style:normal;color:var(--color-primary);font-size:14px;letter-spacing:-0.224px;margin-top:8px}
-@media (max-width:833px){.vvu .tile-content{padding:48px 16px}.vvu .content h2{font-size:28px;margin-top:48px}}
 @media (prefers-reduced-motion:reduce){.vvu *{transition:none !important;animation:none !important}}
-.vvu .tabs{max-width:1180px;margin:0 auto 32px;border-bottom:1px solid var(--color-hairline)}
-.vvu .tabs__links{display:flex;gap:32px;justify-content:center;overflow-x:auto;scrollbar-width:none}
+.vvu .tabs{margin:0 0 32px;border-bottom:1px solid var(--color-hairline)}
+.vvu .tabs__links{display:flex;gap:32px;justify-content:flex-start;overflow-x:auto;scrollbar-width:none}
 .vvu .tabs__links::-webkit-scrollbar{display:none}
 .vvu .tabs__links a{white-space:nowrap;font-size:17px;line-height:1.47;letter-spacing:-0.374px;color:var(--color-ink-muted-80);padding:12px 0 14px;text-decoration:none}
 .vvu .tabs__links a[aria-current="page"]{color:var(--color-ink);font-weight:600;box-shadow:inset 0 -2px 0 var(--color-ink)}
 .vvu .tabs__links a:hover{text-decoration:none;color:var(--color-ink)}
-@media (max-width:833px){.vvu .tabs{margin-bottom:24px;margin-left:-16px;margin-right:-16px}.vvu .tabs__links{justify-content:flex-start;gap:24px;padding:0 16px}}
+@media (max-width:767px){.vvu .tabs{margin-bottom:24px;margin-left:-20px;margin-right:-20px}.vvu .tabs__links{gap:24px;padding:0 20px}}
 body.is-industry #utm-app details.more:not(#fmt){display:none}
-.vvu .content h3{font-family:var(--font-display);font-size:21px;font-weight:600;line-height:1.19;letter-spacing:0.231px;margin:32px 0 12px}
-.vvu .content li+li{margin-top:8px}
-.vvu .content pre.snip{background:var(--color-canvas-parchment);border:1px solid var(--color-hairline);border-radius:var(--radius-lg);padding:20px 24px;overflow-x:auto;margin:16px 0 0;font-size:13px;line-height:1.6;letter-spacing:0}
-.vvu .content pre.snip code{font-family:var(--mono,ui-monospace,monospace);white-space:pre}
-.vvu .brief-actions{display:flex;gap:12px;margin-top:24px}
-.vvu .content .pill{font-family:var(--font-text);font-size:17px;letter-spacing:-0.374px;line-height:1;padding:12px 22px;border-radius:var(--radius-pill);border:0;background:var(--color-primary);color:var(--color-on-primary);cursor:pointer}
-.vvu .content .pill:active{transform:scale(0.95)}
-.vvu .content .fine{font-size:12px;line-height:1.33;letter-spacing:-0.12px;color:var(--color-ink-muted-48);margin-top:16px}
+
+/* ---------- Sections below the hero: the site's numbered-section pattern ---------- */
+.vvu-page #content > .ast-container{max-width:none;padding:0;display:block}
+.vvu .vvu-sec{padding:120px 0}
+.vvu .vvu-canvas{background:var(--color-canvas)}
+.vvu .vvu-parch{background:var(--color-canvas-parchment)}
+.vvu .vvu-ink{background:#000;color:#ccc}
+.vvu .vvu-sec-head{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:baseline;margin:0 0 64px}
+.vvu .vvu-sec-l{display:flex;gap:16px;align-items:baseline}
+.vvu .vvu-idx,.vvu .vvu-label{font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase}
+.vvu .vvu-idx{color:var(--color-ink-muted-48)}
+.vvu .vvu-label{color:var(--color-ink)}
+.vvu .vvu-note{margin:0;font-size:13px;line-height:1.3;letter-spacing:-.01em;color:var(--color-ink-muted-48)}
+.vvu .vvu-disp{margin:0 0 64px;font-family:var(--font-display);font-weight:600;font-size:clamp(48px,7vw,120px);line-height:.98;letter-spacing:-.035em;color:var(--color-ink)}
+.vvu .vvu-disp-aside{display:block;font-weight:300;font-style:italic;color:var(--color-ink-muted-48)}
+.vvu .vvu-body{margin:0 0 16px;font-size:17px;line-height:1.6;letter-spacing:-.01em;color:#333}
+.vvu .vvu-body:last-child{margin-bottom:0}
+.vvu .vvu-measure{max-width:680px}
+.vvu .vvu-mono{margin:0;font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:var(--color-ink-muted-48)}
+.vvu .vvu-group{margin-top:96px;margin-bottom:32px}
+.vvu .vvu-group:first-of-type{margin-top:0}
+.vvu .vvu-mt{margin-top:24px}
+.vvu .vvu-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 24px}
+.vvu .vvu-item .vvu-card-t{margin:16px 0 0;font-family:var(--font-display);font-weight:600;font-size:clamp(28px,2.6vw,44px);line-height:1.04;letter-spacing:-.025em;color:var(--color-ink)}
+.vvu .vvu-item .vvu-body{margin-top:16px}
+.vvu .vvu-split{display:grid;grid-template-columns:minmax(0,680px) minmax(0,1fr);gap:48px 112px;align-items:start}
+.vvu .vvu-split-r > .vvu-mono,.vvu .vvu-split-l > .vvu-mono{margin-bottom:16px}
+.vvu .vvu-table{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.vvu .vvu-table table{border-collapse:collapse;width:100%;margin:0;border:0;font-size:15px;line-height:1.45;letter-spacing:-.01em}
+.vvu .vvu-table th,.vvu .vvu-table td{text-align:left;vertical-align:top;padding:14px 16px 14px 0;border:0;border-bottom:1px solid var(--color-hairline);color:#333}
+.vvu .vvu-table th{font-weight:400;font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:var(--color-ink-muted-48);white-space:nowrap;padding-top:0}
+.vvu .vvu-table td code{white-space:nowrap;color:var(--color-ink)}
+.vvu .vvu-table td.ga-Unassigned{color:var(--bad)}
+.vvu .vvu-callout{border:1px solid var(--color-hairline);border-radius:12px;padding:22px 24px;margin:0 0 24px;background:var(--color-canvas);display:grid;gap:12px}
+.vvu .vvu-callout p{margin:0;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline}
+.vvu .vvu-callout .vvu-mono{min-width:72px}
+.vvu .vvu-callout code{font-size:15px;color:var(--cmp);word-break:break-all}
+.vvu .vvu-code{margin:0;background:var(--color-canvas);border-radius:10px;padding:16px 18px;overflow-x:auto;font-size:13px;line-height:1.6}
+.vvu .vvu-parch .vvu-code{background:var(--color-canvas)}
+.vvu .vvu-code code{font-family:var(--mono);font-size:13px;white-space:pre;color:var(--color-ink)}
+.vvu .vvu-fine{margin:16px 0 0;font-size:13px;line-height:1.45;color:var(--color-ink-muted-48)}
+.vvu .vvu-faq{border-top:1px solid var(--color-hairline)}
+.vvu .vvu-faq details{border-bottom:1px solid var(--color-hairline)}
+.vvu .vvu-faq summary{display:flex;gap:20px;align-items:baseline;padding:20px 0;cursor:pointer;list-style:none}
+.vvu .vvu-faq summary::-webkit-details-marker{display:none}
+.vvu .vvu-faq summary::after{content:'';flex:none;width:9px;height:9px;margin:0 6px 0 auto;border-right:1.5px solid var(--color-ink);border-bottom:1.5px solid var(--color-ink);transform:translateY(-3px) rotate(45deg);transition:transform .2s}
+.vvu .vvu-faq details[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.vvu .vvu-faq-n{flex:none;width:48px;font-size:12px;line-height:1.2;letter-spacing:.12em;color:var(--color-ink-muted-48)}
+.vvu .vvu-faq-q{font-size:20px;font-weight:600;line-height:1.35;letter-spacing:-.01em;color:var(--color-ink)}
+.vvu .vvu-faq details > .vvu-body{margin:0;padding:0 0 24px 68px;max-width:1312px}
+/* Black sections */
+.vvu .vvu-ink .vvu-label,.vvu .vvu-ink .vvu-disp,.vvu .vvu-ink .vvu-card-t,.vvu .vvu-ink .vvu-huge,.vvu .vvu-ink h2,.vvu .vvu-ink h3{color:#fff}
+.vvu .vvu-ink .vvu-idx,.vvu .vvu-ink .vvu-note,.vvu .vvu-ink .vvu-mono,.vvu .vvu-ink .vvu-body,.vvu .vvu-ink .vvu-disp-aside,.vvu .vvu-ink .vvu-aside{color:#ccc}
+.vvu .vvu-ink .vvu-mono a{color:#fff;text-decoration:underline}
+.vvu .vvu-btn-dark{color:#fff;border-color:rgba(255,255,255,.2)}
+.vvu .vvu-btn-dark-filled{background:#1d1d1f}
+.vvu .vvu-btn-dark:hover,.vvu .vvu-btn-dark:focus-visible{background:#fff;border-color:#fff;color:var(--color-ink)}
+.vvu button.vvu-btn{font-family:inherit;cursor:pointer}
+.vvu .vvu-cta .vvu-huge{margin:0}
+.vvu .vvu-byline{margin-top:96px;line-height:1.6}
+@media (max-width:1024px){
+.vvu .vvu-split{grid-template-columns:1fr}
+.vvu .vvu-grid3{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:767px){
+.vvu .vvu-sec{padding:64px 0}
+.vvu .vvu-sec-head{flex-direction:column;gap:8px;margin-bottom:32px}
+.vvu .vvu-sec-l{gap:12px}
+.vvu .vvu-disp{font-size:clamp(32px,10vw,56px);letter-spacing:-.03em;margin-bottom:32px}
+.vvu .vvu-grid3{grid-template-columns:1fr;gap:32px}
+.vvu .vvu-item .vvu-card-t{font-size:28px}
+.vvu .vvu-body{font-size:16px}
+.vvu .vvu-group{margin-top:64px;margin-bottom:24px}
+.vvu .vvu-callout{padding:18px}
+.vvu .vvu-faq summary{gap:12px;padding:16px 0}
+.vvu .vvu-faq-n{width:32px}
+.vvu .vvu-faq-q{font-size:17px}
+.vvu .vvu-faq details > .vvu-body{padding-left:44px}
+.vvu .vvu-byline{margin-top:64px}
+}
