@@ -8,7 +8,7 @@
  *              assets/generator.js + <slug>/config.js, all in wp-content/uploads/vv-tools/llms-txt-generator/.
  *              SEO meta (title, description, robots) is Rank Math's, set per page; FAQPage schema comes from vv_faq.
  *              generator.css is printed inline in the head; the two scripts load deferred.
- * Version:     3.5.0
+ * Version:     3.6.0
  *
  * Install: copy to wp-content/mu-plugins/vv-tools.php (see wordpress/tools/install-llms-generators.php).
  */
@@ -150,15 +150,15 @@ function vv_tools_render( $id, $c ) {
 				<h2>More llms.txt generators.</h2>
 				<div class="vvg-more-links">
 					<?php foreach ( $others as $o ) : ?>
-					<a href="<?php echo esc_url( get_permalink( $o ) ); ?>"><?php $e( get_post_meta( $o->ID, 'vv_tool_label', true ) ); ?> ›</a>
+					<a href="<?php echo esc_url( get_permalink( $o ) ); ?>"><span class="screen-reader-text">llms.txt generator for </span><?php $e( get_post_meta( $o->ID, 'vv_tool_label', true ) ); ?><span aria-hidden="true"> ›</span></a>
 					<?php endforeach; ?>
-					<a href="<?php echo esc_url( $hubUrl ); ?>">All industries ›</a>
+					<a href="<?php echo esc_url( $hubUrl ); ?>">All industries<span class="screen-reader-text">: every llms.txt generator</span><span aria-hidden="true"> ›</span></a>
 				</div>
 				<div class="vvg-more-share">If this tool made it easy for you to build your llms.txt file, share it with your peers and fellow marketers.
 					<div class="vvg-more-links">
-						<a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo esc_attr( $enc ); ?>" target="_blank" rel="noopener">LinkedIn ↗</a>
-						<a href="https://wa.me/?text=<?php echo esc_attr( rawurlencode( 'A free llms.txt generator for ' . strtolower( $label ) . ' websites: ' ) . $enc ); ?>" target="_blank" rel="noopener">WhatsApp ↗</a>
-						<a href="mailto:?subject=<?php echo esc_attr( rawurlencode( 'A free llms.txt generator for ' . strtolower( $label ) ) ); ?>&amp;body=<?php echo esc_attr( rawurlencode( 'Thought this might help: ' ) . $enc ); ?>">Email ↗</a>
+						<a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo esc_attr( $enc ); ?>" target="_blank" rel="noopener"><span class="screen-reader-text">Share on </span>LinkedIn<span aria-hidden="true"> ↗</span><span class="screen-reader-text"> (opens in a new tab)</span></a>
+						<a href="https://wa.me/?text=<?php echo esc_attr( rawurlencode( 'A free llms.txt generator for ' . strtolower( $label ) . ' websites: ' ) . $enc ); ?>" target="_blank" rel="noopener"><span class="screen-reader-text">Share on </span>WhatsApp<span aria-hidden="true"> ↗</span><span class="screen-reader-text"> (opens in a new tab)</span></a>
+						<a href="mailto:?subject=<?php echo esc_attr( rawurlencode( 'A free llms.txt generator for ' . strtolower( $label ) ) ); ?>&amp;body=<?php echo esc_attr( rawurlencode( 'Thought this might help: ' ) . $enc ); ?>"><span class="screen-reader-text">Share by </span>Email<span aria-hidden="true"> ↗</span></a>
 					</div>
 				</div>
 			</div>
@@ -167,9 +167,9 @@ function vv_tools_render( $id, $c ) {
 				<h2>Built by Vineet Vijay.</h2>
 				<p>Digital marketing strategist based in the UAE, writing about AI in marketing, search, paid media and measurement.</p>
 				<div class="vvg-more-links">
-					<a href="<?php echo esc_url( home_url( $related[0] ) ); ?>"><?php $e( $related[1] ); ?> ›</a>
-					<a href="<?php echo esc_url( home_url( '/writing/' ) ); ?>">Read the writing ›</a>
-					<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Get in touch ›</a>
+					<a href="<?php echo esc_url( home_url( $related[0] ) ); ?>"><?php $e( $related[1] ); ?><span aria-hidden="true"> ›</span></a>
+					<a href="<?php echo esc_url( home_url( '/writing/' ) ); ?>">Read the writing<span aria-hidden="true"> ›</span></a>
+					<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Get in touch<span aria-hidden="true"> ›</span></a>
 				</div>
 			</div>
 		</div>

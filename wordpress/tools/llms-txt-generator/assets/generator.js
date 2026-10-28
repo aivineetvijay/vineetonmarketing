@@ -10,6 +10,16 @@
 	if ( ! C || ! root ) { return; }
 
 	var KEY = 'vv-llms-' + C.slug + '-v3';
+
+	/* Screen-reader announcements: one live region outside the app (the app re-renders), short messages, once each. */
+	var live = document.createElement( 'div' );
+	live.setAttribute( 'aria-live', 'polite' );
+	live.style.cssText = 'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';
+	root.parentNode.insertBefore( live, root.nextSibling );
+	var announce = function ( t ) { live.textContent = ''; setTimeout( function () { live.textContent = t; }, 30 ); };
+	var warnTimer = null, lastWarn = '';
+	var sr = function ( t ) { return '<span class="screen-reader-text">' + t + '</span>'; };
+	var arrow = function ( a ) { return '<span aria-hidden="true">' + a + '</span>'; };
 	var esc = function ( s ) { return String( s == null ? '' : s ).replace( /[&<>"']/g, function ( c ) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ c ]; } ); };
 	var clone = function ( o ) { return JSON.parse( JSON.stringify( o ) ); };
 	var H = {
@@ -105,7 +115,7 @@
 			'<input type="url" data-k="u" aria-label="URL" placeholder="' + esc( ph[ 1 ] ) + '" value="' + esc( r.u ) + '">' +
 			'<button type="button" class="vvg-x" data-act="remove" aria-label="Remove page">×</button></div>' +
 			'<input type="text" data-k="n" aria-label="Short description" placeholder="' + esc( ph[ 2 ] ) + '" value="' + esc( r.n ) + '">' +
-			'<p class="vvg-warn" aria-live="polite"></p></div>';
+			'<p class="vvg-warn"></p></div>';
 	}
 	function panelHtml() {
 		var s = steps()[ step ];
@@ -127,7 +137,7 @@
 			'<div class="vvg-grid">' +
 				'<div class="vvg-form">' +
 					'<div class="vvg-progress"><div class="vvg-progress-row"><span class="vvg-progress-label"></span><span>Step ' + ( step + 1 ) + ' of ' + n + '</span></div>' +
-					'<div class="vvg-bar"><div class="vvg-bar-fill"></div></div><div class="vvg-tabs" role="tablist"></div></div>' +
+					'<div class="vvg-bar"><div class="vvg-bar-fill"></div></div><div class="vvg-tabs" role="group" aria-label="Steps"></div></div>' +
 					panelHtml() +
 					'<div class="vvg-nav"><button type="button" class="vvg-back" data-act="prev"' + ( 0 === step ? ' disabled' : '' ) + '>Back</button>' +
 					'<button type="button" class="vvg-next" data-act="next">' + ( step === n - 1 ? 'Download llms.txt' : 'Next' ) + '</button></div>' +
@@ -144,9 +154,9 @@
 	function doneHtml() {
 		var url = esc( location.origin + location.pathname ), enc = encodeURIComponent( location.origin + location.pathname );
 		return '<div class="vvg-done-share"><strong>File ready. Three steps left.</strong><span>Then share the tool with ' + esc( C.shareWith ) + '.</span>' +
-			'<div class="vvg-done-links"><a href="https://www.linkedin.com/sharing/share-offsite/?url=' + enc + '" target="_blank" rel="noopener">LinkedIn ↗</a>' +
-			'<a href="https://wa.me/?text=' + encodeURIComponent( 'A free llms.txt generator for ' + C.label + ' websites: ' ) + enc + '" target="_blank" rel="noopener">WhatsApp ↗</a>' +
-			'<a href="mailto:?subject=' + encodeURIComponent( 'A free llms.txt generator for ' + C.label ) + '&amp;body=' + encodeURIComponent( 'Thought this might help: ' ) + enc + '">Email ↗</a></div></div>' +
+			'<div class="vvg-done-links"><a href="https://www.linkedin.com/sharing/share-offsite/?url=' + enc + '" target="_blank" rel="noopener">' + sr( 'Share on ' ) + 'LinkedIn' + arrow( ' ↗' ) + sr( ' (opens in a new tab)' ) + '</a>' +
+			'<a href="https://wa.me/?text=' + encodeURIComponent( 'A free llms.txt generator for ' + C.label + ' websites: ' ) + enc + '" target="_blank" rel="noopener">' + sr( 'Share on ' ) + 'WhatsApp' + arrow( ' ↗' ) + sr( ' (opens in a new tab)' ) + '</a>' +
+			'<a href="mailto:?subject=' + encodeURIComponent( 'A free llms.txt generator for ' + C.label ) + '&amp;body=' + encodeURIComponent( 'Thought this might help: ' ) + enc + '">' + sr( 'Share by ' ) + 'Email' + arrow( ' ↗' ) + '</a></div></div>' +
 			'<ol class="vvg-done-steps"><li><strong>Upload</strong> to the root folder. WordPress: via the host’s file manager or an SEO plugin that supports llms.txt.</li>' +
 			'<li><strong>Open</strong> <span class="vvg-file"></span> and confirm it loads as plain text.</li>' +
 			'<li><strong>Review quarterly</strong>, ' + esc( C.reviewWhen ) + '.</li></ol>' + ( url ? '' : '' );
@@ -157,6 +167,12 @@
 		var w = el.querySelector( '.vvg-warn' );
 		w.innerHTML = msgs.length ? '<span class="vvg-check">' + ( c.hard.length ? 'Left out' : 'Check' ) + '</span>' + esc( msgs.join( ' ' ) ) : '';
 		w.hidden = ! msgs.length;
+		/* Announce a row's warning once, after typing pauses, and only for the row being edited. */
+		if ( el.contains( document.activeElement ) ) {
+			var text = msgs.length ? ( c.hard.length ? 'Left out: ' : 'Check: ' ) + msgs.join( ' ' ) : '';
+			clearTimeout( warnTimer );
+			warnTimer = setTimeout( function () { if ( text && text !== lastWarn ) { announce( text ); } lastWarn = text; }, 1500 );
+		}
 		el.classList.toggle( 'vvg-row-out', ! c.empty && c.hard.length > 0 );
 	}
 	function update() {
@@ -170,14 +186,18 @@
 		root.querySelector( '.vvg-bar-fill' ).style.width = ( doneCount / n * 100 ) + '%';
 		root.querySelector( '.vvg-tabs' ).innerHTML = list.map( function ( s, i ) {
 			var c = 'business' === s.key ? '' : ( b.links ? ' · ' + b.links : '' );
-			return '<button type="button" role="tab" class="vvg-tab" data-step="' + i + '" aria-selected="' + ( i === step ) + '">' + ( i + 1 ) + ' ' + esc( s.label ) + c + '</button>';
+			return '<button type="button" class="vvg-tab" data-step="' + i + '"' + ( i === step ? ' aria-current="step"' : '' ) + '>' + ( i + 1 ) + ' ' + esc( s.label ) + c + '</button>';
 		} ).join( '' );
 		var hint = root.querySelector( '[data-hint="summary"]' );
 		if ( hint ) { var len = st.f.summary.trim().length; hint.textContent = len ? len + ' characters · aim for 120–200' : 'Aim for one sentence, 120–200 characters. Leave blank to write it from the fields above.'; }
 		return b;
 	}
-	function go( i ) {
-		step = Math.max( 0, Math.min( steps().length - 1, i ) ); render();
+	function go( i, refocus ) {
+		var list = steps();
+		step = Math.max( 0, Math.min( list.length - 1, i ) ); render();
+		/* The app re-renders, so keep keyboard focus on the current step button and say where the user is. */
+		if ( refocus ) { var cur = root.querySelector( '.vvg-tab[aria-current="step"]' ); if ( cur ) { cur.focus( { preventScroll: true } ); } }
+		announce( 'Step ' + ( step + 1 ) + ' of ' + list.length + ': ' + list[ step ].label );
 		var g = document.getElementById( 'generator' );
 		if ( g && g.getBoundingClientRect().top < 0 ) { g.scrollIntoView( { behavior: 'smooth', block: 'start' } ); }
 	}
@@ -187,6 +207,7 @@
 		a.download = 'llms.txt'; document.body.appendChild( a ); a.click(); a.remove();
 		setTimeout( function () { URL.revokeObjectURL( a.href ); }, 1000 );
 		finish();
+		announce( 'llms.txt downloaded. Next: upload it to your site root.' );
 	}
 	function finish() { done = true; var d = root.querySelector( '.vvg-done' ); if ( d ) { d.hidden = false; update(); } }
 
@@ -204,14 +225,14 @@
 	root.addEventListener( 'input', onInput );
 	root.addEventListener( 'click', function ( e ) {
 		var tab = e.target.closest( '[data-step]' );
-		if ( tab ) { go( +tab.getAttribute( 'data-step' ) ); return; }
+		if ( tab ) { go( +tab.getAttribute( 'data-step' ), true ); return; }
 		var ty = e.target.closest( '[data-type]' );
 		if ( ty ) { st.f.type = ty.getAttribute( 'data-type' ); save(); render(); return; }
 		var b = e.target.closest( '[data-act]' );
 		if ( ! b ) { return; }
 		var act = b.getAttribute( 'data-act' );
-		if ( 'prev' === act ) { go( step - 1 ); }
-		else if ( 'next' === act ) { if ( step === steps().length - 1 ) { download(); } else { go( step + 1 ); } }
+		if ( 'prev' === act ) { go( step - 1, true ); }
+		else if ( 'next' === act ) { if ( step === steps().length - 1 ) { download(); } else { go( step + 1, true ); } }
 		else if ( 'add' === act ) {
 			var gk = b.getAttribute( 'data-g' );
 			st.rows[ gk ].push( { t: '', u: '', n: '' } ); save(); render();
@@ -222,8 +243,8 @@
 			if ( ! st.rows[ key ].length ) { st.rows[ key ].push( { t: '', u: '', n: '' } ); }
 			save(); render();
 		} else if ( 'copy' === act ) {
-			var text = build().text, ok = function () { b.textContent = 'Copied'; setTimeout( function () { b.textContent = 'Copy'; }, 1600 ); finish(); };
-			if ( navigator.clipboard && navigator.clipboard.writeText ) { navigator.clipboard.writeText( text ).then( ok, function () {} ); }
+			var text = build().text, ok = function () { b.textContent = 'Copied'; setTimeout( function () { b.textContent = 'Copy'; }, 1600 ); finish(); announce( 'llms.txt copied to clipboard' ); };
+			if ( navigator.clipboard && navigator.clipboard.writeText ) { navigator.clipboard.writeText( text ).then( ok, function () { announce( 'Copy failed. Select the preview and copy it manually.' ); } ); }
 			else { var ta = document.createElement( 'textarea' ); ta.value = text; document.body.appendChild( ta ); ta.select(); try { document.execCommand( 'copy' ); ok(); } catch ( x ) {} ta.remove(); }
 		} else if ( 'download' === act ) { download(); }
 	} );
@@ -234,6 +255,7 @@
 			if ( 'download' === a ) { e.preventDefault(); download(); return; }
 			if ( 'example' === a ) { st = exampleState(); } else { st = { f: emptyF( st.f.type ), rows: emptyRows() }; }
 			step = 0; done = false; save(); render();
+			announce( 'example' === a ? 'Example loaded into the form' : 'Form cleared' );
 		} );
 	} );
 	render();

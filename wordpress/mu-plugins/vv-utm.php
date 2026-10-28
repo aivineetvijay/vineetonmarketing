@@ -9,7 +9,7 @@
  *              page.js and engine.js, all in wp-content/uploads/vv-tools/utm-builder/. utm.css is printed inline in
  *              the head; the scripts load deferred. SEO meta is Rank Math's, set per page; FAQPage schema comes from
  *              vv_faq (vv-schema.php); this plugin adds the WebApplication schema.
- * Version:     1.2.0
+ * Version:     1.3.0
  *
  * Install: see wordpress/tools/utm-builder/install.php.
  */
@@ -112,8 +112,8 @@ function vv_utm_render( $id, $p ) {
 			<div class="vvu-foot">
 				<p class="vvu-lead"><?php $e( $p['intro'] ); ?></p>
 				<div class="vvu-btns">
-					<a class="vvu-btn vvu-btn-filled" href="#builder">Build your link ↗</a>
-					<a class="vvu-btn" href="#how">How it works ↗</a>
+					<a class="vvu-btn vvu-btn-filled" href="#builder">Build your link<span aria-hidden="true"> ↗</span></a>
+					<a class="vvu-btn" href="#how">How it works<span aria-hidden="true"> ↗</span></a>
 				</div>
 			</div>
 		</div>
