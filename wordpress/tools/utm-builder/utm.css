@@ -32,7 +32,7 @@ display:block;font-family:var(--font-text);font-size:17px;line-height:1.47;lette
 .vvu .vvu-mono{font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:var(--color-ink-muted-48)}
 .vvu .vvu-meta-v{font-size:15px;line-height:1.4;letter-spacing:-.01em;color:var(--color-ink)}
 .vvu .vvu-huge{font-family:var(--font-display);font-weight:600;font-size:clamp(64px,13vw,220px);line-height:.92;letter-spacing:-.045em;color:var(--color-ink);margin:0}
-.vvu .vvu-aside{font-weight:300;font-style:italic;color:var(--color-ink-muted-48)}
+.vvu .vvu-aside{display:block;font-weight:300;font-style:italic;color:var(--color-ink-muted-48)}
 .vvu .vvu-foot{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end;margin-top:48px}
 .vvu .vvu-lead{max-width:620px;margin:0;font-family:var(--font-display);font-weight:300;font-size:clamp(20px,1.6vw,28px);line-height:1.35;letter-spacing:-.01em;color:var(--color-ink)}
 .vvu .vvu-btns{display:flex;flex-wrap:wrap;gap:12px}
