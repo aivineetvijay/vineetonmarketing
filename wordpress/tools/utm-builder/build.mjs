@@ -28,6 +28,16 @@ const BLURBS = {
   b2b: 'Product, campaign type and funnel stage for B2B and SaaS.',
 };
 
+// Hero meta strip: who each builder is for.
+const AUDIENCE = {
+  basic: 'Marketers and agencies',
+  healthcare: 'Hospitals and clinics',
+  ecommerce: 'Online stores and D2C brands',
+  'real-estate': 'Developers and brokers',
+  'travel-tourism': 'Hotels and tour operators',
+  b2b: 'B2B and SaaS teams',
+};
+
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const href = (b) => BASE + (b.slug ? b.slug + '/' : '');
 
@@ -107,7 +117,7 @@ function content(b) {
     : '<div class="conv-block"><p>Pattern: <code>{offer-or-theme}_{product-or-audience}_{market}_{yyyymm}</code></p><p>Example: <code>spring-sale_running-shoes_uae_' + YM + '</code></p></div><p>Pick the parts your reports need, keep them in the same order every time, and write them down where the whole team can see them. Need a ready-made convention? The industry builders below each come with one.</p>';
   const others = builders.filter((x) => x.id !== b.id).map((x) => '<a href="' + href(x) + '"><strong>' + esc(x.name) + '</strong><span>' + esc(BLURBS[x.id]) + '</span><em>Open builder ›</em></a>').join('');
   return LEARN +
-    '<h2>How to use this builder</h2><ol>' + b.steps.map((s) => '<li>' + esc(s) + '</li>').join('') + '</ol>' +
+    '<h2 id="how">How to use this builder</h2><ol>' + b.steps.map((s) => '<li>' + esc(s) + '</li>').join('') + '</ol>' +
     '<h2>The naming convention</h2>' + conv +
     '<h2>Channel cheat sheet</h2><p>The source and medium each preset uses, and the GA4 default channel it reports under.</p><div class="table-wrap"><table><thead><tr><th scope="col">Channel</th><th scope="col">utm_source</th><th scope="col">utm_medium</th><th scope="col">GA4 channel</th></tr></thead><tbody>' + rows(b) + '</tbody></table></div>' +
     '<h2>Tips' + (b.kind === 'industry' ? ' for ' + esc(b.nav.toLowerCase()) + ' marketers' : '') + '</h2><ul>' + b.tips.map((t) => '<li>' + esc(t) + '</li>').join('') + '</ul>' +
@@ -123,6 +133,8 @@ const pages = builders.map((raw) => {
     title: b.title.replace(/\s*\|\s*Vineet on Marketing$/, ''),
     description: b.description,
     h1: b.h1.charAt(0).toUpperCase() + b.h1.slice(1) + '.',
+    // Site hero headline: "UTM Builder" plus a light italic tail on the industry pages.
+    hero: { main: 'UTM Builder', aside: b.kind === 'industry' ? 'for ' + (/^[A-Z0-9]+$/.test(b.nav) ? b.nav : b.nav.toLowerCase()) + '.' : '', audience: AUDIENCE[b.id] },
     intro: b.intro,
     faqs: b.faqs,
     content: content(b),
