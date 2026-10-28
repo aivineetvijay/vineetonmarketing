@@ -1,6 +1,6 @@
 /*
  * UTM builder styles for vineetonmarketing.com, ported from the design's apple.css. Every rule is scoped to
- * .vvu (the tool's <main>) or #utm-app, so nothing leaks into the theme. Tokens follow the site palette.
+ * .vvu (the tool's main element) or #utm-app, so nothing leaks into the theme. Tokens follow the site palette.
  */
 .vvu{--color-primary:#0066cc;--color-primary-focus:#0071e3;--color-on-primary:#fff;--color-canvas:#fff;--color-canvas-parchment:#f5f5f7;
 --color-ink:#1d1d1f;--color-ink-muted-80:#333;--color-ink-muted-48:#6e6e73;--color-hairline:#e0e0e0;
@@ -12,9 +12,11 @@
 --good:#1d7449;--warn:#875800;--bad:#c4281c;
 display:block;font-family:var(--font-text);font-size:17px;line-height:1.47;letter-spacing:-0.374px;color:var(--color-ink);background:var(--color-canvas)}
 .vvu h1,.vvu h2,.vvu h3,.vvu strong{color:var(--color-ink)}
+.vvu-page #content > .ast-container{max-width:none;padding:0;display:block}
+.vvu .content table{border:0;margin:0}.vvu .content th,.vvu .content td{border-width:0 0 1px;border-style:solid;border-color:var(--color-hairline)}
 .vvu *,.vvu *::before,.vvu *::after{box-sizing:border-box}
-.vvu .hero .byline{font-size:14px;letter-spacing:-0.224px;color:var(--color-ink-muted-48);margin:16px auto 0}
-.vvu .hero .byline a{color:var(--color-ink-muted-80);text-decoration:underline}
+.vvu .hero .vvu-byline{font-size:14px;letter-spacing:-0.224px;color:var(--color-ink-muted-48);margin:16px auto 0}
+.vvu .hero .vvu-byline a{color:var(--color-ink-muted-80);text-decoration:underline}
 
 .vvu [hidden]{display:none !important}
 .vvu{font-family:var(--font-text);font-size:17px;line-height:1.47;letter-spacing:-0.374px;color:var(--color-ink)}

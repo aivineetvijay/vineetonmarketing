@@ -104,7 +104,7 @@ function vv_utm_render( $id, $p ) {
 		<div class="hero">
 			<h1><?php $e( $p['h1'] ); ?></h1>
 			<p><?php $e( $p['intro'] ); ?></p>
-			<p class="byline">By <a href="<?php echo esc_url( home_url( '/experience/' ) ); ?>">Vineet Vijay</a> · Updated <?php $e( get_the_modified_date( 'j F Y', $id ) ); ?> · Runs in your browser. Nothing is uploaded.</p>
+			<p class="vvu-byline">By <a href="<?php echo esc_url( home_url( '/experience/' ) ); ?>">Vineet Vijay</a> · Updated <?php $e( get_the_modified_date( 'j F Y', $id ) ); ?> · Runs in your browser. Nothing is uploaded.</p>
 		</div>
 		<nav class="tabs" aria-label="UTM builders">
 			<div class="tabs__links">
