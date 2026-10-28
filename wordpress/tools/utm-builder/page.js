@@ -42,6 +42,8 @@
     var src = document.getElementById('utm-brief');
     if (!cb || !src) return;
     copy(src.textContent, function () {
+      var live = document.getElementById('live'); // the engine's screen-reader live region
+      if (live) { live.textContent = ''; setTimeout(function () { live.textContent = 'Developer brief copied to clipboard'; }, 30); }
       cb.textContent = 'Copied';
       setTimeout(function () { cb.textContent = 'Copy brief for your developer'; }, 1600);
     });

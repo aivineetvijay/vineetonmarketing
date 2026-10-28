@@ -177,12 +177,12 @@
     // Output panel
     h += '<aside class="out" aria-label="Your UTM link"><div class="out-inner">' +
       '<h2 class="out-title">Your link</h2>' +
-      '<div class="url" id="o-url" aria-live="polite"><span class="ph">Your link appears here as you type.</span></div>' +
+      '<div class="url" id="o-url"><span class="ph">Your link appears here as you type.</span></div>' +
       '<div class="actions">' +
       '<button type="button" class="btn primary" id="a-copy" disabled>Copy link</button>' +
       '<button type="button" class="btn" id="a-tags" disabled title="For Google Ads final URL suffix or Meta URL parameters">Copy tags only</button>' +
       '<button type="button" class="btn" id="a-open" disabled>Test link</button>' +
-      '<button type="button" class="btn" id="a-qr" disabled aria-expanded="false">QR code</button>' +
+      '<button type="button" class="btn" id="a-qr" disabled aria-expanded="false" aria-controls="o-qr">QR code</button>' +
       '<button type="button" class="btn" id="a-row" disabled title="Tab-separated, ready to paste into Sheets or Excel">Copy as sheet row</button>' +
       '</div>' +
       '<div class="qr" id="o-qr" hidden><canvas id="qr-canvas" width="240" height="240" aria-label="QR code for your link"></canvas>' +
@@ -333,6 +333,20 @@
     document.body.classList.toggle('has-dock', !!built);
     if (built) $('#dock-url').textContent = built.url;
     if (!$('#o-qr').hidden) drawQR();
+
+    // Screen readers: one short summary once typing pauses, not the whole URL on every keystroke.
+    var issues = list.filter(function (c) { return c.level !== 'ok'; }).length;
+    queueSummary(built ? 'Link updated. GA4 channel: ' + (ga ? ga.channel : 'not set') + '. ' +
+      (issues ? issues + (issues === 1 ? ' check needs' : ' checks need') + ' attention.' : 'No issues found.') : '');
+  }
+
+  var summaryTimer = null, lastSummary = '';
+  function queueSummary(text) {
+    clearTimeout(summaryTimer);
+    summaryTimer = setTimeout(function () {
+      if (text && text !== lastSummary) { lastSummary = text; announce(text); }
+      if (!text) lastSummary = '';
+    }, 1500);
   }
 
   /* ---------- actions ---------- */

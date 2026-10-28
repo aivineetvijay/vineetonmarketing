@@ -161,7 +161,7 @@ function content(b) {
 
     '<section class="vvu-sec vvu-ink vvu-cta"><div class="vvu-wrap">' +
       '<h2 class="vvu-huge">More UTM <span class="vvu-aside">builders.</span></h2>' +
-      '<div class="vvu-btns vvu-mt">' + others.map((x, i) => '<a class="vvu-btn vvu-btn-dark' + (i === 0 ? ' vvu-btn-dark-filled' : '') + '" href="' + href(x) + '">' + esc(x.name) + ' ↗</a>').join('') + '</div>' +
+      '<div class="vvu-btns vvu-mt">' + others.map((x, i) => '<a class="vvu-btn vvu-btn-dark' + (i === 0 ? ' vvu-btn-dark-filled' : '') + '" href="' + href(x) + '">' + esc(x.name) + '<span aria-hidden="true"> ↗</span></a>').join('') + '</div>' +
       '<p class="vvu-note vvu-byline">By <a href="/experience/">Vineet Vijay</a> · Updated {{UPDATED}} · Runs in your browser. Nothing is uploaded.</p>' +
     '</div></section>',
   ].join('');

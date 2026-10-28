@@ -49,6 +49,12 @@ To add a builder, copy one of the industry objects in `src/configs.js`, change `
 
 Ported from the Apple design system mock-up (`UTM Builder.html`): parchment hero with the builder tabs, a two-column builder with a sticky "Your link" panel, and the guide on white below. Industry builders show only the required campaign parts and the formatting rules; the basic builder also shows the extra GA4 fields.
 
+## Accessibility
+
+- One screen-reader live region (`#live`). The link preview is not a live region: after typing pauses (1.5 s) the engine announces one short summary ("Link updated. GA4 channel: Paid Search. No issues found."), and only when it changed. Copy, import, macros and clearing announce their result once.
+- Builder tabs are links with `aria-current="page"`; channel chips use `aria-pressed`; the QR button uses `aria-expanded` and `aria-controls`.
+- Decorative arrows in buttons are `aria-hidden`.
+
 ## Notes
 
 - The GA4 prediction uses Google's rule order and a practical subset of its source lists, so treat it as a close prediction rather than a guarantee.
