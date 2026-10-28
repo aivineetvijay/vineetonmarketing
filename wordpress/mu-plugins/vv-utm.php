@@ -3,12 +3,12 @@
  * Plugin Name: VV UTM Builder
  * Description: Renders the UTM builder pages as part of the site. The hub (/ai-tools/utm-builder/) and one page per
  *              industry (/ai-tools/utm-builder/<slug>/) are WordPress pages with post meta vv_utm = <builder id>; this
- *              plugin draws them inside the theme (Astra header, footer): hero, builder tabs, the builder itself and
- *              the guide below it. Page copy comes from pages.json; the builder from configs.js, ga4.js, qrcode.js,
+ *              plugin draws them inside the theme (Astra header, footer): the site's standard hero (meta strip, large
+ *              headline, lead and buttons), the builder tabs, the builder itself and the guide below it. Page copy comes from pages.json; the builder from configs.js, ga4.js, qrcode.js,
  *              page.js and engine.js, all in wp-content/uploads/vv-tools/utm-builder/. utm.css is printed inline in
  *              the head; the scripts load deferred. SEO meta is Rank Math's, set per page; FAQPage schema comes from
  *              vv_faq (vv-schema.php); this plugin adds the WebApplication schema.
- * Version:     1.0.0
+ * Version:     1.1.0
  *
  * Install: see wordpress/tools/utm-builder/install.php.
  */
@@ -100,12 +100,24 @@ function vv_utm_render( $id, $p ) {
 	$e = function ( $s ) { echo esc_html( $s ); };
 	?>
 <main id="main-content" class="vvu">
-	<section class="tile-top">
-		<div class="hero">
-			<h1><?php $e( $p['h1'] ); ?></h1>
-			<p><?php $e( $p['intro'] ); ?></p>
-			<p class="vvu-byline">By <a href="<?php echo esc_url( home_url( '/experience/' ) ); ?>">Vineet Vijay</a> · Updated <?php $e( get_the_modified_date( 'j F Y', $id ) ); ?> · Runs in your browser. Nothing is uploaded.</p>
+	<section class="vvu-hero">
+		<div class="vvu-wrap">
+			<div class="vvu-meta">
+				<div><p class="vvu-mono">Built for</p><p class="vvu-meta-v"><?php $e( $p['hero']['audience'] ); ?></p></div>
+				<div><p class="vvu-mono">Includes</p><p class="vvu-meta-v">GA4 channel check · QR code</p></div>
+				<div class="vvu-hide-m"><p class="vvu-mono">Price</p><p class="vvu-meta-v">Free to use</p></div>
+			</div>
+			<h1 class="vvu-huge"><?php $e( $p['hero']['main'] ); ?><?php if ( $p['hero']['aside'] ) : ?> <span class="vvu-aside"><?php $e( $p['hero']['aside'] ); ?></span><?php endif; ?></h1>
+			<div class="vvu-foot">
+				<p class="vvu-lead"><?php $e( $p['intro'] ); ?></p>
+				<div class="vvu-btns">
+					<a class="vvu-btn vvu-btn-filled" href="#builder">Build your link ↗</a>
+					<a class="vvu-btn" href="#how">How it works ↗</a>
+				</div>
+			</div>
 		</div>
+	</section>
+	<section class="tile-top" id="builder">
 		<nav class="tabs" aria-label="UTM builders">
 			<div class="tabs__links">
 				<?php foreach ( $p['all'] as $o ) : ?>
@@ -117,6 +129,7 @@ function vv_utm_render( $id, $p ) {
 	</section>
 	<section class="tile-content">
 		<article class="content">
+			<p class="vvu-byline">By <a href="<?php echo esc_url( home_url( '/experience/' ) ); ?>">Vineet Vijay</a> · Updated <?php $e( get_the_modified_date( 'j F Y', $id ) ); ?> · Runs in your browser. Nothing is uploaded.</p>
 			<?php echo str_replace( '{{YYYYMM}}', esc_html( wp_date( 'Ym' ) ), $p['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput -- built from the repo's pages.json ?>
 		</article>
 	</section>
