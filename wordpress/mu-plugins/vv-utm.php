@@ -4,11 +4,12 @@
  * Description: Renders the UTM builder pages as part of the site. The hub (/ai-tools/utm-builder/) and one page per
  *              industry (/ai-tools/utm-builder/<slug>/) are WordPress pages with post meta vv_utm = <builder id>; this
  *              plugin draws them inside the theme (Astra header, footer): the site's standard hero (meta strip, large
- *              headline, lead and buttons), the builder tabs, the builder itself and the guide below it. Page copy comes from pages.json; the builder from configs.js, ga4.js, qrcode.js,
+ *              headline, lead and buttons), the builder section (tabs and the builder itself), then the guide in the
+ *              site's numbered-section pattern. Page copy comes from pages.json; the builder from configs.js, ga4.js, qrcode.js,
  *              page.js and engine.js, all in wp-content/uploads/vv-tools/utm-builder/. utm.css is printed inline in
  *              the head; the scripts load deferred. SEO meta is Rank Math's, set per page; FAQPage schema comes from
  *              vv_faq (vv-schema.php); this plugin adds the WebApplication schema.
- * Version:     1.1.0
+ * Version:     1.2.0
  *
  * Install: see wordpress/tools/utm-builder/install.php.
  */
@@ -117,22 +118,26 @@ function vv_utm_render( $id, $p ) {
 			</div>
 		</div>
 	</section>
-	<section class="tile-top" id="builder">
-		<nav class="tabs" aria-label="UTM builders">
-			<div class="tabs__links">
-				<?php foreach ( $p['all'] as $o ) : ?>
-				<a href="<?php echo esc_url( home_url( $p['base'] . ( $o['slug'] ? $o['slug'] . '/' : '' ) ) ); ?>"<?php echo $o['id'] === $p['id'] ? ' aria-current="page"' : ''; ?>><?php $e( $o['nav'] ); ?></a>
-				<?php endforeach; ?>
-			</div>
-		</nav>
-		<div id="utm-app"><noscript><p>This builder needs JavaScript. Turn it on to build your links.</p></noscript></div>
+	<section class="vvu-sec vvu-parch vvu-tool" id="builder">
+		<div class="vvu-wrap">
+			<div class="vvu-sec-head"><div class="vvu-sec-l"><span class="vvu-idx">01</span><span class="vvu-label">The builder</span></div><p class="vvu-note">Free · runs in your browser · nothing uploaded</p></div>
+			<nav class="tabs" aria-label="UTM builders">
+				<div class="tabs__links">
+					<?php foreach ( $p['all'] as $o ) : ?>
+					<a href="<?php echo esc_url( home_url( $p['base'] . ( $o['slug'] ? $o['slug'] . '/' : '' ) ) ); ?>"<?php echo $o['id'] === $p['id'] ? ' aria-current="page"' : ''; ?>><?php $e( $o['nav'] ); ?></a>
+					<?php endforeach; ?>
+				</div>
+			</nav>
+			<div id="utm-app"><noscript><p>This builder needs JavaScript. Turn it on to build your links.</p></noscript></div>
+		</div>
 	</section>
-	<section class="tile-content">
-		<article class="content">
-			<p class="vvu-byline">By <a href="<?php echo esc_url( home_url( '/experience/' ) ); ?>">Vineet Vijay</a> · Updated <?php $e( get_the_modified_date( 'j F Y', $id ) ); ?> · Runs in your browser. Nothing is uploaded.</p>
-			<?php echo str_replace( '{{YYYYMM}}', esc_html( wp_date( 'Ym' ) ), $p['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput -- built from the repo's pages.json ?>
-		</article>
-	</section>
+	<?php
+	echo strtr( $p['content'], array( // phpcs:ignore WordPress.Security.EscapeOutput -- built from the repo's pages.json
+		'{{YYYYMM}}'  => esc_html( wp_date( 'Ym' ) ),
+		'{{UPDATED}}' => esc_html( get_the_modified_date( 'j F Y', $id ) ),
+		'href="/'     => 'href="' . esc_url( home_url( '/' ) ),
+	) );
+	?>
 </main>
 	<?php
 }
