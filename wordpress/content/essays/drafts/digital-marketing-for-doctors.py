@@ -10,9 +10,9 @@ b.append(['box','Key takeaways','ul',[
  "The landing page has to answer a worried patient's questions about the doctor, the procedure, the process and the next step, in that order.",
  "Track consultations, not clicks. Feeding booked appointments back into Google Ads lets the platform optimise for patients instead of browsers.",
  "In the UAE, healthcare advertising has its own rules. Check the regulator's guidance before you write ad copy or post results."]])
-toc=[["What is a digital marketing strategy for doctors actually for?","what-its-for"],["Start at the booking, not the ad","start-at-booking"],["Fix the page patients land on","landing-page"],["Track consultations, not clicks","track-consultations"],["Be findable and trusted, including in AI answers","findable-trusted"],["Paid media that books appointments","paid-media"],["Where this plan breaks","limits"],["Frequently asked questions","faq"]]
+toc=[["What is digital marketing for doctors actually for?","what-its-for"],["Start at the booking, not the ad","start-at-booking"],["Fix the page patients land on","landing-page"],["Track consultations, not clicks","track-consultations"],["Be findable and trusted, including in AI answers","findable-trusted"],["Paid media that books appointments","paid-media"],["Where this plan breaks","limits"],["Frequently asked questions","faq"]]
 b.append(['toc','In this article',toc])
-b.append(['h2','What is a digital marketing strategy for doctors actually for?','what-its-for'])
+b.append(['h2','What is digital marketing for doctors actually for?','what-its-for'])
 b.append(['p',"A doctor's marketing plan has one job: to fill the appointment diary with the right patients. Everything else is a means to that end."])
 b.append(['p',"That sounds obvious. But look at most monthly reports for clinics and you'll see impressions, clicks, followers and \"leads\". You rarely see the one number the doctor cares about: how many consultations were booked, and how many of those people turned up."])
 b.append(['p',"Here's the thing. A patient doesn't go from an ad to a surgery. They take a path, and they can drop off at every step."])

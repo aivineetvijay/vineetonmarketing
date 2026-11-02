@@ -28,7 +28,7 @@ $posts = array(
 		'banner_alt' => 'Snapchat advertising in the UAE illustrated: a woman in Dubai using Snapchat on her phone beside a Snapchat Ads dashboard for awareness, consideration and conversions, with cards for UAE audience targeting, reach, website visits and bookings, and promoting services, events and offers' ),
 	array( 'slug' => 'digital-marketing-for-doctors', 'y' => 'Oct ’26', 'date' => 'October 13, 2026', 'iso' => '2026-10-13 07:00:00', 'cat' => 'Strategy',
 		'tags' => array( 'Strategy', 'Paid Media' ),
-		't' => 'How I’d build a doctor’s marketing plan from zero.',
+		't' => 'Digital marketing for doctors: how I built the plan from zero.',
 		'dek' => 'Digital marketing for surgeons and doctors should start at the booked appointment and work backwards. Here’s the five-step Appointment Path I’d use, and the plastic surgeon story behind it.',
 		'min' => 11, 'tone' => 'warm', 'fmt' => 'Playbook', 'body_src' => 'digital-marketing-for-doctors',
 		'banner' => array( 760, 761 ), 'thumb' => 761,
