@@ -3,7 +3,7 @@ U='https://vineetonmarketing.com'
 def a(t,h): return f'<a href="{h}">{t}</a>'
 b=[]
 b.append(['p','<strong>{{C1}}The department\'s ads were doing their job. People clicked, and some filled in the form. But the consultation diary barely moved. When I looked closely, the ads weren\'t the problem. The landing page and the tracking were. So here\'s the short answer: a doctor\'s marketing plan should start at the booked appointment and work backwards. Make booking easy, make the page answer a nervous patient\'s questions, track consultations instead of clicks, and only then spend more on being found.</strong>'])
-b.append(['p',"That's the short answer. Here's the story behind it, and the five-step plan I'd use if I were starting a doctor's marketing from scratch today. It works whether the doctor is a surgeon, a dentist or a GP, and you don't need a big budget to start."])
+b.append(['p',"That's the short answer. Here's how I built the plan from zero, step by step. The same five steps work for digital marketing for doctors of any kind, whether surgeons, dentists or GPs, and you don't need a big budget to start."])
 b.append(['box','Key takeaways','ul',[
  "A doctor's marketing plan exists to fill the appointment diary. Likes, clicks and form fills only matter if they turn into booked consultations.",
  "Start with the booking path: phone, WhatsApp, forms and how fast someone replies. Fixing this is usually cheaper than buying more traffic.",
@@ -24,9 +24,9 @@ b.append(['callout','Framework','The Appointment Path','ol',[
  "<strong>Kept.</strong> They turn up for the consultation, and the clinic knows which marketing brought them in."]])
 b.append(['p',"<strong>Most doctors spend their budget on step one and lose patients at steps three, four and five.</strong>"])
 b.append(['h2','Start at the booking, not the ad','start-at-booking'])
-b.append(['p',"When a doctor tells me they need more patients, I don't start with the ads. I start at the end of the path, with the booking."])
+b.append(['p',"When the department told me they needed more patients, I didn't start with the ads. I started at the end of the path, with the booking."])
 b.append(['p',"The reason is simple. If the booking step leaks, more traffic just means more people leaking out of it. You pay more and the diary stays the same."])
-b.append(['p',"So before touching a campaign, check how a patient actually books:"])
+b.append(['p',"So before touching a campaign, I checked how a patient actually booked. Here's the check I ran, and you can run it on your own clinic:"])
 b.append(['ol',[
  "<strong>Call the number on the website and the Google Business Profile.</strong> Does someone answer? Is it the right clinic?",
  "<strong>Send a WhatsApp message.</strong> In the UAE, many patients prefer it to a call. How long does the reply take?",
@@ -35,7 +35,7 @@ b.append(['ol',[
  "<strong>Ask the front desk what they do with an enquiry.</strong> Who follows up, how many times, and where is it recorded?"]])
 b.append(['p',"None of this needs a marketing budget. It needs an hour and a bit of honesty."])
 b.append(['h2','Fix the page patients land on','landing-page'])
-b.append(['p',"This is where the plastic surgeon's story starts."])
+b.append(['p',"This is where I found the biggest leak."])
 b.append(['p',"The ads were working in the way most reports measure. People clicked. Some filled in the form. But very few of those clicks turned into booked consultations."])
 b.append(['p',"So I looked at the landing page the way a patient would.{{C2}}"])
 b.append(['p',"Think about who is reading that page. Someone considering a cosmetic procedure is often nervous. They're comparing surgeons. They want to know who will operate, what the process looks like, and what happens if they have questions. A page that only says \"Book now\" asks for trust before it has earned any."])
@@ -55,7 +55,7 @@ b.append(['p',"{{C5}} Google was doing exactly what it was asked to do: find mor
 b.append(['p',"So the platform kept finding more browsers. Why wouldn't it?"])
 b.append(['quote',"If you can't see which ad booked a consultation, you're paying Google to find you more people who click.",""])
 b.append(['p',"The fix is to send the real outcome back to the ad platform. In Google Ads, you do this with offline conversion import, or its newer version, "+a('enhanced conversions for leads','https://support.google.com/google-ads/answer/11909980')+". It matches the leads in your records to the ad clicks that produced them, using hashed details such as an email address or phone number, so personal data isn't sent in plain text."])
-b.append(['p',"Here's how I'd set it up for a clinic:"])
+b.append(['p',"Here's how I set it up:"])
 b.append(['ol',[
  "<strong>Capture the click.</strong> Make sure every form and WhatsApp enquiry is recorded with the date, the source and the contact details the patient gave.",
  "<strong>Mark the outcome.</strong> The front desk updates each enquiry: booked, attended, or not interested. A shared sheet is enough to start.",
@@ -76,7 +76,7 @@ b.append(['p',"That last point is where consistency matters. If the doctor's nam
 b.append(['p',"If you want to be cited in AI answers, I've shared what worked for me in "+a('How to rank in AI Overviews',U+'/rank-in-ai-overviews/')+"."])
 b.append(['h2','Paid media that books appointments','paid-media'])
 b.append(['p',"Paid media is the fastest way to bring patients to a doctor. It's also the fastest way to waste money if the steps above aren't ready."])
-b.append(['p',"The principles I follow:"])
+b.append(['p',"The principles I followed:"])
 b.append(['ul',[
  "<strong>Start with search.</strong> Someone searching for a specific procedure and a location is closer to booking than someone scrolling a social feed. Social media works well for building trust over time, but search tends to bring intent.",
  "<strong>Separate procedures.</strong> Group campaigns or ad groups by procedure, so each ad points to a page that answers questions about that procedure.",
