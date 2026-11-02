@@ -4,6 +4,11 @@
  * $vv_base (e.g. https://raw.githubusercontent.com/<owner>/<repo>/<ref>/wordpress/), then:
  * creates/updates the essay-block global classes, rebuilds /writing/ and every essay, publishes
  * them, and keeps the other essays' "last modified" dates unchanged (their text did not change).
+ *
+ * Run it with eval() inside Novamira execute-php, not include: since Novamira 1.12, file_put_contents()
+ * returns null inside included files, so the temp files below would stay empty and nothing would build.
+ *   $src = wp_remote_retrieve_body( wp_remote_get( $vv_base . 'build/run-blog.php' ) );
+ *   return eval( preg_replace( '/^<\?php/', '', $src ) );
  */
 $get = function ( $path ) use ( $vv_base ) {
 	$r = wp_remote_get( $vv_base . $path, array( 'timeout' => 30 ) );
