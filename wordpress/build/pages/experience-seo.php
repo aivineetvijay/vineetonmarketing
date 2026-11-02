@@ -11,7 +11,8 @@
  *  - Education and Tools section labels become H2s.
  *  - New section before the closing band: "How I work with Dubai brands", four areas of work,
  *    and buttons to Contact and the doctors article.
- *  - New global class "heading-reset" (margin 0, normal weight) for headings that sit in small type.
+ *  - New global classes: "heading-reset" (margin 0, normal weight) for headings in small type, and
+ *    "tail-muted" / "tail-muted-on-dark" for the italic second line of a heading.
  *
  * A copy of the page data before this ran is in the option vv_backup_experience_20261102.
  */
@@ -25,6 +26,17 @@ if ( ! isset( $existing['heading-reset'] ) ) {
 	wp_get_ability( 'elementor/manage-classes' )->execute( array( 'operations' => array(
 		array( 'action' => 'create', 'label' => 'heading-reset', 'css' => 'margin: 0px; font-weight: 400;' ),
 	) ) );
+}
+/* Elementor strips class attributes from spans inside headings, so the italic second line of a split
+   heading is styled from the heading itself (CSS nesting). */
+foreach ( array( 'tail-muted' => 'color-ink-muted-48', 'tail-muted-on-dark' => 'color-body-muted' ) as $label => $color ) {
+	if ( isset( $existing[ $label ] ) ) { continue; }
+	wp_get_ability( 'elementor/manage-classes' )->execute( array( 'operations' => array(
+		array( 'action' => 'create', 'label' => $label, 'css' => '& span { font-style: italic; font-weight: 300; color: var(--' . $color . '); }' ),
+	) ) );
+	$refresh = true;
+}
+if ( ! empty( $refresh ) || ! isset( $existing['heading-reset'] ) ) {
 	foreach ( \Elementor\Modules\GlobalClasses\Global_Classes_Repository::make()->all()->get_items()->all() as $c ) { $existing[ $c['label'] ] = $c['id']; }
 }
 $cls = function ( ...$labels ) use ( $existing ) {
@@ -92,13 +104,14 @@ $must( $edit( $data, 'fc0972a', function ( &$e ) use ( $h ) {
 
 /* 2. Join split headings: the italic second half moves into the heading as a span. */
 foreach ( array(
-	array( '60760d57', '14705a0c', 'The', 'path here.', 't-italic muted' ),
-	array( '716d52e3', '3643687d', 'Four', 'principles.', 't-italic muted-on-dark' ),
-	array( '3bb3b673', '4154aa09', 'Read what', 'I am writing now.', 't-italic muted-on-dark' ),
+	array( '60760d57', '14705a0c', 'The', 'path here.', 'tail-muted' ),
+	array( '716d52e3', '3643687d', 'Four', 'principles.', 'tail-muted-on-dark' ),
+	array( '3bb3b673', '4154aa09', 'Read what', 'I am writing now.', 'tail-muted-on-dark' ),
 ) as $j ) {
 	list( $hid, $pid2, $a, $b, $span ) = $j;
-	$must( $edit( $data, $hid, function ( &$e ) use ( $h, $a, $b, $span ) {
-		$e['settings']['title'] = $h( $a . '<br><span class="' . $span . '">' . $b . '</span>' );
+	$must( $edit( $data, $hid, function ( &$e ) use ( $h, $a, $b, $span, $existing ) {
+		$e['settings']['title'] = $h( $a . '<br><span>' . $b . '</span>' );
+		$e['settings']['classes']['value'][] = $existing[ $span ];
 	} ), "join $a" );
 	$must( $remove( $data, $pid2 ), "remove $b" );
 }
@@ -139,7 +152,7 @@ $section = $box( 'e-flexbox', 'Work With Me', array( 'classes' => $cls( 'section
 			) ),
 			$para( 'Work With Me Note', 'Dubai and the UAE', $cls( 'sec-note' ) ),
 		) ),
-		$head( 'Work With Me Title', 'How I work with<br><span class="t-italic muted">Dubai brands.</span>', $cls( 't-display' ), 'h2' ),
+		$head( 'Work With Me Title', 'How I work with<br><span>Dubai brands.</span>', $cls( 't-display', 'tail-muted' ), 'h2' ),
 		$para( 'Work With Me Lead', 'As a digital marketing specialist in Dubai, I work on the parts of marketing that decide whether spend turns into revenue: being found, being trusted, and measuring what actually moved.', $cls( 't-lead', 'mt-32' ) ),
 		$box( 'e-grid', 'Work Areas', array( 'classes' => $cls( 'grid-2', 'mt-64' ) ), $cards ),
 		$box( 'e-flexbox', 'Work With Me Buttons', array( 'classes' => $cls( 'btn-row', 'mt-48' ) ), array(
