@@ -167,6 +167,17 @@ $text = function ( $html ) {
 };
 $column = function ( $inner ) { return '<!-- wp:group {"layout":{"type":"default"}} --><div class="wp-block-group">' . $inner . '</div><!-- /wp:group -->'; };
 
+/* Footer social icons: LinkedIn and Instagram. Outline icons (24px grid), each link named for screen readers. */
+$vv_social_icon = function ( $href, $name, $svg ) {
+	return '<a href="' . esc_url( $href ) . '" target="_blank" rel="me noopener" aria-label="Vineet Vijay on ' . $name . ' (opens in a new tab)" title="' . $name . '" '
+		. 'style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(255,255,255,0.25);border-radius:999px">'
+		. '<svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' . $svg . '</svg></a>';
+};
+$social = '<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} --><p style="margin-top:0;margin-bottom:0;display:flex;gap:12px">'
+	. $vv_social_icon( 'https://www.linkedin.com/in/vineetvijay', 'LinkedIn', '<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5v6M8 7.5v.01M12 16.5v-6M12 13a2.5 2.5 0 0 1 5 0v3.5"/>' )
+	. $vv_social_icon( 'https://www.instagram.com/vineet_vijay/', 'Instagram', '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5v.01"/>' )
+	. '</p><!-- /wp:paragraph -->';
+
 $mega = '<!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","letterSpacing":"0.12em","textTransform":"uppercase"},"color":{"text":"rgba(255,255,255,0.55)"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->'
 	. '<p class="has-text-color" style="color:rgba(255,255,255,0.55);margin-top:0;margin-bottom:0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase">Get in touch · Dubai, GST</p><!-- /wp:paragraph -->'
 	. '<!-- wp:heading {"style":{"typography":{"fontSize":"clamp(28px, 4.4vw, 72px)","fontStyle":"normal","fontWeight":"600","letterSpacing":"-0.03em","lineHeight":"1.05"},"spacing":{"margin":{"top":"24px","bottom":"0"}}}} -->'
@@ -175,9 +186,9 @@ $mega = '<!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","letterSpac
 $details = '<!-- wp:group {"style":{"spacing":{"blockGap":"32px"}},"layout":{"type":"grid","minimumColumnWidth":"14rem"}} --><div class="wp-block-group">'
 	. $column( $label( 'Based' ) . $text( 'Abu Dhabi · Dubai<br>United Arab Emirates' ) )
 	. $column( $label( 'Phone' ) . $text( '<a href="tel:+971586823646">+971 58 682 3646</a>' ) )
-	/* Line height 2 (26px lines) keeps the two stacked links at least 24px apart as touch targets. */
-	. $column( $label( 'Elsewhere' ) . '<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0","bottom":"0"}},"typography":{"lineHeight":"2"}}} --><p style="margin-top:0;margin-bottom:0;line-height:2">'
-		. '<a href="https://linkedin.com/in/vineetvijay" target="_blank" rel="noreferrer noopener">LinkedIn</a><br><a href="' . esc_url( home_url( '/writing/#subscribe' ) ) . '">Subscribe</a></p><!-- /wp:paragraph -->' )
+	/* Social icons (40px round touch targets, icon in currentColor so the footer link and hover colours apply), then Subscribe. */
+	. $column( $label( 'Elsewhere' ) . $social . '<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"12px","bottom":"0"}}}} --><p style="margin-top:12px;margin-bottom:0">'
+		. '<a href="' . esc_url( home_url( '/writing/#subscribe' ) ) . '">Subscribe</a></p><!-- /wp:paragraph -->' )
 	. $column( $label( 'Status' ) . $text( '<mark style="background-color:rgba(0,0,0,0);color:#1f8a5b" class="has-inline-color">●</mark> Open to new conversations' ) )
 	. '</div><!-- /wp:group -->';
 
