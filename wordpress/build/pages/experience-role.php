@@ -3,7 +3,7 @@
  * Experience page (ID 253): current role. 2 November 2026. Run via Novamira execute-php.
  *
  *  - New timeline row at the top: Senior Digital Marketing Manager, House of Comms · Dubai, 2026 — Now (no bullets yet).
- *  - Reem Hospital: 2024 — 2026, first bullet in the past tense.
+ *  - Reem Hospital: 2024 — 2026, first two bullets in the past tense.
  *  - Hero "Current" line: House of Comms · Dubai. Timeline note: Five roles, one practice.
  *  - Hero intro names the current role.
  */
@@ -40,6 +40,7 @@ $text( '451a689f', 'paragraph', 'Reem Hospital · Abu Dhabi', 'House of Comms ·
 $text( '7a3a10b4', 'paragraph', 'Four roles, one practice', 'Five roles, one practice' );
 $text( '1b8d15ae', 'paragraph', '2024 — Now', '2024 — 2026' );
 $text( '27068c75', 'paragraph', 'Leading end-to-end digital strategy for a UAE-based healthcare provider; a team of five across SEO, paid, content and analytics.', 'Led end-to-end digital strategy for a UAE-based healthcare provider; a team of five across SEO, paid, content and analytics.' );
+$edit( $data, '3efe480', function ( &$e ) { $e['settings']['paragraph']['value'] = str_replace( 'Built the growth framework that now delivers 35%', 'Built the growth framework that delivered 35%', $e['settings']['paragraph']['value'] ); } );
 $text( 'fc0972a', 'paragraph',
 	'I’m a digital marketing specialist in Dubai. Ten years split between three of the largest media networks in the region — Wavemaker (WPP), Interactive Avenues (IPG), GenY Medium — and an in-house healthcare lead role in the UAE.',
 	'I’m a digital marketing specialist in Dubai, now Senior Digital Marketing Manager at House of Comms. The ten years before took in three of the largest media networks in the region — Wavemaker (WPP), Interactive Avenues (IPG), GenY Medium — and an in-house healthcare lead role at Reem Hospital in Abu Dhabi.' );
