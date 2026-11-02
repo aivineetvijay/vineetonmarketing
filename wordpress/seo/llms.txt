@@ -5,21 +5,21 @@
 - Type: Personal website and publication
 - Based: Dubai, United Arab Emirates
 - Markets: UAE, Saudi Arabia, India and the wider GCC
-- Current role: Digital marketing at House of Comms
+- Current role: Senior Digital Marketing Manager at House of Comms, Dubai (since April 2026)
 - Previously: Reem Hospital, Wavemaker (WPP), Interactive Avenues (IPG)
 - Topics: AI search visibility (AEO and GEO), schema markup, SEO, paid media, measurement
 - Quoting: welcome with attribution and a link to the original essay
 
 ## About
 
-- [Experience](https://vineetonmarketing.com/experience/): Roles, results, education and skills from ten years in digital marketing across the UAE and India.
+- [Experience](https://vineetonmarketing.com/experience/): Vineet Vijay, digital marketing specialist in Dubai: roles, results, education, skills and the work he takes on, from ten years in digital marketing across the UAE and India.
 - [Contact](https://vineetonmarketing.com/contact/): Email, phone and a contact form for advisory, speaking and podcast enquiries.
 
 ## Essays
 
 - [What is an AI visibility score? And what's actually worth measuring](https://vineetonmarketing.com/ai-visibility-score/): What an AI visibility score measures, why three tools gave one hospital three different scores, why scores change from run to run, and the PACE check (Presence, Accuracy, Citations, Effect).
 - [Snapchat works for some UAE brands. Here's how to tell if it's yours](https://vineetonmarketing.com/snapchat-advertising-uae/): Snapchat advertising in the UAE: what the public evidence shows for Sponsored Snaps, takeovers, lead forms, automation and Lenses, how to read a platform case study, and a five-point fit test.
-- [How I'd build a doctor's marketing plan from zero](https://vineetonmarketing.com/digital-marketing-for-doctors/): A five-step plan for digital marketing for surgeons and doctors that starts at the booked appointment, with a plastic surgery department case from Reem Hospital.
+- [Digital marketing for doctors: how I built the plan from zero](https://vineetonmarketing.com/digital-marketing-for-doctors/): A five-step plan for digital marketing for surgeons and doctors that starts at the booked appointment, with a plastic surgery department case from Reem Hospital.
 - [What is sameAs schema? A plain-English guide for marketers](https://vineetonmarketing.com/sameas-schema/): What sameAs markup is, who needs it, when to use it and how to add it without writing code.
 - [How to rank in AI Overviews: what I learned getting cited](https://vineetonmarketing.com/rank-in-ai-overviews/): How a hospital website with a domain authority of 17 was cited in Google AI Overviews, and the LIFT test for writing passages AI answers can quote.
 - [Seven schemas every property site needs](https://vineetonmarketing.com/schema-markup-for-real-estate/): The seven Schema.org types a real estate developer website needs, villa category page schema, a worked example and a brief for the development team.
