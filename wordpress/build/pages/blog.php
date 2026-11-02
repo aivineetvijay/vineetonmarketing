@@ -6,6 +6,16 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'what-is-seo', 'y' => 'Nov ’26', 'date' => 'November 2, 2026', 'iso' => '2026-11-02 09:00:00', 'cat' => 'SEO',
+		'tags' => array( 'SEO' ),
+		't' => 'What is SEO? A simple guide for everyone.',
+		'dek' => 'SEO is the work of helping search engines find and understand your website, and helping people choose it, so you appear in search results without paying for each click.',
+		'min' => 8, 'tone' => 'blue', 'fmt' => 'Guide', 'body_src' => 'what-is-seo',
+		/* Banners (made by wordpress/assets/essays/upload-image.php from what-is-seo-banner-*-source.webp). */
+		'banner' => array( 0, 0 ), 'thumb' => 0,
+		'banner_alt' => 'A search bar leading through four checkpoints labelled find, understand, trust and choose, showing how SEO works',
+		/* Sidebar "More essays", in this order (default: the four most recent other essays). */
+		'related' => array( 'rank-in-ai-overviews', 'schema-markup-ai-visibility', 'ai-visibility-score', 'digital-marketing-for-doctors' ) ),
 	array( 'slug' => 'ai-visibility-score', 'y' => 'Oct ’26', 'date' => 'October 26, 2026', 'iso' => '2026-10-26 09:00:00', 'cat' => 'Measurement',
 		'tags' => array( 'Measurement' ),
 		't' => 'What is an AI visibility score? And what’s actually worth measuring.',
@@ -419,8 +429,12 @@ foreach ( $posts as $k => $p ) {
 		$j++;
 		$tags[] = vv_f( "Tag $j", array( 'itag' ), array( vv_p( "Tag $j Dot", '●', array( 'itag-dot' ), 'span' ), vv_p( "Tag $j Label", $t, array( 'itag-label' ), 'span' ) ) );
 	}
-	/* Sidebar suggestions: the four most recent other essays. */
+	/* Sidebar suggestions: the essay's own 'related' list if it has one, else the four most recent other essays. */
 	$others = array_slice( array_values( array_filter( $posts, function ( $o ) use ( $p ) { return $o['slug'] !== $p['slug']; } ) ), 0, 4 );
+	if ( ! empty( $p['related'] ) ) {
+		$by_slug = array_column( $posts, null, 'slug' );
+		$others  = array_values( array_filter( array_map( function ( $s ) use ( $by_slug ) { return $by_slug[ $s ] ?? null; }, $p['related'] ) ) );
+	}
 	$suggest = array(); $j = 0;
 	foreach ( $others as $o ) {
 		$j++;
