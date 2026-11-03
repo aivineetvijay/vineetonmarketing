@@ -4,8 +4,9 @@
  * Description: Permanent (301) redirects for URLs that moved or were retired.
  *              /blog/ became /writing/ (30 September 2026). On 9 October 2026 the AI in Marketing page (/ai/) was
  *              retired in favour of /writing/, the case studies were moved to draft (their roles are on /experience/),
- *              and category archives were switched off (the Writing page has the category filters).
- * Version:     1.1.0
+ *              and category archives were switched off (the Writing page has the category filters). On 3 November 2026 the
+ *              deleted WordPress sample post (/hello-world/) was pointed at /writing/.
+ * Version:     1.2.0
  *
  * Install: copy to wp-content/mu-plugins/vv-redirects.php (must-use plugins load automatically).
  */
@@ -17,6 +18,7 @@ function vv_redirect_target( $path ) {
 		'blog'         => '/writing/',
 		'ai'           => '/writing/',
 		'case-studies' => '/experience/',
+		'hello-world'  => '/writing/',
 	);
 	if ( isset( $map[ $path ] ) ) {
 		return $map[ $path ];
