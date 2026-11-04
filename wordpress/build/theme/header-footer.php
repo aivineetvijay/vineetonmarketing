@@ -77,9 +77,9 @@ $set = array(
 	'header-menu1-menu-hover-animation' => 'underline',
 	'header-menu1-menu-spacing' => $spacing( $box( '8', '14', '8', '14' ), $box( '', '', '', '' ), $box( '', '', '', '' ) ),
 
-	/* "Get in touch" pill: ink → Action Blue on hover (desktop). In the black mobile/tablet menu panel it is
+	/* "Say hello" pill: ink → Action Blue on hover (desktop). In the black mobile/tablet menu panel it is
 	   Action Blue → focus blue on hover, larger, and spaced to line up with the menu items. */
-	'header-button1-text' => 'Get in touch ↗',
+	'header-button1-text' => 'Say hello ↗',
 	'header-button1-link-option' => array( 'url' => home_url( '/contact/' ), 'new_tab' => false, 'link_rel' => '' ),
 	'header-button1-font-size' => $size( 14, 17, 17 ),
 	'header-button1-font-weight' => '400',
