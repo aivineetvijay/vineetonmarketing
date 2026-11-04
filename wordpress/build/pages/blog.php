@@ -11,8 +11,8 @@ $posts = array(
 		't' => 'What is SEO? A simple guide for everyone.',
 		'dek' => 'SEO is the work of helping search engines find and understand your website, and helping people choose it, so you appear in search results without paying for each click.',
 		'min' => 8, 'tone' => 'blue', 'fmt' => 'Guide', 'body_src' => 'what-is-seo',
-		/* Banners (made by wordpress/assets/essays/upload-image.php): 901 = 1600x534 desktop, 902 = 1585x992 mobile + featured. */
-		'banner' => array( 901, 902 ), 'thumb' => 902,
+		/* Banners (made by wordpress/assets/essays/upload-image.php): 915 = 1600x534 desktop, 916 = 1585x992 mobile + featured (new file names, -v2, so the CDN cannot serve the old placeholder banners). */
+		'banner' => array( 915, 916 ), 'thumb' => 916,
 		'banner_alt' => 'What is SEO illustrated: a marketer at a laptop searching what is SEO, with SEO under a magnifying glass leading to getting found on Google, attracting the right audience and growing your business',
 		/* Sidebar "More essays", in this order (default: the four most recent other essays). */
 		'related' => array( 'rank-in-ai-overviews', 'schema-markup-ai-visibility', 'ai-visibility-score', 'digital-marketing-for-doctors' ) ),
