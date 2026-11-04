@@ -17,6 +17,7 @@ toc = [
     ['How do search engines work?', 'how-search-works'],
     ['The four questions every website has to pass', 'four-questions'],
     ['What is the difference between SEO and paid ads?', 'seo-vs-paid-ads'],
+    ['What is SEO in digital marketing?', 'seo-in-digital-marketing'],
     ['How long does SEO take?', 'how-long'],
     ['Does SEO still matter with AI answers?', 'ai-answers'],
     ['Where to start this week, and when not to', 'where-to-start'],
@@ -79,18 +80,23 @@ b = [
  ['p', "<strong>Ads rent you attention. SEO builds something you keep, as long as you look after it.</strong>"],
 
  ['h2', toc[4][0], toc[4][1]],
+ ['p', "In digital marketing, SEO is the channel that reaches people who are already looking for what you offer. Paid ads, social media and email reach the people you choose. Search engine optimisation catches people at the moment they search."],
+ ['p', "It works best alongside the other channels. Content gives SEO something to rank. Ads show you quickly which words bring enquiries, so you know which pages to build first."],
+ ['p', "That's how I plan it. When I built " + a("a doctor's digital marketing plan", SITE + '/digital-marketing-for-doctors/') + ", SEO was one part of the path to a booked appointment, next to the booking page, paid media and reviews. It wasn't a separate project."],
+
+ ['h2', toc[5][0], toc[5][1]],
  ['p', "Expect to wait a few weeks before judging a change, and often three to six months before seeing meaningful results."],
  ['p', "Google says some changes take effect within hours and others take several months. It suggests waiting a few weeks to assess your work. " + a('Ahrefs polls', AHREFS_TIME) + " with 3,680 responses put the typical wait at three to six months, and Search Engine Land adds that competitive keywords often take longer."],
  ['p', "Treat that as a rough guide, because a poll collects opinions and doesn't measure results."],
 
- ['h2', toc[5][0], toc[5][1]],
+ ['h2', toc[6][0], toc[6][1]],
  ['p', "Yes, SEO still matters, but ranking first no longer guarantees you'll be seen."],
  ['p', "Google's AI Overviews put a written summary above the results for some searches, and tools like ChatGPT answer questions directly. Showing up in those answers is often called generative engine optimisation, or GEO."],
  ['p', a('Semrush', SEMRUSH) + " (July 2026) found that AI Overviews pulled from Google's top 10 results about 67% of the time. Ahrefs (March 2026) found only 38% of cited pages ranked in the top 10, as I covered in my post on " + a('ranking in AI Overviews', SITE + '/rank-in-ai-overviews/') + ". Those numbers don't match, and different methods are the likely reason. Both are SEO tool companies, but they agree on the direction: ranking helps, and it isn't the whole story."],
  ['p', "I've seen this first-hand. At Reem Hospital in Abu Dhabi, between 2024 and 2025, our pages were cited in AI Overviews next to Cleveland Clinic and government health agencies. We didn't outrank them. We wrote sentences that were easier to quote."],
  ['p', "<strong>The basics that help you rank are mostly the same basics that help you get quoted.</strong>"],
 
- ['h2', toc[6][0], toc[6][1]],
+ ['h2', toc[7][0], toc[7][1]],
  ['p', "You can start SEO this week without buying a tool."],
  ['ol', [
    "<strong>Set up Google Search Console.</strong> It's free, and it shows which searches you appear for and how often people click.",
@@ -106,7 +112,7 @@ b = [
    "<strong>You're chasing a huge term.</strong> I don't expect this post to outrank Google's own guide for \"what is SEO\". A smaller, more specific search is often the better target."]],
  ['p', "<strong>So that's SEO: help search engines find you, understand you and trust you, then give people a reason to choose you.</strong>"],
 
- ['h2', toc[7][0], toc[7][1]],
+ ['h2', toc[8][0], toc[8][1]],
  ['h3s', 'How do I know if my SEO is working?'],
  ['p', "Track what your search results lead to, not just your rankings. Google Search Console shows impressions, clicks, click-through rate and average position. Google Analytics 4 shows organic traffic and conversions, such as form submissions or calls. Compare results with an earlier period, and judge success by enquiries and sales, because a high ranking that brings no customers has little value."],
  ['h3s', 'What is local SEO?'],
