@@ -174,8 +174,10 @@ const pages = builders.map((raw) => {
     title: b.title.replace(/\s*\|\s*Vineet on Marketing$/, ''),
     description: b.description,
     h1: b.h1.charAt(0).toUpperCase() + b.h1.slice(1) + '.',
-    // Site hero headline: "UTM Builder" plus a light italic tail on the industry pages.
-    hero: { main: 'UTM Builder', aside: b.kind === 'industry' ? 'for ' + (/^[A-Z0-9]+$/.test(b.nav) ? b.nav : b.nav.toLowerCase()) + '.' : '', audience: AUDIENCE[b.id] },
+    // Site hero headline. Industry pages lead with the focus keyword: "B2B" + a light italic "UTM builder."
+    hero: b.kind === 'industry'
+      ? { main: /^[A-Z0-9]+$/.test(b.nav) ? b.nav : b.nav.charAt(0) + b.nav.slice(1).toLowerCase(), aside: 'UTM builder.', audience: AUDIENCE[b.id] }
+      : { main: 'UTM Builder', aside: '', audience: AUDIENCE[b.id] },
     intro: b.intro,
     faqs: b.faqs,
     content: content(b),

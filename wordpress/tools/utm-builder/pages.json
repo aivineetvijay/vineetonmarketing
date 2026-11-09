@@ -50,8 +50,8 @@
    "description": "A free UTM builder for hospitals, clinics and healthcare marketers. Name campaigns by service line, objective and language, and see the GA4 channel before you publish.",
    "h1": "UTM builder for hospitals and clinics.",
    "hero": {
-    "main": "UTM Builder",
-    "aside": "for healthcare.",
+    "main": "Healthcare",
+    "aside": "UTM builder.",
     "audience": "Hospitals and clinics"
    },
    "intro": "Pick a channel, choose the service line and objective, and the campaign name follows one convention every time.",
@@ -89,8 +89,8 @@
    "description": "A free UTM builder for online stores. Tag Shopping, PMax, Meta, TikTok, email flows and influencers with one naming convention, and check the GA4 channel before launch.",
    "h1": "UTM builder for ecommerce stores.",
    "hero": {
-    "main": "UTM Builder",
-    "aside": "for ecommerce.",
+    "main": "Ecommerce",
+    "aside": "UTM builder.",
     "audience": "Online stores and D2C brands"
    },
    "intro": "Pick a channel, choose the campaign type and product or category, and the campaign name follows one convention every time.",
@@ -128,8 +128,8 @@
    "description": "A free UTM builder for property launches. Track leads by project, unit type, market and channel, including portals, brokers, billboards and roadshows.",
    "h1": "UTM builder for real estate developers and brokers.",
    "hero": {
-    "main": "UTM Builder",
-    "aside": "for real estate.",
+    "main": "Real estate",
+    "aside": "UTM builder.",
     "audience": "Developers and brokers"
    },
    "intro": "Pick a channel, choose the project and objective, and the campaign name follows one convention every time.",
@@ -167,8 +167,8 @@
    "description": "A free UTM builder for hotels, tour operators and destinations. Tag metasearch, OTAs, seasonal offers and source markets, and check the GA4 channel before launch.",
    "h1": "UTM builder for hotels, travel and tourism.",
    "hero": {
-    "main": "UTM Builder",
-    "aside": "for travel & tourism.",
+    "main": "Travel & tourism",
+    "aside": "UTM builder.",
     "audience": "Hotels and tour operators"
    },
    "intro": "Pick a channel, choose the destination and product, and the campaign name follows one convention every time.",
@@ -206,8 +206,8 @@
    "description": "A free UTM builder for B2B and SaaS teams. Tag LinkedIn, webinars, content offers, review sites, events and sales outreach by funnel stage and segment.",
    "h1": "UTM builder for B2B marketing.",
    "hero": {
-    "main": "UTM Builder",
-    "aside": "for B2B.",
+    "main": "B2B",
+    "aside": "UTM builder.",
     "audience": "B2B and SaaS teams"
    },
    "intro": "Pick a channel, choose the product or solution, offer type and funnel stage, and the campaign name follows one convention every time.",

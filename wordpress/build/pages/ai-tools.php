@@ -1,7 +1,7 @@
 <?php
 /** AI Tools (/ai-tools/): one card per live tool (llms.txt Generator, UTM Builder), each linking to its hub, where the
  *  industry versions are listed. Cards reuse the llms.txt hub's classes. */
-$id = vv_new( 'AI Tools', 'ai-tools' );
+$id = vv_new( 'AI Tools for Marketers', 'ai-tools' );
 
 /* Live tools: the llms.txt generator family (9 October 2026) and the UTM builder family (28 October 2026). */
 $hub  = vv_url( '/ai-tools/llms-txt-generator/' );
@@ -57,7 +57,7 @@ $utm_featured = vv_link( 'UTM Tool', array( 'gen-card' ), $utm_hub, array(
 $nodes = array(
 	vv_hero( 'Tools',
 		array( vv_meta_block( 'Tools', 'Built for', 'Fellow marketers' ), vv_meta_block( 'Tools', 'Tools', '2 live' ), vv_meta_block( 'Tools', 'Price', 'Free to use', true ) ),
-		'AI Tools', 'for marketers.', false,
+		'AI tools for marketers.', false, false,
 		'Small, focused tools I build for marketers: llms.txt generators that help AI assistants describe your business accurately, and UTM builders that keep campaign tracking clean in GA4. Free, and everything runs in your browser.',
 		array(
 			vv_btn( 'Tools Generator Button', 'Open the llms.txt generator', $hub, array( 'btn', 'btn-filled' ) ),
