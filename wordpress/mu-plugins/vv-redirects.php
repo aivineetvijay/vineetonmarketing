@@ -5,7 +5,8 @@
  *              /blog/ became /writing/ (30 September 2026). On 9 October 2026 the AI in Marketing page (/ai/) was
  *              retired in favour of /writing/, the case studies were moved to draft (their roles are on /experience/),
  *              and category archives were switched off (the Writing page has the category filters).
- * Version:     1.1.0
+ *              9 November 2026: the early essays that were taken down, and the sample page.
+ * Version:     1.2.0
  *
  * Install: copy to wp-content/mu-plugins/vv-redirects.php (must-use plugins load automatically).
  */
@@ -26,6 +27,24 @@ function vv_redirect_target( $path ) {
 	}
 	if ( 'category' === $path || 0 === strpos( $path, 'category/' ) ) {
 		return '/writing/';
+	}
+	/* Early essays taken down on 25-30 September 2026 (Search Console listed them as 404s), and WordPress's
+	   default sample page. Skipped if a published post or page is ever put back at the same address. */
+	$retired = array(
+		'ai-search-readiness'             => '/rank-in-ai-overviews/',
+		'technical-debt-nobody-audits'    => '/writing/',
+		'three-creative-workflows'        => '/writing/',
+		'holdouts-not-optional'           => '/writing/',
+		'quarterly-cadence'               => '/writing/',
+		'stop-optimising-the-wrong-thing' => '/writing/',
+		'mmm-you-can-run-on-monday'       => '/writing/',
+		'sample-page'                     => '/',
+	);
+	if ( isset( $retired[ $path ] ) ) {
+		$live = get_page_by_path( $path, OBJECT, array( 'post', 'page' ) );
+		if ( ! $live || 'publish' !== $live->post_status ) {
+			return $retired[ $path ];
+		}
 	}
 	return null;
 }
