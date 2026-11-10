@@ -56,7 +56,7 @@ b = [
    "<strong>Understand:</strong> Can they tell what each page is about and who it's for?",
    "<strong>Trust:</strong> Do other credible sources vouch for you?",
    "<strong>Choose:</strong> When your page appears, will a real person pick it?"]],
- ['p', "You'll often hear about three types of SEO: technical, on-page and off-page. They fit the same test, as this made-up ear, nose and throat (ENT) clinic in Dubai shows."],
+ ['p', "You'll often hear about three types of SEO: technical, " + a('on-page', SITE + '/on-page-seo/') + " and off-page. They fit the same test, as this made-up ear, nose and throat (ENT) clinic in Dubai shows."],
  ['table', ['Question', 'Type of SEO', 'What you do', 'Example: a made-up ENT clinic'], [
    ['<strong>Find</strong>', 'Technical SEO', "Link to your important pages and don't block them.", 'The ENT page is linked from the main menu, so crawlers can reach it.'],
    ['<strong>Understand</strong>', 'On-page SEO', "Use your customers' words in clear titles, headings and body text.", 'The page uses the everyday words patients type, as well as the medical terms.'],

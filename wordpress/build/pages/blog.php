@@ -6,6 +6,15 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'on-page-seo', 'y' => 'Nov ’26', 'date' => 'November 10, 2026', 'iso' => '2026-11-10 05:00:00', 'cat' => 'SEO',
+		'tags' => array( 'SEO' ),
+		't' => 'Every on-page element has one job. Know which.',
+		'dek' => 'On-page SEO has three jobs: rank, click and quote. Most checklists treat them as one, which is how teams end up rewriting meta descriptions to fix ranking problems.',
+		'min' => 10, 'tone' => 'blue', 'fmt' => 'Framework', 'body_src' => 'on-page-seo',
+		/* Temporary banners (upload-image.php, *-temp names so the final art can take the clean names): 951 = 1600x534 desktop, 952 = 1024x640 mobile + featured. */
+		'banner' => array( 951, 952 ), 'thumb' => 952,
+		'banner_alt' => 'On-page SEO illustrated: a search for on-page SEO leading through three checks labelled rank, click and quote',
+		'related' => array( 'what-is-seo', 'rank-in-ai-overviews', 'schema-markup-ai-visibility', 'ai-visibility-score' ) ),
 	array( 'slug' => 'what-is-seo', 'y' => 'Nov ’26', 'date' => 'November 2, 2026', 'iso' => '2026-11-02 09:00:00', 'cat' => 'SEO',
 		'tags' => array( 'SEO' ),
 		't' => 'What is SEO? A simple guide for everyone.',

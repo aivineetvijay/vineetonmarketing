@@ -17,6 +17,7 @@
 
 ## Essays
 
+- [Every on-page element has one job. Know which](https://vineetonmarketing.com/on-page-seo/): On-page SEO sorted by job: the Rank, Click, Quote framework, a map of every on-page element to the job it does, how to tell from Search Console which job is failing, and a ten-question checklist.
 - [What is SEO? A simple guide for everyone](https://vineetonmarketing.com/what-is-seo/): What SEO is in plain language, how crawling, indexing and ranking work, the Four-Question Test (Find, Understand, Trust, Choose), SEO versus paid ads, how long SEO takes, and where to start this week.
 - [What is an AI visibility score? And what's actually worth measuring](https://vineetonmarketing.com/ai-visibility-score/): What an AI visibility score measures, why three tools gave one hospital three different scores, why scores change from run to run, and the PACE check (Presence, Accuracy, Citations, Effect).
 - [Snapchat advertising in the UAE works for some brands. Here's how to tell if it's yours](https://vineetonmarketing.com/snapchat-advertising-uae/): Snapchat advertising in the UAE: what the public evidence shows for Sponsored Snaps, takeovers, lead forms, automation and Lenses, how to read a platform case study, and a five-point fit test.
