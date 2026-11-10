@@ -56,7 +56,7 @@ b = [
    "<strong>Understand:</strong> Can they tell what each page is about and who it's for?",
    "<strong>Trust:</strong> Do other credible sources vouch for you?",
    "<strong>Choose:</strong> When your page appears, will a real person pick it?"]],
- ['p', "You'll often hear about three types of SEO: technical, " + a('on-page', SITE + '/on-page-seo/') + " and off-page. They fit the same test, as this made-up ear, nose and throat (ENT) clinic in Dubai shows."],
+ ['p', "You'll often hear about three types of SEO: technical, on-page and off-page. They fit the same test, as this made-up ear, nose and throat (ENT) clinic in Dubai shows."],
  ['table', ['Question', 'Type of SEO', 'What you do', 'Example: a made-up ENT clinic'], [
    ['<strong>Find</strong>', 'Technical SEO', "Link to your important pages and don't block them.", 'The ENT page is linked from the main menu, so crawlers can reach it.'],
    ['<strong>Understand</strong>', 'On-page SEO', "Use your customers' words in clear titles, headings and body text.", 'The page uses the everyday words patients type, as well as the medical terms.'],
@@ -102,7 +102,7 @@ b = [
    "<strong>Set up Google Search Console.</strong> It's free, and it shows which searches you appear for and how often people click.",
    "<strong>Write down five searches.</strong> Ask your customers what they'd type. Don't guess.",
    "<strong>Run those searches yourself.</strong> Note who appears and what kind of page Google shows. It's the same search I ran with my client.",
-   "<strong>Fix one page.</strong> Use your customers' words in the title, the headings and the first paragraph."]],
+   "<strong>Fix one page.</strong> Use your customers' words in the title, the headings and the first paragraph. My " + a('on-page SEO checklist', SITE + '/on-page-seo/') + " covers the rest."]],
  ['p', "If you're a doctor, my post on " + a('digital marketing for doctors', SITE + '/digital-marketing-for-doctors/') + " shows how this fits into a full plan."],
  ['tip', 'Bonus Tip: check whether Google has found you', "Type site:yourdomain.com into Google, using your own domain. If your pages appear, you're in the index. If nothing appears, look for something blocking Google before you touch your content."],
  ['p', "SEO isn't always the right first move, though."],

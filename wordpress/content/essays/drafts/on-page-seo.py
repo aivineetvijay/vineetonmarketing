@@ -14,11 +14,11 @@ AHREFS_SCHEMA = 'https://ahrefs.com/blog/schema-ai-citations/'
 
 toc = [
     ['What is on-page SEO?', 'what-is-on-page-seo'],
-    ['The Rank, Click, Quote map', 'rank-click-quote'],
+    ['On-page SEO elements, sorted by job', 'rank-click-quote'],
     ['Rank: help Google understand the page', 'rank'],
     ['Click: help a person choose you', 'click'],
     ['Quote: help an AI lift one sentence', 'quote'],
-    ['How to tell which job is failing', 'which-job'],
+    ['How to tell which on-page SEO job is failing', 'which-job'],
     ["What on-page SEO can't fix", 'limits'],
     ['The 15-minute on-page SEO checklist I run on every post', 'checklist'],
     ['Frequently asked questions', 'faq'],
@@ -132,6 +132,8 @@ b = [
  ['p', "One main intent, not one keyword. A page can rank for dozens of related searches if they share the same intent, so write naturally around the main phrase and its close variants. If two keywords need different answers or a different page format, they need different pages, not a longer one."],
  ['h3s', 'Should you fix old pages or write new ones first?'],
  ['p', "Usually fix the old ones. A page that already gets impressions gives you data, so you can see which job is failing and fix only that. A new page starts from zero. Leave pages that already perform well alone, as Google itself recommends, and use the checklist on everything new you publish."],
+ ['h3s', 'What is the difference between on-page and off-page SEO?'],
+ ['p', "On-page SEO is everything you control on the page itself: the words, headings, title tag, meta description, internal links and markup. Off-page SEO is what happens elsewhere: backlinks, mentions and reviews that tell search engines other people trust you. You need both. On-page work makes a page worth trusting, and off-page work is how that trust gets earned."],
  ['cta', "Which job is failing on your most important page?", "If you've seen an on-page element do a job I haven't mapped here, I'd like to hear about it.", 'Get in touch &rarr;', SITE + '/contact/', 'Continue the conversation on LinkedIn &rarr;', 'https://www.linkedin.com/in/vineetvijay'],
 ]
 json.dump(b, open(sys.argv[1], 'w'), ensure_ascii=True)
