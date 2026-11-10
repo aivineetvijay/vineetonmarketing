@@ -37,7 +37,12 @@ b = [
  ['h2', toc[0][0], toc[0][1]],
  ['p', "On-page SEO is the optimisation you do inside a page: its content, title tag, meta description, headings, URL, internal links, images and structured data. Technical SEO sits underneath it (can search engines reach and render the page?). Off-page SEO sits around it (do other sites vouch for you?)."],
  ['p', "In my " + a('Four-Question Test', SITE + '/what-is-seo/') + ", on-page SEO answers two of the four questions: can search engines understand the page, and will a person choose it? Find and Trust are other people's jobs."],
- ['p', "What most definitions miss is that a page now has three readers. A crawler deciding what the page is about. A person on a results page deciding whether to click. And an AI system deciding whether one of your sentences is worth lifting into its answer. They want different things."],
+ ['p', "What most definitions miss is that a page now has three readers:"],
+ ['ul', [
+   "<strong>A crawler</strong>, deciding what the page is about.",
+   "<strong>A person on a results page</strong>, deciding whether to click.",
+   "<strong>An AI system</strong>, deciding whether one of your sentences is worth lifting into its answer."]],
+ ['p', "They want different things."],
  ['quote', "One page, three readers, three jobs.", ''],
 
  ['h2', toc[1][0], toc[1][1]],
