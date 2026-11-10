@@ -8,9 +8,9 @@ $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint
 $posts = array(
 	array( 'slug' => 'on-page-seo', 'y' => 'Nov ’26', 'date' => 'November 10, 2026', 'iso' => '2026-11-10 05:00:00', 'cat' => 'SEO',
 		'tags' => array( 'SEO' ),
-		't' => 'On-page SEO: every element has one job. Know which.',
-		'dek' => 'On-page SEO has three jobs: rank, click and quote. Most checklists treat them as one, which is how teams end up rewriting meta descriptions to fix ranking problems.',
-		'min' => 10, 'tone' => 'blue', 'fmt' => 'Framework', 'body_src' => 'on-page-seo',
+		't' => 'On-page SEO: what it is, the key elements and how to do it.',
+		'dek' => 'On-page SEO is the work you do on the page itself so search engines understand it, people choose it and AI tools can quote it. The key elements, best practices and a step-by-step process.',
+		'min' => 15, 'tone' => 'blue', 'fmt' => 'Guide', 'body_src' => 'on-page-seo',
 		/* Banners (made by wordpress/assets/essays/upload-image.php): 977 = 1600x534 desktop, 978 = 1586x992 mobile + featured. */
 		'banner' => array( 977, 978 ), 'thumb' => 978,
 		'banner_alt' => 'On-page SEO illustrated: a marketer at a laptop working through an on-page SEO checklist of title tag, meta description, headings and internal links, leading to optimised content, better relevance, higher rankings and more traffic',
