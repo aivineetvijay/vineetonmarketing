@@ -6,6 +6,15 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'businesses-in-chatgpt', 'y' => 'Nov ’26', 'date' => 'November 11, 2026', 'iso' => '2026-11-11 09:00:00', 'cat' => 'AI in Marketing',
+		'tags' => array( 'AI in Marketing' ),
+		't' => 'What Businesses in ChatGPT means for marketers.',
+		'dek' => 'Businesses in ChatGPT lets you claim your profile, correct your details and see how often ChatGPT mentions you. It won’t make you rank, but it puts you in control of your facts.',
+		'min' => 6, 'tone' => 'blue', 'fmt' => 'News', 'body_src' => 'businesses-in-chatgpt',
+		/* Temporary banners (upload-image.php, *-temp names so the final art can take the clean names): 1014 = 1600x534 desktop, 1015 = 1024x640 mobile + featured. */
+		'banner' => array( 1014, 1015 ), 'thumb' => 1015,
+		'banner_alt' => 'Businesses in ChatGPT illustrated: a verified business profile with a blue check inside a ChatGPT chat window, beside a Business Hub chart of mentions and clicks',
+		'related' => array( 'rank-in-ai-overviews', 'schema-markup-ai-visibility', 'sameas-schema', 'schema-markup-for-real-estate' ) ),
 	array( 'slug' => 'on-page-seo', 'y' => 'Nov ’26', 'date' => 'November 10, 2026', 'iso' => '2026-11-10 05:00:00', 'cat' => 'SEO',
 		'tags' => array( 'SEO' ),
 		't' => 'On-page SEO: what it is, the key elements and how to do it.',
