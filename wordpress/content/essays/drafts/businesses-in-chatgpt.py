@@ -11,16 +11,16 @@ HUB = 'https://chatgpt.com/business-hub'
 REUTERS = 'https://www.thestar.com.my/tech/tech-news/2026/11/11/openai-lets-businesses-claim-chatgpt-profiles-adds-ai-agents-for-us-e-commerce-firms'
 
 b = [
- ['p', "<strong>On 10 November 2026, OpenAI opened a door marketers have been asking for since AI search took off. Businesses in ChatGPT, now in beta, lets you claim your business profile, correct the details ChatGPT shows, add your products and see how often it mentions you. It won't make ChatGPT recommend you more. But it gives you control over your facts, and the first data from OpenAI itself on how you show up.</strong>"],
+ ['p', "<strong>On 10 November 2026, OpenAI opened a door marketers have been asking for since AI search took off. Businesses in ChatGPT, now in beta, lets you claim your ChatGPT business profile, correct the details ChatGPT shows, add your products and see how often it mentions you. It won't make ChatGPT recommend you more. But it gives you control over your facts, and the first data from OpenAI itself on how you show up.</strong>"],
  ['p', "That's the short answer. Here's my launch-day read: what it is, how it compares to Google Business Profile, what it won't do, and the five things I'd do this week."],
  ['box', 'Key takeaways', 'ul', [
-   "Businesses in ChatGPT is an OpenAI beta, launched on 10 November 2026, that lets verified owners claim and correct their business profile inside ChatGPT.",
+   "Businesses in ChatGPT is an OpenAI beta, launched on 10 November 2026, that lets verified owners claim and correct their ChatGPT business profile.",
    "Claimed profiles get a blue check and aggregated insights, including mentions, views, website clicks and the topics people discuss when ChatGPT cites your site.",
    "OpenAI says claiming a profile, or paying for ChatGPT Ads, does not change how often ChatGPT recommends a business.",
    "Business Agents, branded chats customers can open from a profile, are limited to eligible US ecommerce and online service businesses for now."]],
 
- ['h2', 'What is Businesses in ChatGPT, in plain language?', 'what-it-is'],
- ['p', "Think of it as a front desk for your brand inside ChatGPT."],
+ ['h2', 'What is a ChatGPT business profile, in plain language?', 'what-it-is'],
+ ['p', "Think of it as a front desk for your brand inside ChatGPT. (It's not the same as ChatGPT Business, OpenAI's paid plan for teams. More on that in the FAQ.)"],
  ['p', "Until now, ChatGPT built its picture of your business from whatever it found on the web: your website, directories, reviews and news. If that picture was wrong, you had no direct way to fix it."],
  ['p', "Business Hub, the dashboard behind it, changes that. If you own a business with a website, or you're authorised to represent one, you can claim its profile. OpenAI confirms the claim through a business phone number, email address, website domain or Shopify account. Once claimed, the profile shows a blue check. (" + a("OpenAI's announcement", OPENAI) + ")"],
  ['p', "From there you can update your name, category, address or service area, hours, contact details and products or services. Retailers can upload product feeds with pricing and availability, and Shopify merchants can connect their store directly."],
@@ -48,7 +48,7 @@ b = [
  ['h2', "What I'd do this week", 'what-to-do'],
  ['ol', [
    "<strong>Check what ChatGPT says today.</strong> Ask it about your business by name, by category and by location. Save the answers.",
-   "<strong>Claim the profile.</strong> Start at " + a('chatgpt.com/business-hub', HUB) + ". If you manage accounts for clients, the owner should claim it or authorise you to. OpenAI Enterprise customers and advertisers go through their OpenAI representative.",
+   "<strong>Claim your ChatGPT business profile.</strong> Start at " + a('chatgpt.com/business-hub', HUB) + ". If you manage accounts for clients, the owner should claim it or authorise you to. OpenAI Enterprise customers and advertisers go through their OpenAI representative.",
    "<strong>Fix the facts, then match them everywhere.</strong> Your hours, address and services should read the same in ChatGPT, on your website, on your Google Business Profile and in your schema.",
    "<strong>Add your products.</strong> Retailers should upload a product feed or connect Shopify, so prices and availability stay current.",
    "<strong>Set a baseline.</strong> When your first mentions and clicks appear, note them, and add ChatGPT to your monthly report next to Google."]],
@@ -66,7 +66,7 @@ b = [
  ['h2', 'Frequently asked questions', 'faq'],
  ['h3s', 'What is Businesses in ChatGPT?'],
  ['p', "Businesses in ChatGPT is an OpenAI beta, launched on 10 November 2026, that lets businesses claim a profile inside ChatGPT. Through a dashboard called Business Hub, verified owners can update their details, add products and see aggregated insights on mentions, views and website clicks. Eligible US businesses can also build a Business Agent that answers customer questions."],
- ['h3s', 'How do I claim my business in ChatGPT?'],
+ ['h3s', 'How do I claim my ChatGPT business profile?'],
  ['p', "Go to chatgpt.com/business-hub and start a claim. You need to own the business or be authorised to represent it, and the business needs a website. OpenAI confirms the claim through a business phone number, email address, website domain or Shopify account. Enterprise customers and advertisers claim through their OpenAI representative instead."],
  ['h3s', 'Does claiming my business improve my ranking in ChatGPT?'],
  ['p', "No. OpenAI says claiming a profile does not guarantee higher placement or sales, and that ChatGPT continues to make independent recommendations. Paying for ChatGPT Ads doesn't change how often it recommends a business either. Claiming helps you keep your information accurate and gives you data on how often ChatGPT mentions you."],
@@ -74,6 +74,8 @@ b = [
  ['p', "Eligible businesses can claim a profile wherever ChatGPT is available, which includes the UAE. Business Agents, the branded chats customers open from a profile, are currently limited to eligible ecommerce and online service businesses in the United States. OpenAI says it plans to expand over time but hasn't shared dates."],
  ['h3s', 'What insights does Business Hub show?'],
  ['p', "Business Hub shows aggregated insights: how often ChatGPT mentions your business, profile views, clicks to your website and discovery topics, which are common themes in conversations that cite your site. The data only appears once activity passes OpenAI's thresholds. OpenAI says it does not share users' conversations or Business Agent chats with businesses."],
+ ['h3s', 'Is Businesses in ChatGPT the same as ChatGPT Business?'],
+ ['p', "No. " + a('ChatGPT Business', 'https://chatgpt.com/business/') + " is OpenAI's paid plan for teams: a shared, secure workspace with admin controls for users, usage and billing. Businesses in ChatGPT is the beta for claiming and managing your business profile, which is how customers see you inside ChatGPT. One is for your team to use ChatGPT. The other is for how ChatGPT presents your business."],
  ['cta', "Have you claimed your business in ChatGPT yet, or are you waiting to see what the insights actually show?", "If you try this, or if it doesn't work the way I described, write to me. I'd genuinely love to hear how it goes.", 'Get in touch &rarr;', SITE + '/contact/'],
 ]
 json.dump(b, open(sys.argv[1], 'w'), ensure_ascii=True)
