@@ -11,9 +11,9 @@ $posts = array(
 		't' => 'ChatGPT business profiles: what they mean for marketers.',
 		'dek' => 'A ChatGPT business profile lets you claim your listing, correct your details and see how often ChatGPT mentions you. It won’t make you rank, but it puts you in control of your facts.',
 		'min' => 6, 'tone' => 'blue', 'fmt' => 'News', 'body_src' => 'businesses-in-chatgpt',
-		/* Temporary banners (upload-image.php, *-temp names so the final art can take the clean names): 1014 = 1600x534 desktop, 1015 = 1024x640 mobile + featured. */
-		'banner' => array( 1014, 1015 ), 'thumb' => 1015,
-		'banner_alt' => 'ChatGPT business profile illustrated: a verified business profile with a blue check inside a ChatGPT chat window, beside a Business Hub chart of mentions and clicks',
+		/* Banners (made by wordpress/assets/essays/upload-image.php): 1056 = 1600x534 desktop, 1057 = 1586x992 mobile + featured. */
+		'banner' => array( 1056, 1057 ), 'thumb' => 1057,
+		'banner_alt' => 'ChatGPT business profile illustrated: a marketer at a laptop with a business profile, reviews and ratings, website content and structured data feeding a ChatGPT answer that recommends a business for digital marketing services in Dubai',
 		'related' => array( 'rank-in-ai-overviews', 'schema-markup-ai-visibility', 'sameas-schema', 'schema-markup-for-real-estate' ) ),
 	array( 'slug' => 'on-page-seo', 'y' => 'Nov ’26', 'date' => 'November 10, 2026', 'iso' => '2026-11-10 05:00:00', 'cat' => 'SEO',
 		'tags' => array( 'SEO' ),
