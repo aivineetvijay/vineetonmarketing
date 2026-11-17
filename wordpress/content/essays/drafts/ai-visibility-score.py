@@ -95,7 +95,7 @@ b = [
    "<strong>Citations.</strong> Which sources does AI use when it describes you: your own pages, or directories, news sites and competitors? This tells you what to fix, and where.",
    "<strong>Effect.</strong> Does anything reach the business? Look at AI impressions in Search Console, AI referrals in Google Analytics 4 (GA4), and your branded search trend."]],
  ['p', "Presence is the score most tools sell. The other three are where the decisions come from."],
- ['p', "Accuracy is the one I'd never skip. If AI gets your basic facts wrong, clear structured data on your own site is one of the first fixes. I explain how in " + a("Schema is your website's resume.", SITE + '/schema-markup-ai-visibility/')],
+ ['p', "Accuracy is the one I'd never skip. If AI gets your basic facts wrong, clear structured data on your own site is one of the first fixes. I explain how in " + a("Schema is your website's resume.", SITE + '/schema-markup-ai-visibility/') + " For ChatGPT, you can now also claim and correct your " + a('ChatGPT business profile', SITE + '/businesses-in-chatgpt/') + "."],
  ['table', ['What the dashboard shows', "What I'd look at instead"], [
    ['One score out of 100', 'Mention rate, split by engine and by topic'],
    ['"We rank number two in ChatGPT"', 'Share of answers you appear in, over many runs'],
@@ -131,6 +131,7 @@ b = [
    "Open the generative AI report in Search Console and export the pages with AI impressions.",
    "Pick 20 to 50 prompts by topic, and keep them fixed for a quarter.",
    "Read five AI answers about your brand and note any factual errors.",
+   "Publish an llms.txt file that points AI tools to the pages you want them to use. My free " + a('llms.txt generator', SITE + '/ai-tools/llms-txt-generator/') + " builds one.",
    "Add AI referrals (chatgpt.com, perplexity.ai, gemini.google.com, copilot.microsoft.com) as their own channel group in GA4."]],
 
  ['h2', toc[7][0], toc[7][1]],

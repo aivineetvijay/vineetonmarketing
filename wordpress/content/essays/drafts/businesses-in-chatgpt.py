@@ -49,7 +49,7 @@ b = [
  ['ol', [
    "<strong>Check what ChatGPT says today.</strong> Ask it about your business by name, by category and by location. Save the answers.",
    "<strong>Claim your ChatGPT business profile.</strong> Start at " + a('chatgpt.com/business-hub', HUB) + ". If you manage accounts for clients, the owner should claim it or authorise you to. OpenAI Enterprise customers and advertisers go through their OpenAI representative.",
-   "<strong>Fix the facts, then match them everywhere.</strong> Your hours, address and services should read the same in ChatGPT, on your website, on your Google Business Profile and in your schema.",
+   "<strong>Fix the facts, then match them everywhere.</strong> Your hours, address and services should read the same in ChatGPT, on your website, on your Google Business Profile, in your schema and in your llms.txt file, which my free " + a('llms.txt generator', SITE + '/ai-tools/llms-txt-generator/') + " can build.",
    "<strong>Add your products.</strong> Retailers should upload a product feed or connect Shopify, so prices and availability stay current.",
    "<strong>Set a baseline.</strong> When your first mentions and clicks appear, note them, and add ChatGPT to your monthly report next to Google."]],
 

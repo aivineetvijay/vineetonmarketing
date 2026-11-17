@@ -9,6 +9,11 @@ $id = vv_new( 'llms.txt Generator', 'llms-txt-generator', 262 );
 
 $tool = function ( $slug ) { return vv_url( '/ai-tools/llms-txt-generator/' . $slug . '/' ); };
 $link = function ( $text, $href ) { return '<a href="' . esc_url( $href ) . '"><u>' . $text . '</u></a>'; };
+/* Section titles: the whole sentence is one heading, so search engines read "What is an llms.txt file?", not "What is an".
+   The second line keeps its italic, muted look through <em> (mu-plugins/vv-headings.php). */
+$title = function ( $p, $main, $aside, $dark = false, $size = 't-display' ) {
+	return vv_f( "$p Title Block", array( 'stack' ), array( vv_h( "$p Title", $main . '<br><em>' . $aside . '</em>', $dark ? array( $size, 'on-dark' ) : array( $size ), 'h2' ) ), array(), vv_ix( 'scrollIn', 'slide', 80 ) );
+};
 
 /* Generators: industry, who it is for, tool slug (null = coming soon). */
 $generators = array(
@@ -103,9 +108,9 @@ foreach ( $faq as $qa ) {
 
 $nodes = array(
 	vv_hero( 'Hub',
-		array( vv_meta_block( 'Hub', 'Built for', 'Marketers and site owners' ), vv_meta_block( 'Hub', 'Generators', count( $generators ) . ' industries · ' . $live . ' live' ), vv_meta_block( 'Hub', 'Price', 'Free to use', true ) ),
+		array( vv_meta_block( 'Hub', 'Built by', 'Vineet Vijay · updated Nov 2026' ), vv_meta_block( 'Hub', 'Generators', count( $generators ) . ' industries · ' . $live . ' live' ), vv_meta_block( 'Hub', 'Price', 'Free to use', true ) ),
 		'llms.txt Generator', null, true,
-		'A family of industry-specific generators that turn your website into a clean, curated llms.txt file: the short map AI assistants can read to understand who you are and which pages to trust.',
+		'This free llms.txt generator turns your website into a clean, curated llms.txt file: the short map AI assistants can read to understand who you are and which pages to trust. Built for marketers and site owners, with rules for each industry. No sign-up, and it runs in your browser.',
 		array(
 			vv_btn( 'Hub Industry Button', 'Choose your industry', '#generators', array( 'btn', 'btn-filled' ) ),
 			vv_btn( 'Hub How Button', 'How it works', '#how-it-works', array( 'btn' ) ),
@@ -114,14 +119,14 @@ $nodes = array(
 	vv_f( 'Generators', array( 'section', 'bg-parchment' ), array(
 		vv_f( 'Generators Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Generators', '01', 'Generators', 'One format · industry-specific rules' ),
-			vv_title_block( 'Generators', 'Pick your', 'industry.' ),
+			$title( 'Generators', 'Pick your', 'industry.' ),
 			vv_g( 'Generators Cards', array( 'gen-grid', 'mt-64' ), $cards ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'generators' ),
 	vv_f( 'Basics', array( 'section', 'bg-canvas' ), array(
 		vv_f( 'Basics Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Basics', '02', 'The basics', 'One file · plain Markdown · site root' ),
-			vv_title_block( 'Basics', 'What is an', 'llms.txt file?' ),
+			$title( 'Basics', 'What is an', 'llms.txt file?' ),
 			vv_f( 'Basics Split', array( 'split', 'mt-64' ), array(
 				vv_f( 'Basics Copy', array( 'col-6w', 'stack' ), array(
 					vv_p( 'Basics Text 1', 'llms.txt is a plain Markdown file that lives at the root of a website, at <strong>yoursite.com/llms.txt</strong>. It gives large language models a short, curated summary of the business and a list of the pages that matter most, each with a one-line description.', array( 't-body' ) ),
@@ -138,14 +143,14 @@ $nodes = array(
 	vv_f( 'Reasons', array( 'section', 'bg-ink' ), array(
 		vv_f( 'Reasons Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Reasons', '03', 'For marketers', 'Six reasons it earns a place on the AI-visibility checklist', true ),
-			vv_title_block( 'Reasons', 'Why it matters', 'for marketers.', true ),
+			$title( 'Reasons', 'Why llms.txt matters', 'for marketers.', true ),
 			vv_cards( 'Reasons', $reasons, array( 'topics-grid', 'mt-96' ), true ),
 		) ),
 	), array( 'tag' => 'section' ) ),
 	vv_f( 'How', array( 'section', 'bg-parchment' ), array(
 		vv_f( 'How Inner', array( 'wrap' ), array(
 			vv_sec_head( 'How', '04', 'How it works', 'From your details to a live llms.txt' ),
-			vv_title_block( 'How', 'Build it.', 'Then publish it.' ),
+			$title( 'How', 'How to use the', 'llms.txt generator.' ),
 			vv_p( 'How Build Label', 'Build your file', array( 't-mono', 'mt-96' ) ),
 			vv_cards( 'How Build', $steps, array( 'topics-grid', 'mt-32' ), false, 'Step ' ),
 			vv_p( 'How Publish Label', 'Once it’s built', array( 't-mono', 'mt-96' ) ),
@@ -159,16 +164,19 @@ $nodes = array(
 	vv_f( 'Questions', array( 'section', 'bg-canvas' ), array(
 		vv_f( 'Questions Inner', array( 'wrap' ), array(
 			vv_sec_head( 'Questions', '05', 'Questions', 'The ones that come up most' ),
-			vv_title_block( 'Questions', 'Common', 'questions.' ),
+			$title( 'Questions', 'llms.txt generator', 'questions.' ),
 			vv_f( 'Questions Holder', array( 'stack', 'mt-64' ), array(
 				vv_n( 'e-accordion', 'Questions Accordion', array( 'acc' ), array( 'default_state' => 'first_expanded', 'max_expanded' => 'one', 'show_icon' => true, 'faq_schema' => false ), $items ),
 			), array(), vv_ix() ),
 		) ),
 	), array( 'tag' => 'section' ), null, 'faq' ),
-	vv_cta_dark( 'Hub', 'Start with', 'your industry.', array(
-		vv_btn_dark( 'Hub CTA Real Estate Button', 'Real estate generator', $tool( 'real-estate' ), true ),
-		vv_btn_dark( 'Hub CTA Suggest Button', 'Suggest an industry', vv_url( '/contact/' ) ),
-	) ),
+	vv_f( 'Hub CTA', array( 'section', 'bg-ink' ), array( vv_f( 'Hub CTA Inner', array( 'wrap' ), array(
+		$title( 'Hub CTA', 'Start with', 'your industry.', true, 't-huge' ),
+		vv_f( 'Hub CTA Buttons', array( 'btn-row', 'mt-48' ), array(
+			vv_btn_dark( 'Hub CTA Real Estate Button', 'Real estate generator', $tool( 'real-estate' ), true ),
+			vv_btn_dark( 'Hub CTA Suggest Button', 'Suggest an industry', vv_url( '/contact/' ) ),
+		), array(), vv_ix( 'scrollIn', 'fade' ) ),
+	) ) ), array( 'tag' => 'section' ) ),
 );
 
 return array( 'id' => $id, 'faq' => $faq, 'result' => vv_build( $id, $nodes, 'document', 'replace_children' ) );

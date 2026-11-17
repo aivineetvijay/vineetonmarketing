@@ -180,8 +180,9 @@ $social = '<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"0","bottom":"
 
 $mega = '<!-- wp:paragraph {"style":{"typography":{"fontSize":"12px","letterSpacing":"0.12em","textTransform":"uppercase"},"color":{"text":"rgba(255,255,255,0.55)"},"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->'
 	. '<p class="has-text-color" style="color:rgba(255,255,255,0.55);margin-top:0;margin-bottom:0;font-size:12px;letter-spacing:0.12em;text-transform:uppercase">Get in touch · Dubai, GST</p><!-- /wp:paragraph -->'
-	. '<!-- wp:heading {"style":{"typography":{"fontSize":"clamp(28px, 4.4vw, 72px)","fontStyle":"normal","fontWeight":"600","letterSpacing":"-0.03em","lineHeight":"1.05"},"spacing":{"margin":{"top":"24px","bottom":"0"}}}} -->'
-	. '<h2 class="wp-block-heading" style="margin-top:24px;margin-bottom:0;font-size:clamp(28px, 4.4vw, 72px);font-style:normal;font-weight:600;letter-spacing:-0.03em;line-height:1.05"><a href="mailto:vineetvijay88@gmail.com">vineetvijay88@gmail.com</a></h2><!-- /wp:heading -->';
+	/* The email is large display text, not a heading: a paragraph keeps it out of every page's heading outline. */
+	. '<!-- wp:paragraph {"style":{"typography":{"fontSize":"clamp(28px, 4.4vw, 72px)","fontStyle":"normal","fontWeight":"600","letterSpacing":"-0.03em","lineHeight":"1.05"},"spacing":{"margin":{"top":"24px","bottom":"0"}}}} -->'
+	. '<p style="margin-top:24px;margin-bottom:0;font-size:clamp(28px, 4.4vw, 72px);font-style:normal;font-weight:600;letter-spacing:-0.03em;line-height:1.05"><a href="mailto:vineetvijay88@gmail.com">vineetvijay88@gmail.com</a></p><!-- /wp:paragraph -->';
 
 $details = '<!-- wp:group {"style":{"spacing":{"blockGap":"32px"}},"layout":{"type":"grid","minimumColumnWidth":"14rem"}} --><div class="wp-block-group">'
 	. $column( $label( 'Based' ) . $text( 'Abu Dhabi · Dubai<br>United Arab Emirates' ) )

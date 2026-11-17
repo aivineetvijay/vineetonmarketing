@@ -2,7 +2,7 @@
 /**
  * Plugin Name: VV Schema
  * Description: Enriches the Rank Math JSON-LD graph with Vineet Vijay's author (Person) profile, merges the post author into the site Person, and sets ProfilePage / CollectionPage types.
- * Version:     1.3.4
+ * Version:     1.4.0
  *
  * Install: copy to wp-content/mu-plugins/vv-schema.php (must-use plugins load automatically).
  * Requires Rank Math SEO with the Schema (rich-snippet) module active.
@@ -18,6 +18,7 @@ const VV_SCHEMA_PROFILE_PAGES    = array( 101, 253 ); // Home, Experience.
 const VV_SCHEMA_COLLECTION_PAGES = array( 296 );      // Blog.
 const VV_SCHEMA_HEADSHOT_ID      = 8;
 const VV_SCHEMA_BLOG_PAGE        = 296;
+const VV_SCHEMA_LLMS_HUB         = 626;      // llms.txt Generator hub: also a free WebApplication.
 
 /** Breadcrumbs (visible trail and BreadcrumbList): essays sit under the Blog page, not a category archive. */
 add_filter( 'rank_math/frontend/breadcrumb/items', function ( $crumbs ) {
@@ -211,6 +212,27 @@ add_filter( 'rank_math/json_ld', function ( $data, $jsonld ) {
 				}, $faq ),
 			);
 		}
+	}
+
+	// The llms.txt Generator hub is a free tool: describe it as a WebApplication by the site Person.
+	if ( is_page( VV_SCHEMA_LLMS_HUB ) ) {
+		$url = get_permalink( VV_SCHEMA_LLMS_HUB );
+		$data['WebApplication'] = array(
+			'@type'               => 'WebApplication',
+			'@id'                 => $url . '#app',
+			'name'                => 'llms.txt Generator',
+			'url'                 => $url,
+			'description'         => 'Free industry-specific llms.txt generators that turn a website into a clean, curated llms.txt file for AI assistants.',
+			'applicationCategory' => 'BusinessApplication',
+			'operatingSystem'     => 'Any (runs in the browser)',
+			'browserRequirements' => 'Requires JavaScript',
+			'isAccessibleForFree' => true,
+			'offers'              => array( '@type' => 'Offer', 'price' => '0', 'priceCurrency' => 'USD' ),
+			'featureList'         => array( 'Real estate', 'Healthcare', 'E-commerce', 'Education', 'Finance and fintech', 'Publishers' ),
+			'creator'             => array( '@id' => vv_schema_person_id() ),
+			'isPartOf'            => array( '@id' => $url . '#webpage' ),
+			'inLanguage'          => get_bloginfo( 'language' ),
+		);
 	}
 
 	return $data;
