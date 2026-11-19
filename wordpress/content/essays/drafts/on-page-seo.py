@@ -14,7 +14,7 @@ AHREFS_SCHEMA = 'https://ahrefs.com/blog/schema-ai-citations/'
 
 toc = [
     ['What is on-page SEO?', 'what-is-on-page-seo'],
-    ['Why on-page SEO matters', 'why-it-matters'],
+    ['Why is on page SEO important?', 'why-it-matters'],
     ['The key on-page SEO elements', 'elements'],
     ['How to do on-page SEO, step by step', 'how-to'],
     ['On-page SEO best practices', 'best-practices'],
@@ -29,8 +29,8 @@ def bp(text):
     return ['p', '<strong>Best practice:</strong> ' + text]
 
 b = [
- ['p', "<strong>On-page SEO is the work you do on the page itself so that search engines understand it, people choose it in the results and AI tools can quote it. It covers the content, the title tag, the meta description, headings, the URL, internal links, images and structured data. Last week I changed one title on this site because a keyword tool showed the topic had almost four times the searches under a different name. That is on-page SEO in one small decision.</strong>"],
- ['p', "That's the short answer. Here's what on-page SEO includes, how to get each element right, the step-by-step process I use on every post, and, if you've done this for years, the framework I use to find what's actually broken."],
+ ['p', "<strong>On-page SEO is the work you do on the page itself so that search engines understand it, people choose it in the results and AI tools can quote it. It covers the content, the title tag, the meta description, headings, the URL, internal links, images and structured data. Earlier this month I changed one title on this site because a keyword tool showed the topic had almost four times the searches under a different name. That is on-page SEO in one small decision.</strong>"],
+ ['p', "That's the short answer. Here's what on page SEO includes, why it's important, how to do on page SEO step by step, and, if you've done this for years, the framework I use to find what's actually broken."],
  ['box', 'Key takeaways', 'ul', [
    "On-page SEO is everything you control on the page: the words, title tag, meta description, headings, URL, links, images and markup.",
    "Start with search intent. A page in the wrong format won't rank, however well you tune its tags.",
@@ -53,7 +53,7 @@ b = [
 
  # 2
  ['h2', toc[1][0], toc[1][1]],
- ['p', "On-page SEO matters because it decides whether a page is understood, chosen and quoted, and you can change it today without anyone's permission."],
+ ['p', "On page SEO is important because it decides whether a page is understood, chosen and quoted, and you can change it today without anyone's permission."],
  ['p', "What most definitions miss is that a page now has three readers:"],
  ['ul', [
    "<strong>A crawler</strong>, deciding what the page is about.",
@@ -126,7 +126,7 @@ b = [
 
  # 4
  ['h2', toc[3][0], toc[3][1]],
- ['p', "You can optimise a page in seven steps, and the same steps work for a new post or a page that has stopped performing."],
+ ['p', "You can optimise a page in seven steps, and the same steps work for a new post, or to improve on page SEO on a page that has stopped performing."],
  ['ol', [
    "<strong>Pick one page and one search.</strong> Start with a page that matters to the business, and decide the single search it should answer.",
    "<strong>Study the results page.</strong> Search it yourself. Note the type of page that ranks, the questions under \"People also ask\", and whether an AI Overview appears.",
@@ -263,6 +263,8 @@ b = [
  ['p', "One main intent, not one keyword. A page can rank for dozens of related searches if they share the same intent, so write naturally around the main phrase and its close variants. If two keywords need different answers or a different page format, they need different pages, not a longer one."],
  ['h3s', 'Should you fix old pages or write new ones first?'],
  ['p', "Usually fix the old ones. A page that already gets impressions gives you data, so you can see which job is failing and fix only that. A new page starts from zero. Leave pages that already perform well alone, and use the checklist on everything new you publish."],
+ ['h3s', 'How can I improve on page SEO on an existing page?'],
+ ['p', "Start with a page that already gets impressions in Google Search Console, then find the job that's failing. Few impressions means Google isn't placing the page, so fix the intent, wording and headings. Plenty of impressions but few clicks means the title and meta description need work. Change one thing, note the date, and check again after a few weeks."],
  ['cta', "Which on-page SEO element is letting your most important page down?", "If you try the checklist, or find an element doing a job I haven't mapped here, write to me. I'd genuinely love to hear how it goes.", 'Get in touch &rarr;', SITE + '/contact/', 'Continue the conversation on LinkedIn &rarr;', 'https://www.linkedin.com/in/vineetvijay'],
 ]
 json.dump(b, open(sys.argv[1], 'w'), ensure_ascii=True)
