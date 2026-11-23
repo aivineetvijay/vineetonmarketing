@@ -6,6 +6,13 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'on-page-seo-ai-search', 'y' => 'Nov ’26', 'date' => 'November 23, 2026', 'iso' => '2026-11-23 09:00:00', 'cat' => 'SEO',
+		'tags' => array( 'SEO' ),
+		't' => 'On-page SEO for AI search: what to keep, what to skip.',
+		'dek' => 'Most on-page SEO for AI search is ordinary on-page SEO with a new name. Here are 12 popular AI tactics scored against Google’s guide: keep, skip or depends.',
+		'min' => 8, 'tone' => 'blue', 'fmt' => 'Guide', 'body_src' => 'on-page-seo-ai-search',
+		/* No banner yet (Vineet will supply it): the card and post use the 'blue' tile until then. */
+		'related' => array( 'on-page-seo', 'rank-in-ai-overviews', 'schema-markup-ai-visibility', 'ai-visibility-score' ) ),
 	array( 'slug' => 'businesses-in-chatgpt', 'y' => 'Nov ’26', 'date' => 'November 11, 2026', 'iso' => '2026-11-11 09:00:00', 'cat' => 'AI in Marketing',
 		'tags' => array( 'AI in Marketing' ),
 		't' => 'ChatGPT business profiles: what they mean for marketers.',

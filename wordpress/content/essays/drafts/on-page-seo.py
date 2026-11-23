@@ -202,7 +202,7 @@ b = [
  ['h3s', 'When Google rewrites your title'],
  ['p', "If Google keeps showing a different title from the one you wrote, read it as feedback. A rewrite usually means your title tag and your page disagree about what the page is. Bring the title closer to the H1 and the opening, or the other way round, rather than fighting the rewrite."],
  ['h3s', 'Getting quoted in AI answers'],
- ['p', "The Quote job is new, and simpler than the GEO industry suggests. Google's " + a('May 2026 guide to generative AI features', G_GENAI) + " is plain about it: optimising for AI search is still SEO, and you don't need special files, markup or chunking tricks to appear."],
+ ['p', "The Quote job is new, and simpler than the GEO industry suggests. Google's " + a('May 2026 guide to generative AI features', G_GENAI) + " is plain about it: optimising for AI search is still SEO, and you don't need special files, markup or chunking tricks to appear. I scored 12 popular AI tactics against that guide in " + a('on-page SEO for AI search', SITE + '/on-page-seo-ai-search/') + "."],
  ['p', "I learned that at Reem Hospital in Abu Dhabi. Our pages were cited in AI Overviews for head terms like \"pulmonologist\", next to Cleveland Clinic, on a domain with a Moz DA of 17. We didn't outrank them. Every cited passage was a short, self-contained answer sitting directly under a heading that matched the query."],
  ['p', "Quote isn't Rank under another name, either. Ahrefs' March 2026 analysis found only 38% of pages cited in AI Overviews ranked in Google's top 10."],
  ['p', "<strong>If a sentence only makes sense with the paragraph above it, an AI will skip it.</strong>"],
