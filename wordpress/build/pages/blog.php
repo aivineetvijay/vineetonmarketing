@@ -11,7 +11,9 @@ $posts = array(
 		't' => 'On-page SEO for AI search: what to keep, what to skip.',
 		'dek' => 'Most on-page SEO for AI search is ordinary on-page SEO with a new name. Here are 12 popular AI tactics scored against Google’s guide: keep, skip or depends.',
 		'min' => 8, 'tone' => 'blue', 'fmt' => 'Guide', 'body_src' => 'on-page-seo-ai-search',
-		/* No banner yet (Vineet will supply it): the card and post use the 'blue' tile until then. */
+		/* Banners (made by wordpress/assets/essays/upload-image.php): 1127 = 1600x534 desktop, 1128 = 1585x992 mobile + featured. */
+		'banner' => array( 1127, 1128 ), 'thumb' => 1128,
+		'banner_alt' => 'On-page SEO for AI search illustrated: a marketer at a laptop beside a checklist for Google, ChatGPT and Perplexity that keeps direct answers, a clear H1, named sources and a visible author, and skips content chunking, special AI schema, AI-only rewrites and llms.txt for Google',
 		'related' => array( 'on-page-seo', 'rank-in-ai-overviews', 'schema-markup-ai-visibility', 'ai-visibility-score' ) ),
 	array( 'slug' => 'businesses-in-chatgpt', 'y' => 'Nov ’26', 'date' => 'November 11, 2026', 'iso' => '2026-11-11 09:00:00', 'cat' => 'AI in Marketing',
 		'tags' => array( 'AI in Marketing' ),
