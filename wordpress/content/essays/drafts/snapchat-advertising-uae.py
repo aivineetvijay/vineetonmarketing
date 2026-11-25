@@ -124,7 +124,7 @@ b = [
    "<strong>Brands that can't track conversions.</strong> If your sales happen offline and never feed back into the platform, automation and tCPA can't do their job. If that's your situation, read how " + a('Customer Match can now use server logs', SITE + '/customer-match-ip-timestamp/') + ". The same first-party data thinking applies here.",
    "<strong>Repurposed creative.</strong> A landscape TV ad cropped to vertical rarely works. Snapchat is full-screen, fast and personal.",
    "<strong>Regulated categories.</strong> Healthcare, finance and real estate ads in the UAE carry their own approval and claims rules. The platform doesn't change those rules.",
-   "<strong>Budgets spread too thin.</strong> A small budget spread across a whole year will never give the system enough data to learn. Concentrate it around one moment instead."]],
+   "<strong>Budgets spread too thin.</strong> A small budget spread across a whole year will never give the system enough data to learn. Concentrate it around one moment instead. The same learning-phase maths applies on Meta and TikTok, as I explain in " + a('how to run paid social ads', SITE + '/run-social-media-ads/') + "."]],
  ['tip', 'Bonus Tip: Filter before you brief', "Before your next Snapchat conversation, open Snap's success stories page and look only for your market and your category. Note the dates and who measured each result. If you can't find a single UAE story in your category, go into the meeting asking for a lift study, not a bigger budget."],
  ['note', 'What to do on Monday', 'ul', [
    "Run your brand through the Snap Fit Test and write down the score.",

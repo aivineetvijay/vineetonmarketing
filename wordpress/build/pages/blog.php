@@ -6,6 +6,14 @@
  */
 $tone = array( 'deep' => 118, 'blue' => 115, 'warm' => 116, 'mono' => 117, 'mint' => 121, 'sand' => 122, 'rose' => 120, 'pearl' => 119 );
 $posts = array(
+	array( 'slug' => 'run-social-media-ads', 'y' => 'Nov ’26', 'date' => 'November 25, 2026', 'iso' => '2026-11-25 05:00:00', 'cat' => 'Paid Media',
+		'tags' => array( 'Paid Media' ),
+		't' => 'How to run paid social ads: the seven decisions that actually matter.',
+		'dek' => 'To run social media ads that work, set the business goal first, track the real result, keep the structure simple and give Meta or TikTok a week to learn.',
+		'min' => 11, 'tone' => 'mint', 'fmt' => 'Playbook', 'body_src' => 'run-social-media-ads',
+		/* No banner yet (Vineet will supply it): the card and post use the 'mint' tile until then. */
+		'related' => array( 'snapchat-advertising-uae', 'customer-match-ip-timestamp', 'digital-marketing-for-doctors', 'ai-visibility-score' ),
+		'promo' => array( 'url' => '/ai-tools/utm-builder/', 'title' => 'UTM Builder', 'text' => 'Tag every paid social link in seconds, so your CRM knows which ad sent each lead.', 'cta' => 'Build a link →' ) ),
 	array( 'slug' => 'on-page-seo-ai-search', 'y' => 'Nov ’26', 'date' => 'November 23, 2026', 'iso' => '2026-11-23 09:00:00', 'cat' => 'SEO',
 		'tags' => array( 'SEO' ),
 		't' => 'On-page SEO for AI search: what to keep, what to skip.',
@@ -471,6 +479,8 @@ foreach ( $posts as $k => $p ) {
 			vv_p( "Suggestion $j Meta", $o['y'] . ' · ' . $o['min'] . ' min', array( 'feed-meta-text' ), 'span' ),
 		) );
 	}
+	/* Sidebar tool promo: the essay's own 'promo' (url, title, text, cta) if it has one, else the llms.txt generator. */
+	$promo = array_merge( array( 'url' => '/ai-tools/llms-txt-generator/', 'title' => 'llms.txt generator', 'text' => 'Help AI assistants describe your business accurately.', 'cta' => 'Build yours →' ), $p['promo'] ?? array() );
 	$meta_cell = function ( $l, $label, $value_nodes ) { return vv_f( $l, array( 'meta-cell' ), array_merge( array( vv_p( "$l Label", $label, array( 'meta-k' ) ) ), $value_nodes ) ); };
 	$nodes = array(
 		vv_f( 'Article Hero', array( 'art-hero', 'art-end', 'bg-canvas' ), array( vv_f( 'Article Hero Inner', array( 'wrap' ), array(
@@ -513,8 +523,8 @@ foreach ( $posts as $k => $p ) {
 						vv_p( 'Sidebar Essays Heading', 'More essays', array( 't-mono' ) ),
 						vv_f( 'Sidebar Essays List', array( 'aside-list' ), $suggest ),
 					) ),
-					/* Promo for the free llms.txt generators (replaced the empty ad/promo image slot, 9 October 2026). */
-					vv_link( 'Sidebar Tool Promo', array( 'gen-card' ), vv_url( '/ai-tools/llms-txt-generator/' ), array(
+					/* Promo for a free tool (replaced the empty ad/promo image slot, 9 October 2026); see $promo above. */
+					vv_link( 'Sidebar Tool Promo', array( 'gen-card' ), vv_url( $promo['url'] ), array(
 						vv_f( 'Sidebar Tool Promo Top', array( 'gen-top' ), array(
 							vv_f( 'Sidebar Tool Promo Status', array( 'gen-pill' ), array(
 								vv_p( 'Sidebar Tool Promo Status Dot', '●', array( 'status-dot' ), 'span' ),
@@ -522,10 +532,10 @@ foreach ( $posts as $k => $p ) {
 							) ),
 						) ),
 						vv_f( 'Sidebar Tool Promo Body', array( 'gen-body' ), array(
-							vv_p( 'Sidebar Tool Promo Title', 'llms.txt generator', array( 'aside-title' ) ),
-							vv_p( 'Sidebar Tool Promo Text', 'Help AI assistants describe your business accurately.', array( 'art-p-sm' ) ),
+							vv_p( 'Sidebar Tool Promo Title', $e( $promo['title'] ), array( 'aside-title' ) ),
+							vv_p( 'Sidebar Tool Promo Text', $e( $promo['text'] ), array( 'art-p-sm' ) ),
 						) ),
-						vv_p( 'Sidebar Tool Promo Action', 'Build yours →', array( 'gen-cta' ), 'span' ),
+						vv_p( 'Sidebar Tool Promo Action', $e( $promo['cta'] ), array( 'gen-cta' ), 'span' ),
 					) ),
 				), array( 'tag' => 'aside' ) ),
 			) ),
