@@ -11,7 +11,7 @@
  *              utm_campaign=link_in_bio and utm_content=<link>, and every click pushes a link_in_bio_click event to the
  *              dataLayer. Kept out of search: noindex, follow (Rank Math robots meta plus an X-Robots-Tag header), and
  *              nothing on the site links to it.
- * Version:     1.1.0
+ * Version:     1.1.1
  *
  * Install: copy to wp-content/mu-plugins/vv-links.php (must-use plugins load automatically).
  */
@@ -101,7 +101,6 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 .vvl-label.is-title{text-transform:none;letter-spacing:-.01em;font-size:17px;font-weight:600;color:var(--ink)}
 .vvl-tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .vvl-tool{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:#eaf2fc;border:1px solid #cfe0f5;border-radius:14px;padding:16px 14px;transition:border-color .15s,transform .15s}
-.vvl-tool-pill{align-self:flex-start;font-size:11px;font-weight:600;letter-spacing:.04em;color:#0066cc;background:#fff;border-radius:999px;padding:3px 8px}
 .vvl-tool-name{font-size:16px;font-weight:600;line-height:1.25}
 .vvl-tool-text{font-size:13px;color:#44474d;line-height:1.35}
 .vvl-tool:hover{border-color:#0066cc}
@@ -164,7 +163,7 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 				if ( empty( $t['url'] ) || empty( $t['label'] ) ) { continue; }
 				$pos++;
 				printf(
-					'<a class="vvl-tool" href="%s" data-vvl="tool" data-vvl-pos="%d"><span class="vvl-tool-pill">Free</span><span class="vvl-tool-name">%s</span>%s</a>',
+					'<a class="vvl-tool" href="%s" data-vvl="tool" data-vvl-pos="%d"><span class="vvl-tool-name">%s</span>%s</a>',
 					esc_url( vv_links_tag( $t['url'], $t['label'] ) ),
 					$pos,
 					esc_html( $t['label'] ),
