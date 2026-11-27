@@ -183,7 +183,7 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 		foreach ( (array) ( $data['fixed'] ?? array() ) as $i => $b ) {
 			$pos++;
 			$url = $b['url'] ?? '';
-			$sub = '';
+			$sub = (string) ( $b['sub'] ?? '' );
 			if ( ! empty( $b['latest'] ) ) {
 				if ( ! $latest ) { continue; }
 				$url = wp_make_link_relative( get_permalink( $latest[0] ) );

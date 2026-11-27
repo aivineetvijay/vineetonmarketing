@@ -5,7 +5,8 @@
  "fixed": [
   {
    "label": "Website",
-   "url": "/"
+   "url": "/",
+   "sub": "Essays, tools and contact"
   },
   {
    "label": "Latest essay",
