@@ -10,7 +10,7 @@
  *              utm_campaign=link_in_bio and utm_content=<link>, and every click pushes a link_in_bio_click event to the
  *              dataLayer. Kept out of search: noindex, follow (Rank Math robots meta plus an X-Robots-Tag header), and
  *              nothing on the site links to it.
- * Version:     1.0.0
+ * Version:     1.0.1
  *
  * Install: copy to wp-content/mu-plugins/vv-links.php (must-use plugins load automatically).
  */
@@ -91,13 +91,14 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 .vvl-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 14px;background:#ddd}
 .vvl-name{font-size:24px;font-weight:600;letter-spacing:-.02em;margin:0}
 .vvl-bio{font-size:15px;color:var(--muted);margin:8px auto 0;max-width:360px}
-.vvl-fixed{display:grid;gap:10px;margin-bottom:32px}
+.vvl-fixed{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-bottom:32px}
 .vvl-btn{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 18px;text-align:center;font-size:16px;font-weight:600;transition:border-color .15s,transform .15s}
 .vvl-btn small{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vvl-btn.is-primary{background:var(--ink);color:#fff;border-color:var(--ink)}
 .vvl-btn.is-primary small{color:#cccccc}
 .vvl-label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
-.vvl-posts{display:grid;gap:10px;list-style:none;margin:0;padding:0}
+.vvl-posts{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;list-style:none;margin:0;padding:0}
+.vvl-posts li{min-width:0}
 .vvl-post{display:flex;gap:14px;align-items:center;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;transition:border-color .15s,transform .15s}
 .vvl-thumb{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:0 0 64px;background:var(--bg)}
 .vvl-thumb.is-empty{display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--muted)}
@@ -107,6 +108,7 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 .vvl-btn:focus-visible,.vvl-post:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .vvl-foot{text-align:center;font-size:12px;color:var(--muted);margin-top:36px}
 .vvl-foot a{color:var(--muted)}
+#ast-scroll-top,.ast-scroll-top-icon{display:none!important}
 @media (prefers-reduced-motion:no-preference){.vvl-btn:active,.vvl-post:active{transform:scale(.98)}}
 </style>
 </head>
