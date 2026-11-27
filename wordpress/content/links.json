@@ -1,0 +1,19 @@
+{
+ "_how_to_update": "Add each new Instagram post link at the TOP of 'posts' (newest first): title, url (a site path like /my-essay/ or a full https URL), date (YYYY-MM-DD), and optionally image (an attachment ID or image URL; site essays use their own banner automatically). The page shows the first 'max' links. Then run wordpress/build/pages/links.php.",
+ "max": 12,
+ "bio": "Digital marketing strategist in Dubai. Practical notes on AI, SEO and paid media.",
+ "fixed": [
+  { "label": "Website", "url": "/" },
+  { "label": "Latest essay", "latest": true },
+  { "label": "llms.txt generator", "url": "/ai-tools/llms-txt-generator/" },
+  { "label": "UTM Builder", "url": "/ai-tools/utm-builder/" }
+ ],
+ "posts": [
+  { "title": "How to run paid social ads: the seven decisions that actually matter", "url": "/run-social-media-ads/", "date": "2026-11-25" },
+  { "title": "On-page SEO for AI search: what to keep, what to skip", "url": "/on-page-seo-ai-search/", "date": "2026-11-23" },
+  { "title": "ChatGPT business profiles: what they mean for marketers", "url": "/businesses-in-chatgpt/", "date": "2026-11-11" },
+  { "title": "On-page SEO: what it is, the key elements and how to do it", "url": "/on-page-seo/", "date": "2026-11-10" },
+  { "title": "What is SEO? A simple guide for everyone", "url": "/what-is-seo/", "date": "2026-11-02" },
+  { "title": "What is an AI visibility score? And what's actually worth measuring", "url": "/ai-visibility-score/", "date": "2026-10-26" }
+ ]
+}
