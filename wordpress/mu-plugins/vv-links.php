@@ -4,14 +4,15 @@
  * Description: The link-in-bio page for Instagram (/links/). The WordPress page with post meta vv_links = 1 is drawn as a
  *              standalone, mobile-first page: no theme header, menu or footer, and none of the theme's or Elementor's
  *              stylesheets or scripts (wp_head still runs, so Rank Math's meta and Google Tag Manager load). Shows the
- *              headshot, name and bio line, the fixed buttons, the free tools (two cards side by side on a tinted
- *              background), then the latest Instagram post links (newest first).
+ *              compact header (headshot, name, bio line), the Instagram post links first (newest first, since that is
+ *              what visitors come for), the free tools (two cards side by side on a tinted background), then Website
+ *              and Latest essay side by side under "Explore the site".
  *              Content comes from the vv_links option, which is wordpress/content/links.json from the repo
  *              (wordpress/build/pages/links.php writes it). Every link carries utm_source=instagram, utm_medium=social,
  *              utm_campaign=link_in_bio and utm_content=<link>, and every click pushes a link_in_bio_click event to the
  *              dataLayer. Kept out of search: noindex, follow (Rank Math robots meta plus an X-Robots-Tag header), and
  *              nothing on the site links to it.
- * Version:     1.1.1
+ * Version:     1.2.0
  *
  * Install: copy to wp-content/mu-plugins/vv-links.php (must-use plugins load automatically).
  */
@@ -87,17 +88,18 @@ add_action( 'template_redirect', function () {
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg)}
 body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.4}
-.vvl{max-width:520px;margin:0 auto;padding:40px 16px 32px}
-.vvl-head{text-align:center;margin-bottom:28px}
-.vvl-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 14px;background:#ddd}
-.vvl-name{font-size:24px;font-weight:600;letter-spacing:-.02em;margin:0}
-.vvl-bio{font-size:15px;color:var(--muted);margin:8px auto 0;max-width:360px}
-.vvl-fixed{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-bottom:32px}
-.vvl-btn{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 18px;text-align:center;font-size:16px;font-weight:600;transition:border-color .15s,transform .15s}
+.vvl{max-width:520px;margin:0 auto;padding:28px 16px 32px}
+.vvl-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.vvl-photo{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:0 0 64px;background:#ddd}
+.vvl-name{font-size:20px;font-weight:600;letter-spacing:-.02em;margin:0}
+.vvl-bio{font-size:14px;color:var(--muted);margin:3px 0 0}
+.vvl-posts-wrap{margin-bottom:28px}
+.vvl-fixed{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.vvl-btn{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:left;font-size:16px;font-weight:600;transition:border-color .15s,transform .15s}
 .vvl-btn small{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vvl-btn.is-primary{background:var(--ink);color:#fff;border-color:var(--ink)}
 .vvl-btn.is-primary small{color:#cccccc}
-.vvl-tools{margin-bottom:32px}
+.vvl-tools{margin-bottom:28px}
 .vvl-label.is-title{text-transform:none;letter-spacing:-.01em;font-size:17px;font-weight:600;color:var(--ink)}
 .vvl-tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .vvl-tool{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:#eaf2fc;border:1px solid #cfe0f5;border-radius:14px;padding:16px 14px;transition:border-color .15s,transform .15s}
@@ -125,34 +127,33 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 <?php wp_body_open(); ?>
 <main class="vvl">
 	<header class="vvl-head">
-		<?php if ( $photo ) : ?><img class="vvl-photo" src="<?php echo esc_url( $photo ); ?>" alt="Vineet Vijay" width="96" height="96"><?php endif; ?>
-		<h1 class="vvl-name">Vineet Vijay</h1>
-		<p class="vvl-bio"><?php $e( $data['bio'] ?? '' ); ?></p>
+		<?php if ( $photo ) : ?><img class="vvl-photo" src="<?php echo esc_url( $photo ); ?>" alt="Vineet Vijay" width="64" height="64"><?php endif; ?>
+		<div><h1 class="vvl-name">Vineet Vijay</h1>
+		<p class="vvl-bio"><?php $e( $data['bio'] ?? '' ); ?></p></div>
 	</header>
-	<nav class="vvl-fixed" aria-label="Main links">
-		<?php
-		$pos = 0;
-		foreach ( (array) ( $data['fixed'] ?? array() ) as $i => $b ) {
-			$pos++;
-			$url = $b['url'] ?? '';
-			$sub = '';
-			if ( ! empty( $b['latest'] ) ) {
-				if ( ! $latest ) { continue; }
-				$url = wp_make_link_relative( get_permalink( $latest[0] ) );
-				$sub = wp_strip_all_tags( get_the_title( $latest[0] ) );
+	<?php if ( $posts ) : ?>
+	<section class="vvl-posts-wrap" aria-labelledby="vvl-posts-label">
+		<h2 class="vvl-label is-title" id="vvl-posts-label">From my Instagram posts</h2>
+		<ul class="vvl-posts">
+			<?php
+			$pos = 0;
+			foreach ( $posts as $p ) {
+				if ( empty( $p['url'] ) || empty( $p['title'] ) ) { continue; }
+				$pos++;
+				$thumb = vv_links_thumb( $p );
+				$date  = ! empty( $p['date'] ) ? date_i18n( 'j M Y', strtotime( $p['date'] ) ) : '';
+				echo '<li><a class="vvl-post" href="' . esc_url( vv_links_tag( $p['url'], $p['title'] ) ) . '" data-vvl="post" data-vvl-pos="' . (int) $pos . '">';
+				echo $thumb
+					? '<img class="vvl-thumb" src="' . esc_url( $thumb ) . '" alt="" width="64" height="64" loading="' . ( $pos > 4 ? 'lazy' : 'eager' ) . '">'
+					: '<span class="vvl-thumb is-empty" aria-hidden="true">' . esc_html( mb_substr( $p['title'], 0, 1 ) ) . '</span>';
+				echo '<span><span class="vvl-post-title">' . esc_html( $p['title'] ) . '</span>';
+				if ( $date ) { echo '<span class="vvl-post-date">' . esc_html( $date ) . '</span>'; }
+				echo '</span></a></li>';
 			}
-			if ( ! $url ) { continue; }
-			printf(
-				'<a class="vvl-btn%s" href="%s" data-vvl="fixed" data-vvl-pos="%d">%s%s</a>',
-				0 === $i ? ' is-primary' : '',
-				esc_url( vv_links_tag( $url, $b['label'] ) ),
-				$pos,
-				esc_html( $b['label'] ),
-				$sub ? '<small>' . esc_html( $sub ) . '</small>' : ''
-			);
-		}
-		?>
-	</nav>
+			?>
+		</ul>
+	</section>
+	<?php endif; ?>
 	<?php $tools = (array) ( $data['tools'] ?? array() ); if ( $tools ) : ?>
 	<section class="vvl-tools" aria-labelledby="vvl-tools-label">
 		<h2 class="vvl-label is-title" id="vvl-tools-label"><?php $e( $data['tools_title'] ?? 'Free Tools for Marketers' ); ?></h2>
@@ -174,29 +175,33 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 		</div>
 	</section>
 	<?php endif; ?>
-	<?php if ( $posts ) : ?>
-	<section aria-labelledby="vvl-posts-label">
-		<h2 class="vvl-label" id="vvl-posts-label">From my Instagram posts</h2>
-		<ul class="vvl-posts">
-			<?php
-			$pos = 0;
-			foreach ( $posts as $p ) {
-				if ( empty( $p['url'] ) || empty( $p['title'] ) ) { continue; }
-				$pos++;
-				$thumb = vv_links_thumb( $p );
-				$date  = ! empty( $p['date'] ) ? date_i18n( 'j M Y', strtotime( $p['date'] ) ) : '';
-				echo '<li><a class="vvl-post" href="' . esc_url( vv_links_tag( $p['url'], $p['title'] ) ) . '" data-vvl="post" data-vvl-pos="' . (int) $pos . '">';
-				echo $thumb
-					? '<img class="vvl-thumb" src="' . esc_url( $thumb ) . '" alt="" width="64" height="64" loading="' . ( $pos > 4 ? 'lazy' : 'eager' ) . '">'
-					: '<span class="vvl-thumb is-empty" aria-hidden="true">' . esc_html( mb_substr( $p['title'], 0, 1 ) ) . '</span>';
-				echo '<span><span class="vvl-post-title">' . esc_html( $p['title'] ) . '</span>';
-				if ( $date ) { echo '<span class="vvl-post-date">' . esc_html( $date ) . '</span>'; }
-				echo '</span></a></li>';
+	<section class="vvl-more" aria-labelledby="vvl-more-label">
+		<h2 class="vvl-label is-title" id="vvl-more-label">Explore the site</h2>
+	<nav class="vvl-fixed" aria-label="Explore the site">
+		<?php
+		$pos = 0;
+		foreach ( (array) ( $data['fixed'] ?? array() ) as $i => $b ) {
+			$pos++;
+			$url = $b['url'] ?? '';
+			$sub = '';
+			if ( ! empty( $b['latest'] ) ) {
+				if ( ! $latest ) { continue; }
+				$url = wp_make_link_relative( get_permalink( $latest[0] ) );
+				$sub = wp_strip_all_tags( get_the_title( $latest[0] ) );
 			}
-			?>
-		</ul>
+			if ( ! $url ) { continue; }
+			printf(
+				'<a class="vvl-btn%s" href="%s" data-vvl="fixed" data-vvl-pos="%d">%s%s</a>',
+				'',
+				esc_url( vv_links_tag( $url, $b['label'] ) ),
+				$pos,
+				esc_html( $b['label'] ),
+				$sub ? '<small>' . esc_html( $sub ) . '</small>' : ''
+			);
+		}
+		?>
+	</nav>
 	</section>
-	<?php endif; ?>
 	<p class="vvl-foot">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> Vineet Vijay · <a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy policy</a></p>
 </main>
 <script>
