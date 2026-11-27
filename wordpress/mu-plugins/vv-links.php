@@ -4,13 +4,14 @@
  * Description: The link-in-bio page for Instagram (/links/). The WordPress page with post meta vv_links = 1 is drawn as a
  *              standalone, mobile-first page: no theme header, menu or footer, and none of the theme's or Elementor's
  *              stylesheets or scripts (wp_head still runs, so Rank Math's meta and Google Tag Manager load). Shows the
- *              headshot, name and bio line, the fixed buttons, then the latest Instagram post links (newest first).
+ *              headshot, name and bio line, the fixed buttons, the free tools (two cards side by side on a tinted
+ *              background), then the latest Instagram post links (newest first).
  *              Content comes from the vv_links option, which is wordpress/content/links.json from the repo
  *              (wordpress/build/pages/links.php writes it). Every link carries utm_source=instagram, utm_medium=social,
  *              utm_campaign=link_in_bio and utm_content=<link>, and every click pushes a link_in_bio_click event to the
  *              dataLayer. Kept out of search: noindex, follow (Rank Math robots meta plus an X-Robots-Tag header), and
  *              nothing on the site links to it.
- * Version:     1.0.1
+ * Version:     1.1.0
  *
  * Install: copy to wp-content/mu-plugins/vv-links.php (must-use plugins load automatically).
  */
@@ -96,6 +97,15 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 .vvl-btn small{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vvl-btn.is-primary{background:var(--ink);color:#fff;border-color:var(--ink)}
 .vvl-btn.is-primary small{color:#cccccc}
+.vvl-tools{margin-bottom:32px}
+.vvl-label.is-title{text-transform:none;letter-spacing:-.01em;font-size:17px;font-weight:600;color:var(--ink)}
+.vvl-tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.vvl-tool{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:#eaf2fc;border:1px solid #cfe0f5;border-radius:14px;padding:16px 14px;transition:border-color .15s,transform .15s}
+.vvl-tool-pill{align-self:flex-start;font-size:11px;font-weight:600;letter-spacing:.04em;color:#0066cc;background:#fff;border-radius:999px;padding:3px 8px}
+.vvl-tool-name{font-size:16px;font-weight:600;line-height:1.25}
+.vvl-tool-text{font-size:13px;color:#44474d;line-height:1.35}
+.vvl-tool:hover{border-color:#0066cc}
+.vvl-tool:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .vvl-label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
 .vvl-posts{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;list-style:none;margin:0;padding:0}
 .vvl-posts li{min-width:0}
@@ -109,7 +119,7 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 .vvl-foot{text-align:center;font-size:12px;color:var(--muted);margin-top:36px}
 .vvl-foot a{color:var(--muted)}
 #ast-scroll-top,.ast-scroll-top-icon{display:none!important}
-@media (prefers-reduced-motion:no-preference){.vvl-btn:active,.vvl-post:active{transform:scale(.98)}}
+@media (prefers-reduced-motion:no-preference){.vvl-btn:active,.vvl-post:active,.vvl-tool:active{transform:scale(.98)}}
 </style>
 </head>
 <body <?php body_class( 'vv-links' ); ?>>
@@ -144,6 +154,27 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 		}
 		?>
 	</nav>
+	<?php $tools = (array) ( $data['tools'] ?? array() ); if ( $tools ) : ?>
+	<section class="vvl-tools" aria-labelledby="vvl-tools-label">
+		<h2 class="vvl-label is-title" id="vvl-tools-label"><?php $e( $data['tools_title'] ?? 'Free Tools for Marketers' ); ?></h2>
+		<div class="vvl-tool-grid">
+			<?php
+			$pos = 0;
+			foreach ( $tools as $t ) {
+				if ( empty( $t['url'] ) || empty( $t['label'] ) ) { continue; }
+				$pos++;
+				printf(
+					'<a class="vvl-tool" href="%s" data-vvl="tool" data-vvl-pos="%d"><span class="vvl-tool-pill">Free</span><span class="vvl-tool-name">%s</span>%s</a>',
+					esc_url( vv_links_tag( $t['url'], $t['label'] ) ),
+					$pos,
+					esc_html( $t['label'] ),
+					! empty( $t['text'] ) ? '<span class="vvl-tool-text">' . esc_html( $t['text'] ) . '</span>' : ''
+				);
+			}
+			?>
+		</div>
+	</section>
+	<?php endif; ?>
 	<?php if ( $posts ) : ?>
 	<section aria-labelledby="vvl-posts-label">
 		<h2 class="vvl-label" id="vvl-posts-label">From my Instagram posts</h2>
@@ -171,7 +202,7 @@ body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvet
 </main>
 <script>
 document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[data-vvl]');if(!a)return;
-var t=a.querySelector('.vvl-post-title');window.dataLayer=window.dataLayer||[];
+var t=a.querySelector('.vvl-post-title,.vvl-tool-name');window.dataLayer=window.dataLayer||[];
 window.dataLayer.push({event:'link_in_bio_click',link_section:a.getAttribute('data-vvl'),link_position:+a.getAttribute('data-vvl-pos'),link_text:(t?t.textContent:a.firstChild.textContent).trim(),link_url:a.href.split('?')[0]});});
 </script>
 <?php wp_footer(); ?>
